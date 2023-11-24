@@ -1,0 +1,36 @@
+{
+  "name": "publish",
+  "scripts": {
+    "start": "VITE_CJS_IGNORE_WARNING=true vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@capacitor-community/sqlite": "^5.4.2-2",
+    "@capacitor/android": "^5.5.1",
+    "@capacitor/app": "^5.0.6",
+    "@capacitor/core": "^5.5.1",
+    "@capacitor/ios": "^5.5.1",
+    "@capacitor/local-notifications": "^5.0.6",
+    "@capacitor/push-notifications": "^5.1.0",
+    "@capacitor/share": "^5.0.6",
+    "@capacitor/splash-screen": "^5.0.6",
+    "@capacitor/status-bar": "^5.0.6",
+    "capacitor-tauri": "^1.0.0-beta.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.5.1",
+    "@types/react": "^18.2.38",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.2.0",
+    "native-run": "^2.0.0",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.2"
+  },
+  "workspaces": [
+    "tauri"
+  ],
+  "packageManager": "yarn@4.0.2"
+}
