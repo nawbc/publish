@@ -1,0 +1,34 @@
+{
+  "name": "@publishjs/sdk",
+  "version": "0.0.1-alpha.1",
+  "description": "Publish app shared utils",
+  "author": "Han <wanghan9423@outlook.com>",
+  "private": true,
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "url": "https://github.com/indiebase/indiebase",
+    "directory": "first_party/gadgets",
+    "type": "git"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc && shx cp ./src/*.d.ts ./dist/",
+    "prepack": "npm run build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
+  },
+  "devDependencies": {
+    "typescript": "5.2.2"
+  }
+}

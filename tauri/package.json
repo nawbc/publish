@@ -1,5 +1,5 @@
 {
-  "name": "publish-tauri",
+  "name": "@publish/tauri",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

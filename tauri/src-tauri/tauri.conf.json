@@ -4,10 +4,10 @@
     "version": "0.1.0"
   },
   "build": {
-    "distDir": "../../dist",
-    "devPath": "http://0.0.0.0:",
-    "beforeDevCommand": "",
-    "beforeBuildCommand": "",
+    "distDir": "../../packages/desktop/dist",
+    "devPath": "http://0.0.0.0:3000",
+    "beforeDevCommand": "yarn _web:desktop",
+    "beforeBuildCommand": "yarn build",
     "withGlobalTauri": false
   },
   "tauri": {
@@ -16,7 +16,6 @@
       "targets": "all",
       "identifier": "com.deskbtm.publish",
       "icon": [
-        "icons/32x32.png",
         "icons/128x128.png",
         "icons/128x128@2x.png",
         "icons/icon.icns",
@@ -48,7 +47,9 @@
       "active": false
     },
     "allowlist": {
-      "all": true
+      "notification": {
+        "all": true
+      }
     },
     "windows": [
       {

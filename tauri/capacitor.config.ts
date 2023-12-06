@@ -7,9 +7,5 @@ import { CapacitorConfig } from "@capacitor/cli";
 export default {
   appId: "com.deskbtm.publish",
   appName: "publish",
-  webDir: "dist",
-  server: {
-    url: "http://192.168.0.107:3000/",
-    androidScheme: "https",
-  },
+  webDir: "../dist",
 } satisfies CapacitorConfig;
