@@ -20,6 +20,5 @@ module.exports = {
     '@typescript-eslint/triple-slash-reference': 'warn',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-namespace': 'off',
   },
 };

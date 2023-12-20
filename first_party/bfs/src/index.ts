@@ -5,13 +5,14 @@
 import { ApiError, ErrorCode } from './ApiError';
 import { Cred } from './cred';
 import fs from './emulation/fs';
-import { type MountMapping, setCred } from './emulation/shared';
+import { mount, type MountMapping, setCred } from './emulation/shared';
 import {
   type BFSCallback,
   type BFSOneArgCallback,
   FileSystem,
 } from './filesystem';
 import { providers } from './providers/index';
+import { MemoryProvider } from './providers/Memory';
 import type { ProviderConstructor } from './providers/provider';
 
 /**
@@ -103,12 +104,12 @@ export function configure(
  * Individual options can recursively contain FileSystemConfiguration objects for
  * option values that require file systems.
  *
- * For example, to mirror Dropbox to Storage with AsyncMirror, use the following
+ * For example, to mirror Dropbox to Storage with AsyncMirrorProvider, use the following
  * object:
  *
  * ```javascript
  * var config = {
- *   fs: "AsyncMirror",
+ *   fs: "AsyncMirrorProvider",
  *   options: {
  *     sync: {fs: "Storage"},
  *     async: {fs: "Dropbox", options: {client: anAuthenticatedDropboxSDKClient }}
@@ -191,6 +192,13 @@ export function getFileSystem(
     .catch((err) => cb(err));
   return;
 }
+
+/*
+Set a default root.
+There is a very small but not 0 change that initialize() will try to unmount the default before it is mounted.
+This can be fixed by using a top-level await, which is not done to maintain ES6 compatibility.
+*/
+MemoryProvider.Create().then((fs) => mount('/', fs));
 
 export * from './ApiError';
 export * from './cred';

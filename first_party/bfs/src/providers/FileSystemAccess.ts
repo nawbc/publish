@@ -5,7 +5,7 @@ import { FileFlag, PreloadFile } from '../file';
 import type { FileSystemMetadata } from '../filesystem';
 import { BaseFileSystem } from '../filesystem';
 import { FileType, Stats } from '../stats';
-import type { ProviderOptions } from './provider';
+import type { BaseProviderConstructor, ProviderOptions } from './provider';
 import { CreateProvider } from './provider';
 
 declare global {
@@ -17,7 +17,7 @@ declare global {
   }
 }
 
-interface FileSystemAccessFileSystemOptions {
+interface FileSystemAccessProviderOptions {
   handle: FileSystemDirectoryHandle;
 }
 
@@ -29,9 +29,9 @@ const handleError = (path = '', error: Error) => {
   throw error as ApiError;
 };
 
-export class FileSystemAccessFile extends PreloadFile<FileSystemAccessFileSystem> {
+export class FileSystemAccessFile extends PreloadFile<FileSystemAccessProvider> {
   constructor(
-    _fs: FileSystemAccessFileSystem,
+    _fs: FileSystemAccessProvider,
     _path: string,
     _flag: FileFlag,
     _stat: Stats,
@@ -57,7 +57,7 @@ export class FileSystemAccessFile extends PreloadFile<FileSystemAccessFileSystem
   }
 }
 
-export class FileSystemAccessFileSystem extends BaseFileSystem {
+export class FileSystemAccessProvider extends BaseFileSystem {
   public static override readonly Name = 'FileSystemAccess';
 
   public static Create = CreateProvider.bind(this);
@@ -70,7 +70,7 @@ export class FileSystemAccessFileSystem extends BaseFileSystem {
 
   private _handles: Map<string, FileSystemHandle> = new Map();
 
-  public constructor({ handle }: FileSystemAccessFileSystemOptions) {
+  public constructor({ handle }: FileSystemAccessProviderOptions) {
     super();
     this._handles.set('/', handle);
   }
@@ -78,7 +78,7 @@ export class FileSystemAccessFileSystem extends BaseFileSystem {
   public override get metadata(): FileSystemMetadata {
     return {
       ...super.metadata,
-      name: FileSystemAccessFileSystem.Name,
+      name: FileSystemAccessProvider.Name,
     };
   }
 
@@ -93,7 +93,6 @@ export class FileSystemAccessFileSystem extends BaseFileSystem {
       await this.writeFile(
         p,
         data,
-        null,
         FileFlag.getFileFlag('w'),
         currentStats!.mode,
         cred,
@@ -144,11 +143,11 @@ export class FileSystemAccessFileSystem extends BaseFileSystem {
   public override async writeFile(
     fname: string,
     data: any,
-    encoding: string | null,
+    // encoding: string | null,
     flag: FileFlag,
     mode: number,
     cred: Cred,
-    createFile?: boolean,
+    // createFile?: boolean,
   ): Promise<void> {
     const handle = await this.getHandle(dirname(fname));
     if (handle instanceof FileSystemDirectoryHandle) {
@@ -168,14 +167,11 @@ export class FileSystemAccessFileSystem extends BaseFileSystem {
     mode: number,
     cred: Cred,
   ): Promise<FileSystemAccessFile> {
-    await this.writeFile(p, new Uint8Array(), null, flag, mode, cred, true);
+    await this.writeFile(p, new Uint8Array(), flag, mode, cred);
     return this.openFile(p, flag, cred);
   }
 
-  public override async stat(
-    path: string,
-    cred: Cred,
-  ): Promise<Stats | undefined> {
+  public override async stat(path: string, cred: Cred): Promise<Stats> {
     const handle = await this.getHandle(path);
     if (!handle) {
       throw ApiError.FileError(ErrorCode.EINVAL, path);
@@ -187,6 +183,7 @@ export class FileSystemAccessFileSystem extends BaseFileSystem {
       const { lastModified, size } = await handle.getFile();
       return new Stats(FileType.FILE, size, undefined, undefined, lastModified);
     }
+    return undefined as unknown as Stats;
   }
 
   public override async exists(p: string, cred: Cred): Promise<boolean> {
@@ -209,6 +206,7 @@ export class FileSystemAccessFileSystem extends BaseFileSystem {
       const buffer = await file.arrayBuffer();
       return this.newFile(path, flags, buffer, file.size, file.lastModified);
     }
+    return undefined as any;
   }
 
   public override async unlink(path: string, cred: Cred): Promise<void> {
@@ -216,7 +214,7 @@ export class FileSystemAccessFileSystem extends BaseFileSystem {
     if (handle instanceof FileSystemDirectoryHandle) {
       try {
         await handle.removeEntry(basename(path), { recursive: true });
-      } catch (e) {
+      } catch (e: any) {
         handleError(path, e);
       }
     }
@@ -275,7 +273,7 @@ export class FileSystemAccessFileSystem extends BaseFileSystem {
     );
   }
 
-  private async getHandle(path: string): Promise<FileSystemHandle> {
+  private async getHandle(path: string): Promise<FileSystemHandle | void> {
     if (this._handles.has(path)) {
       return this._handles.get(path)!;
     }

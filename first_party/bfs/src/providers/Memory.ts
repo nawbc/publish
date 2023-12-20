@@ -9,11 +9,11 @@ import { SimpleSyncRWTransaction, SyncKeyValueFileSystem } from './SyncStore';
 /**
  * A simple in-memory key-value store backed by a JavaScript object.
  */
-export class InMemoryStore implements SyncKeyValueStore, SimpleSyncStore {
+export class MemoryFsStore implements SyncKeyValueStore, SimpleSyncStore {
   private store: Map<string, Uint8Array> = new Map<string, Uint8Array>();
 
   public name() {
-    return InMemoryFileSystem.Name;
+    return MemoryProvider.Name;
   }
   public clear() {
     this.store.clear();
@@ -41,17 +41,17 @@ export class InMemoryStore implements SyncKeyValueStore, SimpleSyncStore {
 }
 
 /**
- * A simple in-memory file system backed by an InMemoryStore.
+ * A simple in-memory file system backed by an MemoryFsStore.
  * Files are not persisted across page loads.
  */
-export class InMemoryFileSystem extends SyncKeyValueFileSystem {
-  public static override readonly Name = 'InMemory';
+export class MemoryProvider extends SyncKeyValueFileSystem {
+  public static override readonly Name = 'Memory';
 
   public static Create = CreateProvider.bind(this);
 
   public static readonly Options: ProviderOptions = {};
 
   public constructor() {
-    super({ store: new InMemoryStore() });
+    super({ store: new MemoryFsStore() });
   }
 }

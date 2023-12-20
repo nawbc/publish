@@ -14,7 +14,7 @@ import { SimpleSyncRWTransaction, SyncKeyValueFileSystem } from './SyncStore';
  */
 export class StorageStore implements SyncKeyValueStore, SimpleSyncStore {
   public name(): string {
-    return StorageFileSystem.Name;
+    return StorageProvider.Name;
   }
 
   constructor(protected _storage: Storage) {}
@@ -63,9 +63,9 @@ export class StorageStore implements SyncKeyValueStore, SimpleSyncStore {
 }
 
 /**
- * Options to pass to the StorageFileSystem
+ * Options to pass to the StorageProvider
  */
-export interface StorageFileSystemOptions {
+export interface StorageProviderOptions {
   /**
    * The Storage to use. Defaults to globalThis.localStorage.
    */
@@ -75,7 +75,7 @@ export interface StorageFileSystemOptions {
 /**
  * A synchronous file system backed by a `Storage` (e.g. localStorage).
  */
-export class StorageFileSystem extends SyncKeyValueFileSystem {
+export class StorageProvider extends SyncKeyValueFileSystem {
   public static override readonly Name = 'Storage';
 
   public static Create = CreateProvider.bind(this);
@@ -96,7 +96,7 @@ export class StorageFileSystem extends SyncKeyValueFileSystem {
   /**
    * Creates a new Storage file system using the contents of `Storage`.
    */
-  constructor({ storage = globalThis.localStorage }: StorageFileSystemOptions) {
+  constructor({ storage = globalThis.localStorage }: StorageProviderOptions) {
     super({ store: new StorageStore(storage) });
   }
 }

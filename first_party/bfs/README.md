@@ -1,3 +1,14 @@
 This package forked from  
-https://github.com/browser-fs/core  
-https://github.com/browser-fs/fs-dom
+https://github.com/jvilk/BrowserFS
+
+## Usage
+
+- `AsyncMirror` - AsyncMirrorProvider:
+- `FileSystemAccess` - FileSystemAccessProvider:
+- `FolderAdapter` - FolderAdapter:
+- `Http` - HttpProvider:
+- `IndexedDB` - IndexedDBProvider:
+- `Memory` - MemoryProvider:
+- `OverlayFS` - OverlayFSProvider:
+- `Storage` - StorageProvider:
+- `Worker` - WorkerFsProvider:

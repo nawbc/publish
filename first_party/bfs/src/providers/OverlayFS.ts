@@ -8,6 +8,7 @@ import { BaseFileSystem, type FileSystem } from '../filesystem';
 import { Stats } from '../stats';
 import { decode, encode } from '../utils';
 import LockedFS from './Locked';
+import type { BaseProviderConstructor } from './provider';
 import { CreateProvider, type ProviderOptions } from './provider';
 /**
  * @internal
@@ -32,9 +33,12 @@ function getFlag(f: string): FileFlag {
 /**
  * Overlays a RO file to make it writable.
  */
-class OverlayFile extends PreloadFile<UnlockedOverlayFS> implements File {
+class OverlayFile
+  extends PreloadFile<UnlockedOverlayFSProvider>
+  implements File
+{
   constructor(
-    fs: UnlockedOverlayFS,
+    fs: UnlockedOverlayFSProvider,
     path: string,
     flag: FileFlag,
     stats: Stats,
@@ -68,29 +72,27 @@ class OverlayFile extends PreloadFile<UnlockedOverlayFS> implements File {
   }
 }
 
-export namespace OverlayFS {
+/**
+ * Configuration options for OverlayFSProvider instances.
+ */
+export interface OverlayFSProviderOptions {
   /**
-   * Configuration options for OverlayFS instances.
+   * The file system to write modified files to.
    */
-  export interface Options {
-    /**
-     * The file system to write modified files to.
-     */
-    writable: FileSystem;
-    /**
-     * The file system that initially populates this file system.
-     */
-    readable: FileSystem;
-  }
+  writable: FileSystem;
+  /**
+   * The file system that initially populates this file system.
+   */
+  readable: FileSystem;
 }
 
 /**
  * *INTERNAL, DO NOT USE DIRECTLY!*
  *
- * Core OverlayFS class that contains no locking whatsoever. We wrap these objects
+ * Core OverlayFSProvider class that contains no locking whatsoever. We wrap these objects
  * in a LockedFS to prevent races.
  */
-export class UnlockedOverlayFS extends BaseFileSystem {
+export class UnlockedOverlayFSProvider extends BaseFileSystem {
   public static isAvailable(): boolean {
     return true;
   }
@@ -108,7 +110,7 @@ export class UnlockedOverlayFS extends BaseFileSystem {
   // If there was an error updating the delete log...
   private _deleteLogError: ApiError | null = null;
 
-  constructor({ writable, readable }: OverlayFS.Options) {
+  constructor({ writable, readable }: OverlayFSProviderOptions) {
     super();
     this._writable = writable;
     this._readable = readable;
@@ -123,7 +125,7 @@ export class UnlockedOverlayFS extends BaseFileSystem {
   public override get metadata(): FileSystemMetadata {
     return {
       ...super.metadata,
-      name: OverlayFS.Name,
+      name: OverlayFSProvider.Name,
       synchronous:
         this._readable.metadata.synchronous &&
         this._writable.metadata.synchronous,
@@ -143,7 +145,9 @@ export class UnlockedOverlayFS extends BaseFileSystem {
     };
   }
 
-  public async _syncAsync(file: PreloadFile<UnlockedOverlayFS>): Promise<void> {
+  public async _syncAsync(
+    file: PreloadFile<UnlockedOverlayFSProvider>,
+  ): Promise<void> {
     const stats = file.getStats();
     await this.createParentDirectoriesAsync(
       file.getPath(),
@@ -158,7 +162,7 @@ export class UnlockedOverlayFS extends BaseFileSystem {
     );
   }
 
-  public _syncSync(file: PreloadFile<UnlockedOverlayFS>): void {
+  public _syncSync(file: PreloadFile<UnlockedOverlayFSProvider>): void {
     const stats = file.getStats();
     this.createParentDirectories(file.getPath(), stats.getCred(0, 0));
     this._writable.writeFileSync(
@@ -750,7 +754,7 @@ export class UnlockedOverlayFS extends BaseFileSystem {
     if (!this._isInitialized) {
       throw new ApiError(
         ErrorCode.EPERM,
-        'OverlayFS is not initialized. Please initialize OverlayFS using its initialize() method before using it.',
+        'OverlayFSProvider is not initialized. Please initialize OverlayFSProvider using its initialize() method before using it.',
       );
     } else if (this._deleteLogError !== null) {
       const e = this._deleteLogError;
@@ -863,11 +867,11 @@ export class UnlockedOverlayFS extends BaseFileSystem {
 }
 
 /**
- * OverlayFS makes a read-only filesystem writable by storing writes on a second,
+ * OverlayFSProvider makes a read-only filesystem writable by storing writes on a second,
  * writable file system. Deletes are persisted via metadata stored on the writable
  * file system.
  */
-export class OverlayFS extends LockedFS<UnlockedOverlayFS> {
+export class OverlayFSProvider extends LockedFS<UnlockedOverlayFSProvider> {
   public static readonly Name = 'OverlayFS';
 
   public static Create = CreateProvider.bind(this);
@@ -884,18 +888,18 @@ export class OverlayFS extends LockedFS<UnlockedOverlayFS> {
   };
 
   public static isAvailable(): boolean {
-    return UnlockedOverlayFS.isAvailable();
+    return UnlockedOverlayFSProvider.isAvailable();
   }
 
   /**
-   * @param options The options to initialize the OverlayFS with
+   * @param options The options to initialize the OverlayFSProvider with
    */
-  constructor(options: OverlayFS.Options) {
-    super(new UnlockedOverlayFS(options));
+  constructor(options: OverlayFSProviderOptions) {
+    super(new UnlockedOverlayFSProvider(options));
     this._ready = this._initialize();
   }
 
-  public getOverlayedFileSystems(): OverlayFS.Options {
+  public getOverlayedFileSystems(): OverlayFSProviderOptions {
     return super.fs.getOverlayedFileSystems();
   }
 
@@ -907,7 +911,7 @@ export class OverlayFS extends LockedFS<UnlockedOverlayFS> {
     return super.fs.getDeletionLog();
   }
 
-  public unwrap(): UnlockedOverlayFS {
+  public unwrap(): UnlockedOverlayFSProvider {
     return super.fs;
   }
 

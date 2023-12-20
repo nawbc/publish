@@ -104,7 +104,7 @@ export abstract class FileSystem {
   /**
    * Asynchronous `stat`.
    */
-  abstract stat(p: string, cred: Cred): Promise<Stats | undefined>;
+  abstract stat(p: string, cred: Cred): Promise<Stats>;
   /**
    * Synchronous `stat`.
    */
@@ -470,7 +470,7 @@ export class BaseFileSystem extends FileSystem {
   public renameSync(oldPath: string, newPath: string, cred: Cred): void {
     throw new ApiError(ErrorCode.ENOTSUP);
   }
-  public async stat(p: string, cred: Cred): Promise<Stats | undefined> {
+  public async stat(p: string, cred: Cred): Promise<Stats> {
     throw new ApiError(ErrorCode.ENOTSUP);
   }
   public statSync(p: string, cred: Cred): Stats {

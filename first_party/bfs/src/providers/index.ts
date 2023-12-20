@@ -1,12 +1,17 @@
-import { AsyncMirror } from './AsyncMirror';
+import { AsyncMirrorProvider } from './AsyncMirror';
 import { FolderAdapter } from './FolderAdapter';
-import { InMemoryFileSystem as InMemory } from './InMemory';
-import { OverlayFS } from './OverlayFS';
+import { MemoryProvider } from './Memory';
+import { OverlayFSProvider } from './OverlayFS';
 import type { ProviderConstructor } from './provider';
 
 export const providers: { [provider: string]: ProviderConstructor } = {};
 export default providers;
-export { AsyncMirror, FolderAdapter, InMemory, OverlayFS };
+export {
+  AsyncMirrorProvider,
+  FolderAdapter,
+  MemoryProvider,
+  OverlayFSProvider,
+};
 
 export function registerProvider(..._providers: ProviderConstructor[]) {
   for (const provider of _providers) {
@@ -14,4 +19,9 @@ export function registerProvider(..._providers: ProviderConstructor[]) {
   }
 }
 
-registerProvider(AsyncMirror, FolderAdapter, InMemory, OverlayFS);
+registerProvider(
+  AsyncMirrorProvider,
+  FolderAdapter,
+  MemoryProvider,
+  OverlayFSProvider,
+);

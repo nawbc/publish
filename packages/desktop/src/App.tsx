@@ -1,13 +1,13 @@
 import '@blocksuite/presets/themes/affine.css';
 
 import { configure, registerProvider } from '@deskbtm/bfs';
-import { IndexedDBFileSystem } from '@deskbtm/bfs/providers/IndexedDB';
+import { IndexedDBProvider } from '@deskbtm/bfs/providers/IndexedDB';
 import { MantineProvider } from '@mantine/core';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { DevTools as JotaiDevTools } from 'jotai-devtools';
 import type { FC } from 'react';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import type { ComposeProps } from 'reactgets/components/Compose/index';
 import { Compose } from 'reactgets/components/Compose/index';
@@ -15,6 +15,13 @@ import * as uuid from 'uuid';
 
 import { router } from './router';
 import { resolver, theme } from './theme';
+
+registerProvider(IndexedDBProvider);
+
+await configure({
+  '/tmp': { fs: 'Memory' },
+  '/opt': { fs: 'IndexedDB' },
+});
 
 const DevTools: FC = function () {
   return kDevMode ? (
@@ -28,23 +35,23 @@ const DevTools: FC = function () {
 function App() {
   const [queryClient] = useState(() => new QueryClient());
 
-  useEffect(
-    (() => {
-      (async () => {
-        try {
-          registerProvider(IndexedDBFileSystem);
+  // useEffect(
+  //   (() => {
+  //     (async () => {
+  //       try {
+  //         registerProvider(IndexedDBFileSystem);
 
-          await configure({
-            '/tmp': { fs: 'InMemory' },
-            '/home': { fs: 'IndexedDB' },
-          });
-        } catch (error) {
-          console.log(error);
-        }
-      })();
-      return () => {};
-    })(),
-  );
+  //         await configure({
+  //           '/tmp': { fs: 'InMemory' },
+  //           '/home': { fs: 'IndexedDB' },
+  //         });
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     })();
+  //     return () => {};
+  //   })(),
+  // );
 
   const providers: ComposeProps['providers'] = [
     <MantineProvider

@@ -4,16 +4,14 @@ import { join, relative } from '../emulation/path';
 import { BaseFileSystem, type FileSystem } from '../filesystem';
 import { CreateProvider, type ProviderOptions } from './provider';
 
-export namespace FolderAdapter {
-  /**
-   * Configuration options for a FolderAdapter file system.
-   */
-  export interface Options {
-    // The folder to use as the root directory.
-    folder: string;
-    // The file system to wrap.
-    wrapped: FileSystem;
-  }
+/**
+ * Configuration options for a FolderAdapter file system.
+ */
+export interface FolderAdapterOptions {
+  // The folder to use as the root directory.
+  folder: string;
+  // The file system to wrap.
+  wrapped: FileSystem;
 }
 
 /**
@@ -57,7 +55,7 @@ export class FolderAdapter extends BaseFileSystem {
   public _wrapped: FileSystem;
   public _folder: string;
 
-  public constructor({ folder, wrapped }: FolderAdapter.Options) {
+  public constructor({ folder, wrapped }: FolderAdapterOptions) {
     super();
     this._folder = folder;
     this._wrapped = wrapped;

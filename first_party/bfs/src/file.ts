@@ -741,7 +741,7 @@ export class PreloadFile<T extends FileSystem> extends BaseFile {
 }
 
 /**
- * File class for the InMemory and XHR file systems.
+ * File class for the MemoryProvider and XHR file systems.
  * Doesn't sync to anything, so it works nicely for memory-only files.
  */
 export class NoSyncFile<T extends FileSystem>

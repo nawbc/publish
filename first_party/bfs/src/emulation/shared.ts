@@ -4,7 +4,6 @@ import { ApiError, ErrorCode } from '../ApiError';
 import { Cred } from '../cred';
 import type { File } from '../file';
 import type { FileSystem } from '../filesystem';
-import { InMemoryFileSystem } from '../providers/InMemory';
 import type { ProviderConstructor } from '../providers/provider';
 import { resolve } from './path';
 
@@ -136,14 +135,6 @@ export interface MountMapping {
 }
 
 export const mounts: Map<string, FileSystem> = new Map();
-
-/*
-Set a default root.
-There is a very small but not 0 change that initialize() will try to unmount the default before it is mounted.
-This can be fixed by using a top-level await, which is not done to maintain ES6 compatibility.
-*/
-// @ts-ignore
-InMemoryFileSystem.Create().then((fs) => mount('/', fs));
 
 /**
  * Gets the file system mounted at `mountPoint`

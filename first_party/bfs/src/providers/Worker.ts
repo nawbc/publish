@@ -68,13 +68,11 @@ interface WorkerRequest {
   reject: _executor[1];
 }
 
-export namespace WorkerFS {
-  export interface Options {
-    /**
-     * The target worker that you want to connect to, or the current worker if in a worker context.
-     */
-    worker: Worker;
-  }
+export interface WorkerFsProviderOptions {
+  /**
+   * The target worker that you want to connect to, or the current worker if in a worker context.
+   */
+  worker: Worker;
 }
 
 type _RPCExtractReturnValue<T extends RPCResponse['method']> = Promise<
@@ -82,7 +80,7 @@ type _RPCExtractReturnValue<T extends RPCResponse['method']> = Promise<
 >;
 
 /**
- * WorkerFS lets you access a BrowserFS instance that is running in a different
+ * WorkerFsProvider lets you access a BrowserFS instance that is running in a different
  * JavaScript context (e.g. access BrowserFS in one of your WebWorkers, or
  * access BrowserFS running on the main page from a WebWorker).
  *
@@ -93,23 +91,23 @@ type _RPCExtractReturnValue<T extends RPCResponse['method']> = Promise<
  *
  * ```javascript
  *   // Listen for remote file system requests.
- *   BrowserFS.Provider.WorkerFS.attachRemoteListener(webWorkerObject);
+ *   BrowserFS.Provider.WorkerFsProvider.attachRemoteListener(webWorkerObject);
  * ```
  *
  * WEBWORKER THREAD:
  *
  * ```javascript
  *   // Set the remote file system as the root file system.
- *   BrowserFS.configure({ fs: "WorkerFS", options: { worker: self }}, function(e) {
+ *   BrowserFS.configure({ fs: "WorkerFsProvider", options: { worker: self }}, function(e) {
  *     // Ready!
  *   });
  * ```
  *
- * Note that synchronous operations are not permitted on the WorkerFS, regardless
+ * Note that synchronous operations are not permitted on the WorkerFsProvider, regardless
  * of the configuration option of the remote FS.
  */
-export class WorkerFS extends BaseFileSystem {
-  public static override readonly Name = 'WorkerFS';
+export class WorkerFsProvider extends BaseFileSystem {
+  public static override readonly Name = 'Worker';
 
   public static Create = CreateProvider.bind(this);
 
@@ -144,10 +142,10 @@ export class WorkerFS extends BaseFileSystem {
   private _metadata!: FileSystemMetadata;
 
   /**
-   * Constructs a new WorkerFS instance that connects with BrowserFS running on
+   * Constructs a new WorkerFsProvider instance that connects with BrowserFS running on
    * the specified worker.
    */
-  public constructor({ worker }: WorkerFS.Options) {
+  public constructor({ worker }: WorkerFsProviderOptions) {
     super();
     this._worker = worker;
     this._worker.onmessage = (event: MessageEvent) => {
@@ -179,7 +177,7 @@ export class WorkerFS extends BaseFileSystem {
     return {
       ...super.metadata,
       ...this._metadata,
-      name: WorkerFS.Name,
+      name: WorkerFsProvider.Name,
       synchronous: false,
     };
   }

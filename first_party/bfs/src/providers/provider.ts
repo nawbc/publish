@@ -87,32 +87,30 @@ export interface ProviderConstructor<
   ): Promise<InstanceType<FS>> | void;
 }
 
+export function CreateProvider<FS extends BaseProviderConstructor>(): Promise<
+  InstanceType<FS>
+>;
+export function CreateProvider<FS extends BaseProviderConstructor>(): Promise<
+  InstanceType<FS>
+>;
 export function CreateProvider<FS extends BaseProviderConstructor>(
-  this: FS,
-): Promise<InstanceType<FS>>;
-export function CreateProvider<FS extends BaseProviderConstructor>(
-  this: FS,
   options: ProviderOptions,
 ): Promise<InstanceType<FS>>;
 export function CreateProvider<FS extends BaseProviderConstructor>(
-  this: FS,
   cb: BFSCallback<InstanceType<FS>>,
 ): void;
 export function CreateProvider<FS extends BaseProviderConstructor>(
-  this: FS,
   options: ProviderOptions,
   cb: BFSCallback<InstanceType<FS>>,
 ): void;
 export function CreateProvider<FS extends BaseProviderConstructor>(
-  this: FS,
   options?: ProviderOptions | BFSCallback<InstanceType<FS>>,
   cb?: BFSCallback<InstanceType<FS>>,
 ): Promise<InstanceType<FS>> | void {
   cb = typeof options === 'function' ? options : cb;
-
-  checkOptions(this, options!);
-
-  const fs = new this(
+  const self = this as FS;
+  checkOptions(self, options!);
+  const fs = new self(
     typeof options === 'function' ? {} : options,
   ) as InstanceType<FS>;
 

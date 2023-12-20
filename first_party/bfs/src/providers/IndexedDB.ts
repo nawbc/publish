@@ -5,7 +5,7 @@ import type {
   AsyncKeyValueStore,
 } from './AsyncStore';
 import { AsyncKeyValueFileSystem } from './AsyncStore';
-import type { ProviderOptions } from './provider';
+import type { BaseProviderConstructor, ProviderOptions } from './provider';
 import { CreateProvider } from './provider';
 
 /**
@@ -182,7 +182,7 @@ export class IndexedDBStore implements AsyncKeyValueStore {
   ) {}
 
   public name(): string {
-    return IndexedDBFileSystem.Name + ' - ' + this.storeName;
+    return IndexedDBProvider.Name + ' - ' + this.storeName;
   }
 
   public clear(): Promise<void> {
@@ -222,7 +222,7 @@ export class IndexedDBStore implements AsyncKeyValueStore {
 /**
  * Configuration options for the IndexedDB file system.
  */
-export interface IndexedDBFileSystemOptions {
+export interface IndexedDBProviderOptions {
   /**
    * The name of this file system. You can have multiple IndexedDB file systems operating at once, but each must have a different name.
    */
@@ -242,7 +242,7 @@ export interface IndexedDBFileSystemOptions {
 /**
  * A file system that uses the IndexedDB key value file system.
  */
-export class IndexedDBFileSystem extends AsyncKeyValueFileSystem {
+export class IndexedDBProvider extends AsyncKeyValueFileSystem {
   public static override readonly Name = 'IndexedDB';
 
   public static Create = CreateProvider.bind(this);
@@ -289,7 +289,7 @@ export class IndexedDBFileSystem extends AsyncKeyValueFileSystem {
     cacheSize = 100,
     storeName = 'browserfs',
     idbFactory = globalThis.indexedDB,
-  }: IndexedDBFileSystemOptions) {
+  }: IndexedDBProviderOptions) {
     super(cacheSize);
     this._ready = IndexedDBStore.Create(storeName, idbFactory).then((store) => {
       this.init(store);

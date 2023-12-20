@@ -17,7 +17,7 @@ export interface HTTPRequestIndex {
 }
 
 /**
- * Configuration options for a HTTPRequest file system.
+ * Configuration options for a HttpProvider file system.
  */
 export interface HTTPRequestOptions {
   /**
@@ -60,8 +60,8 @@ export interface HTTPRequestOptions {
  *
  * *This example has the folder `/home/jvilk` with subfile `someFile.txt` and subfolder `someDir`.*
  */
-export class HTTPRequest extends BaseFileSystem {
-  public static override readonly Name = 'HTTPRequest';
+export class HttpProvider extends BaseFileSystem {
+  public static override readonly Name = 'Http';
 
   public static Create = CreateProvider.bind(this);
 
@@ -112,7 +112,7 @@ export class HTTPRequest extends BaseFileSystem {
   public override get metadata(): FileSystemMetadata {
     return {
       ...super.metadata,
-      name: HTTPRequest.Name,
+      name: HttpProvider.Name,
       readonly: true,
     };
   }
@@ -241,7 +241,7 @@ export class HTTPRequest extends BaseFileSystem {
     // Get file.
     const fd = await this.open(fname, flag, 0o644, cred);
     try {
-      const fdCast = <NoSyncFile<HTTPRequest>>fd;
+      const fdCast = <NoSyncFile<HttpProvider>>fd;
       const fdBuff = fdCast.getBuffer();
       return encoding ? decode(fdBuff) : fdBuff;
     } finally {

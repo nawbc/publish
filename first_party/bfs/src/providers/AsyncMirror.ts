@@ -19,9 +19,9 @@ interface AsyncOperation {
 /**
  * We define our own file to interpose on syncSync() for mirroring purposes.
  */
-class MirrorFile extends PreloadFile<AsyncMirror> implements File {
+class MirrorFile extends PreloadFile<AsyncMirrorProvider> implements File {
   constructor(
-    fs: AsyncMirror,
+    fs: AsyncMirrorProvider,
     path: string,
     flag: FileFlag,
     stat: Stats,
@@ -42,24 +42,22 @@ class MirrorFile extends PreloadFile<AsyncMirror> implements File {
   }
 }
 
-export namespace AsyncMirror {
+/**
+ * Configuration options for the AsyncMirrorProvider file system.
+ */
+export interface AsyncMirrorProviderOptions {
   /**
-   * Configuration options for the AsyncMirror file system.
+   * The synchronous file system to mirror the asynchronous file system to.
    */
-  export interface Options {
-    /**
-     * The synchronous file system to mirror the asynchronous file system to.
-     */
-    sync: FileSystem;
-    /**
-     * The asynchronous file system to mirror.
-     */
-    async: FileSystem;
-  }
+  sync: FileSystem;
+  /**
+   * The asynchronous file system to mirror.
+   */
+  async: FileSystem;
 }
 
 /**
- * AsyncMirrorFS mirrors a synchronous filesystem into an asynchronous filesystem
+ * AsyncMirrorProviderFS mirrors a synchronous filesystem into an asynchronous filesystem
  * by:
  *
  * * Performing operations over the in-memory copy, while asynchronously pipelining them
@@ -77,7 +75,7 @@ export namespace AsyncMirror {
  * BrowserFS.configure({
  *   fs: "AsyncMirror",
  *   options: {
- *     sync: { fs: "InMemory" },
+ *     sync: { fs: "Memory" },
  *     async: { fs: "IndexedDB" }
  *   }
  * }, function(e) {
@@ -89,8 +87,8 @@ export namespace AsyncMirror {
  *
  * ```javascript
  * BrowserFS.Provider.IndexedDB.Create(function(e, idbfs) {
- *   BrowserFS.Provider.InMemory.Create(function(e, inMemory) {
- *     BrowserFS.Provider.AsyncMirror({
+ *   BrowserFS.Provider.MemoryProvider.Create(function(e, inMemory) {
+ *     BrowserFS.Provider.AsyncMirrorProvider({
  *       sync: inMemory, async: idbfs
  *     }, function(e, mirrored) {
  *       BrowserFS.initialize(mirrored);
@@ -99,7 +97,7 @@ export namespace AsyncMirror {
  * });
  * ```
  */
-export class AsyncMirror extends SynchronousFileSystem {
+export class AsyncMirrorProvider extends SynchronousFileSystem {
   public static override readonly Name = 'AsyncMirror';
 
   public static Create = CreateProvider.bind(this);
@@ -145,7 +143,7 @@ export class AsyncMirror extends SynchronousFileSystem {
    * @param sync The synchronous file system to mirror the asynchronous file system to.
    * @param async The asynchronous file system to mirror.
    */
-  constructor({ sync, async }: AsyncMirror.Options) {
+  constructor({ sync, async }: AsyncMirrorProviderOptions) {
     super();
     this._sync = sync;
     this._async = async;
@@ -155,7 +153,7 @@ export class AsyncMirror extends SynchronousFileSystem {
   public override get metadata(): FileSystemMetadata {
     return {
       ...super.metadata,
-      name: AsyncMirror.Name,
+      name: AsyncMirrorProvider.Name,
       synchronous: true,
       supportsProperties:
         this._sync.metadata.supportsProperties &&
@@ -163,7 +161,7 @@ export class AsyncMirror extends SynchronousFileSystem {
     };
   }
 
-  public _syncSync(fd: PreloadFile<AsyncMirror>) {
+  public _syncSync(fd: PreloadFile<AsyncMirrorProvider>) {
     const stats = fd.getStats();
     this._sync.writeFileSync(
       fd.getPath(),
