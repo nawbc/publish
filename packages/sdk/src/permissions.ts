@@ -1,0 +1,47 @@
+export const permissions = [
+  /**
+   * Get network state
+   * Level: normal
+   */
+  'network:state',
+  'network:internet',
+  /**
+   * Level: normal
+   */
+  'wifi',
+  /**
+   * Level: normal
+   */
+  'bluetooth',
+  /**
+   * Level: normal
+   */
+  'geolocation',
+  /**
+   * Level: normal
+   */
+  'storage:cookie',
+  'storage:local',
+  'storage:db',
+  /**
+   * Level: normal
+   */
+  'clipboard:write',
+  'clipboard:read',
+  /**
+   * Read external plugin storage
+   * Level: dangerous
+   */
+  'storage:external:APP_NAME:cookie',
+  'storage:external:APP_NAME:local',
+  'storage:external:APP_NAME:db',
+  /**
+   * System file systems
+   * Level: dangerous
+   * Web unavailable
+   */
+  'sys:fs:read',
+  'sys:fs:write',
+] as const;
+
+export type PublishPluginPermissions = Array<(typeof permissions)[number]>;

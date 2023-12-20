@@ -1,28 +1,21 @@
 module.exports = {
   root: true,
-  env: { browser: true, es2020: true },
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:react/jsx-runtime',
-    'plugin:react/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: ['@typescript-eslint', 'simple-import-sort', 'prettier'],
   rules: {
-    'react/react-in-jsx-scope': 'off',
-    'react/self-closing-comp': [
+    '@typescript-eslint/consistent-type-imports': [
       'error',
-      {
-        component: true,
-        html: true
-      },
+      { prefer: 'type-imports', disallowTypeAnnotations: false },
     ],
-    '@typescript-eslint/no-explicit-any': 'off',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': [
-      'warn',
+      'error',
       {
         vars: 'all',
         varsIgnorePattern: '^_',

@@ -10,15 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@capacitor-community/sqlite": "5.4.2-2",
+    "@capacitor-community/sqlite": "5.5.0",
     "@capacitor/keyboard": "5.0.6",
     "@capacitor/local-notifications": "5.0.6",
     "@capacitor/push-notifications": "5.1.0",
     "@capacitor/share": "5.0.6",
     "@capacitor/splash-screen": "5.0.6",
     "@capacitor/status-bar": "5.0.6",
-    "@ionic/react": "7.5.7",
-    "@ionic/react-router": "7.5.7",
+    "@ionic/react": "7.6.1",
+    "@ionic/react-router": "7.6.1",
     "react-router": "5.3.4",
     "react-router-dom": "5.3.4"
   },

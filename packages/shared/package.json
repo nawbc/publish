@@ -1,5 +1,5 @@
 {
-  "name": "@publish/app-shared",
+  "name": "@publish/shared",
   "version": "0.0.1-alpha.1",
   "description": "Publish app shared utils",
   "author": "Han <wanghan9423@outlook.com>",
@@ -8,27 +8,19 @@
   "exports": {
     ".": "./src/index.ts",
     "./*": {
-      "default": "./src/*.ts"
+      "default": "./src/*"
     }
   },
-  "files": [
-    "dist/**/*"
-  ],
-  "repository": {
-    "url": "https://github.com/indiebase/indiebase",
-    "directory": "first_party/gadgets",
-    "type": "git"
-  },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=20.0.0"
   },
   "scripts": {
-    "build": "shx rm -rf dist && tsc && shx cp ./src/*.d.ts ./dist/",
+    "build": "shx rm -rf dist && tsc",
     "prepack": "npm run build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "devDependencies": {
-    "typescript": "5.2.2"
+    "typescript": "5.3.3"
   }
 }

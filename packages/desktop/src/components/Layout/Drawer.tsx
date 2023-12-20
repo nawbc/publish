@@ -1,11 +1,12 @@
 import { AppShell, Burger } from '@mantine/core';
 import { useAtom } from 'jotai';
+import type { FC } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+
+import { Fallback } from '../Fallback';
 import { navbarCollapseAtom } from './navbar.atom';
-import { FC } from 'react';
 // import { SkeletonList } from '~/components/Skeletons';
 import { NavMenu } from './NavMenu';
-import { Fallback } from '../Fallback';
-import { ErrorBoundary } from 'react-error-boundary';
 
 export interface AppShellDrawerProps {
   semver?: string;
