@@ -1,7 +1,7 @@
 import { ApiError, ErrorCode } from '../ApiError';
 import { encode } from '../utils';
-import type { BackendOptions } from './backend';
-import { CreateBackend } from './backend';
+import type { ProviderOptions } from './provider';
+import { CreateProvider } from './provider';
 import type {
   SimpleSyncStore,
   SyncKeyValueRWTransaction,
@@ -62,16 +62,14 @@ export class StorageStore implements SyncKeyValueStore, SimpleSyncStore {
   }
 }
 
-export namespace StorageFileSystem {
+/**
+ * Options to pass to the StorageFileSystem
+ */
+export interface StorageFileSystemOptions {
   /**
-   * Options to pass to the StorageFileSystem
+   * The Storage to use. Defaults to globalThis.localStorage.
    */
-  export interface Options {
-    /**
-     * The Storage to use. Defaults to globalThis.localStorage.
-     */
-    storage: Storage;
-  }
+  storage: Storage;
 }
 
 /**
@@ -80,9 +78,9 @@ export namespace StorageFileSystem {
 export class StorageFileSystem extends SyncKeyValueFileSystem {
   public static override readonly Name = 'Storage';
 
-  public static Create = CreateBackend.bind(this);
+  public static Create = CreateProvider.bind(this);
 
-  public static readonly Options: BackendOptions = {
+  public static readonly Options: ProviderOptions = {
     storage: {
       type: 'object',
       optional: true,
@@ -98,9 +96,7 @@ export class StorageFileSystem extends SyncKeyValueFileSystem {
   /**
    * Creates a new Storage file system using the contents of `Storage`.
    */
-  constructor({
-    storage = globalThis.localStorage,
-  }: StorageFileSystem.Options) {
+  constructor({ storage = globalThis.localStorage }: StorageFileSystemOptions) {
     super({ store: new StorageStore(storage) });
   }
 }

@@ -58,6 +58,7 @@
     "@typescript-eslint/eslint-plugin": "6.14.0",
     "@typescript-eslint/parser": "6.14.0",
     "@vanilla-extract/vite-plugin": "3.9.3",
+    "@vitejs/plugin-react": "^4.2.1",
     "@vitejs/plugin-react-swc": "3.5.0",
     "capacitor-tauri": "1.0.0-beta.1",
     "eslint": "8.55.0",

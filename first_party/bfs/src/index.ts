@@ -2,17 +2,17 @@
  * BrowserFS's main module. This is exposed in the browser via the BrowserFS global.
  */
 
-import { ApiError, ErrorCode } from './ApiError.js';
-import { Cred } from './cred.js';
-import fs from './emulation/fs.js';
-import { type MountMapping, setCred } from './emulation/shared.js';
+import { ApiError, ErrorCode } from './ApiError';
+import { Cred } from './cred';
+import fs from './emulation/fs';
+import { type MountMapping, setCred } from './emulation/shared';
 import {
   type BFSCallback,
   type BFSOneArgCallback,
   FileSystem,
-} from './filesystem.js';
-import { providers } from './providers/index.js';
-import type { ProviderConstructor } from './providers/provider.js';
+} from './filesystem';
+import { providers } from './providers/index';
+import type { ProviderConstructor } from './providers/provider';
 
 /**
  * Initializes BrowserFS with the given file systems.
@@ -192,17 +192,17 @@ export function getFileSystem(
   return;
 }
 
-export * from './ApiError.js';
-export * from './cred.js';
-export * from './file.js';
-export * from './FileIndex.js';
-export * from './filesystem.js';
-export * from './inode.js';
-export * from './mutex.js';
-export * from './providers/AsyncStore.js';
-export * from './providers/index.js';
-export * from './providers/SyncStore.js';
-export * from './stats.js';
-export * from './utils.js';
+export * from './ApiError';
+export * from './cred';
+export * from './file';
+export * from './FileIndex';
+export * from './filesystem';
+export * from './inode';
+export * from './mutex';
+export * from './providers';
+export * from './providers/AsyncStore';
+// export * from './providers/SyncStore';
+export * from './stats';
+export * from './utils';
 export { fs };
 export default fs;
