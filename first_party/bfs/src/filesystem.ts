@@ -77,7 +77,7 @@ export abstract class FileSystem {
 
   abstract readonly metadata: FileSystemMetadata;
 
-  constructor(options?: object) {
+  constructor(options: any) {
     // unused
   }
 
@@ -367,7 +367,7 @@ export class BaseFileSystem extends FileSystem {
   protected _ready: Promise<this> = Promise.resolve(this);
 
   public constructor(options?: { [key: string]: unknown }) {
-    super();
+    super(options);
   }
 
   public get metadata(): FileSystemMetadata {

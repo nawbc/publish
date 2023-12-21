@@ -90,9 +90,6 @@ export interface ProviderConstructor<
 export function CreateProvider<FS extends BaseProviderConstructor>(): Promise<
   InstanceType<FS>
 >;
-export function CreateProvider<FS extends BaseProviderConstructor>(): Promise<
-  InstanceType<FS>
->;
 export function CreateProvider<FS extends BaseProviderConstructor>(
   options: ProviderOptions,
 ): Promise<InstanceType<FS>>;

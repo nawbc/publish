@@ -40,7 +40,7 @@ function doOp<M extends FileSystemMethod, RT extends ReturnType<M>>(
   try {
     // @ts-expect-error 2556 (since ...args is not correctly picked up as being a tuple)
     return fs[name](resolvedPath, ...args) as RT;
-  } catch (e) {
+  } catch (e: any) {
     throw fixError(e, { [resolvedPath]: path });
   }
 }
@@ -64,7 +64,7 @@ export function renameSync(oldPath: string, newPath: string): void {
     const data = readFileSync(oldPath);
     writeFileSync(newPath, data);
     unlinkSync(oldPath);
-  } catch (e) {
+  } catch (e: any) {
     throw fixError(e, paths);
   }
 }
@@ -438,14 +438,14 @@ export function readSync(
   const file = fd2file(fd);
   let offset = opts as number;
   if (typeof opts == 'object') {
-    ({ offset, length, position } = opts);
+    ({ offset, length, position } = opts as any);
   }
 
   if (position && isNaN(+position)) {
     position = file.getPos()!;
   }
 
-  return file.readSync(buffer, offset, length, position);
+  return file.readSync(buffer, offset, length!, position!);
 }
 
 /**
@@ -545,7 +545,7 @@ export function linkSync(srcpath: string, dstpath: string): void {
 export function symlinkSync(
   srcpath: string,
   dstpath: string,
-  type?: symlink.Type,
+  type: symlink.Type,
 ): void {
   if (!['file', 'dir', 'junction'].includes(type)) {
     throw new ApiError(ErrorCode.EINVAL, 'Invalid type: ' + type);
@@ -674,7 +674,7 @@ export function realpathSync(
     }
     const dst = normalizePath(mountPoint + fs.readlinkSync(resolvedPath, cred));
     return realpathSync(dst);
-  } catch (e) {
+  } catch (e: any) {
     throw fixError(e, { [resolvedPath]: path });
   }
 }

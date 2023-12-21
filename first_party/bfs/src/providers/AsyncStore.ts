@@ -611,20 +611,22 @@ export class AsyncKeyValueFileSystem extends BaseFileSystem {
    */
   private async getDirListing(
     tx: AsyncKeyValueROTransaction,
-    p: string,
+    path: string,
     inode: Inode,
   ): Promise<{ [fileName: string]: string }> {
     if (!inode.isDirectory()) {
-      throw ApiError.ENOTDIR(p);
+      throw ApiError.ENOTDIR(path);
     }
+    console.log(path, inode, '--------------');
     const data = await tx.get(inode.id);
+    console.log(data.toString());
     try {
-      return JSON.parse(data!.toString());
+      return JSON.parse(`[${data!.toString()}]`);
     } catch (e) {
       // Occurs when data is undefined, or corresponds to something other
       // than a directory listing. The latter should never occur unless
       // the file system is corrupted.
-      throw ApiError.ENOENT(p);
+      throw ApiError.ENOENT(path);
     }
   }
 

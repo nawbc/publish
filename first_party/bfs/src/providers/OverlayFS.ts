@@ -8,7 +8,6 @@ import { BaseFileSystem, type FileSystem } from '../filesystem';
 import { Stats } from '../stats';
 import { decode, encode } from '../utils';
 import LockedFS from './Locked';
-import type { BaseProviderConstructor } from './provider';
 import { CreateProvider, type ProviderOptions } from './provider';
 /**
  * @internal

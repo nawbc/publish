@@ -219,6 +219,7 @@ export function fixPaths(
   text: string,
   paths: { [from: string]: string },
 ): string {
+  console.log(paths);
   for (const [from, to] of Object.entries(paths)) {
     text = text.replaceAll(from, to);
   }
@@ -229,6 +230,7 @@ export function fixError<E extends Error>(
   e: E,
   paths: { [from: string]: string },
 ): E {
+  console.log(e);
   e.stack = fixPaths(e.stack!, paths);
   e.message = fixPaths(e.message, paths);
   return e;

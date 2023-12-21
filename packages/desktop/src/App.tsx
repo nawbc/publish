@@ -1,8 +1,9 @@
+/* eslint-disable simple-import-sort/imports */
 import '@blocksuite/presets/themes/affine.css';
 
-import { configure, registerProvider } from '@deskbtm/bfs';
-import { IndexedDBProvider } from '@deskbtm/bfs/providers/IndexedDB';
-import { MantineProvider } from '@mantine/core';
+import { Button, MantineProvider } from '@mantine/core';
+// import { configure, fs, registerProvider } from '@plugkit/bfs';
+// import { IndexedDBProvider } from '@plugkit/bfs/providers/IndexedDB';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { DevTools as JotaiDevTools } from 'jotai-devtools';
@@ -16,11 +17,16 @@ import * as uuid from 'uuid';
 import { router } from './router';
 import { resolver, theme } from './theme';
 
-registerProvider(IndexedDBProvider);
+// registerProvider(IndexedDBProvider);
 
-await configure({
-  '/tmp': { fs: 'Memory' },
-  '/opt': { fs: 'IndexedDB' },
+// await configure({
+//   '/home': 'IndexedDB',
+// });
+
+install(window);
+
+configure({ fs: 'IndexedDB', options: {} }, function (e) {
+  console.log(e);
 });
 
 const DevTools: FC = function () {
@@ -65,6 +71,7 @@ function App() {
   return (
     <Compose providers={providers}>
       <DevTools />
+      <Button onClick={async () => {}}>Demo</Button>
       <RouterProvider
         router={router}
         future={{

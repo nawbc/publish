@@ -568,6 +568,7 @@ export class SyncKeyValueFileSystem extends SynchronousFileSystem {
     if (data === undefined) {
       throw ApiError.ENOENT(p);
     }
+    console.log(data.toString());
     return JSON.parse(data.toString());
   }
 
