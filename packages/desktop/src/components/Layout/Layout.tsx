@@ -31,10 +31,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = () => {
           <Button
             size="xs"
             onClick={async () => {
-              // import('@browserfs/fs-dom').then((v) => {
-              //   console.log(v);
-              // });
-              // const myWorker = new Worker('http://localhost:8080/index.js');
+              // const myWorker = new Worker('http://localhost:8080/index');
               // myWorker.onerror = (err: unknown) => {
               //   console.log(err);
               // };

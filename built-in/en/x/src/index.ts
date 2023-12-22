@@ -1,7 +1,14 @@
 import type { Manifest } from '@publishjs/sdk';
 import { PublishPlugin } from '@publishjs/sdk';
 
+import publish from '../public/publish.svg';
+import { demo } from './mod';
 export class Plugin extends PublishPlugin {
+  constructor() {
+    super();
+    demo();
+    console.log(publish);
+  }
   protected override register(): Manifest {
     return {
       permissions: [
@@ -26,7 +33,8 @@ export class Plugin extends PublishPlugin {
       manifestVersion: 1,
       author: {
         name: 'Han',
-        avatar: '',
+        avatar:
+          'https://avatars.githubusercontent.com/u/45007226?s=400&u=8e6ce9e05f673f26ccaf19b792f74fe9c7b7f39e&v=4',
         email: 'deskbtm@outlook.com',
         additional: '',
       },

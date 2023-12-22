@@ -2,8 +2,15 @@
   "name": "@publishjs/plugin-x",
   "version": "0.0.1-alpha.1",
   "description": "Publish x(twitter) plugin",
-  "author": "Han <wanghan9423@outlook.com>",
+  "author": "Han <han@deskbtm.com>",
   "private": true,
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite build --watch --mode development",
+    "prepack": "npm run build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
+  },
   "main": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
@@ -14,23 +21,13 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public",
-    "main": "./dist/index.js",
-    "module": "./dist/index.js",
-    "exports": {
-      ".": {
-        "default": "./dist/index.js",
-        "types": "./dist/index.d.ts"
-      }
-    }
+    "main": "./dist/index.mjs"
   },
+  "files": [
+    "./dist"
+  ],
   "engines": {
     "node": ">=20.0.0"
-  },
-  "scripts": {
-    "build": "tsc && vite build",
-    "prepack": "npm run build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "devDependencies": {
     "shx": "0.3.4",

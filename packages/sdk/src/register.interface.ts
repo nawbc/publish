@@ -1,8 +1,17 @@
-import type { PublishPluginPermissions } from './permissions';
+import type { PermissionsManifest } from './permissions';
 
-export interface Author {
+export interface AuthorManifest {
+  /**
+   * Author name
+   */
   name: string;
+  /**
+   * Author avatar url
+   */
   avatar?: string;
+  /**
+   * Author email
+   */
   email: string;
   /**
    * Additional descriptions
@@ -11,19 +20,19 @@ export interface Author {
   additional: string;
 }
 
-export interface Update {
+export interface UpdateManifest {
   mode: 'npm' | 'github';
   url: string;
 }
 
-export interface Fs {
+export interface FsManifest {
   /**
    * Allow visit paths
    */
   scope: string[];
 }
 
-export interface Network {
+export interface NetworkManifest {
   /**
    * Allow visit domains
    */
@@ -42,18 +51,47 @@ export interface Manifest {
    * | dangerous | A higher-risk permission that gives a requesting application access to private user data or control over the device that can negatively impact the user. |
    * ```
    */
-  permissions: PublishPluginPermissions;
+  permissions: PermissionsManifest;
+  /**
+   * App name
+   */
   name: string;
+  /**
+   * App display name
+   */
+  displayName?: string;
+  /**
+   * App version
+   * @see {@link https://semver.org/}
+   */
   version: string;
   /**
-   * Register manifest version
+   * Register manifest version, should be Integer.
    */
   manifestVersion: number;
-  author: Author;
+  /**
+   * App author information.
+   * {@link Author}
+   */
+  author: AuthorManifest;
+  /**
+   * Homepage url
+   */
   homepage?: string;
+  /**
+   * App package name
+   * @example com.deskbtm.publish.x
+   * @see {@link https://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html}
+   */
   packageName: string;
+  /**
+   * App description
+   */
   description?: string;
-  update: Update;
+  /**
+   * App update config.
+   */
+  update: UpdateManifest;
   /**
    * Available locates
    * ISO 3166-1 alpha-2 code
@@ -61,8 +99,11 @@ export interface Manifest {
    */
   locates: string[];
   /**
-   * Web unavailable
+   * File system config, allowlist. web available.
    */
-  fs?: Fs;
-  network?: Network;
+  fs?: FsManifest;
+  /**
+   * Network config, allowlist
+   */
+  network?: NetworkManifest;
 }

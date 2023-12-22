@@ -2,7 +2,7 @@
   "name": "@publish/shared",
   "version": "0.0.1-alpha.1",
   "description": "Publish app shared utils",
-  "author": "Han <wanghan9423@outlook.com>",
+  "author": "Han <han@deskbtm.com>",
   "private": true,
   "main": "./src/index.ts",
   "exports": {

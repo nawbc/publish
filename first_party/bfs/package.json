@@ -2,7 +2,7 @@
   "name": "@plugkit/bfs",
   "version": "0.0.1-alpha.1",
   "description": "Browser file system",
-  "author": "Han <wanghan9423@outlook.com>",
+  "author": "Han <han@deskbtm.com>",
   "main": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
@@ -46,5 +46,8 @@
   "devDependencies": {
     "eslint": "8.55.0",
     "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "isomorphic-textencoder": "^1.0.1"
   }
 }

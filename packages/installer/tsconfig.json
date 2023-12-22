@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "../plugmgr/dist",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+  },
+  "include": [
+    "../plugmgr/src/**/*"
+  ],
+  "exclude": [
+    "../plugmgr/node_modules"
+  ]
+}

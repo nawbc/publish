@@ -44,4 +44,4 @@ export const permissions = [
   'sys:fs:write',
 ] as const;
 
-export type PublishPluginPermissions = Array<(typeof permissions)[number]>;
+export type PermissionsManifest = Array<(typeof permissions)[number]>;

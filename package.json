@@ -77,7 +77,8 @@
     "shx": "0.3.4",
     "typescript": "5.3.3",
     "vite": "5.0.10",
-    "vite-bundle-visualizer": "1.0.0"
+    "vite-bundle-visualizer": "1.0.0",
+    "vitest": "^1.1.0"
   },
   "workspaces": [
     "tauri",
