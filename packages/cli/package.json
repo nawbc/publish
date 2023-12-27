@@ -47,5 +47,10 @@
   "devDependencies": {
     "eslint": "8.55.0",
     "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "@clack/prompts": "0.7.0",
+    "commander": "11.1.0",
+    "libnpmpack": "6.0.4"
   }
 }

@@ -1,8 +1,8 @@
 {
-  "name": "@publishjs/plugin-x",
-  "version": "0.0.1-alpha.1",
-  "description": "Publish x(twitter) plugin",
-  "author": "Han <han@deskbtm.com>",
+  "name": "{{name}}",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
   "main": "./dist/index.mjs",
   "scripts": {
     "build": "tsc && vite build",
@@ -26,6 +26,6 @@
     "vite": "5.0.10"
   },
   "dependencies": {
-    "@publishjs/sdk": "workspace:^"
+    "@publishjs/sdk": "latest"
   }
 }

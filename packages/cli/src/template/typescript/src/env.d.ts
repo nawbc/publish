@@ -232,11 +232,3 @@ declare module '*?inline' {
   const src: string;
   export default src;
 }
-
-// declare module globalThis {
-//   const __SID__: string;
-// }
-
-// interface Window {
-//   __SID__: string;
-// }

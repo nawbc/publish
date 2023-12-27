@@ -10,17 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mantine/core": "7.3.1",
-    "@mantine/dates": "7.3.1",
-    "@mantine/dropzone": "7.3.1",
-    "@mantine/form": "7.3.1",
-    "@mantine/hooks": "7.3.1",
-    "@mantine/notifications": "7.3.1",
-    "@mantine/nprogress": "7.3.1",
-    "@mantine/vanilla-extract": "7.3.1",
-    "react-resizable-panels": "^0.0.63",
-    "react-router": "6.20.1",
-    "react-router-dom": "6.20.1"
+    "@mantine/core": "7.3.2",
+    "@mantine/dates": "7.3.2",
+    "@mantine/dropzone": "7.3.2",
+    "@mantine/form": "7.3.2",
+    "@mantine/hooks": "7.3.2",
+    "@mantine/notifications": "7.3.2",
+    "@mantine/nprogress": "7.3.2",
+    "@mantine/vanilla-extract": "7.3.2",
+    "react-resizable-panels": "1.0.5",
+    "react-router": "6.21.1",
+    "react-router-dom": "6.21.1"
   },
   "devDependencies": {
     "vite": "5.0.10"

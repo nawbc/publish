@@ -41,6 +41,23 @@ export interface NetworkManifest {
 
 export interface Manifest {
   /**
+   * App main mode.
+   * headless: without gui.
+   * graphical: with gui.
+   * Of course you can use both modes at the same time.
+   */
+  mode?: 'headless' | 'graphical';
+  /**
+   * Headless app script entry.
+   */
+  headlessMain?: string;
+
+  /**
+   * GUI app script entry.
+   */
+  graphicalMain?: string;
+
+  /**
    * Protection Levels:
    * @example
    * ```
@@ -56,6 +73,10 @@ export interface Manifest {
    * App name
    */
   name: string;
+  /**
+   * App icon
+   */
+  icon?: string;
   /**
    * App display name
    */
@@ -78,6 +99,7 @@ export interface Manifest {
    * Homepage url
    */
   homepage?: string;
+
   /**
    * App package name
    * @example com.deskbtm.publish.x
@@ -106,4 +128,7 @@ export interface Manifest {
    * Network config, allowlist
    */
   network?: NetworkManifest;
+
+  // To compact other versions
+  [k: string]: unknown;
 }

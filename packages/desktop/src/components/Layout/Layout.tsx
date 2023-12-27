@@ -15,12 +15,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = () => {
     <Container fluid h="100dvh">
       <PanelGroup direction="horizontal">
         {/* <SideTabBar /> */}
-        <Panel
-          collapsible={true}
-          defaultSizePixels={300}
-          maxSizePercentage={70}
-          minSizePercentage={10}
-        >
+        <Panel collapsible={true} defaultSize={300} maxSize={70} minSize={10}>
           <Input
             size="xs"
             value={value}

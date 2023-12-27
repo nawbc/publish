@@ -1,13 +1,6 @@
-import { CSSVariablesResolver, createTheme } from '@mantine/core';
+import type { CSSVariablesResolver } from '@mantine/core';
+import { createTheme } from '@mantine/core';
 import { themeToVars } from '@mantine/vanilla-extract';
-
-export const theme = createTheme({
-  fontFamily: `Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial,
-    sans-serif, Apple Color Emoji, Segoe UI Emoji`,
-  other: {
-    nightSkyBlack: '#1A284B',
-  },
-});
 
 export const resolver: CSSVariablesResolver = (theme) => ({
   variables: {
@@ -15,6 +8,14 @@ export const resolver: CSSVariablesResolver = (theme) => ({
   },
   light: {},
   dark: {},
+});
+
+export const theme = createTheme({
+  fontFamily: `Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji`,
+  other: {
+    nightSkyBlack: '#1A284B',
+  },
 });
 
 // CSS variables object, can be access in *.css.ts files
