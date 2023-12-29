@@ -1,14 +1,17 @@
+import { is } from '@deskbtm/gadgets/is';
 import type { HTMLAttributeReferrerPolicy } from 'react';
 import * as uuid from 'uuid';
 
 import { message } from './message';
-import { presetEnvScript, serializeErrorScript } from './presets';
-
-structuredClone;
+import { presetEnvScript } from './presets';
 
 export interface SandboxOptions {
   /**
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#sandbox}
+   * @defaultValue
+   * ```ts
+   * ['allow-popups','allow-scripts','allow-downloads','allow-forms','allow-modals','allow-orientation-lock','allow-pointer-lock',]
+   * ```
    */
   grants: string[];
   /**
@@ -24,18 +27,45 @@ export interface SandboxOptions {
     allowfullscreen?: boolean;
     allowpaymentrequest?: boolean;
   };
+
+  /**
+   * graphical sandbox that can render html.
+   * @defaultValue `false`
+   */
+  graphical?: boolean;
 }
 
+/**
+ *
+ *
+ * @example
+ * ```ts
+ * const script = await res.text();
+ * const sandbox = new Sandbox();
+ * sandbox.run(script);
+ *
+ * sandbox.addEventListener('load', ()=>{
+ *  sandbox.postMessage('custom-event', {test:1})
+ * })
+ *
+ * sandbox.addEventListener('error', (e) => {
+ *  console.log(`Error Sandbox ${sandbox.id}: `, e);
+ * });
+ *
+ * sandbox.addEventListener('manifest',(e) => {},{ once: true },);
+ *
+ * ```
+ */
 export class Sandbox extends EventTarget {
   private _iframe!: HTMLIFrameElement;
   /**
    * Sandbox id, plugin can get it by `window.__SID__`
    */
   public id!: string;
-  private _options: SandboxOptions;
-  private _eventsSet = new Set<string>();
+  private readonly _options: SandboxOptions;
+  private readonly _eventsMap = new Map<(e: any) => void, string>();
 
-  constructor(options?: SandboxOptions) {
+  constructor(readonly options?: SandboxOptions) {
     super();
     this._options = Object.assign<object, SandboxOptions, SandboxOptions>(
       {},
@@ -49,6 +79,7 @@ export class Sandbox extends EventTarget {
           'allow-orientation-lock',
           'allow-pointer-lock',
         ],
+        graphical: false,
       },
       options!,
     );
@@ -71,9 +102,6 @@ export class Sandbox extends EventTarget {
 <html>
 <head></head>
 <body>
-  <script type='text/javascript'>
-    ${serializeErrorScript}
-  </script>
   <script type='text/javascript'>
     ${presetEnvScript({ id: this.id })}
   </script>
@@ -104,12 +132,11 @@ export class Sandbox extends EventTarget {
     callback: EventListenerOrEventListenerObject | null,
     options?: boolean | AddEventListenerOptions | undefined,
   ): void {
-    this._eventsSet.add(type);
-
-    window.addEventListener('message', (e) => {
+    const listener = (e: MessageEvent<any>) => {
       if (e.data) {
         try {
-          const data = e.data;
+          // https://web.dev/articles/sandboxed-iframes#safely_sandboxing_eval
+          const data = eval(e.data);
           if (data.event === type) {
             this.dispatchEvent(new CustomEvent(type, { detail: data }));
           }
@@ -117,8 +144,12 @@ export class Sandbox extends EventTarget {
           /* empty */
         }
       }
-    });
-
+    };
+    // Ignore once.
+    if (!(is.object(options) && options.once)) {
+      this._eventsMap.set(listener, type);
+    }
+    window.addEventListener('message', listener);
     super.addEventListener(type, callback, options);
   }
 
@@ -138,8 +169,10 @@ export class Sandbox extends EventTarget {
 
   public dispose() {
     this._iframe.parentNode?.removeChild(this._iframe);
-    this.removeEventListener('error', null);
-    this.removeEventListener('load', this._handleLoad);
+    this._eventsMap.forEach((value, key) => {
+      window.removeEventListener(value, key);
+    });
+    this._eventsMap.clear();
     URL.revokeObjectURL(this._iframe.src);
   }
 }

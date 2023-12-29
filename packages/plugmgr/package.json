@@ -30,8 +30,8 @@
     "dist/**/*"
   ],
   "repository": {
-    "url": "https://github.com/indiebase/indiebase",
-    "directory": "first_party/gadgets",
+    "url": "https://github.com/deskbtm/publish",
+    "directory": "packages/appmgr",
     "type": "git"
   },
   "engines": {

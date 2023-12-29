@@ -1,10 +1,17 @@
-import { Box, Button, Center, Container, Input } from '@mantine/core';
+import { Box, Button, Center, Container } from '@mantine/core';
+import { supabase } from '@publish/shared';
+import debug from 'debug';
 import { type FC, useEffect, useState } from 'react';
 import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
 
 import * as styles from './layout.css.ts';
 
 export interface DashboardLayoutProps {}
+const a = debug('demo:a');
+const b = debug('demo:b');
+a.log = console.log.bind(console);
+b.log = console.log.bind(console);
+debug.enable('*');
 
 const DashboardLayout: FC<DashboardLayoutProps> = () => {
   const [value, setValue] = useState<string>('');
@@ -16,43 +23,15 @@ const DashboardLayout: FC<DashboardLayoutProps> = () => {
       <PanelGroup direction="horizontal">
         {/* <SideTabBar /> */}
         <Panel collapsible={true} defaultSize={300} maxSize={70} minSize={10}>
-          <Input
-            size="xs"
-            value={value}
-            onChange={(e) => {
-              setValue(e.target.value);
-            }}
-          />
+          <iframe src="/demo.html" sandbox="allow-scripts" />
           <Button
-            size="xs"
-            onClick={async () => {
-              // const myWorker = new Worker('http://localhost:8080/index');
-              // myWorker.onerror = (err: unknown) => {
-              //   console.log(err);
-              // };
-              // myWorker.onmessage = (err: unknown) => {
-              //   console.log(err);
-              // };
-              // import(
-              //   /* @vite-ignore */
-              //   value
-              // ).then((d) => {
-              //   console.log(d);
-              // });
-              // console.log()
-            }}
-          >
-            Import
-          </Button>
-          <Button
-            size="xs"
             onClick={() => {
-              // import('http://localhost:8080/index.mjs').then((v) => {
-              //   console.log(v);
-              // });
+              // localStorage.debug = 'worker:*';
+
+              b('%c LOG %O', 'color:red', { name: 'demo' });
             }}
           >
-            Load
+            Click
           </Button>
         </Panel>
         <PanelResizeHandle className={styles.panelResizeHandle}>
@@ -61,8 +40,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = () => {
           </Center>
         </PanelResizeHandle>
         <Panel>
-          <iframe src="" />
-          {/* <Box ml={10}>xxxxxxx</Box> */}
+          <Box ml={10}>xxxxxxx</Box>
         </Panel>
       </PanelGroup>
     </Container>

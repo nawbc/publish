@@ -77,6 +77,9 @@ export interface InputBasicOptions {
 
 export interface InputOptions extends CommonOptions, InputBasicOptions {
   type: OptionKinds.input;
+  /**
+   * @defaultValue `text`
+   */
   mode: 'text' | 'password' | 'email' | 'json';
 }
 
@@ -140,6 +143,9 @@ export interface ClipsOptions extends CommonOptions {
 }
 export interface TipOptions extends CommonOptions {
   type: OptionKinds.tip;
+  /**
+   * @defaultValue `info`
+   */
   mode: 'warning' | 'success' | 'dangerous' | 'info';
 }
 export interface UserProfileOptions extends CommonOptions {
@@ -150,6 +156,9 @@ export interface UpdateOptions extends CommonOptions {
 }
 export interface LinkOptions extends CommonOptions {
   type: OptionKinds.link;
+  /**
+   * @defaultValue `openInBrowser`
+   */
   mode?: 'openInBrowser' | 'openInApp';
 }
 

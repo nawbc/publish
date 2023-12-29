@@ -101,7 +101,8 @@ export interface Manifest {
   homepage?: string;
 
   /**
-   * App package name
+   * Unique package name, this name should be unique in installed plugins
+   *
    * @example com.deskbtm.publish.x
    * @see {@link https://docs.oracle.com/javase/tutorial/java/package/namingpkgs.html}
    */

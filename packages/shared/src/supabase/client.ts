@@ -1,4 +1,5 @@
-import { SupabaseClientOptions, createClient } from '@supabase/supabase-js';
+import type { SupabaseClientOptions } from '@supabase/supabase-js';
+import { createClient } from '@supabase/supabase-js';
 
 const options = {
   realtime: {
@@ -6,7 +7,7 @@ const options = {
   },
 } satisfies SupabaseClientOptions<'publish'>;
 
-const supabase = createClient(
+export const supabase = createClient(
   'https://ggkzmrclqoallhxjpwck.supabase.co',
   '',
   options,

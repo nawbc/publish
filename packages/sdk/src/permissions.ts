@@ -25,6 +25,7 @@ export const permissions = [
   'storage:db',
   /**
    * Level: normal
+   * 
    */
   'clipboard:write',
   'clipboard:read',
