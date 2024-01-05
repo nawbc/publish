@@ -1,6 +1,7 @@
-import zhCN from './zh-CN';
+import type { Resource } from 'i18next';
+
 import en from './en';
-import { Resource } from 'i18next';
+import zhCN from './zh-CN';
 
 export const resources = {
   'zh-CN': {

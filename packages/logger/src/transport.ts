@@ -1,7 +1,6 @@
 import type { Clz, LogLevel } from './i';
 
 export interface TransportOptions {
-  useWorker?: boolean;
   namespace: string;
 }
 
@@ -13,11 +12,8 @@ export interface TransportContent {
 }
 
 export abstract class Transport {
-  useWorker?: boolean;
-
   constructor(options?: TransportOptions) {
-    options = Object.assign({}, { useWorker: true }, options);
-    this.useWorker = options.useWorker;
+    options = Object.assign({}, { useStorage: true }, options);
   }
 
   abstract write(content: TransportContent): Promise<void> | void;

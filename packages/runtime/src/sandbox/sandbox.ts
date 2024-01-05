@@ -5,12 +5,26 @@ import * as uuid from 'uuid';
 import { message } from './message';
 import { presetEnvScript } from './presets';
 
+export interface GraphicalSandboxOptions {}
+
 export interface SandboxOptions {
   /**
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#sandbox}
    * @defaultValue
    * ```ts
-   * ['allow-popups','allow-scripts','allow-downloads','allow-forms','allow-modals','allow-orientation-lock','allow-pointer-lock',]
+   * ['allow-scripts']
+   * ```
+   * @example
+   * ```
+   * [
+   * 'allow-scripts'
+   * 'allow-popups',
+   * 'allow-downloads',
+   * 'allow-forms',
+   * 'allow-modals',
+   * 'allow-orientation-lock',
+   * 'allow-pointer-lock',
+   * ]
    * ```
    */
   grants: string[];
@@ -70,15 +84,7 @@ export class Sandbox extends EventTarget {
     this._options = Object.assign<object, SandboxOptions, SandboxOptions>(
       {},
       {
-        grants: [
-          'allow-popups',
-          'allow-scripts',
-          'allow-downloads',
-          'allow-forms',
-          'allow-modals',
-          'allow-orientation-lock',
-          'allow-pointer-lock',
-        ],
+        grants: ['allow-scripts'],
         graphical: false,
       },
       options!,
@@ -133,10 +139,10 @@ export class Sandbox extends EventTarget {
     options?: boolean | AddEventListenerOptions | undefined,
   ): void {
     const listener = (e: MessageEvent<any>) => {
-      if (e.data) {
+      const data = e.data;
+      if (data) {
         try {
           // https://web.dev/articles/sandboxed-iframes#safely_sandboxing_eval
-          const data = eval(e.data);
           if (data.event === type) {
             this.dispatchEvent(new CustomEvent(type, { detail: data }));
           }

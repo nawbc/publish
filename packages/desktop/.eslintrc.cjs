@@ -8,6 +8,8 @@ module.exports = {
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   plugins: ['react-refresh'],
   rules: {
+    '@typescript-eslint/no-explicit-any': 'off',
+    'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
     'react/self-closing-comp': [
       'error',

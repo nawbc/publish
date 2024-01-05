@@ -1,1 +1,3 @@
-export * from './Fallback';
+export * from './ErrorBoundary';
+export * from './ErrorBoundary';
+export * from './ErrorDetail';

@@ -1,4 +1,3 @@
-/* eslint-disable prefer-const */
 import '@blocksuite/presets/themes/affine.css';
 
 import { MantineProvider } from '@mantine/core';
@@ -12,6 +11,7 @@ import type { ComposeProps } from 'reactgets/components/Compose/index';
 import { Compose } from 'reactgets/components/Compose/index';
 import * as uuid from 'uuid';
 
+import { GlobalContextMenus } from './components/contextmenus';
 import { router } from './router';
 import { resolver, theme } from './theme';
 
@@ -32,13 +32,14 @@ function App() {
       key={uuid.v4()}
       theme={theme}
       cssVariablesResolver={resolver}
-      defaultColorScheme="light"
+      defaultColorScheme="auto"
     />,
     <QueryClientProvider key={uuid.v4()} client={queryClient} />,
   ];
   return (
     <Compose providers={providers}>
       <DevTools />
+      <GlobalContextMenus />
       <RouterProvider
         router={router}
         future={{

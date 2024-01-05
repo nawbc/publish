@@ -1,56 +1,58 @@
-import { Box, Button, Center, Container } from '@mantine/core';
-import { supabase } from '@publish/shared';
-import debug from 'debug';
-import { type FC, useEffect, useState } from 'react';
-import { Panel, PanelGroup, PanelResizeHandle } from 'react-resizable-panels';
+import { Button, Container } from '@mantine/core';
+import type { PropsWithChildren } from 'react';
+import { type FC } from 'react';
+import { Outlet } from 'react-router';
 
-import * as styles from './layout.css.ts';
+import { useContextMenu } from '../ContextMenu';
+import { FILE_MENU_ID } from '../contextmenus';
+import { PrimitiveSidebar } from './Sidebar';
+import { SplitPanel, useSplitPanel } from './SplitPanel';
+export interface DashboardLayoutProps extends PropsWithChildren {}
 
-export interface DashboardLayoutProps {}
-const a = debug('demo:a');
-const b = debug('demo:b');
-a.log = console.log.bind(console);
-b.log = console.log.bind(console);
-debug.enable('*');
-
-const DashboardLayout: FC<DashboardLayoutProps> = () => {
-  const [value, setValue] = useState<string>('');
-
-  useEffect(() => {}, []);
-
+const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
   return (
-    <Container fluid h="100dvh">
-      <PanelGroup direction="horizontal">
-        {/* <SideTabBar /> */}
-        <Panel collapsible={true} defaultSize={300} maxSize={70} minSize={10}>
-          <iframe src="/demo.html" sandbox="allow-scripts" />
-          <Button
-            onClick={() => {
-              // localStorage.debug = 'worker:*';
-
-              b('%c LOG %O', 'color:red', { name: 'demo' });
-            }}
-          >
-            Click
-          </Button>
-        </Panel>
-        <PanelResizeHandle className={styles.panelResizeHandle}>
-          <Center h="100%">
-            <Box className={styles.panelResizeHandleDivider} />
-          </Center>
-        </PanelResizeHandle>
-        <Panel>
-          <Box ml={10}>xxxxxxx</Box>
-        </Panel>
-      </PanelGroup>
+    <Container p="0" fluid h="100dvh">
+      <SplitPanel hideDividerWhenCollapsed initial={278} min={208} max={608}>
+        <SplitPanel.Left>
+          <PrimitiveSidebar />
+        </SplitPanel.Left>
+        <SplitPanel.Right>
+          <Demo />
+        </SplitPanel.Right>
+      </SplitPanel>
     </Container>
   );
 };
 
+function Demo() {
+  const panel = useSplitPanel();
+  const { show } = useContextMenu({
+    id: FILE_MENU_ID,
+  });
+
+  return (
+    <>
+      {panel?.collapsed ? 'demo' : 'right'}
+      <Button
+        onClick={() => {
+          panel?.expand();
+          // console.log(panel, '---');
+        }}
+        onContextMenu={(e) => {
+          console.log(e);
+          show({ event: e });
+        }}
+      />
+    </>
+  );
+}
+
 export const Component = function () {
   return (
     <>
-      <DashboardLayout />
+      <WorkspaceLayout>
+        <Outlet />
+      </WorkspaceLayout>
     </>
   );
 };

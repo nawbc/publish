@@ -14,4 +14,4 @@ export const Editor = forwardRef(function () {
   return <div ref={ref} id="editor-container" />;
 });
 
-Editor.displayName = 'Editor';
+Editor.displayName = '@publish/desktop/Editor';

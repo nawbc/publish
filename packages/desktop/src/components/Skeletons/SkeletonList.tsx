@@ -1,5 +1,6 @@
-import { Skeleton, SkeletonProps } from '@mantine/core';
-import { FC } from 'react';
+import type { SkeletonProps } from '@mantine/core';
+import { Skeleton } from '@mantine/core';
+import type { FC } from 'react';
 
 interface SkeletonListProps {
   count?: number;

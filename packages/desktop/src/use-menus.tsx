@@ -1,5 +1,6 @@
 import { IconFileCode, IconSettings } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
+
 import { type NavMenuTile } from '~/components/Layout';
 
 export const useMenus = (): NavMenuTile[] => {
@@ -8,8 +9,6 @@ export const useMenus = (): NavMenuTile[] => {
   // const location = useLocation();
 
   // const [menu, setMenu] = useAtom(navMenuAtom);
-
-  console.log('----------------');
 
   // useEffect(() => {
   //   let prefix;
@@ -102,7 +101,7 @@ export const useMenus = (): NavMenuTile[] => {
   //   ]);
   // }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   // }, [org, project, user, i18n.language]);
 
   return [

@@ -5,7 +5,6 @@ import type { Transport, TransportSynth } from './transport';
 
 export interface LogOptions {
   level?: LogLevel;
-  useWorker?: boolean;
   timestamp?: boolean;
   transports: TransportSynth[];
 }
@@ -35,6 +34,7 @@ export class Log {
       if (transport) {
         const instance = new transport(opt);
         this._transports.add(instance);
+        // new Worker();
       }
     }
   }
