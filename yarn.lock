@@ -9149,6 +9149,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"normalize.css@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "normalize.css@npm:8.0.1"
+  checksum: c3af2145c21d57b94fe9f1abe7bac82ec91f8088810ada6ee3385f29a2d51af441a469b3c680d25b27bfab5291908a3ef3ed7012955036e8967f0b18fe39f38a
+  languageName: node
+  linkType: hard
+
 "npm-bundled@npm:^3.0.0":
   version: 3.0.0
   resolution: "npm-bundled@npm:3.0.0"
@@ -10035,6 +10042,7 @@ __metadata:
     million: "npm:2.6.4"
     multimatch: "npm:7.0.0"
     native-run: "npm:2.0.0"
+    normalize.css: "npm:^8.0.1"
     postcss-flexbugs-fixes: "npm:5.0.2"
     postcss-preset-mantine: "npm:1.12.3"
     postcss-simple-vars: "npm:7.0.1"

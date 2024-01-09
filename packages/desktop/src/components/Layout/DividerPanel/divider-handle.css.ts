@@ -5,6 +5,7 @@ export const primitiveResizeDividerArea = style({
   width: rem(16),
   cursor: 'col-resize',
   willChange: 'visibility',
+  touchAction: 'none',
   vars: {
     '--_resize-divider-color': 'var(--mantine-color-resize-inactive-delimiter)',
   },
@@ -15,7 +16,7 @@ export const primitiveResizeDividerArea = style({
   },
 });
 
-export const resizeDividerArea = styleVariants({
+export const dividerHandleArea = styleVariants({
   inactive: [primitiveResizeDividerArea],
   active: [
     primitiveResizeDividerArea,
@@ -34,7 +35,7 @@ export const primitiveResizeDivider = style({
   backgroundColor: 'var(--_resize-divider-color)',
 });
 
-export const resizeDivider = styleVariants({
+export const dividerHandle = styleVariants({
   inactive: [primitiveResizeDivider],
   active: [
     primitiveResizeDivider,

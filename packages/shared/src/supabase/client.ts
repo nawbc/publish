@@ -9,6 +9,6 @@ const options = {
 
 export const supabase = createClient(
   'https://ggkzmrclqoallhxjpwck.supabase.co',
-  '',
+  'xxxxx',
   options,
 );

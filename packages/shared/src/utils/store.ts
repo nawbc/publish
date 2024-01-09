@@ -9,7 +9,7 @@ export class LocalStore {
 
   static get<T extends object>(key: string): T {
     try {
-      return JSON.parse(localStorage.getItem(key)!);
+      return JSON.parse(localStorage.getItem(key)!) ?? ({} as T);
     } catch (error) {
       return {} as T;
     }

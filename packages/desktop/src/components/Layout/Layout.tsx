@@ -1,49 +1,50 @@
-import { Button, Container } from '@mantine/core';
+import { ActionIcon, Box, Container, rem, Tooltip } from '@mantine/core';
+import { IconLayoutSidebarLeftExpand } from '@tabler/icons-react';
 import type { PropsWithChildren } from 'react';
-import { type FC } from 'react';
+import { type FC, useCallback } from 'react';
 import { Outlet } from 'react-router';
 
 import { useContextMenu } from '../ContextMenu';
 import { FILE_MENU_ID } from '../contextmenus';
+import { DividerPanel, useDividerPanel } from './DividerPanel';
 import { PrimitiveSidebar } from './Sidebar';
-import { SplitPanel, useSplitPanel } from './SplitPanel';
 export interface DashboardLayoutProps extends PropsWithChildren {}
 
 const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
   return (
     <Container p="0" fluid h="100dvh">
-      <SplitPanel hideDividerWhenCollapsed initial={278} min={208} max={608}>
-        <SplitPanel.Left>
+      <DividerPanel hideDividerCollapsed initial={278} min={208} max={608}>
+        <DividerPanel.Leading>
           <PrimitiveSidebar />
-        </SplitPanel.Left>
-        <SplitPanel.Right>
-          <Demo />
-        </SplitPanel.Right>
-      </SplitPanel>
+        </DividerPanel.Leading>
+        <DividerPanel.Trailing>
+          <Header />
+        </DividerPanel.Trailing>
+      </DividerPanel>
     </Container>
   );
 };
 
-function Demo() {
-  const panel = useSplitPanel();
+function Header() {
+  const panel = useDividerPanel();
   const { show } = useContextMenu({
     id: FILE_MENU_ID,
   });
 
+  const handleExpand = useCallback(() => {
+    panel?.expand();
+  }, [panel]);
+
   return (
-    <>
-      {panel?.collapsed ? 'demo' : 'right'}
-      <Button
-        onClick={() => {
-          panel?.expand();
-          // console.log(panel, '---');
-        }}
-        onContextMenu={(e) => {
-          console.log(e);
-          show({ event: e });
-        }}
-      />
-    </>
+    <Box pos="relative" component="nav" px={rem(18)} py="xs" pl={0}>
+      {panel?.collapsed && (
+        <Tooltip openDelay={2000} label="Collapse sidebar">
+          <ActionIcon c="gray" onClick={handleExpand}>
+            <IconLayoutSidebarLeftExpand />
+          </ActionIcon>
+        </Tooltip>
+      )}
+    </Box>
   );
 }
 
