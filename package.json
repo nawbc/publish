@@ -2,8 +2,8 @@
   "name": "publish",
   "scripts": {
     "mobile": "yarn workspace @publish/mobile dev",
-    "web": "PLATFORM=web yarn workspace @publish/desktop dev",
-    "_web:desktop": "PLATFORM=desktop yarn workspace @publish/desktop dev",
+    "web": "cross-env PLATFORM=web yarn workspace @publish/desktop dev",
+    "_web:desktop": "cross-env PLATFORM=desktop yarn workspace @publish/desktop dev",
     "native": "PLATFORM=desktop yarn workspace @publish/tauri dev",
     "build:web": "PLATFORM=web yarn workspace @publish/desktop build",
     "preview:web": "PLATFORM=web yarn workspace @publish/desktop preview",
@@ -74,6 +74,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitejs/plugin-react-swc": "3.5.0",
     "capacitor-tauri": "1.0.0-beta.1",
+    "cross-env": "^7.0.3",
     "eslint": "8.55.0",
     "eslint-plugin-prettier": "5.0.1",
     "eslint-plugin-react": "7.33.2",

@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "VITE_CJS_IGNORE_WARNING=true vite",
-    "dev:remote": "VITE_CJS_IGNORE_WARNING=true ENABLE_REMOTE_DEBUG=true vite",
+    "dev": "cross-env VITE_CJS_IGNORE_WARNING=true vite",
+    "dev:remote": "cross-env VITE_CJS_IGNORE_WARNING=true ENABLE_REMOTE_DEBUG=true vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --fix --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"

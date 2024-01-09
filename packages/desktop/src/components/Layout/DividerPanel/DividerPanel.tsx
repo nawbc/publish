@@ -139,12 +139,7 @@ export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
       LocalStore.set<DividerPanelStore>(SPLIT_PANEL_STORAGE_KEY, {
         expanded: true,
       });
-      const { position } = LocalStore.get<DividerPanelStore>(
-        SPLIT_PANEL_STORAGE_KEY,
-      );
-      if (is.truthy(position) && !Number.isNaN(position)) {
-        handlers.open();
-      }
+      handlers.open();
     },
     [handlers],
   );
