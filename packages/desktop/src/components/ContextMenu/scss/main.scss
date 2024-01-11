@@ -11,3 +11,13 @@
 @import 'animations/fade';
 @import 'animations/flip';
 @import 'animations/slide';
+
+.demo{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #ffffff40;
+  backdrop-filter: saturate(180%) blur(10px);
+}

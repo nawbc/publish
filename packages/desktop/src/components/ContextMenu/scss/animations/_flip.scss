@@ -1,6 +1,6 @@
 $delay: 0.3s;
 
-@keyframes contexify_flipInX {
+@keyframes contextmenu_flipInX {
   from {
     transform: perspective(800px) rotate3d(1, 0, 0, 45deg);
   }
@@ -10,7 +10,7 @@ $delay: 0.3s;
   }
 }
 
-@keyframes contexify_flipOutX {
+@keyframes contextmenu_flipOutX {
   from {
     transform: perspective(800px);
   }
@@ -21,14 +21,14 @@ $delay: 0.3s;
   }
 }
 
-.contexify_willEnter-flip {
+.contextmenu_willEnter-flip {
   backface-visibility: visible !important;
   transform-origin: top center;
-  animation: contexify_flipInX $delay;
+  animation: contextmenu_flipInX $delay;
 }
 
-.contexify_willLeave-flip {
+.contextmenu_willLeave-flip {
   transform-origin: top center;
-  animation: contexify_flipOutX $delay;
+  animation: contextmenu_flipOutX $delay;
   backface-visibility: visible !important;
 }

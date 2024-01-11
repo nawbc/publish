@@ -1812,9 +1812,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@isomorphic-git/lightning-fs@git@github.com:isomorphic-git/lightning-fs.git":
+"@isomorphic-git/lightning-fs@https://github.com/isomorphic-git/lightning-fs.git":
   version: 0.0.0-development
-  resolution: "@isomorphic-git/lightning-fs@git@github.com:isomorphic-git/lightning-fs.git#commit=9eb71923ed02a2f23d81194feb9e99ef713f5f1b"
+  resolution: "@isomorphic-git/lightning-fs@https://github.com/isomorphic-git/lightning-fs.git#commit=9eb71923ed02a2f23d81194feb9e99ef713f5f1b"
   dependencies:
     "@isomorphic-git/idb-keyval": "npm:3.3.2"
     isomorphic-textencoder: "npm:1.0.1"
@@ -1822,7 +1822,7 @@ __metadata:
     just-once: "npm:1.1.0"
   bin:
     superblocktxt: src/superblocktxt.js
-  checksum: d9acfa0f35b408d02431d839ef5de8a68dd5b9545d7889470ccb641bacbaad558a4e287838cf7ac7058409e51aa6dc96ac93c7168657c4fd107a520fec0593bd
+  checksum: da7bb4b6b5489861c860e31d01f64a552c8c0d2cdabef9ef8c0fcd8081e2f35e1c5945ff84ce0ac47d2f6064ea5b4bb7f11bad9944f952302dd56cba3161f117
   languageName: node
   linkType: hard
 
@@ -2584,6 +2584,7 @@ __metadata:
     "@mantine/notifications": "npm:7.4.0"
     "@mantine/nprogress": "npm:7.4.0"
     "@mantine/vanilla-extract": "npm:7.4.0"
+    cross-env: "npm:^7.0.3"
     eslint: "npm:8.55.0"
     react-resizable-layout: "npm:0.7.2"
     react-router: "npm:6.21.1"
@@ -3871,6 +3872,15 @@ __metadata:
     modern-ahocorasick: "npm:^1.0.0"
     outdent: "npm:^0.8.0"
   checksum: b708fa88705c72db4a4ed5246247910ca0297a6ef1edb3c64aa1ace3d4aee4bb739afcf5cf190ea4398f800aa96586c4ed4013b794924afa851b68723655cfb5
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/dynamic@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@vanilla-extract/dynamic@npm:2.1.0"
+  dependencies:
+    "@vanilla-extract/private": "npm:^1.0.3"
+  checksum: c4a49e20485889967bb1c71fc4d208ff5c500f61bf6390a03453d51a691736c85807f47727d10de55ac66260a3ac2a4a9df76354f10c75ce127f0c00e49fd64b
   languageName: node
   linkType: hard
 
@@ -10019,7 +10029,7 @@ __metadata:
     "@deskbtm/gadgets": "npm:0.0.1-alpha.4"
     "@emotion/react": "npm:11.11.3"
     "@fontsource/inter": "npm:5.0.16"
-    "@isomorphic-git/lightning-fs": "git@github.com:isomorphic-git/lightning-fs.git"
+    "@isomorphic-git/lightning-fs": "https://github.com/isomorphic-git/lightning-fs.git"
     "@minoru/react-dnd-treeview": "npm:^3.4.4"
     "@monaco-editor/react": "npm:^4.6.0"
     "@plugkit/bfs": "workspace:^"
@@ -10037,6 +10047,7 @@ __metadata:
     "@types/uuid": "npm:9.0.7"
     "@typescript-eslint/eslint-plugin": "npm:6.14.0"
     "@typescript-eslint/parser": "npm:6.14.0"
+    "@vanilla-extract/dynamic": "npm:^2.1.0"
     "@vanilla-extract/vite-plugin": "npm:3.9.3"
     "@vitejs/plugin-react": "npm:^4.2.1"
     "@vitejs/plugin-react-swc": "npm:3.5.0"

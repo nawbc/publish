@@ -1,1 +1,3 @@
-# publish
+## Publish
+
+Write once, publish anywhere.

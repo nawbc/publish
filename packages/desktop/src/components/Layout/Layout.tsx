@@ -1,11 +1,11 @@
 import { ActionIcon, Box, Container, rem, Tooltip } from '@mantine/core';
 import { IconLayoutSidebarLeftExpand } from '@tabler/icons-react';
 import type { PropsWithChildren } from 'react';
-import { type FC, useCallback } from 'react';
+import { type FC, useCallback, useEffect, useRef } from 'react';
 import { Outlet } from 'react-router';
 
+import { EXPLORER_MENU_ID } from '../context-menus';
 import { useContextMenu } from '../ContextMenu';
-import { FILE_MENU_ID } from '../contextmenus';
 import { DividerPanel, useDividerPanel } from './DividerPanel';
 import { PrimitiveSidebar } from './Sidebar';
 export interface DashboardLayoutProps extends PropsWithChildren {}
@@ -28,7 +28,13 @@ const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
 function Header() {
   const panel = useDividerPanel();
   const { show } = useContextMenu({
-    id: FILE_MENU_ID,
+    id: EXPLORER_MENU_ID,
+  });
+
+  const intervalRef = useRef(new Map());
+
+  useEffect(() => {
+    console.log(intervalRef);
   });
 
   const handleExpand = useCallback(() => {
@@ -36,7 +42,14 @@ function Header() {
   }, [panel]);
 
   return (
-    <Box pos="relative" component="nav" px={rem(18)} py="xs" pl={0}>
+    <Box
+      pos="relative"
+      ref={intervalRef}
+      component="nav"
+      px={rem(18)}
+      py="xs"
+      pl={0}
+    >
       {panel?.collapsed && (
         <Tooltip openDelay={2000} label="Collapse sidebar">
           <ActionIcon c="gray" onClick={handleExpand}>

@@ -1,20 +1,20 @@
 /*
  * css classes mapping
  * */
-export const enum CssClass {
-  menu = 'contexify',
-  submenu = 'contexify_submenu',
-  submenuOpen = 'contexify_submenu-isOpen',
-  rightSlot = 'contexify_rightSlot',
-  separator = 'contexify_separator',
-  item = 'contexify_item',
-  itemDisabled = 'contexify_item-disabled',
-  itemContent = 'contexify_itemContent',
-  itemClickedFeedback = 'contexify_item-feedback',
-  theme = 'contexify_theme-',
-  animationWillEnter = 'contexify_willEnter-',
-  animationWillLeave = 'contexify_willLeave-',
-}
+// export const enum CssClass {
+//   menu = 'contexify',
+//   submenu = 'contextmenu_submenu',
+//   submenuOpen = 'contextmenu_submenu-isOpen',
+//   rightSlot = 'contextmenu_rightSlot',
+//   separator = 'contextmenu_separator',
+//   item = 'contextmenu_item',
+//   itemDisabled = 'contextmenu_item-disabled',
+//   itemContent = 'contextmenu_itemContent',
+//   itemClickedFeedback = 'contextmenu_item-feedback',
+//   theme = 'contextmenu_theme-',
+//   animationWillEnter = 'contextmenu_willEnter-',
+//   animationWillLeave = 'contextmenu_willLeave-',
+// }
 
 export const enum EVENT {
   HIDE_ALL,

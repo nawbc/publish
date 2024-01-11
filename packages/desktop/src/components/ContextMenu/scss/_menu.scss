@@ -1,15 +1,16 @@
-:root{
+:root {
   --contexify-zIndex: 666;
   --contexify-menu-minWidth: 180px;
   --contexify-menu-padding: rem(4px);
   --contexify-menu-radius: var(--mantine-radius-default);
-  --contexify-menu-bgColor: #fff;
+  --contexify-menu-bgColor: #ffffff40;
   --contexify-menu-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1);
   --contexify-menu-negatePadding: var(--contexify-menu-padding);
 
   --contexify-separator-color: rgba(0, 0, 0, 0.1);
   --contexify-separator-margin: 5px 3px;
-  --contexify-itemContent-padding: calc(var(--mantine-spacing-xs) / 1.5) var(--mantine-spacing-sm);;
+  --contexify-itemContent-padding: calc(var(--mantine-spacing-xs) / 1.5)
+    var(--mantine-spacing-sm);
   --contexify-activeItem-radius: 4px;
   --contexify-item-color: #333;
   --contexify-activeItem-color: #333;
@@ -19,7 +20,6 @@
   --contexify-arrow-color: #6f6e77;
   --contexify-activeArrow-color: #333;
 }
-
 
 @mixin focus-swag {
   color: var(--contexify-activeItem-color);
@@ -32,9 +32,9 @@
 }
 
 // triggered when user select item from the context menu
-@keyframes contexify_feedback {
+@keyframes contextmenu_feedback {
   from {
-    opacity: .4;
+    opacity: 0.4;
   }
   to {
     opacity: 1;
@@ -42,21 +42,25 @@
 }
 
 
+.contextmenu_willLeave-disabled {
+  pointer-events: none;
+}
+
 .contexify {
   position: fixed;
   opacity: 0;
   user-select: none;
   // background-color: var(--contexify-menu-bgColor);
   //@todo
-  background-color: #ffffffba;
-  backdrop-filter: saturate(180%) blur(7px);
+  background-color: #ffffff4a;
+
+  backdrop-filter: saturate(180%) blur(10px);
   box-sizing: border-box;
-  box-shadow:var(--contexify-menu-shadow);
+  box-shadow: var(--contexify-menu-shadow);
   border-radius: var(--contexify-menu-radius);
   padding: var(--contexify-menu-padding);
   min-width: var(--contexify-menu-minWidth);
   z-index: var(--contexify-zIndex);
-
 
   &_submenu-isOpen,
   &_submenu-isOpen > &_itemContent {
@@ -65,9 +69,8 @@
 
   // target submenu arrow
   &_submenu-isOpen > &_itemContent &_rightSlot {
-    color: var(--contexify-activeArrow-color)
+    color: var(--contexify-activeArrow-color);
   }
-
 
   &_submenu-isOpen > &_submenu {
     pointer-events: initial;
@@ -77,13 +80,13 @@
   & &_submenu {
     position: absolute;
     pointer-events: none;
-    transition: opacity .265s;
-    
+    transition: opacity 0.265s;
+
     /* Initial submenu position */
     top: negateMenuPadding();
     left: 100%;
 
-    &-bottom{
+    &-bottom {
       bottom: negateMenuPadding();
       top: unset;
     }
@@ -92,12 +95,6 @@
       right: 100%;
       left: unset;
     }
-  }
-
-  &_rightSlot {
-    margin-left: auto;
-    display: flex;
-    color: var(--contexify-rightSlot-color)
   }
 
   &_separator {
@@ -116,24 +113,29 @@
     cursor: pointer;
     position: relative;
 
-    &:focus{
+    &:focus {
       outline: 0;
     }
 
-    &:not(&-disabled):hover > .contexify_itemContent .contexify_rightSlot,
-    &:focus .contexify_rightSlot{
+    &:not(&-disabled):hover > .contextmenu_itemContent .contextmenu_rightSlot,
+    &:focus .contextmenu_rightSlot {
       color: var(--contexify-activeRightSlot-color);
     }
 
-    &:not(&-disabled)[aria-haspopup] > .contexify_itemContent .contexify_rightSlot {
+    &:not(&-disabled)[aria-haspopup]
+      > .contextmenu_itemContent
+      .contextmenu_rightSlot {
       color: var(--contexify-arrow-color);
     }
-    
-    // triggered by keyboard navigation
-    &[aria-haspopup]:focus  > .contexify_itemContent .contexify_rightSlot,
-    &:not(&-disabled)[aria-haspopup].contexify_submenu-isOpen  > .contexify_itemContent .contexify_rightSlot,
 
-    &:not(&-disabled)[aria-haspopup]:hover > .contexify_itemContent .contexify_rightSlot  {
+    // triggered by keyboard navigation
+    &[aria-haspopup]:focus > .contextmenu_itemContent .contextmenu_rightSlot,
+    &:not(&-disabled)[aria-haspopup].contextmenu_submenu-isOpen
+      > .contextmenu_itemContent
+      .contextmenu_rightSlot,
+    &:not(&-disabled)[aria-haspopup]:hover
+      > .contextmenu_itemContent
+      .contextmenu_rightSlot {
       color: var(--contexify-activeArrow-color);
     }
 
@@ -142,14 +144,14 @@
       @include focus-swag;
     }
 
-    &:not(&-disabled):hover > .contexify_submenu {
+    &:not(&-disabled):hover > .contextmenu_submenu {
       pointer-events: initial;
       opacity: 1;
     }
 
     &-disabled {
       cursor: default;
-      opacity: .5;
+      opacity: 0.5;
     }
     &Content {
       padding: var(--contexify-itemContent-padding);
@@ -160,8 +162,8 @@
       position: relative;
     }
 
-    &-feedback{
-      animation: contexify_feedback 0.12s both;
+    &-feedback {
+      animation: contextmenu_feedback 0.12s both;
     }
   }
 }

@@ -1,0 +1,307 @@
+import clsx from 'clsx';
+import type { ReactNode } from 'react';
+import type React from 'react';
+import { useEffect, useReducer, useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
+
+import { EVENT, hideOnEvents } from './constants';
+import type { ShowContextMenuParams } from './context-menu';
+import * as styles from './contextmenu.css';
+import { eventManager } from './event-manager';
+import { useItemTracker } from './hooks';
+import { ItemTrackerProvider } from './ItemTrackerProvider';
+import { createKeyboardController } from './keyboard-controller';
+import type { MenuAnimation, MenuId, TriggerEvent } from './types';
+import { cloneItems, getMousePosition, isFn, isStr } from './utils';
+
+export interface ContextMenuProps
+  extends Omit<React.HTMLAttributes<HTMLElement>, 'id'> {
+  /**
+   * Unique id to identify the menu. Use to Trigger the corresponding menu
+   */
+  id: MenuId;
+
+  /**
+   * Any valid node that can be rendered
+   */
+  children: ReactNode;
+
+  /**
+   * Animation is appended to
+   * - `.contextmenu_willEnter-${given animation}`
+   * - `.contextmenu_willLeave-${given animation}`
+   *
+   * - To disable all animations you can pass `false`
+   * - To disable only the enter or the exit animation you can provide an object `{enter: false, exit: 'exitAnimation'}`
+   *
+   * - default is set to `fade`
+   */
+  animation?: MenuAnimation;
+
+  /**
+   * Disables menu repositioning if outside screen.
+   * This may be neeeded in some cases when using custom position.
+   */
+  disableBoundariesCheck?: boolean;
+
+  /**
+   * Prevents scrolling the window on when typing. Defaults to true.
+   */
+  preventDefaultOnKeydown?: boolean;
+
+  /**
+   * Used to track menu visibility
+   */
+  onVisibilityChange?: (isVisible: boolean) => void;
+}
+
+interface MenuState {
+  x: number;
+  y: number;
+  visible: boolean;
+  triggerEvent: TriggerEvent;
+  propsFromTrigger: any;
+  willLeave: boolean;
+  backdropFilter: string;
+}
+
+function reducer(
+  state: MenuState,
+  payload: Partial<MenuState> | ((state: MenuState) => Partial<MenuState>),
+) {
+  return { ...state, ...(isFn(payload) ? payload(state) : payload) };
+}
+
+export const ContextMenu: React.FC<ContextMenuProps> = ({
+  id,
+  style,
+  className,
+  children,
+  animation = 'fade',
+  preventDefaultOnKeydown = true,
+  disableBoundariesCheck = false,
+  onVisibilityChange,
+  ...rest
+}) => {
+  const [state, setState] = useReducer(reducer, {
+    x: 0,
+    y: 0,
+    visible: false,
+    triggerEvent: {} as TriggerEvent,
+    propsFromTrigger: null,
+    willLeave: false,
+    backdropFilter: 'saturate(180%) blur(10px)',
+  });
+  const nodeRef = useRef<HTMLDivElement>(null);
+  const itemTracker = useItemTracker();
+
+  const [menuController] = useState(() => createKeyboardController());
+  const wasVisible = useRef<boolean>();
+  const visibilityId = useRef<number>();
+
+  // subscribe event manager
+  useEffect(() => {
+    eventManager.on(id, show).on(EVENT.HIDE_ALL, hide);
+
+    return () => {
+      eventManager.off(id, show).off(EVENT.HIDE_ALL, hide);
+    };
+    // hide rely on setState(dispatch), which is guaranted to be the same across render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, animation, disableBoundariesCheck]);
+
+  // collect menu items for keyboard navigation
+  useEffect(() => {
+    !state.visible ? itemTracker.clear() : menuController.init(itemTracker);
+  }, [state.visible, menuController, itemTracker]);
+
+  function checkBoundaries(x: number, y: number) {
+    if (nodeRef.current && !disableBoundariesCheck) {
+      const { innerWidth, innerHeight } = window;
+      const { offsetWidth, offsetHeight } = nodeRef.current;
+
+      if (x + offsetWidth > innerWidth) x -= x + offsetWidth - innerWidth;
+
+      if (y + offsetHeight > innerHeight) y -= y + offsetHeight - innerHeight;
+    }
+
+    return { x, y };
+  }
+
+  // when the menu is transitioning from not visible to visible,
+  // the nodeRef is attached to the dom element this let us check the boundaries
+  useEffect(() => {
+    // state.visible and state{x,y} are updated together
+    if (state.visible) setState(checkBoundaries(state.x, state.y));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.visible]);
+
+  // subscribe dom events
+  useEffect(() => {
+    function preventDefault(e: KeyboardEvent) {
+      if (preventDefaultOnKeydown) e.preventDefault();
+    }
+
+    function handleKeyboard(e: KeyboardEvent) {
+      switch (e.key) {
+        case 'Enter':
+        case ' ':
+          if (!menuController.openSubMenu()) hide();
+          break;
+        case 'Escape':
+          hide();
+          break;
+        case 'ArrowUp':
+          preventDefault(e);
+          menuController.moveUp();
+          break;
+        case 'ArrowDown':
+          preventDefault(e);
+          menuController.moveDown();
+          break;
+        case 'ArrowRight':
+          preventDefault(e);
+          menuController.openSubMenu();
+          break;
+        case 'ArrowLeft':
+          preventDefault(e);
+          menuController.closeSubMenu();
+          break;
+        default:
+          menuController.matchKeys(e);
+          break;
+      }
+    }
+
+    if (state.visible) {
+      window.addEventListener('keydown', handleKeyboard);
+
+      for (const ev of hideOnEvents) window.addEventListener(ev, hide);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyboard);
+
+      for (const ev of hideOnEvents) window.removeEventListener(ev, hide);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.visible, menuController, preventDefaultOnKeydown]);
+
+  function show({ event, props, position }: ShowContextMenuParams) {
+    event.stopPropagation();
+    const p = position || getMousePosition(event);
+    // check boundaries when the menu is already visible
+    const { x, y } = checkBoundaries(p.x, p.y);
+
+    flushSync(() => {
+      setState({
+        visible: true,
+        willLeave: false,
+        x,
+        y,
+        triggerEvent: event,
+        propsFromTrigger: props,
+      });
+    });
+
+    clearTimeout(visibilityId.current);
+    if (!wasVisible.current && isFn(onVisibilityChange)) {
+      onVisibilityChange(true);
+      wasVisible.current = true;
+    }
+  }
+
+  function hide(e?: Event) {
+    type SafariEvent = KeyboardEvent & MouseEvent;
+
+    if (
+      e != null &&
+      // Safari trigger a click event when you ctrl + trackpad
+      ((e as SafariEvent).button === 2 || (e as SafariEvent).ctrlKey) &&
+      // Firefox trigger a click event when right click occur
+      e.type !== 'contextmenu'
+    )
+      return;
+
+    animation && (isStr(animation) || ('exit' in animation && animation.exit))
+      ? setState((state) => ({ willLeave: state.visible }))
+      : setState((state) => ({
+          visible: state.visible ? false : state.visible,
+        }));
+
+    visibilityId.current = setTimeout(() => {
+      isFn(onVisibilityChange) && onVisibilityChange(false);
+      wasVisible.current = false;
+    }) as unknown as number;
+  }
+
+  function handleAnimationEnd() {
+    if (state.willLeave && state.visible) {
+      //@todo
+      flushSync(() => setState({ visible: true, willLeave: false }));
+    } else {
+      //@todo Fix opacity 0 ~ 1 animation, before pseudo element backdrop-filter flash.
+      setState({
+        backdropFilter: 'unset',
+      });
+    }
+  }
+
+  function handleAnimationStart() {
+    setState({
+      backdropFilter: 'saturate(180%) blur(10px)',
+    });
+  }
+
+  function computeAnimationClasses() {
+    if (isStr(animation)) {
+      return clsx({
+        [`contextmenu_willEnter-${animation}`]: visible && !willLeave,
+        [`contextmenu_willLeave-${animation} contextmenu_willLeave-disabled`]:
+          visible && willLeave,
+      });
+    } else if (animation && 'enter' in animation && 'exit' in animation) {
+      return clsx({
+        [`contextmenu_willEnter-${animation.enter}`]:
+          animation.enter && visible && !willLeave,
+        [`contextmenu_willLeave-${animation.exit} contextmenu_willLeave-disabled`]:
+          animation.exit && visible && willLeave,
+      });
+    }
+
+    return null;
+  }
+
+  const { visible, triggerEvent, propsFromTrigger, x, y, willLeave } = state;
+
+  return (
+    <ItemTrackerProvider value={itemTracker}>
+      {visible && (
+        <div
+          {...rest}
+          className={clsx(
+            styles.contextMenu,
+            className,
+            computeAnimationClasses(),
+          )}
+          onAnimationStart={handleAnimationStart}
+          onAnimationEnd={handleAnimationEnd}
+          style={{
+            ...style,
+            left: x,
+            top: y,
+            backdropFilter: state.backdropFilter,
+            opacity: 1,
+          }}
+          ref={nodeRef}
+          role="menu"
+        >
+          {cloneItems(children, {
+            propsFromTrigger,
+            triggerEvent,
+          })}
+        </div>
+      )}
+    </ItemTrackerProvider>
+  );
+};

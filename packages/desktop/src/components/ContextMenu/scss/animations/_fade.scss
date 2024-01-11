@@ -1,6 +1,6 @@
 $delay: 0.3s;
 
-@keyframes contexify_fadeIn {
+@keyframes contextmenu_fadeIn {
   from {
     opacity: 0;
     transform: translateY(10px);
@@ -11,7 +11,7 @@ $delay: 0.3s;
   }
 }
 
-@keyframes contexify_fadeOut {
+@keyframes contextmenu_fadeOut {
   from {
     opacity: 1;
     transform: translateY(0);
@@ -22,10 +22,10 @@ $delay: 0.3s;
   }
 }
 
-.contexify_willEnter-fade {
-  animation: contexify_fadeIn $delay ease;
+.contextmenu_willEnter-fade {
+  animation: contextmenu_fadeIn $delay ease;
 }
 
-.contexify_willLeave-fade {
-  animation: contexify_fadeOut $delay ease;
+.contextmenu_willLeave-fade {
+  animation: contextmenu_fadeOut $delay ease;
 }

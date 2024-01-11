@@ -7,23 +7,13 @@ export const primitiveResizeDividerArea = style({
   willChange: 'visibility',
   touchAction: 'none',
   vars: {
-    '--_resize-divider-color': 'var(--mantine-color-resize-inactive-delimiter)',
+    '--_resize-divider-color': 'var(--mantine-color-inactive-divider-handler)',
   },
   ':hover': {
     vars: {
-      '--_resize-divider-color': 'var(--mantine-color-resize-active-delimiter)',
+      '--_resize-divider-color': 'var(--publish-color-active-divider-handler)',
     },
   },
-});
-
-export const dividerHandleArea = styleVariants({
-  inactive: [primitiveResizeDividerArea],
-  active: [
-    primitiveResizeDividerArea,
-    {
-      cursor: 'col-resize',
-    },
-  ],
 });
 
 export const primitiveResizeDivider = style({
@@ -40,7 +30,7 @@ export const dividerHandle = styleVariants({
   active: [
     primitiveResizeDivider,
     {
-      backgroundColor: 'var(--mantine-color-resize-active-delimiter)',
+      backgroundColor: 'var(--publish-color-active-divider-handler)',
     },
   ],
 });

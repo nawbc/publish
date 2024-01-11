@@ -10,7 +10,8 @@
     }
   },
   "include": [
-    "src"
+    "src",
+    "src/components/ContextMenu/components/Menu/MenuDropdown"
   ],
   "exclude": [
     "src/**/*.test.*"

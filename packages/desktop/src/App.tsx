@@ -9,7 +9,7 @@ import type { ComposeProps } from 'reactgets/components/Compose/index';
 import { Compose } from 'reactgets/components/Compose/index';
 import * as uuid from 'uuid';
 
-import { GlobalContextMenus } from './components/contextmenus';
+import { GlobalContextMenus } from './components/context-menus';
 import { router } from './router';
 import { resolver, theme } from './theme';
 

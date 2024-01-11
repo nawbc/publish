@@ -1,6 +1,6 @@
 $delay: 0.3s;
 
-@keyframes contexify_scaleIn {
+@keyframes contextmenu_scaleIn {
   from {
     opacity: 0;
     transform: scale3d(0.3, 0.3, 0.3);
@@ -11,7 +11,7 @@ $delay: 0.3s;
   }
 }
 
-@keyframes contexify_scaleOut {
+@keyframes contextmenu_scaleOut {
   from {
     opacity: 1;
   }
@@ -22,12 +22,12 @@ $delay: 0.3s;
   }
 }
 
-.contexify_willEnter-scale {
+.contextmenu_willEnter-scale {
   transform-origin: top left;
-  animation: contexify_scaleIn $delay;
+  animation: contextmenu_scaleIn $delay;
 }
 
-.contexify_willLeave-scale {
+.contextmenu_willLeave-scale {
   transform-origin: top left;
-  animation: contexify_scaleOut $delay;
+  animation: contextmenu_scaleOut $delay;
 }

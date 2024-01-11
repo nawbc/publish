@@ -8,16 +8,21 @@ import { themeToVars } from '@mantine/vanilla-extract';
 export const resolver: CSSVariablesResolver = (theme) => ({
   variables: {},
   light: {
-    '--mantine-color-resize-active-delimiter':
-      theme.other.panelActiveDelimiterLight,
-    '--mantine-color-resize-inactive-delimiter':
-      theme.other.panelInActiveDelimiterLight,
+    '--publish-color-active-divider-handler':
+      theme.other.activeDividerHandlerLight,
+    '--mantine-color-inactive-divider-handler':
+      theme.other.inActiveDividerHandlerLight,
+    '--publish-context-menu-hover': theme.other.contextMenuHoverLight,
+    '--publish-context-menu-border': theme.other.contextMenuBorder,
+    '--publish-context-menu-bg': '#ffffff40',
   },
   dark: {
-    '--mantine-color-resize-active-delimiter':
-      theme.other.panelActiveDelimiterDark,
-    '--mantine-color-resize-inactive-delimiter':
-      theme.other.panelInActiveDelimiterDark,
+    '--publish-color-active-divider-handler':
+      theme.other.activeDividerHandlerDark,
+    '--mantine-color-inactive-divider-handler':
+      theme.other.inActiveDividerHandlerDark,
+    '--publish-context-menu-hover': theme.other.contextMenuHoverLight,
+    '--publish-context-menu-border': theme.other.contextMenuBorder,
   },
 });
 
@@ -37,12 +42,14 @@ export const theme = createTheme({
       },
     },
   },
-  // primaryColor: 'gray',
   other: {
-    panelActiveDelimiterLight: '#1A284B',
-    panelInActiveDelimiterLight: 'var(--mantine-color-gray-1)',
-    panelActiveDelimiterDark: '#CECECE',
-    panelInActiveDelimiterDark: '#323439',
+    activeDividerHandlerLight: '#1A284B',
+    inActiveDividerHandlerLight: 'var(--mantine-color-gray-1)',
+    activeDividerHandlerDark: '#CECECE',
+    inActiveDividerHandlerDark: '#323439',
+    contextMenuHoverLight: '#B4B4B43F',
+    contextMenuHoverDark: '#FFFFFF4a',
+    contextMenuBorder: '0 0 0 1px rgba(0, 0, 0, 0.1)',
   },
 });
 

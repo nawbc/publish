@@ -11,11 +11,7 @@ export interface DividerHandleProps extends SeparatorProps {
 export const DividerHandle = forwardRef<HTMLDivElement, DividerHandleProps>(
   ({ isDragging, ...props }, ref) => {
     return (
-      <Box
-        ref={ref}
-        className={styles.dividerHandleArea[isDragging ? 'active' : 'inactive']}
-        {...props}
-      >
+      <Box ref={ref} className={styles.primitiveResizeDividerArea} {...props}>
         <Center h="100%">
           <Box
             className={styles.dividerHandle[isDragging ? 'active' : 'inactive']}

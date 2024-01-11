@@ -1,6 +1,9 @@
-import { ActionIcon, Box, rem, Tooltip } from '@mantine/core';
+import { ActionIcon, Box, Flex, Group, rem, Tooltip } from '@mantine/core';
 import { Transition } from '@mantine/core';
-import { IconLayoutSidebarRightExpand } from '@tabler/icons-react';
+import {
+  IconArrowsVertical,
+  IconLayoutSidebarRightExpand,
+} from '@tabler/icons-react';
 import type { PropsWithChildren } from 'react';
 import { forwardRef, useCallback } from 'react';
 
@@ -18,7 +21,15 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
     }, [panel]);
 
     return (
-      <Box pos="relative" component="nav" ref={ref} px={rem(18)} py="xs">
+      <Flex
+        align="center"
+        pos="relative"
+        justify="space-between"
+        component="nav"
+        ref={ref}
+        px={rem(18)}
+        py="xs"
+      >
         <Transition
           mounted={panel?.expanded as boolean}
           transition="fade"
@@ -28,7 +39,7 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
           {(styles) => (
             <Tooltip openDelay={2000} label="Expand sidebar">
               <ActionIcon
-                c="gray"
+                c="gray.7"
                 style={{ ...styles }}
                 onClick={handleCollapse}
               >
@@ -38,8 +49,14 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
           )}
         </Transition>
 
+        <Group>
+          <ActionIcon c="gray.7" size="xs" onClick={handleCollapse}>
+            <IconArrowsVertical />
+          </ActionIcon>
+        </Group>
+
         {children}
-      </Box>
+      </Flex>
     );
   },
 );
