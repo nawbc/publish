@@ -6,10 +6,9 @@ import type { ReactNode } from 'react';
 import type React from 'react';
 import { useRef } from 'react';
 
-import { NOOP } from './constants';
 import { contextMenu } from './context-menu';
 import * as styles from './contextmenu.css';
-import { useItemTrackerContext } from './ItemTrackerProvider';
+import { useItemTrackerContext } from './ContextMenuContext';
 import type {
   BooleanPredicate,
   BuiltInOrString,
@@ -63,13 +62,58 @@ export interface ItemProps
    * ```
    */
   hidden?: BooleanPredicate;
-
+  /**
+   *
+   * @param e keyboard event
+   * @returns
+   *
+   * @example
+   * ```ts
+   * function handleItemClick({ id, triggerEvent, event, props, data }: ItemParams<type of props, type of data>){
+   *    // retrieve the id of the Item
+   *    console.log(id) // item-id
+   *
+   *    // access any other dom attribute
+   *    console.log(event.currentTarget.dataset.foo) // 123
+   *
+   *    // access the props and the data
+   *    console.log(props, data);
+   *
+   *    // access the coordinate of the mouse when the menu has been displayed
+   *    const {  clientX, clientY } = triggerEvent;
+   * }
+   * <Item id="item-id" onClick={handleItemClick} data={{key: 'value'}} data-foo={123} >Something</Item>
+   * ```
+   */
   onClick?: (args: ItemParams) => void;
+  /**
+   * Let you implement keyboard shortcut for the menu item. It will trigger the
+   * `onClick` handler if the given callback returns `true`
+   *
+   * @example
+   * ```ts
+   * function handleShortcut(e: React.KeyboardEvent<HTMLElement>){
+   *   // let's say we want to match ⌘ + c
+   *   return e.metaKey && e.key === "c";
+   * }
+   *
+   * <Item onClick={doSomething}>Copy <RightSlot>⌘ C</RightSlot></Item>
+   * ```
+   */
   keyMatcher?: (e: KeyboardEvent) => boolean;
   closeOnClick?: boolean;
   handlerEvent?: BuiltInOrString<'onClick' | 'onMouseDown' | 'onMouseUp'>;
+  /**
+   * Menu item leading element.
+   */
   leading?: React.ReactNode;
+  /**
+   * Menu item trailing element.
+   */
   trailing?: React.ReactNode;
+  /**
+   * Mantine color. @see {@link MantineColor}
+   */
   color?: MantineColor;
 }
 
@@ -82,7 +126,7 @@ export const MenuItem: React.FC<ItemProps> = ({
   data,
   propsFromTrigger,
   keyMatcher,
-  onClick = NOOP,
+  onClick = () => {},
   disabled = false,
   hidden = false,
   closeOnClick = true,
@@ -123,7 +167,7 @@ export const MenuItem: React.FC<ItemProps> = ({
       () => setTimeout(contextMenu.hideAll),
       { once: true },
     );
-    node.classList.add(styles.contextMenuItemFeedback);
+    node.classList.add(styles.itemFeedback);
     onClick(handlerParams);
   }
 
@@ -167,7 +211,7 @@ export const MenuItem: React.FC<ItemProps> = ({
     <Box
       component="div"
       {...{ ...rest, [handlerEvent]: handleClick }}
-      className={clsx(styles.contextMenuItem, className)}
+      className={clsx(styles.item, className)}
       onKeyDown={handleKeyDown}
       ref={registerItem}
       tabIndex={-1}
@@ -175,12 +219,12 @@ export const MenuItem: React.FC<ItemProps> = ({
       role="menuitem"
       aria-disabled={isDisabled}
       __vars={assignInlineVars({
-        [styles.contextMenuItemColor]:
+        [styles.itemColor]:
           parsedThemeColor?.isThemeColor &&
           parsedThemeColor?.shade === undefined
             ? `var(--mantine-color-${parsedThemeColor.color}-6)`
             : colors?.color,
-        [styles.contextMenuItemHover]: colors?.hover,
+        [styles.itemHover]: colors?.hover,
       })}
     >
       {leading && <div data-position="left">{leading}</div>}

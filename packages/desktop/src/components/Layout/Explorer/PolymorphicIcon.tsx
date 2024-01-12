@@ -1,16 +1,22 @@
+import type { ThemeIconProps } from '@mantine/core';
 import { ThemeIcon } from '@mantine/core';
 import { IconFileText, IconFolder, IconPhoto } from '@tabler/icons-react';
 import type { FC } from 'react';
 
-import type { NodeDataType } from './type';
+import type { NodeDataType } from './types';
 
-export type PolymorphicIconProps = {
+export interface PolymorphicIconProps extends ThemeIconProps {
   type?: NodeDataType;
   size?: number;
-};
+}
 
 export const PolymorphicIcon: FC<PolymorphicIconProps> = (props) => {
-  const { type, size } = props as Required<PolymorphicIconProps>;
+  const {
+    type,
+    size,
+    variant: _,
+    ...rest
+  } = props as Required<PolymorphicIconProps>;
 
   let icon;
   switch (type) {
@@ -29,7 +35,7 @@ export const PolymorphicIcon: FC<PolymorphicIconProps> = (props) => {
   }
 
   return (
-    <ThemeIcon size={size} c="gray.7" variant="transparent">
+    <ThemeIcon size={size} variant="transparent" {...rest}>
       {icon}
     </ThemeIcon>
   );
@@ -37,4 +43,5 @@ export const PolymorphicIcon: FC<PolymorphicIconProps> = (props) => {
 
 PolymorphicIcon.defaultProps = {
   size: 18,
+  c: 'gray.7',
 };

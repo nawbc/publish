@@ -6,12 +6,12 @@ import { useAtom } from 'jotai';
 import type { MouseEvent } from 'react';
 import { type FC, useCallback } from 'react';
 
-import { useContextMenu } from '~/components/ContextMenu';
 import { EXPLORER_MENU_ID } from '~/components/context-menus';
+import { useContextMenu } from '~/components/ContextMenu';
 
 import { PolymorphicIcon } from './PolymorphicIcon';
 import { TreeNodeMolecule } from './tree-node.molecule';
-import type { NodeData } from './type';
+import type { NodeData } from './types';
 
 export interface TreeNodeProps {
   node: NodeModel<NodeData>;

@@ -6,20 +6,58 @@ import {
   globalStyle,
   keyframes,
   style,
+  styleVariants,
 } from '@vanilla-extract/css';
 
-const feedback = keyframes({
-  '0%': { opacity: 0.4 },
-  '100%': { opacity: 1 },
-});
-
-export const contextMenuItemColor = createVar();
-export const contextMenuItemHover = createVar();
-export const contextMenuItemBg = createVar();
+export const itemColor = createVar();
+export const itemHover = createVar();
+export const itemBg = createVar();
 export const itemOpacity = createVar();
 export const itemCursor = createVar();
 
-export const contextMenu = style({
+const feedback = keyframes({
+  from: { opacity: 0.4 },
+  to: { opacity: 1 },
+});
+
+const fadeIn = keyframes({
+  from: { opacity: 0, transform: 'translateY(10px)' },
+  to: { opacity: 1, transform: 'translateY(0)' },
+});
+
+const fadeOut = keyframes({
+  from: { opacity: 1, transform: 'translateY(0)' },
+  to: { opacity: 0, transform: 'translateY(10px)' },
+});
+
+const scaleIn = keyframes({
+  from: { opacity: 0, transform: 'scale3d(0.3, 0.3, 0.3)' },
+  to: { opacity: 1 },
+});
+
+const scaleOut = keyframes({
+  from: { opacity: 1 },
+  to: { opacity: 0, transform: 'scale3d(0.3, 0.3, 0.3)' },
+});
+
+export const animations = styleVariants({
+  fadeIn: {
+    animation: `${fadeIn} 0.3s ease`,
+  },
+  fadeOut: {
+    animation: `${fadeOut} 0.3s ease`,
+  },
+  scaleIn: {
+    transformOrigin: 'top left',
+    animation: `${scaleIn} 0.3s ease`,
+  },
+  scaleOut: {
+    transformOrigin: 'top left',
+    animation: `${scaleOut} 0.3s ease`,
+  },
+});
+
+export const main = style({
   position: 'fixed',
   opacity: 0,
   width: 'max-content',
@@ -45,7 +83,7 @@ export const contextMenu = style({
 });
 
 export const sub = style([
-  contextMenu,
+  main,
   {
     position: 'absolute',
     pointerEvents: 'none',
@@ -69,11 +107,11 @@ export const subRight = style({
 
 export const subFocusOpen = style({});
 
-export const contextMenuItemFeedback = style({
+export const itemFeedback = style({
   animation: `${feedback} 0.12s both`,
 });
 
-export const contextMenuItem = style({
+export const item = style({
   cursor: fallbackVar(itemCursor, 'pointer'),
   width: '100%',
   position: 'relative',
@@ -81,45 +119,49 @@ export const contextMenuItem = style({
     outline: 0,
   },
   borderRadius: rem(6),
-  color: fallbackVar(contextMenuItemColor, 'var(--mantine-color-text)'),
+  color: fallbackVar(itemColor, 'var(--mantine-color-text)'),
   fontSize: 'var(--mantine-font-size-sm)',
-  padding: 'calc(var(--mantine-spacing-xs) / 1.5) var(--mantine-spacing-sm)',
-  backgroundColor: fallbackVar(contextMenuItemBg, 'transparent'),
+  padding: 'calc(var(--mantine-spacing-xs) / 2) var(--mantine-spacing-sm)',
+  backgroundColor: fallbackVar(itemBg, 'transparent'),
   display: 'flex',
   alignItems: 'center',
   whiteSpace: 'nowrap',
   opacity: fallbackVar(itemOpacity, '1'),
 });
 
+export const subItem = style({
+  position: 'relative',
+});
+
 export const itemFocus: GlobalStyleRule = {
   vars: {
-    [contextMenuItemBg]: fallbackVar(
-      contextMenuItemHover,
-      'var(--publish-context-menu-hover)',
-    ),
+    [itemBg]: fallbackVar(itemHover, 'var(--publish-context-menu-hover)'),
   },
 };
 
-export const subItemFocus: GlobalStyleRule = {
+export const subFocus: GlobalStyleRule = {
   opacity: 1,
   pointerEvents: 'initial',
 };
 
-globalStyle(`${contextMenuItem}:not([aria-disabled=true]):hover`, itemFocus);
-globalStyle(`${contextMenuItem}:not([aria-disabled=true]):focus`, itemFocus);
+export const leaveDisabled = style({
+  pointerEvents: 'none',
+});
 
-globalStyle(`${contextMenuItem}[aria-disabled=true]`, {
+globalStyle(`${item}:not([aria-disabled=true]):hover`, itemFocus);
+globalStyle(`${item}:not([aria-disabled=true]):focus`, itemFocus);
+
+globalStyle(`${item}[aria-disabled=true]`, {
   pointerEvents: 'none',
   vars: {
-    [contextMenuItemHover]: 'var(--mantine-color-dimmed) !important',
+    [itemHover]: 'var(--mantine-color-dimmed) !important',
     [itemOpacity]: '0.6',
     [itemCursor]: 'default',
   },
 });
 
-globalStyle(`${subFocusOpen},${subFocusOpen} > ${contextMenuItem}`, itemFocus);
+globalStyle(`${subFocusOpen},${subFocusOpen} > ${item}`, itemFocus);
 
-globalStyle(
-  `${contextMenuItem}:not([aria-disabled=true]):hover > ${sub}`,
-  subItemFocus,
-);
+globalStyle(`${subFocusOpen} > ${sub}`, subFocus);
+
+globalStyle(`${subItem}:not([aria-disabled=true]):hover > ${sub}`, subFocus);

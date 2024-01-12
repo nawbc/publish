@@ -1,6 +1,6 @@
 import type { SyntheticEvent } from 'react';
 
-import { EVENT } from './constants';
+import { ContextMenuEvents } from './enums';
 import { eventManager } from './event-manager';
 import type { MenuId, TriggerEvent } from './types';
 
@@ -23,14 +23,14 @@ const contextMenu: ContextMenuActionProps = {
   show({ event, id, props, position }) {
     if (event.preventDefault) event.preventDefault();
 
-    eventManager.emit(EVENT.HIDE_ALL).emit(id, {
+    eventManager.emit(ContextMenuEvents.hideAll).emit(id, {
       event: (event as SyntheticEvent).nativeEvent || event,
       props,
       position,
     });
   },
   hideAll() {
-    eventManager.emit(EVENT.HIDE_ALL);
+    eventManager.emit(ContextMenuEvents.hideAll);
   },
 };
 

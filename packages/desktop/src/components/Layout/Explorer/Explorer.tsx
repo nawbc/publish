@@ -5,7 +5,10 @@ import {
   useDisclosure,
   useWindowEvent,
 } from '@mantine/hooks';
-import type { NodeModel } from '@minoru/react-dnd-treeview';
+import type {
+  DragLayerMonitorProps,
+  NodeModel,
+} from '@minoru/react-dnd-treeview';
 import {
   getBackendOptions,
   isAncestor,
@@ -21,8 +24,10 @@ import { EXPLORER_MENU_ID } from '~/components/context-menus';
 import { useContextMenu } from '~/components/ContextMenu';
 
 import * as styles from './explorer.css';
+import { MultipleDragPreview } from './MultipleDragPreview';
+import { SingleDragPreview } from './SingleDragPreview';
 import { TreeNode } from './TreeNode';
-import type { NodeData } from './type';
+import type { NodeData } from './types';
 
 const initialData = [
   {
@@ -281,6 +286,15 @@ export const Explorer: FC<NavMenuProps> = function () {
             ) {
               return false;
             }
+          }}
+          dragPreviewRender={(
+            monitorProps: DragLayerMonitorProps<NodeData>,
+          ) => {
+            if (selectedNodes.length > 1) {
+              return <MultipleDragPreview sources={selectedNodes} />;
+            }
+
+            return <SingleDragPreview {...monitorProps} />;
           }}
           render={(node, options) => {
             const selected = selectedNodes.some(

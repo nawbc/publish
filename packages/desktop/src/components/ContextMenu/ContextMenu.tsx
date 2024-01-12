@@ -4,12 +4,12 @@ import type React from 'react';
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
-import { EVENT, hideOnEvents } from './constants';
 import type { ShowContextMenuParams } from './context-menu';
 import * as styles from './contextmenu.css';
+import { ContextMenuProvider } from './ContextMenuContext';
+import { ContextMenuEvents } from './enums';
 import { eventManager } from './event-manager';
 import { useItemTracker } from './hooks';
-import { ItemTrackerProvider } from './ItemTrackerProvider';
 import { createKeyboardController } from './keyboard-controller';
 import type { MenuAnimation, MenuId, TriggerEvent } from './types';
 import { cloneItems, getMousePosition, isFn, isStr } from './utils';
@@ -65,6 +65,16 @@ interface MenuState {
   backdropFilter: string;
 }
 
+const hideOnEvents: (keyof GlobalEventHandlersEventMap)[] = [
+  'resize',
+  'contextmenu',
+  'click',
+  'scroll',
+
+  // comment blur in dev so you can toggle console without closing the menu
+  'blur',
+];
+
 function reducer(
   state: MenuState,
   payload: Partial<MenuState> | ((state: MenuState) => Partial<MenuState>),
@@ -101,10 +111,10 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
 
   // subscribe event manager
   useEffect(() => {
-    eventManager.on(id, show).on(EVENT.HIDE_ALL, hide);
+    eventManager.on(id, show).on(ContextMenuEvents.hideAll, hide);
 
     return () => {
-      eventManager.off(id, show).off(EVENT.HIDE_ALL, hide);
+      eventManager.off(id, show).off(ContextMenuEvents.hideAll, hide);
     };
     // hide rely on setState(dispatch), which is guaranted to be the same across render
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -238,7 +248,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
   function handleAnimationEnd() {
     if (state.willLeave && state.visible) {
       //@todo
-      flushSync(() => setState({ visible: true, willLeave: false }));
+      flushSync(() => setState({ visible: false, willLeave: false }));
     } else {
       //@todo Fix opacity 0 ~ 1 animation, before pseudo element backdrop-filter flash.
       setState({
@@ -253,37 +263,33 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
     });
   }
 
-  function computeAnimationClasses() {
+  function animateClz() {
     if (isStr(animation)) {
       return clsx({
-        [`contextmenu_willEnter-${animation}`]: visible && !willLeave,
-        [`contextmenu_willLeave-${animation} contextmenu_willLeave-disabled`]:
-          visible && willLeave,
+        [styles.animations[animation + 'In']]: visible && !willLeave,
+        [styles.animations[animation + 'Out']]: visible && willLeave,
+        [styles.leaveDisabled]: visible && willLeave,
       });
     } else if (animation && 'enter' in animation && 'exit' in animation) {
       return clsx({
-        [`contextmenu_willEnter-${animation.enter}`]:
+        [styles.animations[animation.enter + 'In']]:
           animation.enter && visible && !willLeave,
-        [`contextmenu_willLeave-${animation.exit} contextmenu_willLeave-disabled`]:
-          animation.exit && visible && willLeave,
+        [styles.animations[animation.exit + 'Out']]:
+          animation.enter && visible && willLeave,
+        [styles.leaveDisabled]: animation.enter && visible && willLeave,
       });
     }
-
     return null;
   }
 
   const { visible, triggerEvent, propsFromTrigger, x, y, willLeave } = state;
 
   return (
-    <ItemTrackerProvider value={itemTracker}>
+    <ContextMenuProvider value={itemTracker}>
       {visible && (
         <div
           {...rest}
-          className={clsx(
-            styles.contextMenu,
-            className,
-            computeAnimationClasses(),
-          )}
+          className={clsx(styles.main, className, animateClz())}
           onAnimationStart={handleAnimationStart}
           onAnimationEnd={handleAnimationEnd}
           style={{
@@ -302,6 +308,6 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
           })}
         </div>
       )}
-    </ItemTrackerProvider>
+    </ContextMenuProvider>
   );
 };

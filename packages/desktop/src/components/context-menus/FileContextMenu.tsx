@@ -12,7 +12,9 @@ export function FileContextMenu() {
       {/* <Menu.Label>Demo</Menu.Label> */}
       <MenuItem>Demo2</MenuItem>
       <MenuItem>Demo2</MenuItem>
-      <SubMenu label="SubMenu21111111111111111111111111121111111111111111111111111">
+      <SubMenu label="SubMenu121321">
+        <MenuItem>Demo2</MenuItem>
+        <MenuItem>Demo2</MenuItem>
         <MenuItem>Demo2</MenuItem>
         <MenuItem color="red">Demo2</MenuItem>
       </SubMenu>

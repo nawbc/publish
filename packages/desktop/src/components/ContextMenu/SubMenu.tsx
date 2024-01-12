@@ -5,13 +5,12 @@ import type { ReactNode } from 'react';
 import type React from 'react';
 import { useRef } from 'react';
 
-// import { CssClass } from './constants';
 import * as styles from './contextmenu.css';
-import { useItemTracker } from './hooks';
 import {
-  ItemTrackerProvider,
+  ContextMenuProvider,
   useItemTrackerContext,
-} from './ItemTrackerProvider';
+} from './ContextMenuContext';
+import { useItemTracker } from './hooks';
 import type {
   BooleanPredicate,
   HandlerParamsEvent,
@@ -100,10 +99,10 @@ export const SubMenu: React.FC<SubMenuProps> = ({
   if (isHidden) return null;
 
   return (
-    <ItemTrackerProvider value={itemTracker}>
+    <ContextMenuProvider value={itemTracker}>
       <Box
         {...rest}
-        className={clsx(styles.contextMenuItem, className)}
+        className={clsx(styles.subItem, className)}
         ref={trackRef}
         tabIndex={-1}
         role="menuitem"
@@ -112,18 +111,18 @@ export const SubMenu: React.FC<SubMenuProps> = ({
         onMouseEnter={setPosition}
         onTouchStart={setPosition}
       >
-        <div>
+        <Box className={styles.item}>
           {label}
           {trailing ?? <IconChevronRight size={14} />}
-        </div>
-        <div className={clsx(styles.sub)} ref={subMenuNode} style={style}>
+        </Box>
+        <Box className={clsx(styles.sub)} ref={subMenuNode} style={style}>
           {cloneItems(children, {
             propsFromTrigger,
             // @ts-ignore: injected by the parent
             triggerEvent,
           })}
-        </div>
+        </Box>
       </Box>
-    </ItemTrackerProvider>
+    </ContextMenuProvider>
   );
 };
