@@ -7,7 +7,7 @@ export const primitiveResizeDividerArea = style({
   willChange: 'visibility',
   touchAction: 'none',
   vars: {
-    '--_resize-divider-color': 'var(--mantine-color-inactive-divider-handler)',
+    '--_resize-divider-color': 'var(--publish-color-inactive-divider-handler)',
   },
   ':hover': {
     vars: {

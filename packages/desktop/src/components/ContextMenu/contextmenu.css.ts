@@ -14,6 +14,8 @@ export const itemHover = createVar();
 export const itemBg = createVar();
 export const itemOpacity = createVar();
 export const itemCursor = createVar();
+const animateInDelay = '0.3s',
+  animateOutDelay = '0.2s';
 
 const feedback = keyframes({
   from: { opacity: 0.4 },
@@ -42,18 +44,18 @@ const scaleOut = keyframes({
 
 export const animations = styleVariants({
   fadeIn: {
-    animation: `${fadeIn} 0.3s ease`,
+    animation: `${fadeIn} ${animateInDelay} ease`,
   },
   fadeOut: {
-    animation: `${fadeOut} 0.3s ease`,
+    animation: `${fadeOut} ${animateOutDelay} ease`,
   },
   scaleIn: {
     transformOrigin: 'top left',
-    animation: `${scaleIn} 0.3s ease`,
+    animation: `${scaleIn} ${animateInDelay} ease`,
   },
   scaleOut: {
     transformOrigin: 'top left',
-    animation: `${scaleOut} 0.3s ease`,
+    animation: `${scaleOut} ${animateOutDelay} ease`,
   },
 });
 
@@ -64,7 +66,7 @@ export const main = style({
   userSelect: 'none',
   backgroundColor: 'var(--publish-context-menu-bg)',
   boxSizing: 'border-box',
-  boxShadow: 'var(--publish-context-menu-border)',
+  boxShadow: 'var(--publish-color-context-menu-border)',
   borderRadius: 'var(--mantine-radius-sm)',
   padding: rem(4),
   zIndex: 999,
@@ -135,7 +137,7 @@ export const subItem = style({
 
 export const itemFocus: GlobalStyleRule = {
   vars: {
-    [itemBg]: fallbackVar(itemHover, 'var(--publish-context-menu-hover)'),
+    [itemBg]: fallbackVar(itemHover, 'var(--publish-color-context-menu-hover)'),
   },
 };
 

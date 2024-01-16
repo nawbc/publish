@@ -2,9 +2,11 @@
 import '@deskbtm/gadgets/env';
 import '@mantine/core/styles.css';
 import '@blocksuite/presets/themes/affine.css';
+import '@mantine/spotlight/styles.css';
 import '@fontsource/inter';
 import 'es-module-shims';
 
+import { disableGlobalContextMenu } from '@publish/shared';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 
@@ -18,5 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </Suspense>
   </React.StrictMode>,
 );
+
+disableGlobalContextMenu();
 
 reportWebVitals(!kProdMode ? console.debug : undefined);

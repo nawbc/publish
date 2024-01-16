@@ -7,10 +7,14 @@ import { flushSync } from 'react-dom';
 import type { ShowContextMenuParams } from './context-menu';
 import * as styles from './contextmenu.css';
 import { ContextMenuProvider } from './ContextMenuContext';
+import { ContextMenuDivider } from './Divider';
 import { ContextMenuEvents } from './enums';
 import { eventManager } from './event-manager';
 import { useItemTracker } from './hooks';
+import { ContextMenuItem } from './Item';
 import { createKeyboardController } from './keyboard-controller';
+import { ContextMenuLabel } from './Label';
+import { ContextMenuSub } from './Sub';
 import type { MenuAnimation, MenuId, TriggerEvent } from './types';
 import { cloneItems, getMousePosition, isFn, isStr } from './utils';
 
@@ -40,7 +44,7 @@ export interface ContextMenuProps
 
   /**
    * Disables menu repositioning if outside screen.
-   * This may be neeeded in some cases when using custom position.
+   * This may be needed in some cases when using custom position.
    */
   disableBoundariesCheck?: boolean;
 
@@ -82,7 +86,9 @@ function reducer(
   return { ...state, ...(isFn(payload) ? payload(state) : payload) };
 }
 
-export const ContextMenu: React.FC<ContextMenuProps> = ({
+const defaultBackdrop = 'saturate(180%) blur(10px)';
+
+export const ContextMenu = ({
   id,
   style,
   className,
@@ -92,7 +98,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
   disableBoundariesCheck = false,
   onVisibilityChange,
   ...rest
-}) => {
+}: ContextMenuProps) => {
   const [state, setState] = useReducer(reducer, {
     x: 0,
     y: 0,
@@ -100,7 +106,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
     triggerEvent: {} as TriggerEvent,
     propsFromTrigger: null,
     willLeave: false,
-    backdropFilter: 'saturate(180%) blur(10px)',
+    backdropFilter: defaultBackdrop,
   });
   const nodeRef = useRef<HTMLDivElement>(null);
   const itemTracker = useItemTracker();
@@ -116,7 +122,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
     return () => {
       eventManager.off(id, show).off(ContextMenuEvents.hideAll, hide);
     };
-    // hide rely on setState(dispatch), which is guaranted to be the same across render
+    // Hide rely on setState(dispatch), which is guaranteed to be the same across render
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, animation, disableBoundariesCheck]);
 
@@ -153,6 +159,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
     }
 
     function handleKeyboard(e: KeyboardEvent) {
+      console.log(e.key, '##############################');
       switch (e.key) {
         case 'Enter':
         case ' ':
@@ -226,7 +233,7 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
 
     if (
       e != null &&
-      // Safari trigger a click event when you ctrl + trackpad
+      // Safari trigger a click event when you Ctrl + TrackPad
       ((e as SafariEvent).button === 2 || (e as SafariEvent).ctrlKey) &&
       // Firefox trigger a click event when right click occur
       e.type !== 'contextmenu'
@@ -258,9 +265,11 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
   }
 
   function handleAnimationStart() {
-    setState({
-      backdropFilter: 'saturate(180%) blur(10px)',
-    });
+    if (!(state.willLeave && state.visible)) {
+      setState({
+        backdropFilter: defaultBackdrop,
+      });
+    }
   }
 
   function animateClz() {
@@ -311,3 +320,14 @@ export const ContextMenu: React.FC<ContextMenuProps> = ({
     </ContextMenuProvider>
   );
 };
+
+ContextMenu.Label = ContextMenuLabel;
+ContextMenu.Label.displayName = '@publish/desktop/ContextMenu.Label';
+ContextMenu.Item = ContextMenuItem;
+ContextMenu.Item.displayName = '@publish/desktop/ContextMenu.Item';
+ContextMenu.Sub = ContextMenuSub;
+ContextMenu.Sub.displayName = '@publish/desktop/ContextMenu.Sub';
+ContextMenu.Divider = ContextMenuDivider;
+ContextMenu.Divider.displayName = '@publish/desktop/ContextMenu.Divider';
+
+ContextMenu.displayName = '@publish/desktop/ContextMenu';

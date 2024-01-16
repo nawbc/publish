@@ -1,6 +1,8 @@
-import { ContextMenu, MenuItem, SubMenu } from '../ContextMenu';
+import { ContextMenu } from '../ContextMenu';
 
 export const EXPLORER_MENU_ID = 'publish:explorer';
+
+const { Sub, Item } = ContextMenu;
 
 export function FileContextMenu() {
   // function handleItemClick({ event, props, triggerEvent, data }: ItemParams) {
@@ -10,25 +12,14 @@ export function FileContextMenu() {
   return (
     <ContextMenu id={EXPLORER_MENU_ID}>
       {/* <Menu.Label>Demo</Menu.Label> */}
-      <MenuItem>Demo2</MenuItem>
-      <MenuItem>Demo2</MenuItem>
-      <SubMenu label="SubMenu121321">
-        <MenuItem>Demo2</MenuItem>
-        <MenuItem>Demo2</MenuItem>
-        <MenuItem>Demo2</MenuItem>
-        <MenuItem color="red">Demo2</MenuItem>
-      </SubMenu>
-      {/* <SubMenu
-        disabled
-        label="SubMenu21111111111111111111111111121111111111111111111111111"
-      >
-        <MenuItem>Demo2</MenuItem>
-        <MenuItem color="red">Demo2</MenuItem>
-        <SubMenu disabled label="SubMenu1">
-          <MenuItem>Demo2</MenuItem>
-          <MenuItem color="red">Demo2</MenuItem>
-        </SubMenu>
-      </SubMenu> */}
+      <Item>Demo2</Item>
+      <Item>Demo2</Item>
+      <Sub label="SubMenu121321">
+        <Item>Demo2</Item>
+        <Item>Demo2</Item>
+        <Item>Demo2</Item>
+        <Item color="red">Demo2</Item>
+      </Sub>
     </ContextMenu>
   );
 }

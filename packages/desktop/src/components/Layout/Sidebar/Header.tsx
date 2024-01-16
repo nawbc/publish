@@ -1,4 +1,4 @@
-import { ActionIcon, Box, Flex, Group, rem, Tooltip } from '@mantine/core';
+import { ActionIcon, Flex, Group, rem, Tooltip } from '@mantine/core';
 import { Transition } from '@mantine/core';
 import {
   IconArrowsVertical,
@@ -8,6 +8,7 @@ import type { PropsWithChildren } from 'react';
 import { forwardRef, useCallback } from 'react';
 
 import { useDividerPanel } from '../DividerPanel';
+import { useExplorerContext } from '../Explorer';
 
 interface SidebarHeaderProps extends PropsWithChildren {}
 
@@ -15,6 +16,7 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
   (props, ref) => {
     const { children } = props;
     const panel = useDividerPanel();
+    const explorer = useExplorerContext();
 
     const handleCollapse = useCallback(() => {
       panel?.collapse();
@@ -50,7 +52,13 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
         </Transition>
 
         <Group>
-          <ActionIcon c="gray.7" size="xs" onClick={handleCollapse}>
+          <ActionIcon
+            c="gray.7"
+            size="xs"
+            onClick={() => {
+              explorer.toggle();
+            }}
+          >
             <IconArrowsVertical />
           </ActionIcon>
         </Group>

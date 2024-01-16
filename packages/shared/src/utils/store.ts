@@ -7,9 +7,12 @@ export class LocalStore {
     );
   }
 
-  static get<T extends object>(key: string): T {
+  static get<T extends object>(
+    key: string,
+    fallback?: Record<string, unknown>,
+  ): T {
     try {
-      return JSON.parse(localStorage.getItem(key)!) ?? ({} as T);
+      return JSON.parse(localStorage.getItem(key)!) ?? ((fallback ?? {}) as T);
     } catch (error) {
       return {} as T;
     }

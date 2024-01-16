@@ -2045,12 +2045,35 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@mantine/spotlight@npm:^7.4.1":
+  version: 7.4.1
+  resolution: "@mantine/spotlight@npm:7.4.1"
+  dependencies:
+    "@mantine/store": "npm:7.4.1"
+  peerDependencies:
+    "@mantine/core": 7.4.1
+    "@mantine/hooks": 7.4.1
+    react: ^18.2.0
+    react-dom: ^18.2.0
+  checksum: 8f236bf4daf7da77e74debc5bbaa66bc101f1dfe246b976071d668345df12439216cad3e815bcf04ab40681b3d0a308cc022893b8760100a92b10e6dccfa1ad6
+  languageName: node
+  linkType: hard
+
 "@mantine/store@npm:7.4.0":
   version: 7.4.0
   resolution: "@mantine/store@npm:7.4.0"
   peerDependencies:
     react: ^18.2.0
   checksum: 331ffd1da6d25b3622c795a57dbc5f0a634ba0887aa61b103a5bdacbba1c7879573cf6cdf1602f1ee9c8b5281a2e70e7fa822c55b625ebcbeae0eea3e4ef91b4
+  languageName: node
+  linkType: hard
+
+"@mantine/store@npm:7.4.1":
+  version: 7.4.1
+  resolution: "@mantine/store@npm:7.4.1"
+  peerDependencies:
+    react: ^18.2.0
+  checksum: ebb0ac5de45bd4a080e1bf9ef761f9f90dc23745a6dac355a80224f17fa2b5ce4a51b7bda5fc7f1186b60ab6ee79ab509c3351792cb34caa651ce9a9407a77e4
   languageName: node
   linkType: hard
 
@@ -10002,6 +10025,7 @@ __metadata:
   resolution: "publish@workspace:."
   dependencies:
     "@blocksuite/presets": "npm:0.11.0"
+    "@blocksuite/store": "npm:0.11.0"
     "@capacitor/android": "npm:5.6.0"
     "@capacitor/app": "npm:5.0.6"
     "@capacitor/cli": "npm:5.6.0"
@@ -10010,6 +10034,7 @@ __metadata:
     "@deskbtm/gadgets": "npm:0.0.1-alpha.4"
     "@emotion/react": "npm:11.11.3"
     "@fontsource/inter": "npm:5.0.16"
+    "@mantine/spotlight": "npm:^7.4.1"
     "@minoru/react-dnd-treeview": "npm:^3.4.4"
     "@monaco-editor/react": "npm:^4.6.0"
     "@plugkit/bfs": "workspace:^"

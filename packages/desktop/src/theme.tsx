@@ -10,19 +10,19 @@ export const resolver: CSSVariablesResolver = (theme) => ({
   light: {
     '--publish-color-active-divider-handler':
       theme.other.activeDividerHandlerLight,
-    '--mantine-color-inactive-divider-handler':
+    '--publish-color-inactive-divider-handler':
       theme.other.inActiveDividerHandlerLight,
-    '--publish-context-menu-hover': theme.other.contextMenuHoverLight,
-    '--publish-context-menu-border': theme.other.contextMenuBorder,
+    '--publish-color-context-menu-hover': theme.other.contextMenuHoverLight,
+    '--publish-color-context-menu-border': theme.other.contextMenuBorder,
     '--publish-context-menu-bg': '#ffffff40',
   },
   dark: {
     '--publish-color-active-divider-handler':
       theme.other.activeDividerHandlerDark,
-    '--mantine-color-inactive-divider-handler':
+    '--publish-color-inactive-divider-handler':
       theme.other.inActiveDividerHandlerDark,
-    '--publish-context-menu-hover': theme.other.contextMenuHoverLight,
-    '--publish-context-menu-border': theme.other.contextMenuBorder,
+    '--publish-color-context-menu-hover': theme.other.contextMenuHoverLight,
+    '--publish-color-context-menu-border': theme.other.contextMenuBorder,
   },
 });
 
@@ -33,8 +33,8 @@ export const variantColorResolver: VariantColorsResolver = (input) => {
 };
 
 export const theme = createTheme({
-  fontFamily: `Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial,
-    sans-serif, Apple Color Emoji, Segoe UI Emoji`,
+  fontFamily: `Inter,-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, system-ui`,
   components: {
     ActionIcon: {
       defaultProps: {

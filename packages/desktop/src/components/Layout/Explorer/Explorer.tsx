@@ -1,5 +1,4 @@
-import type { MantineStyleProps, MantineThemeColors } from '@mantine/core';
-import { Box, Text, UnstyledButton } from '@mantine/core';
+import { Box } from '@mantine/core';
 import {
   getHotkeyHandler,
   useDisclosure,
@@ -24,6 +23,7 @@ import { EXPLORER_MENU_ID } from '~/components/context-menus';
 import { useContextMenu } from '~/components/ContextMenu';
 
 import * as styles from './explorer.css';
+import { useExplorerContext } from './hooks';
 import { MultipleDragPreview } from './MultipleDragPreview';
 import { SingleDragPreview } from './SingleDragPreview';
 import { TreeNode } from './TreeNode';
@@ -102,34 +102,7 @@ const initialData = [
   },
 ];
 
-export interface NavMenuTile {
-  label: string;
-  to?: string;
-  replace?: boolean;
-  type?: 'node' | 'link';
-  icon?: React.ReactNode;
-  color?: keyof MantineThemeColors;
-  children?: NavMenuTile[];
-  access?: string[];
-  onClick?: () => Promise<void> | void;
-}
-
-interface NavMenuTileProps {
-  label: string;
-  active: boolean;
-}
-
-const NavMenuTile: FC<NavMenuTileProps> = function ({ label }) {
-  return (
-    <UnstyledButton>
-      <Text size="sm">{label}</Text>
-    </UnstyledButton>
-  );
-};
-
-interface NavMenuProps extends MantineStyleProps {}
-
-export const Explorer: FC<NavMenuProps> = function () {
+export const Explorer: FC<any> = function () {
   const [tree, setTree] = useState(initialData);
   const [isCtrlPressing, ctrlHandler] = useDisclosure(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -137,6 +110,8 @@ export const Explorer: FC<NavMenuProps> = function () {
   const { show } = useContextMenu({
     id: EXPLORER_MENU_ID,
   });
+  const { _treeRef, allCollapsed } = useExplorerContext();
+
   const showMenu = useCallback(
     (e: MouseEvent) => {
       show({ event: e });
@@ -265,11 +240,23 @@ export const Explorer: FC<NavMenuProps> = function () {
     [selectedNodes],
   );
 
+  const handleDroppable = (tree, options) => {
+    if (
+      selectedNodes.some(
+        (selectedNode) => selectedNode.id === options.dropTargetId,
+      )
+    ) {
+      return false;
+    }
+  };
+
   return (
     <DndProvider backend={MultiBackend} options={getBackendOptions()}>
       <Box onContextMenu={showMenu} h="100%">
         <Tree
           tree={tree}
+          ref={_treeRef}
+          initialOpen={!allCollapsed}
           rootId={0}
           classes={{
             root: styles.treeRoot,
@@ -278,15 +265,7 @@ export const Explorer: FC<NavMenuProps> = function () {
           onDrop={handleDrop}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
-          canDrop={(tree, options) => {
-            if (
-              selectedNodes.some(
-                (selectedNode) => selectedNode.id === options.dropTargetId,
-              )
-            ) {
-              return false;
-            }
-          }}
+          canDrop={handleDroppable}
           dragPreviewRender={(
             monitorProps: DragLayerMonitorProps<NodeData>,
           ) => {

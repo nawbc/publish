@@ -6,11 +6,8 @@ import type React from 'react';
 import { useRef } from 'react';
 
 import * as styles from './contextmenu.css';
-import {
-  ContextMenuProvider,
-  useItemTrackerContext,
-} from './ContextMenuContext';
-import { useItemTracker } from './hooks';
+import { ContextMenuProvider } from './ContextMenuContext';
+import { useItemTracker, useItemTrackerContext } from './hooks';
 import type {
   BooleanPredicate,
   HandlerParamsEvent,
@@ -49,7 +46,7 @@ export interface SubMenuProps
   color?: MantineColor;
 }
 
-export const SubMenu: React.FC<SubMenuProps> = ({
+export const ContextMenuSub: React.FC<SubMenuProps> = ({
   trailing,
   children,
   disabled = false,

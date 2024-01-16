@@ -1,29 +1,28 @@
 import { ActionIcon, Flex, rem, Text } from '@mantine/core';
-import type { NodeModel } from '@minoru/react-dnd-treeview';
+import type { NodeModel, RenderParams } from '@minoru/react-dnd-treeview';
 import { IconChevronRight } from '@tabler/icons-react';
-import { useMolecule } from 'bunshi/react';
-import { useAtom } from 'jotai';
 import type { MouseEvent } from 'react';
-import { type FC, useCallback } from 'react';
+import { type FC, useCallback, useEffect } from 'react';
 
 import { EXPLORER_MENU_ID } from '~/components/context-menus';
 import { useContextMenu } from '~/components/ContextMenu';
 
 import { PolymorphicIcon } from './PolymorphicIcon';
-import { TreeNodeMolecule } from './tree-node.molecule';
+import * as styles from './tree-node.css';
 import type { NodeData } from './types';
 
-export interface TreeNodeProps {
+export interface TreeNodeProps extends RenderParams {
   node: NodeModel<NodeData>;
   isDragging: boolean;
   isSelected: boolean;
   onToggle(): void;
+  onClick?: (e: MouseEvent<HTMLDivElement>, node: NodeModel<NodeData>) => void;
 }
 
 export const TreeNode: FC<TreeNodeProps> = (props) => {
-  const { id, droppable, data } = props.node;
-  const { renameAtom } = useMolecule(TreeNodeMolecule);
-  const [renamed, rename] = useAtom(renameAtom);
+  const { node, onClick, containerRef, onToggle, isSelected, isDragging } =
+    props;
+  const { id, droppable, data } = node;
 
   const { show } = useContextMenu({
     id: EXPLORER_MENU_ID,
@@ -36,27 +35,29 @@ export const TreeNode: FC<TreeNodeProps> = (props) => {
     [props, show],
   );
 
-  const handleClick = (e) => {
-    // props.onClick(e, props.node);
-    props.onToggle();
-  };
+  const handleClick = useCallback(
+    (e) => {
+      onToggle();
+      onClick?.(e, node);
+    },
+    [node, onClick, onToggle],
+  );
 
-  const handleToggle = (e) => {
-    e.stopPropagation();
-    props.onToggle();
-  };
+  useEffect(() => {
+    if (isSelected) {
+      containerRef.current?.classList.add(styles.selected);
+    } else {
+      containerRef.current?.classList.remove(styles.selected);
+    }
+  }, [containerRef, isSelected]);
 
-  if (props.isSelected) {
-    // props.containerRef.current?.classList.add(styles.selected);
-  } else {
-    // props.containerRef.current?.classList.remove(styles.selected);
-  }
-
-  if (props.isDragging) {
-    // props.containerRef.current?.classList.add(styles.dragging);
-  } else {
-    // props.containerRef.current?.classList.remove(styles.dragging);
-  }
+  useEffect(() => {
+    if (isDragging) {
+      containerRef.current?.classList.add(styles.dragging);
+    } else {
+      containerRef.current?.classList.remove(styles.dragging);
+    }
+  }, [containerRef, isDragging]);
 
   return (
     <Flex

@@ -10,6 +10,7 @@ import { Compose } from 'reactgets/components/Compose/index';
 import * as uuid from 'uuid';
 
 import { GlobalContextMenus } from './components/context-menus';
+import { PublishSpotlight } from './components/Spotlight';
 import { router } from './router';
 import { resolver, theme } from './theme';
 
@@ -34,10 +35,12 @@ function App() {
     />,
     <QueryClientProvider key={uuid.v4()} client={queryClient} />,
   ];
+
   return (
     <Compose providers={providers}>
       <DevTools />
       <GlobalContextMenus />
+      <PublishSpotlight />
       <RouterProvider
         router={router}
         future={{

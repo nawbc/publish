@@ -7,7 +7,7 @@ import type {
 } from './types';
 import { getPredicateValue } from './utils';
 
-export interface DividerProps extends InternalProps {
+export interface ContextMenuLabelProps extends InternalProps {
   /**
    * Passed to the `Separator` hidden predicate. Accessible via `data`
    */
@@ -29,7 +29,7 @@ export interface DividerProps extends InternalProps {
   hidden?: BooleanPredicate;
 }
 
-export const ContextMenuDivider: React.FC<DividerProps> = ({
+export const ContextMenuLabel: React.FC<ContextMenuLabelProps> = ({
   triggerEvent,
   data,
   propsFromTrigger,

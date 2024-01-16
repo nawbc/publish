@@ -1,4 +1,6 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
+
+import { ContextMenuContext } from '../ContextMenuContext';
 
 export interface ItemTrackerRecord {
   node: HTMLElement;
@@ -12,3 +14,5 @@ export type ItemTracker = ReturnType<typeof useItemTracker>;
 
 export const useItemTracker = () =>
   useRef<Map<HTMLElement, ItemTrackerRecord>>(new Map()).current;
+
+export const useItemTrackerContext = () => useContext(ContextMenuContext);

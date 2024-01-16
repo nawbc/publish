@@ -8,7 +8,7 @@ import { useRef } from 'react';
 
 import { contextMenu } from './context-menu';
 import * as styles from './contextmenu.css';
-import { useItemTrackerContext } from './ContextMenuContext';
+import { useItemTrackerContext } from './hooks';
 import type {
   BooleanPredicate,
   BuiltInOrString,
@@ -117,7 +117,7 @@ export interface ItemProps
   color?: MantineColor;
 }
 
-export const MenuItem: React.FC<ItemProps> = ({
+export const ContextMenuItem: React.FC<ItemProps> = ({
   id,
   children,
   className,
