@@ -159,7 +159,6 @@ export const ContextMenu = ({
     }
 
     function handleKeyboard(e: KeyboardEvent) {
-      console.log(e.key, '##############################');
       switch (e.key) {
         case 'Enter':
         case ' ':

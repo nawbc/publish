@@ -40,5 +40,5 @@ export const ContextMenuDivider: React.FC<DividerProps> = ({
     triggerEvent: triggerEvent as HandlerParamsEvent,
     props: propsFromTrigger,
   }) ? null : (
-    <div className={'demo'} />
+    <div className='' />
   );
