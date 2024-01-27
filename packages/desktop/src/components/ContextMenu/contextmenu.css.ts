@@ -66,6 +66,7 @@ export const main = style({
   userSelect: 'none',
   backgroundColor: 'var(--publish-context-menu-bg)',
   boxSizing: 'border-box',
+  //Border
   boxShadow: 'var(--publish-color-context-menu-border)',
   borderRadius: 'var(--mantine-radius-sm)',
   padding: rem(4),
@@ -92,7 +93,6 @@ export const sub = style([
     transition: 'opacity .265s',
     top: `calc(-1 * ${rem(4)})`,
     left: '100%',
-    // opacity: 1,
     backdropFilter: 'saturate(180%) blur(10px)',
   },
 ]);

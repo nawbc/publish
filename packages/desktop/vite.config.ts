@@ -12,7 +12,7 @@ import mkcert from 'vite-plugin-mkcert';
 const enableRemoteDebug = process.env.ENABLE_REMOTE_DEBUG === 'true';
 const enableIstanbul = !!process.env.CI || !!process.env.COVERAGE;
 
-const cwd = fileURLToPath(new URL('.', import.meta.url));
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -22,19 +22,15 @@ export default defineConfig({
     million.vite({ auto: true }),
     react({ plugins: [['@swc-jotai/react-refresh', {}]] }),
     vanillaExtractPlugin(),
-    // enableIstanbul &&
-    //   istanbul({
-    //     // cwd: fileURLToPath(new URL('../..', import.meta.url)),
-    //     include: ['packages/**/src/*'],
-    //     exclude: [
-    //       'node_modules',
-    //       'tests',
-    //       // fileURLToPath(new URL('.', import.meta.url)),
-    //     ],
-    //     forceBuildInstrument: true,
-    //   }),
+    enableIstanbul &&
+      istanbul({
+        cwd: __dirname,
+        include: ['packages/**/src/*'],
+        exclude: ['node_modules', 'tests', __dirname],
+        forceBuildInstrument: true,
+      }),
   ],
-  envDir: resolve(cwd, '../../'),
+  envDir: resolve(__dirname, '../../'),
   clearScreen: false,
   server: {
     port: 3000,
@@ -43,7 +39,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '~': resolve(cwd, './src'),
+      '~': resolve(__dirname, './src'),
     },
   },
   envPrefix: ['VITE_', 'TAURI_'],
