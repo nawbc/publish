@@ -8,8 +8,6 @@
 *production*
 *.tgz
 
-blocksuite
-
 # compiled output
 **/node_modules/*
 **/dist/*

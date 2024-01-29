@@ -1,7 +1,6 @@
 // Init the kDevMode env etc
 import '@deskbtm/gadgets/env';
 import '@mantine/core/styles.css';
-import '@blocksuite/presets/themes/affine.css';
 import '@mantine/spotlight/styles.css';
 import '@fontsource/inter';
 import 'es-module-shims';
