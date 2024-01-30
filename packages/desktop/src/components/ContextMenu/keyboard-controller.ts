@@ -1,4 +1,4 @@
-import * as styles from './contextmenu.css';
+import * as styles from './ContextMenu.css';
 import type { ItemTracker, ItemTrackerRecord } from './hooks';
 
 interface Menu<T = ItemTrackerRecord> {

@@ -25,10 +25,10 @@ import {
   IconPalette,
   IconX,
 } from '../../icons/Icons';
-import { useRichTextEditorContext } from '../RichTextEditor.context';
-import { RichTextEditorControl } from './RichTextEditorControl';
+import { useDocEditorContext } from '../DocEditor.context';
+import { DocEditorFn } from './DocEditorFn';
 
-export interface RichTextEditorColorPickerControlProps
+export interface DocEditorColorPickerFnProps
   extends BoxProps,
     ElementProps<'button'> {
   /** Props added to Popover component */
@@ -41,19 +41,19 @@ export interface RichTextEditorColorPickerControlProps
   colors: string[];
 }
 
-const defaultProps: Partial<RichTextEditorColorPickerControlProps> = {};
+const defaultProps: Partial<DocEditorColorPickerFnProps> = {};
 
-export const RichTextEditorColorPickerControl = forwardRef<
+export const DocEditorColorPickerFn = forwardRef<
   HTMLButtonElement,
-  RichTextEditorColorPickerControlProps
+  DocEditorColorPickerFnProps
 >((props, ref) => {
   const { popoverProps, colors, colorPickerProps, ...others } = useProps(
-    'RichTextEditorColorPickerControl',
+    'DocEditorColorPickerFn',
     defaultProps,
     props,
   );
 
-  const { editor, labels, getStyles } = useRichTextEditorContext();
+  const { editor, labels, getStyles } = useDocEditorContext();
   const [opened, { toggle, close }] = useDisclosure(false);
   const [state, setState] = useState<'palette' | 'colorPicker'>('palette');
   const currentColor =
@@ -69,7 +69,7 @@ export const RichTextEditorColorPickerControl = forwardRef<
     close();
   };
 
-  const controls = colors.map((color, index) => (
+  const fns = colors.map((color, index) => (
     <ColorSwatch
       key={index}
       component="button"
@@ -92,21 +92,21 @@ export const RichTextEditorColorPickerControl = forwardRef<
       {...popoverProps}
     >
       <Popover.Target>
-        <RichTextEditorControl
+        <DocEditorFn
           {...others}
-          aria-label={labels.colorPickerControlLabel}
-          title={labels.colorPickerControlLabel}
+          aria-label={labels.colorPickerFnLabel}
+          title={labels.colorPickerFnLabel}
           ref={ref}
           onClick={toggle}
         >
           <ColorSwatch color={currentColor} size={14} />
-        </RichTextEditorControl>
+        </DocEditorFn>
       </Popover.Target>
 
       <Popover.Dropdown {...getStyles('linkEditorDropdown')}>
         {state === 'palette' && (
           <SimpleGrid cols={7} spacing={2}>
-            {controls}
+            {fns}
           </SimpleGrid>
         )}
 
@@ -177,5 +177,4 @@ export const RichTextEditorColorPickerControl = forwardRef<
   );
 });
 
-RichTextEditorColorPickerControl.displayName =
-  '@mantine/tiptap/ColorPickerControl';
+DocEditorColorPickerFn.displayName = '@mantine/tiptap/ColorPickerFn';

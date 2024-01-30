@@ -11,31 +11,30 @@ import {
   useProps,
 } from '@mantine/core';
 import { EditorContent } from '@tiptap/react';
-import React from 'react';
 
-import { useRichTextEditorContext } from '../RichTextEditor.context';
-import classes from '../RichTextEditor.module.css';
+import { useDocEditorContext } from '../DocEditor.context';
+import classes from '../DocEditor.module.css';
 
-export type RichTextEditorContentStylesNames = 'root';
-export interface RichTextEditorContentProps
+export type DocEditorContentStylesNames = 'root';
+export interface DocEditorContentProps
   extends BoxProps,
-    CompoundStylesApiProps<RichTextEditorContentFactory>,
+    CompoundStylesApiProps<DocEditorContentFactory>,
     ElementProps<'div'> {}
 
-export type RichTextEditorContentFactory = Factory<{
-  props: RichTextEditorContentProps;
+export type DocEditorContentFactory = Factory<{
+  props: DocEditorContentProps;
   ref: HTMLDivElement;
-  stylesNames: RichTextEditorContentStylesNames;
+  stylesNames: DocEditorContentStylesNames;
   compound: true;
 }>;
 
-const defaultProps: Partial<RichTextEditorContentProps> = {};
+const defaultProps: Partial<DocEditorContentProps> = {};
 
-export const RichTextEditorContent = factory<RichTextEditorContentFactory>(
+export const DocEditorContent = factory<DocEditorContentFactory>(
   (_props, ref) => {
-    const props = useProps('RichTextEditorContent', defaultProps, _props);
-    const { classNames, className, style, styles, vars, ...others } = props;
-    const ctx = useRichTextEditorContext();
+    const props = useProps('DocEditorContent', defaultProps, _props);
+    const { classNames, className, style, styles, vars: _, ...others } = props;
+    const ctx = useDocEditorContext();
 
     if (ctx.withTypographyStyles) {
       return (
@@ -70,5 +69,5 @@ export const RichTextEditorContent = factory<RichTextEditorContentFactory>(
   },
 );
 
-RichTextEditorContent.classes = classes;
-RichTextEditorContent.displayName = '@mantine/tiptap/RichTextEditorContent';
+DocEditorContent.classes = classes;
+DocEditorContent.displayName = '@publish/doc-editor/DocEditorContent';

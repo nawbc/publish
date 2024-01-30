@@ -1,10 +1,10 @@
 import { Box, Center } from '@mantine/core';
 import { forwardRef } from 'react';
-import type { SeparatorProps } from 'react-resizable-layout';
 
-import * as styles from './divider-handle.css';
+import * as styles from './DividerHandle.css';
+import type { DividerProps } from './useResizable';
 
-export interface DividerHandleProps extends SeparatorProps {
+export interface DividerHandleProps extends DividerProps {
   isDragging: boolean;
 }
 

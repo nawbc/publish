@@ -1,6 +1,6 @@
 import { is } from '@deskbtm/gadgets/is';
 import type { HTMLAttributeReferrerPolicy } from 'react';
-import * as uuid from 'uuid';
+import { v4 } from 'uuid';
 
 import { message } from './message';
 import { presetEnvScript } from './presets';
@@ -93,7 +93,7 @@ export class Sandbox extends EventTarget {
   }
 
   private _init() {
-    this.id = uuid.v4();
+    this.id = v4();
     this._iframe = document.createElement('iframe');
     this._iframe.setAttribute('sandbox', this._options.grants.join(' '));
     this._iframe.setAttribute('allowfullscreen', 'true');

@@ -1,15 +1,5 @@
 .root {
   position: relative;
-  border: rem(1px) solid var(--_root-bd);
-  border-radius: var(--mantine-radius-default);
-
-  @mixin light {
-    --_root-bd: var(--mantine-color-gray-4);
-  }
-
-  @mixin dark {
-    --_root-bd: var(--mantine-color-dark-4);
-  }
 }
 
 .typographyStylesProvider {
@@ -27,6 +17,38 @@
 
   & p {
     margin-bottom: rem(7px);
+  }
+
+  & ul[data-type='taskList'] {
+    list-style: none;
+    padding: 0;
+
+    p {
+      margin: 0;
+    }
+
+    li {
+      display: flex;
+
+      > label {
+        flex: 0 0 auto;
+        margin-right: 0.5rem;
+        user-select: none;
+      }
+
+      > div {
+        flex: 1 1 auto;
+      }
+
+      ul li,
+      ol li {
+        display: list-item;
+      }
+
+      ul[data-type='taskList'] > li {
+        display: flex;
+      }
+    }
   }
 
   & h1,
@@ -153,17 +175,17 @@
   background-color: var(--mantine-color-body);
 }
 
-.control {
-  background-color: var(--_control-bg);
-  color: var(--_control-color);
+.fn {
+  background-color: var(--_fn-bg);
+  color: var(--_fn-color);
   min-width: rem(26px);
   height: rem(26px);
   display: flex;
   justify-content: center;
   align-items: center;
-  border: rem(1px) solid var(--_control-bd);
+  border: rem(1px) solid var(--_fn-bd);
   border-radius: var(--mantine-radius-default);
-  cursor: var(--_control-cursor, default);
+  cursor: var(--_fn-cursor, default);
 
   &:where([data-disabled]) {
     cursor: not-allowed;
@@ -180,44 +202,44 @@
   }
 
   &[data-interactive] {
-    --_control-cursor: pointer;
+    --_fn-cursor: pointer;
 
     @mixin hover {
       @mixin light {
-        --_control-bg: var(--mantine-color-gray-0);
+        --_fn-bg: var(--mantine-color-gray-0);
       }
 
       @mixin dark {
-        --_control-bg: var(--mantine-color-dark-5);
+        --_fn-bg: var(--mantine-color-dark-5);
       }
     }
   }
 
   [data-mantine-color-scheme] &[data-active] {
-    --_control-bg: var(--mantine-primary-color-light);
-    --_control-color: var(--mantine-primary-color-light-color);
+    --_fn-bg: var(--mantine-primary-color-light);
+    --_fn-color: var(--mantine-primary-color-light-color);
 
     @mixin hover {
-      --_control-bg: var(--mantine-primary-color-light-hover);
+      --_fn-bg: var(--mantine-primary-color-light-hover);
     }
   }
 
   @mixin light {
-    --_control-bg: var(--mantine-color-white);
-    --_control-bd: var(--mantine-color-gray-4);
+    --_fn-bg: var(--mantine-color-white);
+    --_fn-bd: var(--mantine-color-gray-4);
   }
 
   @mixin dark {
-    --_control-bg: var(--mantine-color-dark-6);
-    --_control-bd: var(--mantine-color-dark-4);
+    --_fn-bg: var(--mantine-color-dark-6);
+    --_fn-bd: var(--mantine-color-dark-4);
   }
 }
 
-.controlsGroup {
+.fnGroup {
   display: flex;
   background-color: var(--mantine-color-body);
 
-  & [data-rich-text-editor-control] {
+  & [data-rich-text-editor-fn] {
     border-radius: 0;
 
     &:not(:last-of-type) {
@@ -265,10 +287,10 @@
   border-right: 0;
 }
 
-.linkEditorExternalControl {
-  background-color: var(--_control-bg);
-  border: rem(1px) solid var(--_control-bd);
-  color: var(--_control-color, var(--mantine-color-text));
+.linkEditorExternalFn {
+  background-color: var(--_fn-bg);
+  border: rem(1px) solid var(--_fn-bd);
+  color: var(--_fn-color, var(--mantine-color-text));
   height: rem(24px);
   width: rem(24px);
   display: flex;
@@ -277,52 +299,26 @@
   border-radius: var(--mantine-radius-default);
 
   [data-mantine-color-scheme] &[data-active] {
-    --_control-bg: var(--mantine-primary-color-light);
-    --_control-color: var(--mantine-primary-color-filled);
+    --_fn-bg: var(--mantine-primary-color-light);
+    --_fn-color: var(--mantine-primary-color-filled);
 
     @mixin hover {
-      --_control-bg: var(--mantine-primary-color-light-hover);
+      --_fn-bg: var(--mantine-primary-color-light-hover);
     }
   }
 
   @mixin light {
-    --_control-bg: var(--mantine-color-white);
-    --_control-bd: var(--mantine-color-gray-4);
+    --_fn-bg: var(--mantine-color-white);
+    --_fn-bd: var(--mantine-color-gray-4);
   }
 
   @mixin dark {
-    --_control-bg: var(--mantine-color-dark-7);
-    --_control-bd: var(--mantine-color-dark-4);
+    --_fn-bg: var(--mantine-color-dark-7);
+    --_fn-bd: var(--mantine-color-dark-4);
   }
 }
 
 .linkEditorSave {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-}
-
-.toolbar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--mantine-spacing-sm);
-  position: var(--_toolbar-position, static);
-  top: var(--rte-sticky-offset, 0);
-  background-color: var(--mantine-color-body);
-  z-index: 1;
-  border-top-right-radius: var(--mantine-radius-default);
-  border-top-left-radius: var(--mantine-radius-default);
-  border-bottom: rem(1px) solid var(--_toolbar-bd);
-  padding: var(--mantine-spacing-xs) var(--mantine-spacing-md);
-
-  @mixin light {
-    --_toolbar-bd: var(--mantine-color-gray-4);
-  }
-
-  @mixin dark {
-    --_toolbar-bd: var(--mantine-color-dark-4);
-  }
-
-  &[data-sticky] {
-    --_toolbar-position: sticky;
-  }
 }

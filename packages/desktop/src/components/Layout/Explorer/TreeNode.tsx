@@ -8,7 +8,7 @@ import { EXPLORER_MENU_ID } from '~/components/context-menus';
 import { useContextMenu } from '~/components/ContextMenu';
 
 import { PolymorphicIcon } from './PolymorphicIcon';
-import * as styles from './tree-node.css';
+import * as styles from './TreeNode.css';
 import type { NodeData } from './types';
 
 export interface TreeNodeProps extends RenderParams {
@@ -78,7 +78,7 @@ export const TreeNode: FC<TreeNodeProps> = (props) => {
         {props.node.droppable && <IconChevronRight />}
       </ActionIcon>
       <PolymorphicIcon type={data?.type} />
-      <Text pl={5} size="sm" c="black" pos="relative" top={rem(1)}>
+      <Text pl={5} size="md" c="black" pos="relative" top={rem(1)}>
         {props.node.text}
       </Text>
     </Flex>

@@ -22,7 +22,7 @@ import { DndProvider } from 'react-dnd';
 import { EXPLORER_MENU_ID } from '~/components/context-menus';
 import { useContextMenu } from '~/components/ContextMenu';
 
-import * as styles from './explorer.css';
+import * as styles from './Explorer.css';
 import { useExplorerContext } from './hooks';
 import { MultipleDragPreview } from './MultipleDragPreview';
 import { SingleDragPreview } from './SingleDragPreview';

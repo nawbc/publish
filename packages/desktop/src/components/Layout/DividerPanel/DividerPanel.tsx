@@ -15,7 +15,7 @@ import {
 import { type FC, forwardRef } from 'react';
 import React from 'react';
 
-import * as styles from './divider-panel.css';
+import * as styles from './DividerPanel.css';
 import { DividerHandle } from './DividerHandle';
 import { DividerPanelContext } from './DividerPanelContext';
 import { useDividerPanel } from './hooks';
@@ -103,9 +103,11 @@ export const DividerPanelInner = forwardRef<
       <Box
         pos="relative"
         style={{
-          width: `calc(100% - ${
-            panel?.collapsed ? 0 : position
-          }px - ${collapsedPosition}px)`,
+          flexGrow: 1,
+          flexBasis: 0,
+          // width: `calc(100% - ${
+          //   panel?.collapsed ? 0 : position
+          // }px - ${collapsedPosition}px)`,
           overflow: 'hidden',
         }}
       >

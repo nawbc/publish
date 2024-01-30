@@ -7,7 +7,7 @@ import { Suspense, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import type { ComposeProps } from 'reactgets/components/Compose/index';
 import { Compose } from 'reactgets/components/Compose/index';
-import * as uuid from 'uuid';
+import { v4 } from 'uuid';
 
 import { GlobalContextMenus } from './components/context-menus';
 import { PublishSpotlight } from './components/Spotlight';
@@ -28,12 +28,12 @@ function App() {
 
   const providers: ComposeProps['providers'] = [
     <MantineProvider
-      key={uuid.v4()}
+      key={v4()}
       theme={theme}
       cssVariablesResolver={resolver}
       defaultColorScheme="auto"
     />,
-    <QueryClientProvider key={uuid.v4()} client={queryClient} />,
+    <QueryClientProvider key={v4()} client={queryClient} />,
   ];
 
   return (

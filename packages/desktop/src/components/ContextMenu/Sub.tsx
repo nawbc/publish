@@ -5,7 +5,7 @@ import type { ReactNode } from 'react';
 import type React from 'react';
 import { useRef } from 'react';
 
-import * as styles from './contextmenu.css';
+import * as styles from './ContextMenu.css';
 import { ContextMenuProvider } from './ContextMenuContext';
 import { useItemTracker, useItemTrackerContext } from './hooks';
 import type {

@@ -19,49 +19,49 @@ import { useDisclosure, useInputState, useWindowEvent } from '@mantine/hooks';
 import React, { useState } from 'react';
 
 import { IconExternalLink, IconLink } from '../../icons/Icons';
-import { useRichTextEditorContext } from '../RichTextEditor.context';
-import classes from '../RichTextEditor.module.css';
-import type { RichTextEditorControlBaseProps } from './RichTextEditorControl';
-import { RichTextEditorControlBase } from './RichTextEditorControl';
+import { useDocEditorContext } from '../DocEditor.context';
+import classes from '../DocEditor.module.css';
+import type { DocEditorFnBaseProps } from './DocEditorFn';
+import { DocEditorFnBase } from './DocEditorFn';
 
-export type RichTextEditorLinkControlStylesNames =
-  | 'control'
+export type DocEditorLinkFnStylesNames =
+  | 'fn'
   | 'linkEditor'
   | 'linkEditorDropdown'
   | 'linkEditorSave'
   | 'linkEditorInput'
-  | 'linkEditorExternalControl';
+  | 'linkEditorExternalFn';
 
-export interface RichTextEditorLinkControlProps
+export interface DocEditorLinkFnProps
   extends BoxProps,
-    Omit<RichTextEditorControlBaseProps, 'classNames' | 'styles' | 'vars'>,
-    CompoundStylesApiProps<RichTextEditorLinkControlFactory> {
+    Omit<DocEditorFnBaseProps, 'classNames' | 'styles' | 'vars'>,
+    CompoundStylesApiProps<DocEditorLinkFnFactory> {
   /** Props passed down to Popover component */
   popoverProps?: Partial<PopoverProps>;
 
-  /** Determines whether external link control tooltip should be disabled, `false` by default */
+  /** Determines whether external link fn tooltip should be disabled, `false` by default */
   disableTooltips?: boolean;
 
   /** Initial state for determining whether the link should be an external, `false` by default */
   initialExternal?: boolean;
 }
 
-export type RichTextEditorLinkControlFactory = Factory<{
-  props: RichTextEditorLinkControlProps;
+export type DocEditorLinkFnFactory = Factory<{
+  props: DocEditorLinkFnProps;
   ref: HTMLButtonElement;
-  stylesNames: RichTextEditorLinkControlStylesNames;
+  stylesNames: DocEditorLinkFnStylesNames;
   compound: true;
 }>;
 
-const LinkIcon: RichTextEditorControlBaseProps['icon'] = (props) => (
+const LinkIcon: DocEditorFnBaseProps['icon'] = (props) => (
   <IconLink {...props} />
 );
 
-const defaultProps: Partial<RichTextEditorLinkControlProps> = {};
+const defaultProps: Partial<DocEditorLinkFnProps> = {};
 
-export const RichTextEditorLinkControl =
-  factory<RichTextEditorLinkControlFactory>((_props, ref) => {
-    const props = useProps('RichTextEditorLinkControl', defaultProps, _props);
+export const DocEditorLinkFn = factory<DocEditorLinkFnFactory>(
+  (_props, ref) => {
+    const props = useProps('DocEditorLinkFn', defaultProps, _props);
     const {
       classNames,
       className,
@@ -75,7 +75,7 @@ export const RichTextEditorLinkControl =
       ...others
     } = props;
 
-    const ctx = useRichTextEditorContext();
+    const ctx = useDocEditorContext();
 
     const stylesApiProps = { classNames, styles };
 
@@ -120,7 +120,7 @@ export const RichTextEditorLinkControl =
     useWindowEvent('edit-link', handleOpen, false);
 
     const { resolvedClassNames, resolvedStyles } =
-      useResolvedStylesApi<RichTextEditorLinkControlFactory>({
+      useResolvedStylesApi<DocEditorLinkFnFactory>({
         classNames,
         styles,
         props,
@@ -138,11 +138,11 @@ export const RichTextEditorLinkControl =
         {...popoverProps}
       >
         <Popover.Target>
-          <RichTextEditorControlBase
+          <DocEditorFnBase
             icon={icon || LinkIcon}
             {...others}
-            aria-label={ctx.labels.linkControlLabel}
-            title={ctx.labels.linkControlLabel}
+            aria-label={ctx.labels.linkFnLabel}
+            title={ctx.labels.linkFnLabel}
             onClick={handleOpen}
             active={ctx.editor?.isActive('link')}
             ref={ref}
@@ -184,10 +184,7 @@ export const RichTextEditorLinkControl =
                   <UnstyledButton
                     onClick={() => setExternal((e) => !e)}
                     data-active={external || undefined}
-                    {...ctx.getStyles(
-                      'linkEditorExternalControl',
-                      stylesApiProps,
-                    )}
+                    {...ctx.getStyles('linkEditorExternalFn', stylesApiProps)}
                   >
                     <IconExternalLink
                       style={{ width: rem(14), height: rem(14) }}
@@ -208,8 +205,8 @@ export const RichTextEditorLinkControl =
         </Popover.Dropdown>
       </Popover>
     );
-  });
+  },
+);
 
-RichTextEditorLinkControl.classes = classes;
-RichTextEditorLinkControl.displayName =
-  '@mantine/tiptap/RichTextEditorLinkControl';
+DocEditorLinkFn.classes = classes;
+DocEditorLinkFn.displayName = '@mantine/tiptap/DocEditorLinkFn';

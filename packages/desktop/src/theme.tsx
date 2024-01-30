@@ -2,11 +2,13 @@ import type {
   CSSVariablesResolver,
   VariantColorsResolver,
 } from '@mantine/core';
-import { createTheme, defaultVariantColorsResolver } from '@mantine/core';
+import { createTheme, defaultVariantColorsResolver, rem } from '@mantine/core';
 import { themeToVars } from '@mantine/vanilla-extract';
 
 export const resolver: CSSVariablesResolver = (theme) => ({
-  variables: {},
+  variables: {
+    '--publish-doc-editor-max-width': rem(888),
+  },
   light: {
     '--publish-color-active-divider-handler':
       theme.other.activeDividerHandlerLight,
@@ -35,10 +37,24 @@ export const variantColorResolver: VariantColorsResolver = (input) => {
 export const theme = createTheme({
   fontFamily: `Inter,-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji, system-ui`,
+  fontSizes: {
+    xs: rem(10),
+    sm: rem(11),
+    md: rem(14),
+    lg: rem(16),
+    xl: rem(20),
+  },
   components: {
     ActionIcon: {
       defaultProps: {
         variant: 'transparent',
+      },
+    },
+    ScrollArea: {
+      styles: {
+        thumb: {
+          borderRadius: 0,
+        },
       },
     },
   },
