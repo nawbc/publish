@@ -21,18 +21,19 @@
 
   & ul[data-type='taskList'] {
     list-style: none;
-    padding: 0;
+    padding-left: rem(14px);
 
     p {
-      margin: 0;
+      margin-top: rem(-1px);
+      margin-bottom: 0;
     }
 
     li {
       display: flex;
 
-      > label {
+      & > label {
         flex: 0 0 auto;
-        margin-right: 0.5rem;
+        margin-right: rem(4);
         user-select: none;
       }
 
@@ -40,8 +41,7 @@
         flex: 1 1 auto;
       }
 
-      ul li,
-      ol li {
+      & :is(ul, ol) li {
         display: list-item;
       }
 

@@ -122,7 +122,7 @@ export const item = style({
   },
   borderRadius: rem(6),
   color: fallbackVar(itemColor, 'var(--mantine-color-text)'),
-  fontSize: 'var(--mantine-font-size-sm)',
+  fontSize: rem(13),
   padding: 'calc(var(--mantine-spacing-xs) / 2) var(--mantine-spacing-sm)',
   backgroundColor: fallbackVar(itemBg, 'transparent'),
   display: 'flex',
