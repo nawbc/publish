@@ -1,4 +1,4 @@
-import type { TreeMethods } from '@minoru/react-dnd-treeview';
+import type { TreeMethods } from '@publishjs/react-dnd-treeview';
 import type { RefObject } from 'react';
 import { createContext } from 'react';
 
@@ -7,7 +7,7 @@ export interface ExplorerContextProps {
   expandAll(): void;
   toggle(): void;
   allCollapsed: boolean;
-  _treeRef: RefObject<TreeMethods> | null;
+  treeRef: RefObject<TreeMethods> | null;
 }
 
 export const ExplorerContext = createContext<ExplorerContextProps>({
@@ -15,5 +15,5 @@ export const ExplorerContext = createContext<ExplorerContextProps>({
   expandAll() {},
   toggle() {},
   allCollapsed: false,
-  _treeRef: null,
+  treeRef: null,
 });

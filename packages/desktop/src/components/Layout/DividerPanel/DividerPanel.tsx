@@ -15,8 +15,8 @@ import {
 import { type FC, forwardRef } from 'react';
 import React from 'react';
 
-import * as styles from './DividerPanel.css';
 import { DividerHandle } from './DividerHandle';
+import * as styles from './DividerPanel.css';
 import { DividerPanelContext } from './DividerPanelContext';
 import { useDividerPanel } from './hooks';
 import { Panel } from './Panel';

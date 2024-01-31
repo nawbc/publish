@@ -2,7 +2,7 @@ import { Badge } from '@mantine/core';
 import type {
   DragLayerMonitorProps,
   NodeModel,
-} from '@minoru/react-dnd-treeview';
+} from '@publishjs/react-dnd-treeview';
 import { type FC, useMemo } from 'react';
 
 import { PolymorphicIcon } from './PolymorphicIcon';

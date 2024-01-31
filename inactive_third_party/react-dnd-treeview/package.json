@@ -1,0 +1,64 @@
+{
+  "name": "@publishjs/react-dnd-treeview",
+  "version": "0.0.1-alpha.1",
+  "description": "A draggable / droppable React-based treeview component.",
+  "author": "Minoru Okuyama <okuyama@analogic.jp> (https://github.com/minop1205/)",
+  "contributors": [
+    {
+      "name": "Han",
+      "email": "han@deskbtm.com"
+    }
+  ],
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "exports": {
+      ".": {
+        "default": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "./*": {
+        "default": "./dist/*.js",
+        "types": "./dist/*.d.ts"
+      }
+    }
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "url": "https://github.com/deskbtm/publish",
+    "directory": "first_party/bfs",
+    "type": "git"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "scripts": {
+    "build": "shx rm -rf dist && tsc",
+    "prepack": "npm run build",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
+  },
+  "devDependencies": {
+    "eslint": "8.56.0",
+    "typescript": "5.3.3"
+  },
+  "dependencies": {
+    "@juggle/resize-observer": "3.4.0",
+    "dnd-multi-backend": "^7.0.0-alpha.4",
+    "framer-motion": "^6.2.8",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dnd-touch-backend": "^16.0.1",
+    "react-use-measure": "^2.1.1"
+  }
+}

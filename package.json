@@ -20,11 +20,11 @@
     "@deskbtm/gadgets": "0.0.1-alpha.6",
     "@emotion/react": "11.11.3",
     "@fontsource/inter": "5.0.16",
-    "@minoru/react-dnd-treeview": "^3.4.4",
     "@monaco-editor/react": "^4.6.0",
     "@plugkit/bfs": "workspace:^",
     "@publish/plugin-rt": "workspace:^",
     "@publish/shared": "workspace:^",
+    "@publishjs/react-dnd-treeview": "workspace:^",
     "@supabase/supabase-js": "2.39.3",
     "@tabler/icons-react": "2.46.0",
     "@tanstack/react-query": "5.17.19",
@@ -99,7 +99,8 @@
     "tauri",
     "packages/*",
     "built-in/**/*",
-    "first_party/*"
+    "first_party/*",
+    "inactive_third_party/*"
   ],
   "packageManager": "yarn@4.0.2"
 }

@@ -1,5 +1,5 @@
 import { ActionIcon, Flex, rem, Text } from '@mantine/core';
-import type { NodeModel, RenderParams } from '@minoru/react-dnd-treeview';
+import type { NodeModel, RenderParams } from '@publishjs/react-dnd-treeview';
 import { IconChevronRight } from '@tabler/icons-react';
 import type { MouseEvent } from 'react';
 import { type FC, useCallback, useEffect } from 'react';
@@ -20,8 +20,15 @@ export interface TreeNodeProps extends RenderParams {
 }
 
 export const TreeNode: FC<TreeNodeProps> = (props) => {
-  const { node, onClick, containerRef, onToggle, isSelected, isDragging } =
-    props;
+  const {
+    node,
+    onClick,
+    containerRef,
+    onToggle,
+    isSelected,
+    isDragging,
+    handleRef,
+  } = props;
   const { id, droppable, data } = node;
 
   const { show } = useContextMenu({
@@ -61,6 +68,7 @@ export const TreeNode: FC<TreeNodeProps> = (props) => {
 
   return (
     <Flex
+      ref={handleRef}
       onContextMenu={showMenu}
       onClick={handleClick}
       mih={32}

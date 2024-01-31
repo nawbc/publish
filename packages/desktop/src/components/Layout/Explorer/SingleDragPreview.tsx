@@ -1,5 +1,5 @@
 import { Badge } from '@mantine/core';
-import type { DragLayerMonitorProps } from '@minoru/react-dnd-treeview';
+import type { DragLayerMonitorProps } from '@publishjs/react-dnd-treeview';
 import type { FC } from 'react';
 
 import { PolymorphicIcon } from './PolymorphicIcon';

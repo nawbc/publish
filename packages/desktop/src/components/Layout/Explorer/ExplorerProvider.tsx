@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@mantine/hooks';
-import type { TreeMethods } from '@minoru/react-dnd-treeview';
+import type { TreeMethods } from '@publishjs/react-dnd-treeview';
 import type { FC, PropsWithChildren } from 'react';
 import { useCallback, useMemo, useRef } from 'react';
 
@@ -41,7 +41,7 @@ export const ExplorerProvider: FC<ExplorerProviderProps> = function (props) {
       collapseAll,
       toggle,
       allCollapsed,
-      _treeRef: treeRef,
+      treeRef,
     }),
     [allCollapsed, collapseAll, expandAll, toggle],
   );

@@ -178,8 +178,8 @@
 .fn {
   background-color: var(--_fn-bg);
   color: var(--_fn-color);
-  min-width: rem(26px);
-  height: rem(26px);
+  /* min-width: rem(26px);
+  height: rem(26px); */
   display: flex;
   justify-content: center;
   align-items: center;

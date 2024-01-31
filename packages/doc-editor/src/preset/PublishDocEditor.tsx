@@ -9,32 +9,42 @@ import { BubbleMenu, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 
 import { DocEditor } from '../components';
-import { Link } from '../extends';
-import { FileInput } from '../extensions';
-import { blockMap } from './block-map.ts';
+import { Link } from '../customs';
+import { Dropcursor, FileInput, SlashCommands } from '../extensions';
 import { registerProgramLanguages } from './languages';
+import { placeholders } from './placeholders';
 
 const lowlight = registerProgramLanguages();
 
 export const PublishDocEditor = function () {
   const editor = useEditor({
+    editorProps: {
+      attributes: {
+        spellcheck: 'false',
+      },
+    },
     extensions: [
       Link,
       FileInput,
-      StarterKit.configure({ codeBlock: false }),
+      StarterKit.configure({
+        dropcursor: false,
+      }),
+      Dropcursor,
       CodeBlockLowlight.configure({ lowlight }),
       TaskList,
       TaskItem.configure({
         nested: true,
       }),
+      SlashCommands.configure({
+        // suggestion,
+      }),
       Placeholder.configure({
         placeholder: ({ node }) => {
-          console.log(node);
           const { attrs, type } = node;
           const result = (() => {
             switch (type.name) {
               case 'heading':
-                return blockMap[type.name + attrs?.level];
+                return placeholders[type.name + attrs?.level];
               case 'paragraph':
                 return 'Type / for commands';
               default:
@@ -46,8 +56,18 @@ export const PublishDocEditor = function () {
         },
       }),
     ],
+    content: `
+    <br>
+    <br>
+    <br>
+    dsadasdasssssss
+
+    <br>
+
+    `,
     // content: Array.from({ length: 100 }).join('<br/>'),
   });
+
   return (
     <Box m="0 auto" px="xl" maw="var(--publish-doc-editor-max-width)">
       <DocEditor editor={editor}>

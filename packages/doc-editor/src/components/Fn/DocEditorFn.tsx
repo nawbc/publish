@@ -75,7 +75,7 @@ export const DocEditorFn = factory<DocEditorFnFactory>((_props, ref) => {
 });
 
 DocEditorFn.classes = classes;
-DocEditorFn.displayName = '@mantine/tiptap/DocEditorFn';
+DocEditorFn.displayName = '@publish/doc-editor/DocEditorFn';
 
 export interface DocEditorFnBaseProps extends DocEditorFnProps {
   icon?: React.FC<{ style: React.CSSProperties }>;
@@ -110,6 +110,7 @@ export function createFn({
   return forwardRef<HTMLButtonElement, DocEditorFnBaseProps>((props, ref) => {
     const { editor, labels } = useDocEditorContext();
     const _label = labels[label] as string;
+    // console.log(_label);
     return (
       <DocEditorFnBase
         {...props}

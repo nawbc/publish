@@ -7,16 +7,16 @@ import {
 import type {
   DragLayerMonitorProps,
   NodeModel,
-} from '@minoru/react-dnd-treeview';
+} from '@publishjs/react-dnd-treeview';
 import {
   getBackendOptions,
   isAncestor,
   MultiBackend,
   Tree,
-} from '@minoru/react-dnd-treeview';
+} from '@publishjs/react-dnd-treeview';
 import type { FC } from 'react';
 import type { MouseEvent } from 'react';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 
 import { EXPLORER_MENU_ID } from '~/components/context-menus';
@@ -110,7 +110,7 @@ export const Explorer: FC<any> = function () {
   const { show } = useContextMenu({
     id: EXPLORER_MENU_ID,
   });
-  const { _treeRef, allCollapsed } = useExplorerContext();
+  const { treeRef, allCollapsed } = useExplorerContext();
 
   const showMenu = useCallback(
     (e: MouseEvent) => {
@@ -255,7 +255,7 @@ export const Explorer: FC<any> = function () {
       <Box onContextMenu={showMenu} h="100%">
         <Tree
           tree={tree}
-          ref={_treeRef}
+          ref={treeRef}
           initialOpen={!allCollapsed}
           rootId={0}
           classes={{
