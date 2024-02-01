@@ -45,7 +45,7 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
                 style={{ ...styles }}
                 onClick={handleCollapse}
               >
-                <IconLayoutSidebarRightExpand />
+                <IconLayoutSidebarRightExpand size={22} />
               </ActionIcon>
             </Tooltip>
           )}
@@ -59,7 +59,7 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
               explorer.toggle();
             }}
           >
-            <IconArrowsVertical />
+            <IconArrowsVertical size={18} />
           </ActionIcon>
         </Group>
 

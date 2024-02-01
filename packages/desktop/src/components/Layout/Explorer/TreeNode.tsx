@@ -82,8 +82,10 @@ export const TreeNode: FC<TreeNodeProps> = (props) => {
         c="gray"
         variant="transparent"
         aria-label="Folder collapse arrow"
+        pos="relative"
+        top={rem(-1)}
       >
-        {props.node.droppable && <IconChevronRight />}
+        {props.node.droppable && <IconChevronRight size={14} />}
       </ActionIcon>
       <PolymorphicIcon type={data?.type} />
       <Text pl={5} size="md" c="black" pos="relative" top={rem(1)}>

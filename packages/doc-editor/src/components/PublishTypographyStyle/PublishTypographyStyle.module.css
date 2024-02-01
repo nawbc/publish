@@ -61,7 +61,7 @@
 
   & :where(p) {
     margin-top: 0;
-    margin-bottom: var(--mantine-spacing-lg);
+    margin-bottom: var(--mantine-spacing-xs);
   }
 
   & :where(mark) {
@@ -174,10 +174,10 @@
 
   & :where(ul, ol) {
     margin-bottom: var(--mantine-spacing-md);
-    padding-left: rem(38px);
+    padding-left: rem(18px);
 
     & :where(li) {
-      margin-bottom: var(--mantine-spacing-xs);
+      margin-top: var(--mantine-spacing-xs) !important;
     }
   }
 

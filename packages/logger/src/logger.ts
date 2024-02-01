@@ -13,7 +13,7 @@ export interface LogOptions {
  * Messages only support data that can be structurally cloned
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types}
  */
-export class Log {
+export class Logger {
   private readonly _debug: debug.Debugger;
   private readonly _options: LogOptions;
   private readonly _transports = new Set<InstanceType<typeof Transport>>();

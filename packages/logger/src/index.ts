@@ -1,2 +1,2 @@
 export * from './i';
-export * from './log';
+export * from './logger';

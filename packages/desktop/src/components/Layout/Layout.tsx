@@ -59,8 +59,8 @@ function Header() {
     panel?.collapsed && (
       <Box pos="relative" component="nav" px={rem(18)} py="xs" pl={0}>
         <Tooltip openDelay={2000} label="Collapse sidebar">
-          <ActionIcon c="gray" onClick={handleExpand}>
-            <IconLayoutSidebarLeftExpand />
+          <ActionIcon c="gray.7" onClick={handleExpand}>
+            <IconLayoutSidebarLeftExpand size={22} />
           </ActionIcon>
         </Tooltip>
       </Box>

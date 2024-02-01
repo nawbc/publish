@@ -12,25 +12,14 @@
 
   & li {
     text-indent: 5px;
+    margin: var(--mantine-spacing-xs) 0;
   }
 
   /* ul {
     margin-top: var(--mantine-spacing-xs);
   } */
 
-  & p {
-    margin-bottom: var(--mantine-spacing-xs);
-  }
-
-  & :is(ul, ol) {
-    padding-left: rem(18px);
-  }
-
-  /* & :is(ul, ol) li {
-    margin-top: rem(2px);
-  } */
-
-  /* & ul[data-type='taskList'] {
+  & ul[data-type='taskList'] {
     list-style: none;
     padding-left: 0;
     p {
@@ -40,6 +29,7 @@
 
     li {
       display: flex;
+      margin-top: var(--mantine-spacing-xs);
 
       & > label {
         flex: 0 0 auto;
@@ -65,7 +55,7 @@
         margin-bottom: 0;
       }
     }
-  } */
+  }
 
   & h1,
   & h2,
@@ -81,14 +71,6 @@
 .content {
   background-color: var(--mantine-color-body);
   border-radius: var(--mantine-radius-default);
-
-  & :first-child {
-    margin-top: 0;
-  }
-
-  & :last-child {
-    margin-bottom: 0;
-  }
 
   & h1,
   & h2,

@@ -13,7 +13,7 @@ export interface TransportContent {
 
 export abstract class Transport {
   constructor(options?: TransportOptions) {
-    options = Object.assign({}, { useStorage: true }, options);
+    options = Object.assign({}, { enableStorage: true }, options);
   }
 
   abstract write(content: TransportContent): Promise<void> | void;

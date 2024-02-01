@@ -19,7 +19,7 @@
     "editor.defaultFormatter": "foxundermoon.shell-format"
   },
   "editor.codeActionsOnSave": {
-    "source.fixAll": true,
+    "source.fixAll": "explicit"
   },
   "files.watcherExclude": {
     "**/.git": true,
