@@ -27,11 +27,13 @@ const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
             <PrimitiveSidebar />
           </DividerPanel.Leading>
           <DividerPanel.Trailing>
-            <ScrollArea
+            <ScrollArea.Autosize
               h="100%"
               w="100%"
+              mah="100%"
+              scrollbars="y"
               scrollbarSize={10}
-              type="always"
+              type="hover"
               classNames={{
                 scrollbar: styles.scrollbar,
                 thumb: styles.scrollbarThumb,
@@ -40,7 +42,7 @@ const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
             >
               <Header />
               <PublishDocEditor />
-            </ScrollArea>
+            </ScrollArea.Autosize>
           </DividerPanel.Trailing>
         </DividerPanel>
       </Container>
@@ -56,15 +58,26 @@ function Header() {
   }, [panel]);
 
   return (
-    panel?.collapsed && (
-      <Box pos="relative" component="nav" px={rem(18)} py="xs" pl={0}>
+    <Box
+      pos="relative"
+      component="nav"
+      px={rem(18)}
+      py="xs"
+      h="55px"
+      pl={0}
+      style={{
+        marginRight: rem(8),
+        borderBottom: '1px solid var(--mantine-color-gray-2)',
+      }}
+    >
+      {panel?.collapsed && (
         <Tooltip openDelay={2000} label="Collapse sidebar">
           <ActionIcon c="gray.7" onClick={handleExpand}>
             <IconLayoutSidebarLeftExpand size={22} />
           </ActionIcon>
         </Tooltip>
-      </Box>
-    )
+      )}
+    </Box>
   );
 }
 

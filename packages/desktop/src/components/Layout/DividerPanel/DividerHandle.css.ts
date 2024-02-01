@@ -6,6 +6,7 @@ export const primitiveResizeDividerArea = style({
   cursor: 'col-resize',
   willChange: 'visibility',
   touchAction: 'none',
+  zIndex: 888,
   vars: {
     '--_resize-divider-color': 'var(--publish-color-inactive-divider-handler)',
   },

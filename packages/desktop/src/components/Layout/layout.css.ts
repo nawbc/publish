@@ -17,6 +17,6 @@ export const scrollbar = style({
 export const viewport = style({});
 
 // Overwrite the mantine ScrollAreaViewport display:table.
-globalStyle(`${viewport} > div`, {
-  display: 'unset!important',
-});
+// globalStyle(`${viewport} > div`, {
+//   display: 'unset!important',
+// });
