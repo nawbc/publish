@@ -4,19 +4,15 @@ import {
   useDisclosure,
   useWindowEvent,
 } from '@mantine/hooks';
+import { getDndBackendOptions } from '@publish/shared';
 import type {
   DragLayerMonitorProps,
   NodeModel,
 } from '@publishjs/react-dnd-treeview';
-import {
-  getBackendOptions,
-  isAncestor,
-  MultiBackend,
-  Tree,
-} from '@publishjs/react-dnd-treeview';
+import { isAncestor, MultiBackend, Tree } from '@publishjs/react-dnd-treeview';
 import type { FC } from 'react';
 import type { MouseEvent } from 'react';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 
 import { EXPLORER_MENU_ID } from '~/components/context-menus';
@@ -251,7 +247,7 @@ export const Explorer: FC<any> = function () {
   };
 
   return (
-    <DndProvider backend={MultiBackend} options={getBackendOptions()}>
+    <DndProvider backend={MultiBackend} options={getDndBackendOptions()}>
       <Box onContextMenu={showMenu} h="100%">
         <Tree
           tree={tree}

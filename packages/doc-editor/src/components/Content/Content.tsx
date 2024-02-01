@@ -4,12 +4,7 @@ import type {
   ElementProps,
   Factory,
 } from '@mantine/core';
-import {
-  Box,
-  factory,
-  TypographyStylesProvider,
-  useProps,
-} from '@mantine/core';
+import { Box, factory, PublishTypographyStyle, useProps } from '@mantine/core';
 import { EditorContent } from '@tiptap/react';
 
 import { useDocEditorContext } from '../DocEditor.context';
@@ -35,10 +30,10 @@ export const DocEditorContent = factory<DocEditorContentFactory>(
     const props = useProps('DocEditorContent', defaultProps, _props);
     const { classNames, className, style, styles, vars: _, ...others } = props;
     const ctx = useDocEditorContext();
-
+    console.log(ctx);
     if (ctx.withTypographyStyles) {
       return (
-        <TypographyStylesProvider
+        <PublishTypographyStyle
           {...ctx.getStyles('typographyStylesProvider', {
             className,
             style,
@@ -54,7 +49,7 @@ export const DocEditorContent = factory<DocEditorContentFactory>(
             {...ctx.getStyles('content', { classNames, styles })}
             {...others}
           />
-        </TypographyStylesProvider>
+        </PublishTypographyStyle>
       );
     }
 

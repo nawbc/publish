@@ -10,7 +10,7 @@ import StarterKit from '@tiptap/starter-kit';
 
 import { DocEditor } from '../components';
 import { Link } from '../customs';
-import { Dropcursor, FileInput, SlashCommands } from '../extensions';
+import { FileInput, SlashCommands } from '../extensions';
 import { registerProgramLanguages } from './languages';
 import { placeholders } from './placeholders';
 
@@ -26,10 +26,7 @@ export const PublishDocEditor = function () {
     extensions: [
       Link,
       FileInput,
-      StarterKit.configure({
-        dropcursor: false,
-      }),
-      Dropcursor,
+      StarterKit,
       CodeBlockLowlight.configure({ lowlight }),
       TaskList,
       TaskItem.configure({
@@ -41,30 +38,17 @@ export const PublishDocEditor = function () {
       Placeholder.configure({
         placeholder: ({ node }) => {
           const { attrs, type } = node;
-          const result = (() => {
-            switch (type.name) {
-              case 'heading':
-                return placeholders[type.name + attrs?.level];
-              case 'paragraph':
-                return 'Type / for commands';
-              default:
-                return type.name;
-            }
-          })();
-
-          return ' ' + result;
+          switch (type.name) {
+            case 'heading':
+              return placeholders[type.name + attrs?.level];
+            case 'paragraph':
+              return 'Type / for commands';
+            default:
+              return type.name;
+          }
         },
       }),
     ],
-    content: `
-    <br>
-    <br>
-    <br>
-    dsadasdasssssss
-
-    <br>
-
-    `,
     // content: Array.from({ length: 100 }).join('<br/>'),
   });
 
