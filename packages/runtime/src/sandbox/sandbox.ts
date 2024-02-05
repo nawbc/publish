@@ -104,7 +104,7 @@ export class Sandbox extends EventTarget {
   }
 
   public run(script: string) {
-    const html = `<!DOCTYPE html>
+    const html = /*html*/ `<!DOCTYPE html>
 <html>
 <head></head>
 <body>

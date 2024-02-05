@@ -5,7 +5,7 @@ interface PresetEnvScriptOptions {
   id: string;
 }
 
-export const presetEnvScript = ({ id }: PresetEnvScriptOptions) => `
+export const presetEnvScript = ({ id }: PresetEnvScriptOptions) => /*js*/ `
 window.__SID__='${id}';
 window.message = function(type, content){
   return {event: type, detail: content, __SID__: window.__SID__};

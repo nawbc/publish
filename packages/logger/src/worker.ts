@@ -1,5 +1,6 @@
-export const logWorker = `
-
-
-
+export const logWorker = /*js*/ `
+function demo(){
+  
+  console.log("----------")
+}
 `;

@@ -7,6 +7,7 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { PublishDocEditor } from '@publish/doc-editor/preset/index.js';
+import { createTransport, IndexedDBTransport, Logger } from '@publish/logger';
 import { IconLayoutSidebarLeftExpand } from '@tabler/icons-react';
 import type { PropsWithChildren } from 'react';
 import { type FC, useCallback } from 'react';
@@ -17,6 +18,10 @@ import { ExplorerProvider } from './Explorer';
 import * as styles from './layout.css';
 import { PrimitiveSidebar } from './Sidebar';
 export interface DashboardLayoutProps extends PropsWithChildren {}
+
+const logger = Logger.create({
+  transports: [createTransport(IndexedDBTransport)],
+});
 
 const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
   return (
@@ -70,6 +75,14 @@ function Header() {
         borderBottom: '1px solid var(--mantine-color-gray-2)',
       }}
     >
+      <button
+        onClick={() => {
+          console.log(logger);
+          logger.info('what fuck');
+        }}
+      >
+        click
+      </button>
       {panel?.collapsed && (
         <Tooltip openDelay={2000} label="Collapse sidebar">
           <ActionIcon c="gray.7" onClick={handleExpand}>

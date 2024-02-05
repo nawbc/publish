@@ -1,7 +1,7 @@
 {
-  "name": "@publish/logger",
+  "name": "@publishjs/logger",
   "version": "0.0.1-alpha.1",
-  "description": "Publish logger",
+  "description": "A logging library for browser, built-in publish.deskbtm.com",
   "author": "Han <han@deskbtm.com>",
   "private": true,
   "main": "./src/index.ts",

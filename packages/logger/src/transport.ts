@@ -1,24 +1,44 @@
-import type { Clz, LogLevel } from './i';
+import type { Clz, LoggerLevel } from './i';
+import type { WorkerScript } from './utils';
 
 export interface TransportOptions {
   namespace: string;
+  enableWorker?: boolean;
 }
 
 export interface TransportContent {
   timestamp: string;
   message: unknown;
-  level: LogLevel;
+  level: LoggerLevel;
   namespace: string;
 }
 
 export abstract class Transport {
-  constructor(options?: TransportOptions) {
-    options = Object.assign({}, { enableStorage: true }, options);
+  private _worker!: SharedWorker;
+
+  constructor(protected options?: TransportOptions) {
+    this.options = Object.assign({}, { enableWorker: true }, options);
   }
 
-  abstract write(content: TransportContent): Promise<void> | void;
+  set worker(worker) {
+    this._worker = worker;
+  }
 
-  abstract dispose(): Promise<void> | void;
+  get worker() {
+    return this._worker;
+  }
+
+  getOptions() {
+    return this.options;
+  }
+
+  abstract handle(content: TransportContent): Promise<void> | void;
+
+  abstract background(): WorkerScript;
+
+  dispose(): Promise<void> | void {
+    this._worker.port.close();
+  }
 
   abstract grindStorage(): Promise<boolean> | boolean;
 }
