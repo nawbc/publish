@@ -3,6 +3,7 @@ import type { WorkerScript } from './utils';
 
 export interface TransportOptions {
   namespace: string;
+  storageVersion: number;
   enableWorker?: boolean;
 }
 
@@ -34,7 +35,7 @@ export abstract class Transport {
 
   abstract handle(content: TransportContent): Promise<void> | void;
 
-  abstract background(): WorkerScript;
+  abstract background(options: TransportOptions): WorkerScript;
 
   dispose(): Promise<void> | void {
     this._worker.port.close();

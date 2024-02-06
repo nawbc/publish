@@ -23,15 +23,25 @@ export class IndexedDBTransport extends Transport {
   /**
    * Background thread
    */
-  override background() {
+  override background(options: TransportOptions) {
+    const { namespace, storageVersion } = options;
     return new WorkerScript(/* js */ `
-      const request = globalThis.indexedDB.open("log");
+      const db = await idb.openDB('${namespace}', ${storageVersion}, {
+        upgrade(db) {
+          const store = db.createObjectStore('articles', {
+            keyPath: 'id',
+            autoIncrement: true,
+          });
+          store.createIndex('timestamp', 'timestamp');
+        },
+      });
+
       globalThis.addEventListener('connect', (e1)=>{
         const port = e1.ports[0]
-        port.start();
         port.addEventListener('message', (e2)=>{
           console.log(e2.data)
         })
+        port.start();
       })
     `);
   }

@@ -16,9 +16,10 @@ export interface LoggerOptions {
   debug?: boolean;
   transports: TransportSynth[];
   /**
-   * @default 'default‘
+   * @default 'log'
    */
   namespace?: string;
+  storageVersion?: number;
 }
 
 /**
@@ -53,7 +54,12 @@ export class Logger {
   private constructor(options?: LoggerOptions) {
     this._options = Object.assign(
       {},
-      { transports: [], namespace: 'default', enableWorker: true },
+      {
+        transports: [],
+        namespace: 'logs',
+        enableWorker: true,
+        storageVersion: 1,
+      },
       options,
     );
     this._debug = debug(this._options.namespace);
@@ -66,7 +72,7 @@ export class Logger {
           enableWorker: opt.enableWorker,
         });
         if (opt.enableWorker && instance.background) {
-          const workerScript = instance.background();
+          const workerScript = instance.background(opt);
           const worker = new SharedWorker(workerScript.url, {
             name: 'publish-logger-v1-' + workerScript.url,
           });

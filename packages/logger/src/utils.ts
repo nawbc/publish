@@ -1,3 +1,5 @@
+import { idbLiteral } from './idb-literal';
+
 export const download = function ({
   name,
   content,
@@ -25,8 +27,9 @@ export class WorkerScript {
   constructor(js: string) {
     this.script = new Blob(
       [
+        idbLiteral,
         /* js */ `
-      (function main(globalThis){
+      (async function main(globalThis){
           if (typeof WorkerGlobalScope !== 'undefined' && globalThis instanceof WorkerGlobalScope) {
             ${js}
           } else {
