@@ -8,7 +8,7 @@ export interface TransportOptions {
 }
 
 export interface TransportContent {
-  timestamp: string;
+  timestamp: number;
   message: unknown;
   level: LoggerLevel;
   namespace: string;
@@ -30,7 +30,7 @@ export abstract class Transport {
   }
 
   getOptions() {
-    return this.options;
+    return this.options!;
   }
 
   abstract handle(content: TransportContent): Promise<void> | void;
@@ -41,7 +41,7 @@ export abstract class Transport {
     this._worker.port.close();
   }
 
-  abstract grindStorage(): Promise<boolean> | boolean;
+  abstract grind(namespace: string): Promise<void> | void;
 }
 
 export type TransportSynth = { transport: Clz; options?: TransportOptions };

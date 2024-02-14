@@ -1,3 +1,5 @@
+import { deleteDB } from 'idb';
+
 import type { TransportContent, TransportOptions } from '../transport';
 import { Transport } from '../transport';
 import { WorkerScript } from '../utils';
@@ -6,7 +8,6 @@ export interface IndexedDBTransportOptions extends TransportOptions {}
 
 export class IndexedDBTransport extends Transport {
   constructor(options: IndexedDBTransportOptions) {
-    console.log(options, '============');
     super(options);
   }
 
@@ -16,7 +17,6 @@ export class IndexedDBTransport extends Transport {
    */
   override async handle(content: TransportContent) {
     const worker = this.worker;
-    console.log(content, worker, '-');
     worker.port.postMessage(content);
   }
 
@@ -28,7 +28,7 @@ export class IndexedDBTransport extends Transport {
     return new WorkerScript(/* js */ `
       const db = await idb.openDB('${namespace}', ${storageVersion}, {
         upgrade(db) {
-          const store = db.createObjectStore('articles', {
+          const store = db.createObjectStore('default', {
             keyPath: 'id',
             autoIncrement: true,
           });
@@ -37,9 +37,9 @@ export class IndexedDBTransport extends Transport {
       });
 
       globalThis.addEventListener('connect', (e1)=>{
-        const port = e1.ports[0]
-        port.addEventListener('message', (e2)=>{
-          console.log(e2.data)
+        const port = e1.ports[0]   
+        port.addEventListener('message', async (e2)=>{
+          await db.add('default', e2.data);
         })
         port.start();
       })
@@ -50,7 +50,10 @@ export class IndexedDBTransport extends Transport {
     super.dispose();
   }
 
-  override grindStorage(): boolean | Promise<boolean> {
-    throw new Error('Method not implemented.');
+  /**
+   * Delete log from storage by namespace;
+   */
+  override async grind(namespace: string): Promise<void> {
+    return deleteDB(namespace);
   }
 }

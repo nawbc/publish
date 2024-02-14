@@ -35,7 +35,6 @@ export interface LoggerOptions {
  * });
  *
  * ```
- *
  */
 export class Logger {
   private readonly _debug: debug.Debugger;
@@ -74,7 +73,7 @@ export class Logger {
         if (opt.enableWorker && instance.background) {
           const workerScript = instance.background(opt);
           const worker = new SharedWorker(workerScript.url, {
-            name: 'publish-logger-v1-' + workerScript.url,
+            name: `log-${opt.namespace}-v${opt.storageVersion}-${workerScript.url}`,
           });
           instance.worker = worker;
           worker.port.start();
@@ -102,7 +101,6 @@ export class Logger {
     options: TransportOptions,
     ...args: any[]
   ) {
-    console.log(LoggerLevel[level]);
     this._debug.log = console[LoggerLevel[level]].bind(console);
     this._debug(`[${LoggerLevel[level]}] ${message}`, ...args);
 
@@ -117,7 +115,7 @@ export class Logger {
         message,
         level,
         namespace: opt.namespace,
-        timestamp: '',
+        timestamp: Date.now(),
       };
 
       transport.handle(content);
@@ -140,10 +138,15 @@ export class Logger {
     this.log(LoggerLevel.error, message, options, ...args);
   }
 
-  /**
-   * Delete all logs from storage by namespace;
-   */
-  public grind() {}
+  public grind(namespace?: string) {
+    for (const transport of this._transports) {
+      transport.grind(namespace ?? this._options.namespace!);
+    }
+  }
+
+  public getTransports() {
+    return this._transports;
+  }
 
   public async dispose() {
     for await (const t of this._transports) {
