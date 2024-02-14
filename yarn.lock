@@ -3674,6 +3674,7 @@ __metadata:
     "@mantine/spotlight": "npm:7.5.1"
     "@mantine/vanilla-extract": "npm:7.5.1"
     "@publish/doc-editor": "workspace:^"
+    "@publish/logger": "workspace:^"
     cross-env: "npm:^7.0.3"
     eslint: "npm:8.56.0"
     react-router: "npm:6.21.1"
@@ -3719,7 +3720,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@publish/logger@workspace:packages/logger":
+"@publish/logger@workspace:^, @publish/logger@workspace:packages/logger":
   version: 0.0.0-use.local
   resolution: "@publish/logger@workspace:packages/logger"
   dependencies:
