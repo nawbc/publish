@@ -159,7 +159,7 @@
     padding: rem(1px) rem(5px);
     border-radius: var(--mantine-radius-sm);
     font-family: var(--mantine-font-family-monospace);
-    font-size: var(--mantine-font-size-xs);
+    font-size: var(--mantine-font-size-sm);
 
     @mixin light {
       background-color: var(--mantine-color-gray-0);

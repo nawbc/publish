@@ -1,0 +1,144 @@
+{
+  "todotree": {
+    "tree": [
+      {
+        "key": 1708233027669,
+        "children": [
+          {
+            "key": 1708233036741,
+            "children": [
+              {
+                "key": 1708233210183,
+                "children": [],
+                "todo": {
+                  "content": "mobile",
+                  "id": 1708233210183,
+                  "level": "default",
+                  "done": false,
+                  "start": 1708233210183
+                }
+              },
+              {
+                "key": 1708233215313,
+                "children": [],
+                "todo": {
+                  "content": "desktop",
+                  "id": 1708233215313,
+                  "level": "default",
+                  "done": false,
+                  "start": 1708233215313
+                }
+              }
+            ],
+            "todo": {
+              "content": "Slash menu",
+              "id": 1708233036741,
+              "level": "warning",
+              "done": false,
+              "start": 1708233036741
+            }
+          },
+          {
+            "key": 1708233042441,
+            "children": [],
+            "todo": {
+              "content": "Table of content",
+              "id": 1708233042441,
+              "level": "warning",
+              "done": false,
+              "start": 1708233042441
+            }
+          },
+          {
+            "key": 1708233048488,
+            "children": [
+              {
+                "key": 1708233244272,
+                "children": [],
+                "todo": {
+                  "content": "mobile: modal",
+                  "id": 1708233244272,
+                  "level": "default",
+                  "done": false,
+                  "start": 1708233244272
+                }
+              }
+            ],
+            "todo": {
+              "content": "Inline bubble menu",
+              "id": 1708233048488,
+              "level": "danger",
+              "done": false,
+              "start": 1708233048488
+            }
+          },
+          {
+            "key": 1708246021653,
+            "children": [],
+            "todo": {
+              "content": "Drag handles",
+              "id": 1708246021653,
+              "level": "default",
+              "done": false,
+              "start": 1708246021653,
+              "tags": [],
+              "tip": "https://tiptap.dev/docs/editor/guide/node-views/examples#drag-handles"
+            }
+          }
+        ],
+        "todo": {
+          "content": "Editor",
+          "id": 1708233027669,
+          "level": "danger",
+          "done": false,
+          "start": 1708233027669
+        }
+      },
+      {
+        "key": 1708233092650,
+        "children": [],
+        "todo": {
+          "content": "Plugin Runtime",
+          "id": 1708233092650,
+          "level": "success",
+          "done": false,
+          "start": 1708233092650
+        }
+      },
+      {
+        "key": 1708233114452,
+        "children": [],
+        "todo": {
+          "content": "Payment",
+          "id": 1708233114452,
+          "level": "secondary",
+          "done": false,
+          "start": 1708233114453
+        }
+      }
+    ],
+    "expandKeys": [
+      1708233027669
+    ],
+    "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
+    "add_mode": "bottom",
+    "virtual": false,
+    "timelines": [],
+    "showLine": false,
+    "playFontSize": 24,
+    "tags": {
+      "1708246102571": {
+        "label": "Editor",
+        "color": "#ffffff",
+        "fontColor": "#000000",
+        "level": 0
+      }
+    },
+    "title": "Publish",
+    "autoSort": false,
+    "showEndTime": false,
+    "simpleMode": false,
+    "lang": "en",
+    "version": "1708246186505"
+  }
+}

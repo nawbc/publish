@@ -8,8 +8,8 @@ import {
   IconBlockquote,
   IconBold,
   IconCircleOff,
-  IconClearFormatting,
   IconCode,
+  IconEraser,
   IconH1,
   IconH2,
   IconH3,
@@ -26,8 +26,9 @@ import {
   IconSuperscript,
   IconUnderline,
   IconUnlink,
-} from '../../icons/Icons';
-import { createFn } from './DocEditorFn';
+} from '@tabler/icons-react';
+
+import { createFn } from './BaseFn';
 
 export const BoldFn = createFn({
   label: 'boldFnLabel',
@@ -59,7 +60,9 @@ export const StrikeThroughFn = createFn({
 
 export const ClearFormattingFn = createFn({
   label: 'clearFormattingFnLabel',
-  icon: (props) => <IconClearFormatting {...props} />,
+  icon: (props) => {
+    return <IconEraser {...props} />;
+  },
   operation: { name: 'unsetAllMarks' },
 });
 

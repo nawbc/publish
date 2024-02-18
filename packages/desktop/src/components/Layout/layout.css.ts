@@ -1,5 +1,5 @@
 import { rem } from '@mantine/core';
-import { globalStyle, style } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 export const scrollbarThumb = style({
   ':hover': {
@@ -14,7 +14,14 @@ export const scrollbar = style({
   },
 });
 
-export const viewport = style({});
+export const viewport = style({
+  overflow: 'scroll!important',
+});
+
+export const root = style({
+  overflow: 'unset',
+  height: '100%',
+});
 
 // Overwrite the mantine ScrollAreaViewport display:table.
 // globalStyle(`${viewport} > div`, {

@@ -1,6 +1,7 @@
 {
   "recommendations": [
     "tobermory.es6-string-html",
-    "tzachovadia.todo-list"
+    "tzachovadia.todo-list",
+    "saber2pr.todolist"
   ]
 }

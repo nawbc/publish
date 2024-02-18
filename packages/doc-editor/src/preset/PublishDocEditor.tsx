@@ -2,11 +2,15 @@ import './theme/global.css.ts';
 
 import { Box } from '@mantine/core';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
+import { Color } from '@tiptap/extension-color';
 import Placeholder from '@tiptap/extension-placeholder';
 import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
+import TextStyle from '@tiptap/extension-text-style';
+import Underline from '@tiptap/extension-underline';
 import { BubbleMenu, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { Markdown } from 'tiptap-markdown';
 
 import { DocEditor } from '../components';
 import { Link } from '../customs';
@@ -15,6 +19,23 @@ import { registerProgramLanguages } from './languages';
 import { placeholders } from './placeholders';
 
 const lowlight = registerProgramLanguages();
+
+const swatches = [
+  '#25262b',
+  '#868e96',
+  '#fa5252',
+  '#e64980',
+  '#be4bdb',
+  '#7950f2',
+  '#4c6ef5',
+  '#228be6',
+  '#15aabf',
+  '#12b886',
+  '#40c057',
+  '#82c91e',
+  '#fab005',
+  '#fd7e14',
+];
 
 export const PublishDocEditor = function () {
   const editor = useEditor({
@@ -26,6 +47,9 @@ export const PublishDocEditor = function () {
     extensions: [
       Link,
       FileInput,
+      TextStyle,
+      Color,
+      Underline,
       StarterKit.configure({
         codeBlock: false,
       }),
@@ -36,6 +60,9 @@ export const PublishDocEditor = function () {
       }),
       SlashCommands.configure({
         // suggestion,
+      }),
+      Color.configure({
+        types: ['textStyle'],
       }),
       Placeholder.configure({
         placeholder: ({ node }) => {
@@ -50,10 +77,15 @@ export const PublishDocEditor = function () {
           }
         },
       }),
+      Markdown.configure({
+        linkify: true,
+        transformPastedText: true,
+        transformCopiedText: true,
+      }),
     ],
-    content: `
-    <ul data-type="taskList"><li data-checked="true"><label contenteditable="false"><input type="checkbox" checked="checked"><span></span></label><div><p>dadas</p></div></li><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>dada</p><ul data-type="taskList"><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>dada</p><ul data-type="taskList"><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>dada</p><ul data-type="taskList"><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>sdadas</p></div></li></ul></div></li></ul></div></li></ul></div></li></ul>
-        `,
+    // content: `
+    // <ul data-type="taskList"><li data-checked="true"><label contenteditable="false"><input type="checkbox" checked="checked"><span></span></label><div><p>dadas</p></div></li><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>dada</p><ul data-type="taskList"><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>dada</p><ul data-type="taskList"><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>dada</p><ul data-type="taskList"><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>sdadas</p></div></li></ul></div></li></ul></div></li></ul></div></li></ul>
+    //     `,
     // content: Array.from({ length: 100 }).join('<br/>'),
   });
 
@@ -64,30 +96,32 @@ export const PublishDocEditor = function () {
           <BubbleMenu editor={editor}>
             <DocEditor.FnGroup>
               <DocEditor.Bold />
+              <DocEditor.Underline />
+              <DocEditor.Strikethrough />
               <DocEditor.Italic />
               <DocEditor.Link />
-              <DocEditor.ColorPicker
-                colors={[
-                  '#25262b',
-                  '#868e96',
-                  '#fa5252',
-                  '#e64980',
-                  '#be4bdb',
-                  '#7950f2',
-                  '#4c6ef5',
-                  '#228be6',
-                  '#15aabf',
-                  '#12b886',
-                  '#40c057',
-                  '#82c91e',
-                  '#fab005',
-                  '#fd7e14',
-                ]}
-              />
-              <DocEditor.CodeBlock />
+              <DocEditor.ClearFormatting />
+              <DocEditor.ColorPicker colors={swatches} />
+              {/* <DocEditor.CodeBlock /> */}
+              <DocEditor.Code />
             </DocEditor.FnGroup>
           </BubbleMenu>
         )}
+        <DocEditor.FnGroup
+          style={{
+            display: 'inline-flex',
+          }}
+        >
+          <DocEditor.Bold />
+          <DocEditor.Underline />
+          <DocEditor.Strikethrough />
+          <DocEditor.Italic />
+          <DocEditor.Link />
+          <DocEditor.ClearFormatting />
+          <DocEditor.ColorPicker colors={swatches} />
+          {/* <DocEditor.CodeBlock /> */}
+          <DocEditor.Code />
+        </DocEditor.FnGroup>
         <DocEditor.Content />
       </DocEditor>
     </Box>

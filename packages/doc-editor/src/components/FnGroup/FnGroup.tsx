@@ -9,40 +9,38 @@ import { Box, factory, useProps } from '@mantine/core';
 import { useDocEditorContext } from '../DocEditor.context';
 import classes from '../DocEditor.module.css';
 
-export type DocEditorFnGroupStylesNames = 'fnGroup';
-export interface DocEditorFnGroupProps
+export type BaseFnGroupStylesNames = 'fnGroup';
+export interface BaseFnGroupProps
   extends BoxProps,
-    CompoundStylesApiProps<DocEditorFnGroupFactory>,
+    CompoundStylesApiProps<BaseFnGroupFactory>,
     ElementProps<'div'> {}
 
-export type DocEditorFnGroupFactory = Factory<{
-  props: DocEditorFnGroupProps;
+export type BaseFnGroupFactory = Factory<{
+  props: BaseFnGroupProps;
   ref: HTMLDivElement;
-  stylesNames: DocEditorFnGroupStylesNames;
+  stylesNames: BaseFnGroupStylesNames;
   compound: true;
 }>;
 
-const defaultProps: Partial<DocEditorFnGroupProps> = {};
+const defaultProps: Partial<BaseFnGroupProps> = {};
 
-export const DocEditorFnGroup = factory<DocEditorFnGroupFactory>(
-  (_props, ref) => {
-    const props = useProps('DocEditorFnGroup', defaultProps, _props);
-    const { classNames, className, style, styles, vars: _, ...others } = props;
-    const ctx = useDocEditorContext();
-    return (
-      <Box
-        ref={ref}
-        {...ctx.getStyles('fnGroup', {
-          className,
-          style,
-          styles,
-          classNames,
-        })}
-        {...others}
-      />
-    );
-  },
-);
+export const BaseFnGroup = factory<BaseFnGroupFactory>((_props, ref) => {
+  const props = useProps('BaseFnGroup', defaultProps, _props);
+  const { classNames, className, style, styles, vars: _, ...others } = props;
+  const ctx = useDocEditorContext();
+  return (
+    <Box
+      ref={ref}
+      {...ctx.getStyles('fnGroup', {
+        className,
+        style,
+        styles,
+        classNames,
+      })}
+      {...others}
+    />
+  );
+});
 
-DocEditorFnGroup.classes = classes;
-DocEditorFnGroup.displayName = '@publish/doc-editor/DocEditorFnGroup';
+BaseFnGroup.classes = classes;
+BaseFnGroup.displayName = '@publish/doc-editor/BaseFnGroup';

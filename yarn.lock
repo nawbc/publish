@@ -3675,6 +3675,7 @@ __metadata:
     "@mantine/vanilla-extract": "npm:7.5.3"
     "@publish/doc-editor": "workspace:^"
     "@publish/logger": "workspace:^"
+    "@tiptap/extension-underline": "npm:^2.2.3"
     cross-env: "npm:^7.0.3"
     eslint: "npm:8.56.0"
     react-router: "npm:6.21.1"
@@ -4916,7 +4917,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiptap/extension-underline@npm:2.2.3":
+"@tiptap/extension-underline@npm:2.2.3, @tiptap/extension-underline@npm:^2.2.3":
   version: 2.2.3
   resolution: "@tiptap/extension-underline@npm:2.2.3"
   peerDependencies:

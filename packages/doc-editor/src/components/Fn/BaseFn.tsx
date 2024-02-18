@@ -12,32 +12,33 @@ import { useDocEditorContext } from '../DocEditor.context';
 import classes from '../DocEditor.module.css';
 import type { DocEditorLabels } from '../labels';
 
-export type DocEditorFnStylesNames = 'fn';
+export type BaseFnStylesNames = 'fn';
 
-export interface DocEditorFnProps
+export interface BaseFnProps
   extends BoxProps,
-    CompoundStylesApiProps<DocEditorFnFactory>,
-    ElementProps<'button'> {
+    CompoundStylesApiProps<BaseFnFactory>,
+    ElementProps<'div'> {
   /** Determines whether the fn should have active state, false by default */
   active?: boolean;
 
+  disabled?: boolean;
   /** Determines whether the fn can be interacted with, set `false` to make the fn to act as a label */
   interactive?: boolean;
 }
 
-export type DocEditorFnFactory = Factory<{
-  props: DocEditorFnProps;
-  ref: HTMLButtonElement;
-  stylesNames: DocEditorFnStylesNames;
+export type BaseFnFactory = Factory<{
+  props: BaseFnProps;
+  ref: HTMLDivElement;
+  stylesNames: BaseFnStylesNames;
   compound: true;
 }>;
 
-const defaultProps: Partial<DocEditorFnProps> = {
+const defaultProps: Partial<BaseFnProps> = {
   interactive: true,
 };
 
-export const DocEditorFn = factory<DocEditorFnFactory>((_props, ref) => {
-  const props = useProps('DocEditorFn', defaultProps, _props);
+export const BaseFn = factory<BaseFnFactory>((_props, ref) => {
+  const props = useProps('BaseFn', defaultProps, _props);
   const {
     classNames,
     className,
@@ -55,8 +56,15 @@ export const DocEditorFn = factory<DocEditorFnFactory>((_props, ref) => {
   return (
     <UnstyledButton
       {...others}
-      {...ctx.getStyles('fn', { className, style, classNames, styles })}
-      disabled={disabled}
+      {...ctx.getStyles('fn', {
+        className,
+        style,
+        classNames,
+        styles,
+        active: true,
+      })}
+      // disabled={disabled}
+      component="div"
       data-rich-text-editor-fn
       tabIndex={interactive ? 0 : -1}
       data-interactive={interactive || undefined}
@@ -74,23 +82,25 @@ export const DocEditorFn = factory<DocEditorFnFactory>((_props, ref) => {
   );
 });
 
-DocEditorFn.classes = classes;
-DocEditorFn.displayName = '@publish/doc-editor/DocEditorFn';
+BaseFn.classes = classes;
+BaseFn.displayName = '@publish/doc-editor/BaseFn';
 
-export interface DocEditorFnBaseProps extends DocEditorFnProps {
+export interface FnFactoryProps extends BaseFnProps {
   icon?: React.FC<{ style: React.CSSProperties }>;
 }
 
-export const DocEditorFnBase = forwardRef<
-  HTMLButtonElement,
-  DocEditorFnBaseProps
->(({ className: _, icon: Icon, ...others }, ref) => (
-  <DocEditorFn ref={ref} {...others}>
-    {Icon && <Icon style={{ width: rem(16), height: rem(16) }} />}
-  </DocEditorFn>
-));
+export const FnFactory = forwardRef<HTMLDivElement, FnFactoryProps>(function (
+  { className: _, icon: Icon, ...others },
+  ref,
+) {
+  return (
+    <BaseFn ref={ref} {...others}>
+      {Icon && <Icon style={{ width: rem(16), height: rem(16) }} />}
+    </BaseFn>
+  );
+});
 
-DocEditorFnBase.displayName = '@mantine/tiptap/DocEditorFnBase';
+FnFactory.displayName = '@mantine/tiptap/FnFactory';
 
 export interface CreateFnProps {
   label: keyof DocEditorLabels;
@@ -107,14 +117,14 @@ export function createFn({
   icon,
   isDisabled,
 }: CreateFnProps) {
-  return forwardRef<HTMLButtonElement, DocEditorFnBaseProps>((props, ref) => {
+  return forwardRef<HTMLDivElement, FnFactoryProps>((_props, ref) => {
+    const props = useProps('BaseFn', defaultProps, _props);
     const { editor, labels } = useDocEditorContext();
     const _label = labels[label] as string;
-    // console.log(_label);
+
     return (
-      <DocEditorFnBase
+      <FnFactory
         {...props}
-        aria-label={_label}
         title={_label}
         active={
           isActive?.name

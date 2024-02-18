@@ -43,6 +43,7 @@ const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
                 scrollbar: styles.scrollbar,
                 thumb: styles.scrollbarThumb,
                 viewport: styles.viewport,
+                root: styles.root,
               }}
             >
               <Header />

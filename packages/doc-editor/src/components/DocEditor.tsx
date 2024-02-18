@@ -12,8 +12,8 @@ import { DocEditorContent } from './Content/Content';
 import { DocEditorProvider } from './DocEditor.context';
 import classes from './DocEditor.module.css';
 import * as fn from './Fn';
-import { DocEditorFn } from './Fn/DocEditorFn';
-import { DocEditorFnGroup } from './FnGroup/FnGroup';
+import { BaseFn } from './Fn/BaseFn';
+import { BaseFnGroup } from './FnGroup/FnGroup';
 import type { DocEditorLabels } from './labels';
 import { DEFAULT_LABELS } from './labels';
 
@@ -55,8 +55,8 @@ export type DocEditorFactory = Factory<{
   stylesNames: DocEditorStylesNames;
   staticComponents: {
     Content: typeof DocEditorContent;
-    Fn: typeof DocEditorFn;
-    FnGroup: typeof DocEditorFnGroup;
+    Fn: typeof BaseFn;
+    FnGroup: typeof BaseFnGroup;
     Bold: typeof fn.BoldFn;
     Italic: typeof fn.ItalicFn;
     Strikethrough: typeof fn.StrikeThroughFn;
@@ -70,7 +70,7 @@ export type DocEditorFactory = Factory<{
     H6: typeof fn.H6Fn;
     BulletList: typeof fn.BulletListFn;
     OrderedList: typeof fn.OrderedListFn;
-    Link: typeof fn.DocEditorLinkFn;
+    Link: typeof fn.LinkFn;
     Unlink: typeof fn.UnlinkFn;
     Blockquote: typeof fn.BlockquoteFn;
     AlignLeft: typeof fn.AlignLeftFn;
@@ -81,8 +81,8 @@ export type DocEditorFactory = Factory<{
     Subscript: typeof fn.SubscriptFn;
     Code: typeof fn.CodeFn;
     CodeBlock: typeof fn.CodeBlockFn;
-    ColorPicker: typeof fn.DocEditorColorPickerFn;
-    Color: typeof fn.DocEditorColorFn;
+    ColorPicker: typeof fn.ColorPickerFn;
+    Color: typeof fn.ColorFn;
     Highlight: typeof fn.HighlightFn;
     Hr: typeof fn.HrFn;
     UnsetColor: typeof fn.UnsetColorFn;
@@ -153,8 +153,8 @@ DocEditor.displayName = '@mantine/tiptap/DocEditor';
 
 // Generic components
 DocEditor.Content = DocEditorContent;
-DocEditor.Fn = DocEditorFn;
-DocEditor.FnGroup = DocEditorFnGroup;
+DocEditor.Fn = BaseFn;
+DocEditor.FnGroup = BaseFnGroup;
 
 // Fn components
 DocEditor.Bold = fn.BoldFn;
@@ -170,7 +170,7 @@ DocEditor.H5 = fn.H5Fn;
 DocEditor.H6 = fn.H6Fn;
 DocEditor.BulletList = fn.BulletListFn;
 DocEditor.OrderedList = fn.OrderedListFn;
-DocEditor.Link = fn.DocEditorLinkFn;
+DocEditor.Link = fn.LinkFn;
 DocEditor.Unlink = fn.UnlinkFn;
 DocEditor.Blockquote = fn.BlockquoteFn;
 DocEditor.AlignLeft = fn.AlignLeftFn;
@@ -181,8 +181,8 @@ DocEditor.Superscript = fn.SuperscriptFn;
 DocEditor.Subscript = fn.SubscriptFn;
 DocEditor.Code = fn.CodeFn;
 DocEditor.CodeBlock = fn.CodeBlockFn;
-DocEditor.ColorPicker = fn.DocEditorColorPickerFn;
-DocEditor.Color = fn.DocEditorColorFn;
+DocEditor.ColorPicker = fn.ColorPickerFn;
+DocEditor.Color = fn.ColorFn;
 DocEditor.Highlight = fn.HighlightFn;
 DocEditor.Hr = fn.HrFn;
 DocEditor.UnsetColor = fn.UnsetColorFn;

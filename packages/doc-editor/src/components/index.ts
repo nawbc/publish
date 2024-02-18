@@ -8,11 +8,11 @@ export type {
 export { DocEditor } from './DocEditor';
 export { useDocEditorContext } from './DocEditor.context';
 export * from './Fn';
-export type { DocEditorColorFnProps } from './Fn/DocEditorColorFn';
-export type { DocEditorFnProps } from './Fn/DocEditorFn';
-export { DocEditorFn } from './Fn/DocEditorFn';
-export type { DocEditorLinkFnProps } from './Fn/DocEditorLinkFn';
-export type { DocEditorFnGroupProps } from './FnGroup/FnGroup';
-export { DocEditorFnGroup } from './FnGroup/FnGroup';
+export type { ColorFnProps } from './Fn/ColorFn';
+export type { BaseFnProps } from './Fn/BaseFn';
+export { BaseFn } from './Fn/BaseFn';
+export type { LinkFnProps } from './Fn/LinkFn';
+export type { BaseFnGroupProps } from './FnGroup/FnGroup';
+export { BaseFnGroup } from './FnGroup/FnGroup';
 export type { DocEditorLabels } from './labels';
 export { DEFAULT_LABELS } from './labels';
