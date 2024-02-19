@@ -88,6 +88,7 @@ export type DocEditorFactory = Factory<{
     UnsetColor: typeof fn.UnsetColorFn;
     Undo: typeof fn.UndoFn;
     Redo: typeof fn.RedoFn;
+    FnList: typeof fn.FnListFn;
   };
 }>;
 
@@ -188,3 +189,4 @@ DocEditor.Hr = fn.HrFn;
 DocEditor.UnsetColor = fn.UnsetColorFn;
 DocEditor.Undo = fn.UndoFn;
 DocEditor.Redo = fn.RedoFn;
+DocEditor.FnList = fn.FnListFn;

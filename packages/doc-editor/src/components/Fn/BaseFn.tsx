@@ -94,7 +94,15 @@ export const FnFactory = forwardRef<HTMLDivElement, FnFactoryProps>(function (
 ) {
   return (
     <BaseFn ref={ref} {...others}>
-      {Icon && <Icon style={{ width: rem(20), height: rem(20) }} />}
+      {Icon && (
+        <Icon
+          style={{
+            color: 'var(--mantine-color-dark-5)',
+            width: rem(20),
+            height: rem(20),
+          }}
+        />
+      )}
     </BaseFn>
   );
 });

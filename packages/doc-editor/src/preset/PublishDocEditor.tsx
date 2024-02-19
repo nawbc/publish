@@ -1,6 +1,6 @@
 import './theme/global.css.ts';
 
-import { Box } from '@mantine/core';
+import { Box, Divider, rem } from '@mantine/core';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import { Color } from '@tiptap/extension-color';
 import Placeholder from '@tiptap/extension-placeholder';
@@ -14,7 +14,7 @@ import { Markdown } from 'tiptap-markdown';
 
 import { DocEditor } from '../components';
 import { Link } from '../customs';
-import { FileInput, SlashCommands } from '../extensions';
+import { DragHandle, FileInput, SlashCommands } from '../extensions';
 import { registerProgramLanguages } from './languages';
 import { placeholders } from './placeholders';
 
@@ -50,6 +50,7 @@ export const PublishDocEditor = function () {
       TextStyle,
       Color,
       Underline,
+      DragHandle,
       StarterKit.configure({
         codeBlock: false,
       }),
@@ -93,8 +94,15 @@ export const PublishDocEditor = function () {
     <Box m="0 auto" px="xl" maw="var(--publish-doc-editor-max-width)">
       <DocEditor editor={editor}>
         {editor && (
-          <BubbleMenu editor={editor}>
+          <BubbleMenu
+            tippyOptions={{
+              maxWidth: 'unset',
+            }}
+            editor={editor}
+          >
             <DocEditor.FnGroup>
+              <DocEditor.FnList />
+              <Divider my={rem(4)} variant="dashed" orientation="vertical" />
               <DocEditor.Bold />
               <DocEditor.Underline />
               <DocEditor.Strikethrough />
@@ -102,11 +110,29 @@ export const PublishDocEditor = function () {
               <DocEditor.Link />
               <DocEditor.ClearFormatting />
               <DocEditor.ColorPicker colors={swatches} />
-              {/* <DocEditor.CodeBlock /> */}
               <DocEditor.Code />
+              <Divider my={rem(4)} variant="dashed" orientation="vertical" />
             </DocEditor.FnGroup>
           </BubbleMenu>
         )}
+        <DocEditor.FnGroup
+          style={{
+            zIndex: 1000,
+            position: 'absolute',
+          }}
+        >
+          <DocEditor.FnList />
+          <Divider my={rem(4)} variant="dashed" orientation="vertical" />
+          <DocEditor.Bold />
+          <DocEditor.Underline />
+          <DocEditor.Strikethrough />
+          <DocEditor.Italic />
+          <DocEditor.Link />
+          <DocEditor.ClearFormatting />
+          <DocEditor.ColorPicker colors={swatches} />
+          <DocEditor.Code />
+          <Divider my={rem(4)} variant="dashed" orientation="vertical" />
+        </DocEditor.FnGroup>
         <DocEditor.Content />
       </DocEditor>
     </Box>

@@ -1,6 +1,7 @@
 .root {
   --publish-backdrop-blur: saturate(180%) blur(10px);
-  --publish-backdrop-color-default: #ffffff40;
+  --publish-backdrop-color-default: #ffffff80;
+  --_fn-backdrop-color: #8b8b8b0d;
   position: relative;
 }
 
@@ -220,7 +221,7 @@
 
     @mixin hover {
       @mixin light {
-        --_fn-bg: var(--mantine-color-gray-1);
+        --_fn-bg: var(--_fn-backdrop-color);
       }
 
       @mixin dark {
@@ -239,7 +240,7 @@
   }
 
   @mixin light {
-    --_fn-bg: var(--mantine-color-white);
+    --_fn-bg: transparent;
   }
 
   @mixin dark {

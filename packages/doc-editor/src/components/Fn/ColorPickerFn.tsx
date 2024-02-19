@@ -16,15 +16,15 @@ import {
   useProps,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { forwardRef, useState } from 'react';
-
 import {
   IconCheck,
   IconCircleOff,
   IconColorPicker,
   IconPalette,
   IconX,
-} from '../../icons/Icons';
+} from '@tabler/icons-react';
+import { forwardRef, useState } from 'react';
+
 import { useDocEditorContext } from '../DocEditor.context';
 import { BaseFn } from './BaseFn';
 
@@ -95,8 +95,14 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
             ref={ref}
             onMouseEnter={open}
             onMouseLeave={close}
+            px="xs"
+            mx={0}
           >
-            <ColorSwatch color={currentColor} size={14} />
+            <IconColorPicker
+              color={currentColor}
+              style={{ width: rem(20), height: rem(20) }}
+            />
+            <ColorSwatch color={currentColor} size={10} />
             <Popover.Dropdown {...getStyles('linkEditorDropdown')}>
               {state === 'palette' && (
                 <SimpleGrid cols={7} spacing={2}>
@@ -113,9 +119,10 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
               )}
 
               <Tooltip.Group closeDelay={100}>
-                <Group justify="flex-end" gap="xs" mt="sm">
+                <Group justify="flex-end" gap="md" mt="sm">
                   {state === 'palette' && (
                     <ActionIcon
+                      radius="md"
                       variant="default"
                       onClick={close}
                       title={labels.colorPickerCancel}
@@ -126,6 +133,7 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
                   )}
 
                   <ActionIcon
+                    radius="md"
                     variant="default"
                     onClick={handleClear}
                     title={labels.colorPickerClear}
@@ -138,6 +146,7 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
 
                   {state === 'palette' ? (
                     <ActionIcon
+                      radius="md"
                       variant="default"
                       onClick={() => {
                         setState('colorPicker');
@@ -151,6 +160,7 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
                     </ActionIcon>
                   ) : (
                     <ActionIcon
+                      radius="md"
                       variant="default"
                       onClick={() => {
                         setState('palette');
@@ -166,6 +176,7 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
 
                   {state === 'colorPicker' && (
                     <ActionIcon
+                      radius="md"
                       variant="default"
                       onClick={close}
                       title={labels.colorPickerSave}

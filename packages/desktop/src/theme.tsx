@@ -16,7 +16,7 @@ export const resolver: CSSVariablesResolver = (theme) => ({
       theme.other.inActiveDividerHandlerLight,
     '--publish-color-context-menu-hover': theme.other.contextMenuHoverLight,
     '--publish-color-context-menu-border': theme.other.contextMenuBorder,
-    '--publish-backdrop-color-default': '#ffffff40',
+    '--publish-backdrop-color-default': '#ffffff80',
     '--publish-backdrop-blur': 'saturate(180%) blur(10px)',
   },
   dark: {

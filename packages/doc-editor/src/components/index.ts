@@ -8,9 +8,9 @@ export type {
 export { DocEditor } from './DocEditor';
 export { useDocEditorContext } from './DocEditor.context';
 export * from './Fn';
-export type { ColorFnProps } from './Fn/ColorFn';
 export type { BaseFnProps } from './Fn/BaseFn';
 export { BaseFn } from './Fn/BaseFn';
+export type { ColorFnProps } from './Fn/ColorFn';
 export type { LinkFnProps } from './Fn/LinkFn';
 export type { BaseFnGroupProps } from './FnGroup/FnGroup';
 export { BaseFnGroup } from './FnGroup/FnGroup';
