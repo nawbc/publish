@@ -16,7 +16,8 @@ export const resolver: CSSVariablesResolver = (theme) => ({
       theme.other.inActiveDividerHandlerLight,
     '--publish-color-context-menu-hover': theme.other.contextMenuHoverLight,
     '--publish-color-context-menu-border': theme.other.contextMenuBorder,
-    '--publish-context-menu-bg': '#ffffff40',
+    '--publish-backdrop-color-default': '#ffffff40',
+    '--publish-backdrop-blur': 'saturate(180%) blur(10px)',
   },
   dark: {
     '--publish-color-active-divider-handler':
@@ -65,7 +66,7 @@ export const theme = createTheme({
     inActiveDividerHandlerDark: '#323439',
     contextMenuHoverLight: '#B4B4B43F',
     contextMenuHoverDark: '#FFFFFF4a',
-    contextMenuBorder: '0 0 0 1px rgba(0, 0, 0, 0.1)',
+    contextMenuBorder: '0 0 0 1px var(--mantine-color-gray-2)',
   },
 });
 

@@ -107,21 +107,6 @@ export const PublishDocEditor = function () {
             </DocEditor.FnGroup>
           </BubbleMenu>
         )}
-        <DocEditor.FnGroup
-          style={{
-            display: 'inline-flex',
-          }}
-        >
-          <DocEditor.Bold />
-          <DocEditor.Underline />
-          <DocEditor.Strikethrough />
-          <DocEditor.Italic />
-          <DocEditor.Link />
-          <DocEditor.ClearFormatting />
-          <DocEditor.ColorPicker colors={swatches} />
-          {/* <DocEditor.CodeBlock /> */}
-          <DocEditor.Code />
-        </DocEditor.FnGroup>
         <DocEditor.Content />
       </DocEditor>
     </Box>

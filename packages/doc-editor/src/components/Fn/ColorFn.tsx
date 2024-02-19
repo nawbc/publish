@@ -5,14 +5,14 @@ import { forwardRef } from 'react';
 import { useDocEditorContext } from '../DocEditor.context';
 import { BaseFn } from './BaseFn';
 
-export interface ColorFnProps extends BoxProps, ElementProps<'button'> {
+export interface ColorFnProps extends BoxProps, ElementProps<'div'> {
   /** Color that will be set as text color, for example #ef457e */
   color: string;
 }
 
 const defaultProps: Partial<ColorFnProps> = {};
 
-export const ColorFn = forwardRef<HTMLButtonElement, ColorFnProps>(
+export const ColorFn = forwardRef<HTMLDivElement, ColorFnProps>(
   (props, ref) => {
     const { color, ...others } = useProps('ColorFn', defaultProps, props);
     const { editor, labels } = useDocEditorContext();

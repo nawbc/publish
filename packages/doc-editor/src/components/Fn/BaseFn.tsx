@@ -65,7 +65,6 @@ export const BaseFn = factory<BaseFnFactory>((_props, ref) => {
       })}
       // disabled={disabled}
       component="div"
-      data-rich-text-editor-fn
       tabIndex={interactive ? 0 : -1}
       data-interactive={interactive || undefined}
       data-disabled={disabled || undefined}
@@ -95,7 +94,7 @@ export const FnFactory = forwardRef<HTMLDivElement, FnFactoryProps>(function (
 ) {
   return (
     <BaseFn ref={ref} {...others}>
-      {Icon && <Icon style={{ width: rem(16), height: rem(16) }} />}
+      {Icon && <Icon style={{ width: rem(20), height: rem(20) }} />}
     </BaseFn>
   );
 });

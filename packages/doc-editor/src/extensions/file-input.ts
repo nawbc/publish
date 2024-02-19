@@ -16,16 +16,10 @@ export type FileInputPluginOptions = {
   accept?: string[];
   /**
    * The onPaste callback that is called when a file is pasted.
-   * @param editor the editor instance
-   * @param files the File array including File objects
-   * @param the pasted content as HTML string - this is only available if there is also html copied to the clipboard for example by copying from a website
    */
   onPaste?: (editor: Editor, files: File[], pasteContent?: string) => void;
   /**
    * The onDrop callback that is called when a file is dropped.
-   * @param editor the editor instance
-   * @param files the File array including File objects
-   * @returns Returns nothing.
    */
   onDrop?: (editor: Editor, files: File[], pos: number) => void;
 };
@@ -44,8 +38,7 @@ export const FileInputPlugin = ({
     key: key || new PluginKey('fileInput'),
     props: {
       handleDrop(view, event) {
-        if (!onDrop) return;
-        if (!event.dataTransfer?.files.length) return;
+        if (!onDrop || !event.dataTransfer?.files.length) return;
 
         const coords = view.posAtCoords({
           left: event.clientX,

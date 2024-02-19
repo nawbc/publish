@@ -82,7 +82,7 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
     return (
       <Popover
         opened={opened}
-        withinPortal={false}
+        withinPortal
         // trapFocus
         onClose={close}
         {...popoverProps}

@@ -1,4 +1,6 @@
 .root {
+  --publish-backdrop-blur: saturate(180%) blur(10px);
+  --publish-backdrop-color-default: #ffffff40;
   position: relative;
 }
 
@@ -190,12 +192,13 @@
 .fn {
   background-color: var(--_fn-bg);
   color: var(--_fn-color);
-  min-width: rem(26px);
-  height: rem(26px);
+  min-width: rem(32px);
+  height: rem(32px);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: var(--_fn-cursor, default);
+  margin: 0 rem(5px);
 
   &:where([data-disabled]) {
     cursor: not-allowed;
@@ -213,10 +216,11 @@
 
   &[data-interactive] {
     --_fn-cursor: pointer;
+    border-radius: var(--mantine-radius-sm);
 
     @mixin hover {
       @mixin light {
-        --_fn-bg: var(--mantine-color-gray-0);
+        --_fn-bg: var(--mantine-color-gray-1);
       }
 
       @mixin dark {
@@ -245,26 +249,15 @@
 
 .fnGroup {
   display: flex;
-  background-color: var(--mantine-color-body);
+  background-color: var(--publish-backdrop-color-default);
   border: rem(1px) solid var(--_fn-bd);
-  border-radius: var(--mantine-radius-default);
+  border-radius: var(--mantine-radius-md);
   overflow: hidden;
-
-  & [data-rich-text-editor-fn] {
-    border-radius: 0;
-
-    &:not(:last-of-type) {
-      border-right-width: 0;
-
-      @mixin rtl {
-        border-right-width: rem(1px);
-        border-left-width: 0;
-      }
-    }
-  }
+  padding: rem(5px) rem(10px);
+  backdrop-filter: var(--publish-backdrop-blur);
 
   @mixin light {
-    --_fn-bd: var(--mantine-color-gray-4);
+    --_fn-bd: var(--mantine-color-gray-2);
   }
 
   @mixin dark {

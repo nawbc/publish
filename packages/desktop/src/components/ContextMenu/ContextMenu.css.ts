@@ -64,9 +64,8 @@ export const main = style({
   opacity: 0,
   width: 'max-content',
   userSelect: 'none',
-  backgroundColor: 'var(--publish-context-menu-bg)',
+  backgroundColor: 'var(--publish-backdrop-color-default)',
   boxSizing: 'border-box',
-  //Border
   boxShadow: 'var(--publish-color-context-menu-border)',
   borderRadius: 'var(--mantine-radius-sm)',
   padding: rem(4),
@@ -80,7 +79,7 @@ export const main = style({
       left: 0,
       right: 0,
       bottom: 0,
-      backdropFilter: 'saturate(180%) blur(10px)',
+      backdropFilter: 'var(--publish-backdrop-blur)',
     },
   },
 });
@@ -93,7 +92,7 @@ export const sub = style([
     transition: 'opacity .265s',
     top: `calc(-1 * ${rem(4)})`,
     left: '100%',
-    backdropFilter: 'saturate(180%) blur(10px)',
+    backdropFilter: 'var(--publish-backdrop-blur)',
   },
 ]);
 

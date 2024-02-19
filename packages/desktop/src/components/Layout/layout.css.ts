@@ -14,14 +14,12 @@ export const scrollbar = style({
   },
 });
 
-export const viewport = style({
-  overflow: 'scroll!important',
-});
+export const viewport = style({});
 
-export const root = style({
-  overflow: 'unset',
-  height: '100%',
-});
+// export const root = style({
+//   overflow: 'unset',
+//   height: '100%',
+// });
 
 // Overwrite the mantine ScrollAreaViewport display:table.
 // globalStyle(`${viewport} > div`, {
