@@ -8,6 +8,7 @@ import {
   IconBlockquote,
   IconBold,
   IconCircleOff,
+  IconClipboardCopy,
   IconCode,
   IconEraser,
   IconH1,
@@ -218,4 +219,10 @@ export const RedoFn = createFn({
   icon: (props) => <IconArrowForwardUp {...props} />,
   isDisabled: (editor) => !(editor?.can() as any).redo(),
   operation: { name: 'redo' },
+});
+
+export const CopyFn = createFn({
+  label: 'copyFnLabel',
+  icon: (props) => <IconClipboardCopy {...props} />,
+  operation: { name: 'copy' },
 });

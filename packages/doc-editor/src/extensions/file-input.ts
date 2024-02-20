@@ -45,7 +45,7 @@ export const FileInputPlugin = ({
           top: event.clientY,
         });
         let files = Array.from(event.dataTransfer!.files);
-        if (accept) {
+        if (Array.isArray(accept)) {
           files = files.filter((e) => accept.includes(e.type));
           if (files.length !== 0) {
             event.preventDefault();
@@ -63,13 +63,12 @@ export const FileInputPlugin = ({
         );
       },
       handlePaste(_view, event) {
-        if (!onPaste) return;
-        if (!event.clipboardData?.files.length) return;
+        if (!onPaste || !event.clipboardData?.files.length) return;
 
         let files = Array.from(event.clipboardData!.files);
         const clipboardData = event.clipboardData!.getData('text/html');
 
-        if (accept) {
+        if (Array.isArray(accept)) {
           files = files.filter((file) => accept.includes(file.type));
           if (files.length !== 0) {
             event.preventDefault();

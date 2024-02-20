@@ -10,7 +10,7 @@ import React, { forwardRef } from 'react';
 
 import { useDocEditorContext } from '../DocEditor.context';
 import classes from '../DocEditor.module.css';
-import type { DocEditorLabels } from '../labels';
+import type { DocEditorLabels } from '../DocEditorLabels';
 
 export type BaseFnStylesNames = 'fn';
 

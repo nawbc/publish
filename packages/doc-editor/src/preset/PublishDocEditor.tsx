@@ -14,7 +14,7 @@ import { Markdown } from 'tiptap-markdown';
 
 import { DocEditor } from '../components';
 import { Link } from '../customs';
-import { DragHandle, FileInput, SlashCommands } from '../extensions';
+import { Clipboard, DragHandle, FileInput, SlashCommands } from '../extensions';
 import { registerProgramLanguages } from './languages';
 import { placeholders } from './placeholders';
 
@@ -51,6 +51,7 @@ export const PublishDocEditor = function () {
       Color,
       Underline,
       DragHandle,
+      Clipboard,
       StarterKit.configure({
         codeBlock: false,
       }),
@@ -112,10 +113,11 @@ export const PublishDocEditor = function () {
               <DocEditor.ColorPicker colors={swatches} />
               <DocEditor.Code />
               <Divider my={rem(4)} variant="dashed" orientation="vertical" />
+              <DocEditor.Copy />
             </DocEditor.FnGroup>
           </BubbleMenu>
         )}
-        {/* <DocEditor.FnGroup
+        <DocEditor.FnGroup
           style={{
             zIndex: 1000,
             position: 'absolute',
@@ -132,7 +134,8 @@ export const PublishDocEditor = function () {
           <DocEditor.ColorPicker colors={swatches} />
           <DocEditor.Code />
           <Divider my={rem(4)} variant="dashed" orientation="vertical" />
-        </DocEditor.FnGroup> */}
+          <DocEditor.Copy />
+        </DocEditor.FnGroup>
         <DocEditor.Content />
       </DocEditor>
     </Box>

@@ -3699,6 +3699,7 @@ __metadata:
   dependencies:
     "@mantine/core": "npm:7.5.3"
     "@mantine/hooks": "npm:7.5.3"
+    "@sereneinserenade/tiptap-search-and-replace": "npm:^0.1.1"
     "@tabler/icons-react": "npm:2.46.0"
     "@tiptap/core": "npm:2.2.3"
     "@tiptap/extension-code-block-lowlight": "npm:2.2.3"
@@ -4195,6 +4196,16 @@ __metadata:
   version: 4.5.1
   resolution: "@rollup/rollup-win32-x64-msvc@npm:4.5.1"
   conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@sereneinserenade/tiptap-search-and-replace@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@sereneinserenade/tiptap-search-and-replace@npm:0.1.1"
+  peerDependencies:
+    "@tiptap/core": ^2.x.x
+    "@tiptap/pm": ^2.x.x
+  checksum: d937e14909dfdce4316f920748087982851e8de6ee10c3eafb84fd1fee93ceb13f7faf38a796e37944a36312980bdeb76c434abe702dfeedf2d2354e78adcf09
   languageName: node
   linkType: hard
 

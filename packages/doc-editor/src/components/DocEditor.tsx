@@ -11,10 +11,10 @@ import React, { useMemo } from 'react';
 import { DocEditorContent } from './Content/Content';
 import { DocEditorProvider } from './DocEditor.context';
 import classes from './DocEditor.module.css';
+import type { DocEditorLabels } from './DocEditorLabels';
 import * as fn from './Fn';
 import { BaseFn } from './Fn/BaseFn';
 import { BaseFnGroup } from './FnGroup/FnGroup';
-import type { DocEditorLabels } from './labels';
 import { DEFAULT_LABELS } from './labels';
 
 export type DocEditorStylesNames =
@@ -89,6 +89,7 @@ export type DocEditorFactory = Factory<{
     Undo: typeof fn.UndoFn;
     Redo: typeof fn.RedoFn;
     FnList: typeof fn.FnListFn;
+    Copy: typeof fn.CopyFn;
   };
 }>;
 
@@ -190,3 +191,4 @@ DocEditor.UnsetColor = fn.UnsetColorFn;
 DocEditor.Undo = fn.UndoFn;
 DocEditor.Redo = fn.RedoFn;
 DocEditor.FnList = fn.FnListFn;
+DocEditor.Copy = fn.CopyFn;
