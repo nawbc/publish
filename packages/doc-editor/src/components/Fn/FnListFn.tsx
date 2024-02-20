@@ -5,7 +5,6 @@ import type {
   PopoverProps,
 } from '@mantine/core';
 import { Menu, rem, Text, useProps } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
 import {
   IconArrowsLeftRight,
   IconMenu2,
@@ -35,13 +34,13 @@ export const FnListFn = forwardRef<HTMLDivElement, FnListFnProps>(
     const { ...others } = useProps('FnListFn', defaultProps, props);
 
     const { labels, getStyles } = useDocEditorContext();
-    const [opened, { open, close }] = useDisclosure(false);
 
     return (
       <Menu
-        opened={opened}
-        withinPortal
-        onClose={close}
+        // opened={opened}
+        // withinPortal={false}
+        trigger="hover"
+        trapFocus={false}
         // {...popoverProps}
       >
         <Menu.Target>
@@ -50,8 +49,8 @@ export const FnListFn = forwardRef<HTMLDivElement, FnListFnProps>(
             aria-label={labels.colorPickerFnLabel}
             title={labels.colorPickerFnLabel}
             ref={ref}
-            onMouseEnter={open}
-            onMouseLeave={close}
+            // onMouseEnter={open}
+            // onMouseLeave={close}
           >
             <IconMenu2 style={{ width: rem(20), height: rem(20) }} />
             <Menu.Dropdown {...getStyles('linkEditorDropdown')}>

@@ -115,7 +115,7 @@ export const PublishDocEditor = function () {
             </DocEditor.FnGroup>
           </BubbleMenu>
         )}
-        <DocEditor.FnGroup
+        {/* <DocEditor.FnGroup
           style={{
             zIndex: 1000,
             position: 'absolute',
@@ -132,7 +132,7 @@ export const PublishDocEditor = function () {
           <DocEditor.ColorPicker colors={swatches} />
           <DocEditor.Code />
           <Divider my={rem(4)} variant="dashed" orientation="vertical" />
-        </DocEditor.FnGroup>
+        </DocEditor.FnGroup> */}
         <DocEditor.Content />
       </DocEditor>
     </Box>
