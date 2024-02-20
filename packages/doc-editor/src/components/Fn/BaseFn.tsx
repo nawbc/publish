@@ -4,7 +4,14 @@ import type {
   ElementProps,
   Factory,
 } from '@mantine/core';
-import { factory, rem, UnstyledButton, useProps } from '@mantine/core';
+import {
+  Box,
+  Center,
+  factory,
+  rem,
+  UnstyledButton,
+  useProps,
+} from '@mantine/core';
 import type { Editor } from '@tiptap/react';
 import React, { forwardRef } from 'react';
 
@@ -24,6 +31,12 @@ export interface BaseFnProps
   disabled?: boolean;
   /** Determines whether the fn can be interacted with, set `false` to make the fn to act as a label */
   interactive?: boolean;
+
+  shortcut?: string;
+
+  label?: string;
+
+  fluid?: boolean;
 }
 
 export type BaseFnFactory = Factory<{
@@ -35,6 +48,7 @@ export type BaseFnFactory = Factory<{
 
 const defaultProps: Partial<BaseFnProps> = {
   interactive: true,
+  fluid: false,
 };
 
 export const BaseFn = factory<BaseFnFactory>((_props, ref) => {
@@ -49,6 +63,10 @@ export const BaseFn = factory<BaseFnFactory>((_props, ref) => {
     active,
     onMouseDown,
     disabled,
+    fluid,
+    children,
+    label,
+    shortcut,
     ...others
   } = props;
   const ctx = useDocEditorContext();
@@ -64,10 +82,12 @@ export const BaseFn = factory<BaseFnFactory>((_props, ref) => {
         active: true,
       })}
       // disabled={disabled}
+      fz="sm"
       component="div"
       tabIndex={interactive ? 0 : -1}
       data-interactive={interactive || undefined}
       data-disabled={disabled || undefined}
+      data-fluid={fluid || undefined}
       data-active={active || undefined}
       aria-pressed={(active && interactive) || undefined}
       aria-hidden={!interactive || undefined}
@@ -77,7 +97,15 @@ export const BaseFn = factory<BaseFnFactory>((_props, ref) => {
         event.preventDefault();
         onMouseDown?.(event);
       }}
-    />
+    >
+      {children && <Center data-pos-left>{children}</Center>}
+      {fluid && label && <Box flex="1">{label}</Box>}
+      {fluid && shortcut && (
+        <Center fz={rem(10)} c="dimmed">
+          {shortcut}
+        </Center>
+      )}
+    </UnstyledButton>
   );
 });
 
@@ -112,6 +140,7 @@ FnFactory.displayName = '@mantine/tiptap/FnFactory';
 export interface CreateFnProps {
   label: keyof DocEditorLabels;
   icon: React.FC<{ style: React.CSSProperties }>;
+  shortcut?: string;
   isActive?: { name: string; attributes?: Record<string, unknown> | string };
   isDisabled?: (editor: Editor | null) => boolean;
   operation: { name: string; attributes?: Record<string, unknown> | string };
@@ -120,6 +149,7 @@ export interface CreateFnProps {
 export function createFn({
   label,
   isActive,
+  shortcut = '',
   operation,
   icon,
   isDisabled,
@@ -128,11 +158,14 @@ export function createFn({
     const props = useProps('BaseFn', defaultProps, _props);
     const { editor, labels } = useDocEditorContext();
     const _label = labels[label] as string;
+    const title = shortcut ? `${_label} - ${shortcut}` : _label;
 
     return (
       <FnFactory
         {...props}
-        title={_label}
+        title={title}
+        label={_label}
+        shortcut={shortcut}
         active={
           isActive?.name
             ? editor?.isActive(isActive.name, isActive.attributes)

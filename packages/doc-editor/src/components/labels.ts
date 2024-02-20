@@ -131,7 +131,7 @@ export interface DocEditorLabels {
 export const DEFAULT_LABELS: DocEditorLabels = {
   // Fns labels
   linkFnLabel: 'Link',
-  colorPickerFnLabel: 'Text color',
+  colorPickerFnLabel: 'Color picker',
   highlightFnLabel: 'Highlight text',
   colorFnLabel: (color) => `Set text color ${color}`,
   boldFnLabel: 'Bold',

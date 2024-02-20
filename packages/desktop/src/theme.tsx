@@ -38,13 +38,13 @@ export const variantColorResolver: VariantColorsResolver = (input) => {
 export const theme = createTheme({
   fontFamily: `Inter,-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji, system-ui`,
-  fontSizes: {
-    xs: rem(10),
-    sm: rem(12),
-    md: rem(14),
-    lg: rem(16),
-    xl: rem(20),
-  },
+  // fontSizes: {
+  //   xs: rem(10),
+  //   sm: rem(12),
+  //   md: rem(14),
+  //   lg: rem(16),
+  //   xl: rem(20),
+  // },
   components: {
     ActionIcon: {
       defaultProps: {

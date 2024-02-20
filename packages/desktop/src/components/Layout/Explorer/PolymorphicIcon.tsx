@@ -42,6 +42,6 @@ export const PolymorphicIcon: FC<PolymorphicIconProps> = (props) => {
 };
 
 PolymorphicIcon.defaultProps = {
-  size: 20,
+  size: 21,
   c: 'gray.7',
 };

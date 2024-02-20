@@ -193,13 +193,13 @@
 .fn {
   background-color: var(--_fn-bg);
   color: var(--_fn-color);
-  min-width: rem(32px);
-  height: rem(32px);
+  padding: var(--_fn-spacing, calc(var(--mantine-spacing-xs) / 1.5));
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: var(--_fn-justify-content, start);
   align-items: center;
   cursor: var(--_fn-cursor, default);
-  margin: 0 rem(5px);
+  margin: 0 var(--_fn-mx, rem(5));
 
   &:where([data-disabled]) {
     cursor: not-allowed;
@@ -212,6 +212,16 @@
     @mixin where-dark {
       background-color: var(--mantine-color-dark-5);
       color: var(--mantine-color-dark-3);
+    }
+  }
+
+  &[data-fluid] {
+    --_fn-spacing: calc(var(--mantine-spacing-xs) / 1.5)
+      var(--mantine-spacing-sm);
+    --_fn-mx: 0;
+    --_fn-justify-content: start;
+    [data-pos-left] {
+      margin-right: var(--mantine-spacing-xs);
     }
   }
 
@@ -246,6 +256,10 @@
   @mixin dark {
     --_fn-bg: var(--mantine-color-dark-6);
   }
+}
+
+.fnLabel {
+  flex: 1 1 0;
 }
 
 .fnGroup {

@@ -78,7 +78,7 @@ export const TreeNode: FC<TreeNodeProps> = (props) => {
       wrap="nowrap"
     >
       <ActionIcon
-        size={16}
+        size={17}
         c="gray"
         variant="transparent"
         aria-label="Folder collapse arrow"
@@ -88,7 +88,7 @@ export const TreeNode: FC<TreeNodeProps> = (props) => {
         {props.node.droppable && <IconChevronRight size={14} />}
       </ActionIcon>
       <PolymorphicIcon type={data?.type} />
-      <Text pl={5} size="md" c="black" pos="relative" top={rem(1)}>
+      <Text pl={5} size="sm" c="black" pos="relative" top={rem(1)}>
         {props.node.text}
       </Text>
     </Flex>

@@ -26,9 +26,13 @@ import {
 import { forwardRef, useState } from 'react';
 
 import { useDocEditorContext } from '../DocEditor.context';
+import type { BaseFnProps } from './BaseFn';
 import { BaseFn } from './BaseFn';
 
-export interface ColorPickerFnProps extends BoxProps, ElementProps<'div'> {
+export interface ColorPickerFnProps
+  extends BoxProps,
+    BaseFnProps,
+    ElementProps<'div'> {
   /** Props added to Popover component */
   popoverProps?: Partial<PopoverProps>;
 
@@ -36,10 +40,29 @@ export interface ColorPickerFnProps extends BoxProps, ElementProps<'div'> {
   colorPickerProps?: Partial<ColorPickerProps>;
 
   /** List of colors that the user can choose from */
-  colors: string[];
+  colors?: string[];
 }
 
-const defaultProps: Partial<ColorPickerFnProps> = {};
+const swatches = [
+  '#25262b',
+  '#868e96',
+  '#fa5252',
+  '#e64980',
+  '#be4bdb',
+  '#7950f2',
+  '#4c6ef5',
+  '#228be6',
+  '#15aabf',
+  '#12b886',
+  '#40c057',
+  '#82c91e',
+  '#fab005',
+  '#fd7e14',
+];
+
+const defaultProps: Partial<ColorPickerFnProps> = {
+  colors: swatches,
+};
 
 export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
   (props, ref) => {
@@ -65,7 +88,7 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
       close();
     };
 
-    const fns = colors.map((color, index) => (
+    const fns = colors!.map((color, index) => (
       <ColorSwatch
         key={index}
         component="button"
@@ -92,6 +115,7 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
             {...others}
             aria-label={labels.colorPickerFnLabel}
             title={labels.colorPickerFnLabel}
+            label={labels.colorPickerFnLabel}
             ref={ref}
             onMouseEnter={open}
             onMouseLeave={close}

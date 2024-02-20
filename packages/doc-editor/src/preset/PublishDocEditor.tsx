@@ -4,6 +4,10 @@ import { Box, Divider, rem } from '@mantine/core';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import { Color } from '@tiptap/extension-color';
 import Placeholder from '@tiptap/extension-placeholder';
+import Table from '@tiptap/extension-table';
+import TableCell from '@tiptap/extension-table-cell';
+import TableHeader from '@tiptap/extension-table-header';
+import TableRow from '@tiptap/extension-table-row';
 import TaskItem from '@tiptap/extension-task-item';
 import TaskList from '@tiptap/extension-task-list';
 import TextStyle from '@tiptap/extension-text-style';
@@ -20,23 +24,6 @@ import { placeholders } from './placeholders';
 
 const lowlight = registerProgramLanguages();
 
-const swatches = [
-  '#25262b',
-  '#868e96',
-  '#fa5252',
-  '#e64980',
-  '#be4bdb',
-  '#7950f2',
-  '#4c6ef5',
-  '#228be6',
-  '#15aabf',
-  '#12b886',
-  '#40c057',
-  '#82c91e',
-  '#fab005',
-  '#fd7e14',
-];
-
 export const PublishDocEditor = function () {
   const editor = useEditor({
     editorProps: {
@@ -48,23 +35,26 @@ export const PublishDocEditor = function () {
       Link,
       FileInput,
       TextStyle,
-      Color,
       Underline,
       DragHandle,
       Clipboard,
+      Color,
+      TaskList,
+      Table.configure({
+        resizable: true,
+      }),
+      TableRow,
+      TableHeader,
+      TableCell,
       StarterKit.configure({
         codeBlock: false,
       }),
       CodeBlockLowlight.configure({ lowlight }),
-      TaskList,
       TaskItem.configure({
         nested: true,
       }),
       SlashCommands.configure({
         // suggestion,
-      }),
-      Color.configure({
-        types: ['textStyle'],
       }),
       Placeholder.configure({
         placeholder: ({ node }) => {
@@ -110,7 +100,7 @@ export const PublishDocEditor = function () {
               <DocEditor.Italic />
               <DocEditor.Link />
               <DocEditor.ClearFormatting />
-              <DocEditor.ColorPicker colors={swatches} />
+              <DocEditor.ColorPicker />
               <DocEditor.Code />
               <Divider my={rem(4)} variant="dashed" orientation="vertical" />
               <DocEditor.Copy />
@@ -131,7 +121,7 @@ export const PublishDocEditor = function () {
           <DocEditor.Italic />
           <DocEditor.Link />
           <DocEditor.ClearFormatting />
-          <DocEditor.ColorPicker colors={swatches} />
+          <DocEditor.ColorPicker />
           <DocEditor.Code />
           <Divider my={rem(4)} variant="dashed" orientation="vertical" />
           <DocEditor.Copy />

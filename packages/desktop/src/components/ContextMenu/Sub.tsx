@@ -112,7 +112,7 @@ export const ContextMenuSub: React.FC<SubMenuProps> = ({
           {label}
           {trailing ?? <IconChevronRight size={14} />}
         </Box>
-        <Box className={clsx(styles.sub)} ref={subMenuNode} style={style}>
+        <Box className={styles.sub} ref={subMenuNode} style={style}>
           {cloneItems(children, {
             propsFromTrigger,
             // @ts-ignore: injected by the parent

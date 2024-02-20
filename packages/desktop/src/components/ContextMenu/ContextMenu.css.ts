@@ -67,7 +67,7 @@ export const main = style({
   backgroundColor: 'var(--publish-backdrop-color-default)',
   boxSizing: 'border-box',
   boxShadow: 'var(--publish-color-context-menu-border)',
-  borderRadius: 'var(--mantine-radius-sm)',
+  borderRadius: 'var(--mantine-radius-default)',
   padding: rem(4),
   zIndex: 999,
   selectors: {
@@ -119,10 +119,10 @@ export const item = style({
   ':focus': {
     outline: 0,
   },
-  borderRadius: rem(6),
+  borderRadius: 'var(--mantine-radius-default)',
   color: fallbackVar(itemColor, 'var(--mantine-color-text)'),
-  fontSize: rem(13),
-  padding: 'calc(var(--mantine-spacing-xs) / 2) var(--mantine-spacing-sm)',
+  fontSize: 'var(--mantine-font-size-sm)',
+  padding: 'calc(var(--mantine-spacing-xs) / 1.5) var(--mantine-spacing-sm)',
   backgroundColor: fallbackVar(itemBg, 'transparent'),
   display: 'flex',
   alignItems: 'center',

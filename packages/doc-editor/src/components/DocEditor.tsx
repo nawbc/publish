@@ -25,6 +25,8 @@ export type DocEditorStylesNames =
   | 'typographyStylesProvider'
   | 'fn'
   | 'fnGroup'
+  | 'fnSection'
+  | 'fnLabel'
   | 'linkEditor'
   | 'linkEditorInput'
   | 'linkEditorExternalFn';
