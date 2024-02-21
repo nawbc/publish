@@ -1,6 +1,15 @@
-import { ActionIcon, Flex, rem, Text } from '@mantine/core';
+import {
+  ActionIcon,
+  Flex,
+  rem,
+  Text,
+  Transition,
+  UnstyledButton,
+} from '@mantine/core';
+import { useClickOutside, useMergedRef } from '@mantine/hooks';
 import type { NodeModel, RenderParams } from '@publishjs/react-dnd-treeview';
 import { IconChevronRight } from '@tabler/icons-react';
+import { clsx } from 'clsx';
 import type { MouseEvent } from 'react';
 import { type FC, useCallback, useEffect } from 'react';
 
@@ -20,16 +29,14 @@ export interface TreeNodeProps extends RenderParams {
 }
 
 export const TreeNode: FC<TreeNodeProps> = (props) => {
-  const {
-    node,
-    onClick,
-    containerRef,
-    onToggle,
-    isSelected,
-    isDragging,
-    handleRef,
-  } = props;
+  const { node, onClick, onToggle, isSelected, isDragging, isOpen, handleRef } =
+    props;
+
   const { id, droppable, data } = node;
+  // const useClickOutsideRef = useClickOutside(() => {
+  //   handleRef.current?.classList.remove(styles.selected);
+  // });
+  // const mergedRef = useMergedRef(useClickOutsideRef, handleRef);
 
   const { show } = useContextMenu({
     id: EXPLORER_MENU_ID,
@@ -52,45 +59,50 @@ export const TreeNode: FC<TreeNodeProps> = (props) => {
 
   useEffect(() => {
     if (isSelected) {
-      containerRef.current?.classList.add(styles.selected);
+      handleRef.current?.classList.add(styles.selected);
     } else {
-      containerRef.current?.classList.remove(styles.selected);
+      handleRef.current?.classList.remove(styles.selected);
     }
-  }, [containerRef, isSelected]);
+  }, [handleRef, isSelected]);
 
   useEffect(() => {
     if (isDragging) {
-      containerRef.current?.classList.add(styles.dragging);
+      handleRef.current?.classList.add(styles.dragging);
     } else {
-      containerRef.current?.classList.remove(styles.dragging);
+      handleRef.current?.classList.remove(styles.dragging);
     }
-  }, [containerRef, isDragging]);
+  }, [handleRef, isDragging]);
 
   return (
-    <Flex
+    <UnstyledButton
+      className={styles.node}
       ref={handleRef}
       onContextMenu={showMenu}
       onClick={handleClick}
       mih={32}
-      gap={0}
-      align="center"
-      direction="row"
-      wrap="nowrap"
+      w="100%"
+      title={node.text}
     >
       <ActionIcon
+        component="div"
+        className={clsx(
+          droppable && {
+            [styles.chevron.down]: isOpen,
+            [styles.chevron.right]: !isOpen,
+          },
+        )}
         size={17}
         c="gray"
         variant="transparent"
         aria-label="Folder collapse arrow"
-        pos="relative"
-        top={rem(-1)}
       >
-        {props.node.droppable && <IconChevronRight size={14} />}
+        {droppable && <IconChevronRight size={14} />}
       </ActionIcon>
+
       <PolymorphicIcon type={data?.type} />
       <Text pl={5} size="sm" c="black" pos="relative" top={rem(1)}>
-        {props.node.text}
+        {node.text}
       </Text>
-    </Flex>
+    </UnstyledButton>
   );
 };

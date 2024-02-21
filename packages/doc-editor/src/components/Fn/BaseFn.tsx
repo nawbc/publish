@@ -32,7 +32,7 @@ export interface BaseFnProps
   /** Determines whether the fn can be interacted with, set `false` to make the fn to act as a label */
   interactive?: boolean;
 
-  shortcut?: string;
+  trailing?: string | React.ReactElement;
 
   label?: string;
 
@@ -51,6 +51,7 @@ const defaultProps: Partial<BaseFnProps> = {
   fluid: false,
 };
 
+//TODO: keyboard controls the direction
 export const BaseFn = factory<BaseFnFactory>((_props, ref) => {
   const props = useProps('BaseFn', defaultProps, _props);
   const {
@@ -66,7 +67,7 @@ export const BaseFn = factory<BaseFnFactory>((_props, ref) => {
     fluid,
     children,
     label,
-    shortcut,
+    trailing,
     ...others
   } = props;
   const ctx = useDocEditorContext();
@@ -81,8 +82,13 @@ export const BaseFn = factory<BaseFnFactory>((_props, ref) => {
         styles,
         active: true,
       })}
-      // disabled={disabled}
       fz="sm"
+      __vars={{
+        '--_fn-hover-color-default': '#E9ECEF80',
+        '--_fn-backdrop-color-default': '#ffffff80',
+        '--_fn-backdrop-filter': 'saturate(180%) blur(10px)',
+      }}
+      // disabled={disabled}
       component="div"
       tabIndex={interactive ? 0 : -1}
       data-interactive={interactive || undefined}
@@ -100,9 +106,9 @@ export const BaseFn = factory<BaseFnFactory>((_props, ref) => {
     >
       {children && <Center data-pos-left>{children}</Center>}
       {fluid && label && <Box flex="1">{label}</Box>}
-      {fluid && shortcut && (
+      {fluid && trailing && (
         <Center fz={rem(10)} c="dimmed">
-          {shortcut}
+          {trailing}
         </Center>
       )}
     </UnstyledButton>
@@ -140,7 +146,7 @@ FnFactory.displayName = '@mantine/tiptap/FnFactory';
 export interface CreateFnProps {
   label: keyof DocEditorLabels;
   icon: React.FC<{ style: React.CSSProperties }>;
-  shortcut?: string;
+  trailing?: string | React.ReactElement;
   isActive?: { name: string; attributes?: Record<string, unknown> | string };
   isDisabled?: (editor: Editor | null) => boolean;
   operation: { name: string; attributes?: Record<string, unknown> | string };
@@ -149,7 +155,7 @@ export interface CreateFnProps {
 export function createFn({
   label,
   isActive,
-  shortcut = '',
+  trailing = '',
   operation,
   icon,
   isDisabled,
@@ -158,14 +164,14 @@ export function createFn({
     const props = useProps('BaseFn', defaultProps, _props);
     const { editor, labels } = useDocEditorContext();
     const _label = labels[label] as string;
-    const title = shortcut ? `${_label} - ${shortcut}` : _label;
+    const title = trailing ? `${_label} - ${trailing}` : _label;
 
     return (
       <FnFactory
         {...props}
         title={title}
         label={_label}
-        shortcut={shortcut}
+        trailing={trailing}
         active={
           isActive?.name
             ? editor?.isActive(isActive.name, isActive.attributes)

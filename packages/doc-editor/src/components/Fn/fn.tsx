@@ -34,7 +34,7 @@ import { createFn } from './BaseFn';
 
 export const BoldFn = createFn({
   label: 'boldFnLabel',
-  shortcut: 'Ctrl+B',
+  trailing: 'Ctrl+B',
   icon: (props) => <IconBold {...props} />,
   isActive: { name: 'bold' },
   operation: { name: 'toggleBold' },
@@ -42,7 +42,7 @@ export const BoldFn = createFn({
 
 export const ItalicFn = createFn({
   label: 'italicFnLabel',
-  shortcut: 'Ctrl+I',
+  trailing: 'Ctrl+I',
   icon: (props) => <IconItalic {...props} />,
   isActive: { name: 'italic' },
   operation: { name: 'toggleItalic' },
@@ -50,7 +50,7 @@ export const ItalicFn = createFn({
 
 export const UnderlineFn = createFn({
   label: 'underlineFnLabel',
-  shortcut: 'Ctrl+U',
+  trailing: 'Ctrl+U',
   icon: (props) => <IconUnderline {...props} />,
   isActive: { name: 'underline' },
   operation: { name: 'toggleUnderline' },
@@ -58,7 +58,7 @@ export const UnderlineFn = createFn({
 
 export const StrikeThroughFn = createFn({
   label: 'strikeFnLabel',
-  shortcut: 'Ctrl+Shift+X',
+  trailing: 'Ctrl+Shift+X',
   icon: (props) => <IconStrikethrough {...props} />,
   isActive: { name: 'strike' },
   operation: { name: 'toggleStrike' },
@@ -94,7 +94,7 @@ export const OrderedListFn = createFn({
 
 export const H1Fn = createFn({
   label: 'h1FnLabel',
-  shortcut: 'Ctrl+Alt+1',
+  trailing: 'Ctrl+Alt+1',
   icon: (props) => <IconH1 {...props} />,
   isActive: { name: 'heading', attributes: { level: 1 } },
   operation: { name: 'toggleHeading', attributes: { level: 1 } },
@@ -137,7 +137,7 @@ export const H6Fn = createFn({
 
 export const BlockquoteFn = createFn({
   label: 'blockquoteFnLabel',
-  shortcut: 'Ctrl+Alt+B',
+  trailing: 'Ctrl+Alt+B',
   icon: (props) => <IconBlockquote {...props} />,
   isActive: { name: 'blockquote' },
   operation: { name: 'toggleBlockquote' },
@@ -183,7 +183,7 @@ export const SuperscriptFn = createFn({
 
 export const CodeFn = createFn({
   label: 'codeFnLabel',
-  shortcut: 'Ctrl+E',
+  trailing: 'Ctrl+E',
   icon: (props) => <IconCode {...props} />,
   isActive: { name: 'code' },
   operation: { name: 'toggleCode' },
@@ -191,6 +191,7 @@ export const CodeFn = createFn({
 
 export const CodeBlockFn = createFn({
   label: 'codeBlockFnLabel',
+  trailing: 'Ctrl+Alt+C',
   icon: (props) => <IconCodeCircle {...props} />,
   isActive: { name: 'codeBlock' },
   operation: { name: 'toggleCodeBlock' },

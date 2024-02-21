@@ -2,7 +2,7 @@ import type {
   BoxProps,
   ColorPickerProps,
   ElementProps,
-  PopoverProps,
+  MenuProps,
 } from '@mantine/core';
 import { Menu, rem, useProps } from '@mantine/core';
 import { IconMenu2 } from '@tabler/icons-react';
@@ -23,8 +23,7 @@ import {
 
 export interface FnListFnProps extends BoxProps, ElementProps<'div'> {
   /** Props added to Popover component */
-  popoverProps?: Partial<PopoverProps>;
-
+  menuProps?: Partial<MenuProps>;
   /** Props added to ColorPicker component */
   colorPickerProps?: Partial<ColorPickerProps>;
 }
@@ -33,17 +32,16 @@ const defaultProps: Partial<FnListFnProps> = {};
 
 export const FnListFn = forwardRef<HTMLDivElement, FnListFnProps>(
   (props, ref) => {
-    const { ...others } = useProps('FnListFn', defaultProps, props);
-
-    const { editor, labels, getStyles } = useDocEditorContext();
+    const { menuProps, ...others } = useProps('FnListFn', defaultProps, props);
+    const { labels, getStyles } = useDocEditorContext();
 
     return (
       <Menu
-        opened={true}
+        // opened={true}
         trigger="hover"
         trapFocus={false}
         width={220}
-        // {...popoverProps}
+        {...menuProps}
       >
         <Menu.Target>
           <BaseFn

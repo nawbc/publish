@@ -32,7 +32,9 @@ export const PublishDocEditor = function () {
       },
     },
     extensions: [
-      Link,
+      Link.configure({
+        openOnClick: true,
+      }),
       FileInput,
       TextStyle,
       Underline,
@@ -107,25 +109,6 @@ export const PublishDocEditor = function () {
             </DocEditor.FnGroup>
           </BubbleMenu>
         )}
-        <DocEditor.FnGroup
-          style={{
-            zIndex: 1000,
-            position: 'absolute',
-          }}
-        >
-          <DocEditor.FnList />
-          <Divider my={rem(4)} variant="dashed" orientation="vertical" />
-          <DocEditor.Bold />
-          <DocEditor.Underline />
-          <DocEditor.Strikethrough />
-          <DocEditor.Italic />
-          <DocEditor.Link />
-          <DocEditor.ClearFormatting />
-          <DocEditor.ColorPicker />
-          <DocEditor.Code />
-          <Divider my={rem(4)} variant="dashed" orientation="vertical" />
-          <DocEditor.Copy />
-        </DocEditor.FnGroup>
         <DocEditor.Content />
       </DocEditor>
     </Box>

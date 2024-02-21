@@ -1,7 +1,4 @@
 .root {
-  --publish-backdrop-blur: saturate(180%) blur(10px);
-  --publish-backdrop-color-default: #ffffff80;
-  --_fn-backdrop-color: #8b8b8b0d;
   position: relative;
 }
 
@@ -231,7 +228,7 @@
 
     @mixin hover {
       @mixin light {
-        --_fn-bg: var(--_fn-backdrop-color);
+        --_fn-bg: var(--_fn-hover-color-default);
       }
 
       @mixin dark {
@@ -264,12 +261,15 @@
 
 .fnGroup {
   display: flex;
-  background-color: var(--publish-backdrop-color-default);
+  background-color: var(
+    --publish-backdrop-color-default,
+    var(--_fn-backdrop-color-default)
+  );
   border: rem(1px) solid var(--_fn-bd);
   border-radius: var(--mantine-radius-md);
   overflow: hidden;
   padding: rem(5px) rem(10px);
-  backdrop-filter: var(--publish-backdrop-blur);
+  backdrop-filter: var(--publish-backdrop-filter, var(--_fn-backdrop-filter));
 
   @mixin light {
     --_fn-bd: var(--mantine-color-gray-2);

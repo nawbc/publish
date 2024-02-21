@@ -3,7 +3,7 @@ import { globalStyle, style } from '@vanilla-extract/css';
 export const treeRoot = style({
   listStyleType: 'none',
   paddingInlineStart: 10,
-  height: '100%',
+  marginTop: 0,
 });
 
 export const listItem = style({

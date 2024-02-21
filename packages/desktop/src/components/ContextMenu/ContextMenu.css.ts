@@ -79,7 +79,7 @@ export const main = style({
       left: 0,
       right: 0,
       bottom: 0,
-      backdropFilter: 'var(--publish-backdrop-blur)',
+      backdropFilter: 'var(--publish-backdrop-filter)',
     },
   },
 });
@@ -92,7 +92,7 @@ export const sub = style([
     transition: 'opacity .265s',
     top: `calc(-1 * ${rem(4)})`,
     left: '100%',
-    backdropFilter: 'var(--publish-backdrop-blur)',
+    backdropFilter: 'var(--publish-backdrop-filter)',
   },
 ]);
 

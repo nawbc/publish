@@ -17,7 +17,7 @@ export const resolver: CSSVariablesResolver = (theme) => ({
     '--publish-color-context-menu-hover': theme.other.contextMenuHoverLight,
     '--publish-color-context-menu-border': theme.other.contextMenuBorder,
     '--publish-backdrop-color-default': '#ffffff80',
-    '--publish-backdrop-blur': 'saturate(180%) blur(10px)',
+    '--publish-backdrop-filter': 'saturate(180%) blur(10px)',
   },
   dark: {
     '--publish-color-active-divider-handler':
@@ -49,6 +49,8 @@ export const theme = createTheme({
     ActionIcon: {
       defaultProps: {
         variant: 'transparent',
+        c: 'gray.7',
+        color: 'gray.7',
       },
     },
     ScrollArea: {

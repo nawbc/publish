@@ -79,6 +79,7 @@
   & :where(a) {
     color: var(--mantine-color-anchor);
     text-decoration: none;
+    cursor: pointer;
 
     @mixin hover {
       text-decoration: underline;

@@ -1,8 +1,5 @@
 import { Badge } from '@mantine/core';
-import type {
-  DragLayerMonitorProps,
-  NodeModel,
-} from '@publishjs/react-dnd-treeview';
+import type { DragItem, NodeModel } from '@publishjs/react-dnd-treeview';
 import { type FC, useMemo } from 'react';
 
 import { PolymorphicIcon } from './PolymorphicIcon';
@@ -22,7 +19,7 @@ export const MultipleDragPreview: FC<SingleDragPreviewProps> = (props) => {
 
   const showcases = Array.prototype.map.call(
     items,
-    ({ item }: DragLayerMonitorProps<NodeData>) => {
+    (item: DragItem<NodeData>) => {
       return (
         <Badge
           key={item.text}

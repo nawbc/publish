@@ -113,14 +113,14 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
         <Popover.Target>
           <BaseFn
             {...others}
-            aria-label={labels.colorPickerFnLabel}
+            mx={0}
+            px="xs"
             title={labels.colorPickerFnLabel}
             label={labels.colorPickerFnLabel}
             ref={ref}
             onMouseEnter={open}
             onMouseLeave={close}
-            px="xs"
-            mx={0}
+            aria-label={labels.colorPickerFnLabel}
           >
             <IconColorPicker
               color={currentColor}

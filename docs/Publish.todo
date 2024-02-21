@@ -96,9 +96,34 @@
       },
       {
         "key": 1708233092650,
-        "children": [],
+        "children": [
+          {
+            "key": 1708524636449,
+            "children": [],
+            "todo": {
+              "content": "File type association",
+              "id": 1708524636449,
+              "level": "default",
+              "done": false,
+              "start": 1708524636449,
+              "tip": "e.g.\n{\n   accept: [“text/html”, \"video/mp4\"]\n}\n"
+            }
+          },
+          {
+            "key": 1708524772180,
+            "children": [],
+            "todo": {
+              "content": "Category",
+              "id": 1708524772180,
+              "level": "default",
+              "done": false,
+              "start": 1708524772180,
+              "tip": "Article, Video, Music..."
+            }
+          }
+        ],
         "todo": {
-          "content": "Plugin Runtime",
+          "content": "Plugin",
           "id": 1708233092650,
           "level": "success",
           "done": false,
@@ -115,10 +140,36 @@
           "done": false,
           "start": 1708233114453
         }
+      },
+      {
+        "key": 1708522052882,
+        "children": [
+          {
+            "key": 1708522086802,
+            "children": [],
+            "todo": {
+              "content": ".publish folder save config locally",
+              "id": 1708522086802,
+              "level": "default",
+              "done": false,
+              "start": 1708522086802,
+              "tip": "https://developer.mozilla.org/en-US/docs/Web/API/Window/showDirectoryPicker"
+            }
+          }
+        ],
+        "todo": {
+          "content": "Local folder",
+          "id": 1708522052882,
+          "level": "default",
+          "done": false,
+          "start": 1708522052882,
+          "tip": "https://developer.mozilla.org/en-US/docs/Web/API/Window/showDirectoryPicker"
+        }
       }
     ],
     "expandKeys": [
-      1708233027669
+      1708233048488,
+      1708233092650
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
@@ -139,6 +190,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1708246186505"
+    "version": "1708524845026"
   }
 }
