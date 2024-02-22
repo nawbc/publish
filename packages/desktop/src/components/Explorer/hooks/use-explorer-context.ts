@@ -2,6 +2,6 @@ import { useContext } from 'react';
 
 import { ExplorerContext } from '../ExplorerContext';
 
-export const useExplorerContext = function () {
+export const useExplorer = function () {
   return useContext(ExplorerContext);
 };

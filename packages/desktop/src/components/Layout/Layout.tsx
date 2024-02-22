@@ -1,11 +1,4 @@
-import {
-  ActionIcon,
-  Box,
-  Container,
-  rem,
-  ScrollArea,
-  Tooltip,
-} from '@mantine/core';
+import { ActionIcon, Box, Container, rem, Tooltip } from '@mantine/core';
 import { PublishDocEditor } from '@publish/doc-editor/preset/index.js';
 import { createTransport, IndexedDBTransport, Logger } from '@publish/logger';
 import { IconLayoutSidebarLeftExpand } from '@tabler/icons-react';
@@ -13,9 +6,9 @@ import type { PropsWithChildren } from 'react';
 import { type FC, useCallback } from 'react';
 import { Outlet } from 'react-router';
 
+import { ExplorerProvider } from '../Explorer';
+import { ScrollView } from '../ScrollView';
 import { DividerPanel, useDividerPanel } from './DividerPanel';
-import { ExplorerProvider } from './Explorer';
-import * as styles from './layout.css';
 import { PrimitiveSidebar } from './Sidebar';
 export interface DashboardLayoutProps extends PropsWithChildren {}
 
@@ -32,22 +25,10 @@ const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
             <PrimitiveSidebar />
           </DividerPanel.Leading>
           <DividerPanel.Trailing>
-            <ScrollArea.Autosize
-              h="100%"
-              w="100%"
-              mah="100%"
-              scrollbars="y"
-              scrollbarSize={10}
-              type="hover"
-              classNames={{
-                scrollbar: styles.scrollbar,
-                thumb: styles.scrollbarThumb,
-                viewport: styles.viewport,
-              }}
-            >
+            <ScrollView>
               <Header />
               <PublishDocEditor />
-            </ScrollArea.Autosize>
+            </ScrollView>
           </DividerPanel.Trailing>
         </DividerPanel>
       </Container>

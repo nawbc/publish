@@ -1,4 +1,3 @@
-import { Box } from '@mantine/core';
 import {
   getHotkeyHandler,
   useDisclosure,
@@ -11,14 +10,12 @@ import type {
 } from '@publishjs/react-dnd-treeview';
 import { isAncestor, MultiBackend, Tree } from '@publishjs/react-dnd-treeview';
 import type { FC } from 'react';
-import type { MouseEvent } from 'react';
 import { useCallback, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 
+import { DragPreview } from './DragPreview';
 import * as styles from './Explorer.css';
-import { useExplorerContext } from './hooks';
-import { MultipleDragPreview } from './MultipleDragPreview';
-import { SingleDragPreview } from './SingleDragPreview';
+import { useExplorer } from './hooks';
 import { TreeNode } from './TreeNode';
 import type { NodeData } from './types';
 
@@ -100,7 +97,7 @@ export const ExplorerTree: FC<any> = function () {
   const [isCtrlPressing, ctrlHandler] = useDisclosure(false);
   const [isDragging, setIsDragging] = useState(false);
   const [selectedNodes, setSelectedNodes] = useState<NodeModel<NodeData>[]>([]);
-  const { treeRef, allCollapsed } = useExplorerContext();
+  const { treeRef, allCollapsed } = useExplorer();
 
   useWindowEvent(
     'keydown',
@@ -223,7 +220,7 @@ export const ExplorerTree: FC<any> = function () {
     [selectedNodes],
   );
 
-  const handleDroppable = (tree, options) => {
+  const handleDroppable = (_tree, options) => {
     if (
       selectedNodes.some(
         (selectedNode) => selectedNode.id === options.dropTargetId,
@@ -232,6 +229,10 @@ export const ExplorerTree: FC<any> = function () {
       return false;
     }
   };
+
+  const handleDelete = useCallback(() => {}, []);
+
+  const handleRename = useCallback((id: number, name: string) => {}, []);
 
   return (
     <DndProvider backend={MultiBackend} options={getDndBackendOptions()}>
@@ -249,11 +250,7 @@ export const ExplorerTree: FC<any> = function () {
         onDragEnd={handleDragEnd}
         canDrop={handleDroppable}
         dragPreviewRender={(monitorProps: DragLayerMonitorProps<NodeData>) => {
-          if (selectedNodes.length > 1) {
-            return <MultipleDragPreview sources={selectedNodes} />;
-          }
-
-          return <SingleDragPreview {...monitorProps} />;
+          return <DragPreview nodes={selectedNodes} {...monitorProps} />;
         }}
         render={(node, options) => {
           const selected = selectedNodes.some(
@@ -262,8 +259,12 @@ export const ExplorerTree: FC<any> = function () {
 
           return (
             <TreeNode
-              node={node}
               {...options}
+              onRename={handleRename}
+              onDelete={function () {}}
+              onCopy={function () {}}
+              onPaste={function () {}}
+              node={node}
               isSelected={selected}
               isDragging={selected && isDragging}
               onClick={handlePointerNode}

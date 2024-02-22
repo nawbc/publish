@@ -2,8 +2,8 @@ import { Box, Flex } from '@mantine/core';
 import type { MouseEvent } from 'react';
 import { type FC, useCallback } from 'react';
 
-import { EXPLORER_EMPTY_ID } from '../../context-menus';
-import { useContextMenu } from '../../ContextMenu';
+import { EXPLORER_EMPTY_ID } from '../context-menus';
+import { useContextMenu } from '../ContextMenu';
 import { ActionsBar } from './ActionsBar';
 import { ExplorerTree } from './Tree';
 

@@ -2,10 +2,10 @@ import { ActionIcon, Flex, Group, rem } from '@mantine/core';
 import { IconArrowAutofitHeight, IconFolderPlus } from '@tabler/icons-react';
 import type { FC } from 'react';
 
-import { useExplorerContext } from './hooks';
+import { useExplorer } from './hooks';
 
 export const ActionsBar: FC<any> = function () {
-  const explorer = useExplorerContext();
+  const explorer = useExplorer();
   return (
     <Flex
       align="center"
