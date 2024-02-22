@@ -1,2 +1,2 @@
-export * from './FileContextMenu';
+export * from './ExplorerContextMenu';
 export * from './GlobalContextMenus';

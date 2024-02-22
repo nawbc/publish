@@ -15,9 +15,6 @@ import type { MouseEvent } from 'react';
 import { useCallback, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 
-import { EXPLORER_MENU_ID } from '~/components/context-menus';
-import { useContextMenu } from '~/components/ContextMenu';
-
 import * as styles from './Explorer.css';
 import { useExplorerContext } from './hooks';
 import { MultipleDragPreview } from './MultipleDragPreview';
@@ -103,17 +100,7 @@ export const ExplorerTree: FC<any> = function () {
   const [isCtrlPressing, ctrlHandler] = useDisclosure(false);
   const [isDragging, setIsDragging] = useState(false);
   const [selectedNodes, setSelectedNodes] = useState<NodeModel<NodeData>[]>([]);
-  const { show } = useContextMenu({
-    id: EXPLORER_MENU_ID,
-  });
   const { treeRef, allCollapsed } = useExplorerContext();
-
-  const showMenu = useCallback(
-    (e: MouseEvent) => {
-      show({ event: e });
-    },
-    [show],
-  );
 
   useWindowEvent(
     'keydown',
@@ -248,46 +235,42 @@ export const ExplorerTree: FC<any> = function () {
 
   return (
     <DndProvider backend={MultiBackend} options={getDndBackendOptions()}>
-      <Box onContextMenu={showMenu} h="100%">
-        <Tree
-          tree={tree}
-          ref={treeRef}
-          initialOpen={!allCollapsed}
-          rootId={0}
-          classes={{
-            root: styles.treeRoot,
-            listItem: styles.listItem,
-          }}
-          onDrop={handleDrop}
-          onDragStart={handleDragStart}
-          onDragEnd={handleDragEnd}
-          canDrop={handleDroppable}
-          dragPreviewRender={(
-            monitorProps: DragLayerMonitorProps<NodeData>,
-          ) => {
-            if (selectedNodes.length > 1) {
-              return <MultipleDragPreview sources={selectedNodes} />;
-            }
+      <Tree
+        tree={tree}
+        ref={treeRef}
+        initialOpen={!allCollapsed}
+        rootId={0}
+        classes={{
+          root: styles.treeRoot,
+          listItem: styles.listItem,
+        }}
+        onDrop={handleDrop}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+        canDrop={handleDroppable}
+        dragPreviewRender={(monitorProps: DragLayerMonitorProps<NodeData>) => {
+          if (selectedNodes.length > 1) {
+            return <MultipleDragPreview sources={selectedNodes} />;
+          }
 
-            return <SingleDragPreview {...monitorProps} />;
-          }}
-          render={(node, options) => {
-            const selected = selectedNodes.some(
-              (selectedNode) => selectedNode.id === node.id,
-            );
+          return <SingleDragPreview {...monitorProps} />;
+        }}
+        render={(node, options) => {
+          const selected = selectedNodes.some(
+            (selectedNode) => selectedNode.id === node.id,
+          );
 
-            return (
-              <TreeNode
-                node={node}
-                {...options}
-                isSelected={selected}
-                isDragging={selected && isDragging}
-                onClick={handlePointerNode}
-              />
-            );
-          }}
-        />
-      </Box>
+          return (
+            <TreeNode
+              node={node}
+              {...options}
+              isSelected={selected}
+              isDragging={selected && isDragging}
+              onClick={handlePointerNode}
+            />
+          );
+        }}
+      />
     </DndProvider>
   );
 };

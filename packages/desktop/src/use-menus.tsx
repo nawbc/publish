@@ -1,9 +1,9 @@
 import { IconFileCode, IconSettings } from '@tabler/icons-react';
 import { useTranslation } from 'react-i18next';
 
-import { type NavMenuTile } from '~/components/Layout';
+// import { type NavMenuTile } from './components/Layout';
 
-export const useMenus = (): NavMenuTile[] => {
+export const useMenus = (): [] => {
   // const [{ d: profile }] = useAtom(userProfileQueryAtom[0]);
   const { t } = useTranslation(['common', 'setting']);
   // const location = useLocation();
@@ -101,7 +101,6 @@ export const useMenus = (): NavMenuTile[] => {
   //   ]);
   // }
 
-   
   // }, [org, project, user, i18n.language]);
 
   return [

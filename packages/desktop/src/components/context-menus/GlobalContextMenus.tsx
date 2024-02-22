@@ -1,9 +1,13 @@
-import { FileContextMenu } from './FileContextMenu';
+import {
+  ExplorerEmptyContextMenu,
+  ExplorerNodeContextMenu,
+} from './ExplorerContextMenu';
 
 export function GlobalContextMenus() {
   return (
     <>
-      <FileContextMenu />
+      <ExplorerEmptyContextMenu />
+      <ExplorerNodeContextMenu />
     </>
   );
 }

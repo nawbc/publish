@@ -18,7 +18,6 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 export default defineConfig({
   plugins: [
     eruda({ debug: enableRemoteDebug }),
-    mkcert(),
     million.vite({ auto: true }),
     react({ plugins: [['@swc-jotai/react-refresh', {}]] }),
     vanillaExtractPlugin(),
@@ -29,6 +28,7 @@ export default defineConfig({
         exclude: ['node_modules', 'tests', __dirname],
         forceBuildInstrument: true,
       }),
+    mkcert(),
   ],
   envDir: resolve(__dirname, '../../'),
   clearScreen: false,
@@ -36,11 +36,6 @@ export default defineConfig({
     port: 3000,
     host: '0.0.0.0',
     strictPort: true,
-  },
-  resolve: {
-    alias: {
-      '~': resolve(__dirname, './src'),
-    },
   },
   envPrefix: ['VITE_', 'TAURI_'],
 });

@@ -13,9 +13,8 @@ import { clsx } from 'clsx';
 import type { MouseEvent } from 'react';
 import { type FC, useCallback, useEffect } from 'react';
 
-import { EXPLORER_MENU_ID } from '~/components/context-menus';
-import { useContextMenu } from '~/components/ContextMenu';
-
+import { EXPLORER_NODE_ID } from '../../context-menus';
+import { useContextMenu } from '../../ContextMenu';
 import { PolymorphicIcon } from './PolymorphicIcon';
 import * as styles from './TreeNode.css';
 import type { NodeData } from './types';
@@ -39,7 +38,7 @@ export const TreeNode: FC<TreeNodeProps> = (props) => {
   // const mergedRef = useMergedRef(useClickOutsideRef, handleRef);
 
   const { show } = useContextMenu({
-    id: EXPLORER_MENU_ID,
+    id: EXPLORER_NODE_ID,
     props,
   });
   const showMenu = useCallback(
