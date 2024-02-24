@@ -56,7 +56,7 @@ export class Plugin extends PublishPlugin {
       description: 'Publish x(twitter) plugin',
       update: {
         mode: 'npm',
-        url: 'https://npm.com',
+        registry: 'https://npm.com',
       },
       locates: ['zh', 'en'],
       fs: {

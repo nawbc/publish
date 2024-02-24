@@ -2,6 +2,7 @@
   "recommendations": [
     "tobermory.es6-string-html",
     "tzachovadia.todo-list",
-    "saber2pr.todolist"
+    "saber2pr.todolist",
+    "clinyong.vscode-css-modules"
   ]
 }

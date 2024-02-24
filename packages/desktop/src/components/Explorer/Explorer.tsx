@@ -24,7 +24,6 @@ export const Explorer: FC<any> = function () {
       <Flex direction="column" h="100%">
         <ActionsBar />
         <ExplorerTree />
-        <Box flex={1} onContextMenu={showMenu} />
       </Flex>
     </Box>
   );

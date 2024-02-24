@@ -22,7 +22,7 @@ export interface AuthorManifest {
 
 export interface UpdateManifest {
   mode: 'npm' | 'github';
-  url: string;
+  registry: string;
 }
 
 export interface FsManifest {

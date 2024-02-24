@@ -98,6 +98,17 @@
         "key": 1708233092650,
         "children": [
           {
+            "key": 1708699677254,
+            "children": [],
+            "todo": {
+              "content": "Cast screen for publishing live",
+              "id": 1708699677254,
+              "level": "default",
+              "done": false,
+              "start": 1708699677254
+            }
+          },
+          {
             "key": 1708524636449,
             "children": [],
             "todo": {
@@ -155,20 +166,69 @@
               "start": 1708522086802,
               "tip": "https://developer.mozilla.org/en-US/docs/Web/API/Window/showDirectoryPicker"
             }
+          },
+          {
+            "key": 1708679671303,
+            "children": [],
+            "todo": {
+              "content": "Open/Drop directory",
+              "id": 1708679671303,
+              "level": "default",
+              "done": false,
+              "start": 1708679671303,
+              "tip": "https://github.com/DannyMoerkerke/file-tree\nhttps://uppy.io/\nhttps://developer.mozilla.org/en-US/docs/Web/API/Window/showDirectoryPicker",
+              "focus": false,
+              "end": 1708679718443
+            }
           }
         ],
         "todo": {
-          "content": "Local folder",
+          "content": "Explorer",
           "id": 1708522052882,
           "level": "default",
           "done": false,
           "start": 1708522052882,
-          "tip": "https://developer.mozilla.org/en-US/docs/Web/API/Window/showDirectoryPicker"
+          "tip": ""
+        }
+      },
+      {
+        "key": 1708679788507,
+        "children": [],
+        "todo": {
+          "content": "File system (opfs)",
+          "id": 1708679788507,
+          "level": "default",
+          "done": false,
+          "start": 1708679788507
+        }
+      },
+      {
+        "key": 1708699639094,
+        "children": [
+          {
+            "key": 1708699662214,
+            "children": [],
+            "todo": {
+              "content": "X(twitter)",
+              "id": 1708699662214,
+              "level": "default",
+              "done": false,
+              "start": 1708699662214
+            }
+          }
+        ],
+        "todo": {
+          "content": "Plugin List",
+          "id": 1708699639094,
+          "level": "default",
+          "done": false,
+          "start": 1708699639094
         }
       }
     ],
     "expandKeys": [
-      1708233048488,
+      1708522052882,
+      1708699639094,
       1708233092650
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
@@ -190,6 +250,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1708524845026"
+    "version": "1708699751412"
   }
 }

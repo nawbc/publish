@@ -1,3 +1,4 @@
+import { Box } from '@mantine/core';
 import {
   getHotkeyHandler,
   useDisclosure,
@@ -9,10 +10,14 @@ import type {
   NodeModel,
 } from '@publishjs/react-dnd-treeview';
 import { isAncestor, MultiBackend, Tree } from '@publishjs/react-dnd-treeview';
-import type { FC } from 'react';
+import type { FC, MouseEvent } from 'react';
 import { useCallback, useState } from 'react';
 import { DndProvider } from 'react-dnd';
+import { NativeTypes } from 'react-dnd-html5-backend';
 
+import { EXPLORER_EMPTY_ID } from '../context-menus';
+import { useContextMenu } from '../ContextMenu';
+// import { Dropzone } from '../Dropzone';
 import { DragPreview } from './DragPreview';
 import * as styles from './Explorer.css';
 import { useExplorer } from './hooks';
@@ -98,6 +103,16 @@ export const ExplorerTree: FC<any> = function () {
   const [isDragging, setIsDragging] = useState(false);
   const [selectedNodes, setSelectedNodes] = useState<NodeModel<NodeData>[]>([]);
   const { treeRef, allCollapsed } = useExplorer();
+  const { show } = useContextMenu({
+    id: EXPLORER_EMPTY_ID,
+  });
+
+  const showMenu = useCallback(
+    (e: MouseEvent) => {
+      show({ event: e });
+    },
+    [show],
+  );
 
   useWindowEvent(
     'keydown',
@@ -200,6 +215,8 @@ export const ExplorerTree: FC<any> = function () {
     (newTree, options) => {
       const { dropTargetId } = options;
 
+      console.log(options.monitor.getItem().files);
+
       setTree(
         newTree.map((node) => {
           if (
@@ -236,42 +253,47 @@ export const ExplorerTree: FC<any> = function () {
 
   return (
     <DndProvider backend={MultiBackend} options={getDndBackendOptions()}>
-      <Tree
-        tree={tree}
-        ref={treeRef}
-        initialOpen={!allCollapsed}
-        rootId={0}
-        classes={{
-          root: styles.treeRoot,
-          listItem: styles.listItem,
-        }}
-        onDrop={handleDrop}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-        canDrop={handleDroppable}
-        dragPreviewRender={(monitorProps: DragLayerMonitorProps<NodeData>) => {
-          return <DragPreview nodes={selectedNodes} {...monitorProps} />;
-        }}
-        render={(node, options) => {
-          const selected = selectedNodes.some(
-            (selectedNode) => selectedNode.id === node.id,
-          );
+      <Box h="100%" flex={1} onContextMenu={showMenu}>
+        <Tree
+          extraAcceptTypes={[NativeTypes.FILE]}
+          tree={tree}
+          ref={treeRef}
+          initialOpen={!allCollapsed}
+          rootId={0}
+          classes={{
+            root: styles.treeRoot,
+            listItem: styles.listItem,
+          }}
+          onDrop={handleDrop}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          canDrop={handleDroppable}
+          dragPreviewRender={(
+            monitorProps: DragLayerMonitorProps<NodeData>,
+          ) => {
+            return <DragPreview nodes={selectedNodes} {...monitorProps} />;
+          }}
+          render={(node, options) => {
+            const selected = selectedNodes.some(
+              (selectedNode) => selectedNode.id === node.id,
+            );
 
-          return (
-            <TreeNode
-              {...options}
-              onRename={handleRename}
-              onDelete={function () {}}
-              onCopy={function () {}}
-              onPaste={function () {}}
-              node={node}
-              isSelected={selected}
-              isDragging={selected && isDragging}
-              onClick={handlePointerNode}
-            />
-          );
-        }}
-      />
+            return (
+              <TreeNode
+                {...options}
+                onRename={handleRename}
+                onDelete={function () {}}
+                onCopy={function () {}}
+                onPaste={function () {}}
+                node={node}
+                isSelected={selected}
+                isDragging={selected && isDragging}
+                onClick={handlePointerNode}
+              />
+            );
+          }}
+        />
+      </Box>
     </DndProvider>
   );
 };

@@ -1,4 +1,4 @@
-import './theme/global.css.ts';
+import './theme/global.module.css';
 
 import { Box, Divider, rem } from '@mantine/core';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';

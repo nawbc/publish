@@ -3,12 +3,19 @@ import {
   ActionIcon,
   Box,
   factory,
+  FocusTrap,
   Input,
   rem,
   Text,
   UnstyledButton,
 } from '@mantine/core';
-import { useClickOutside, useInputState, useMergedRef } from '@mantine/hooks';
+import {
+  getHotkeyHandler,
+  useClickOutside,
+  useInputState,
+  useMergedRef,
+  useWindowEvent,
+} from '@mantine/hooks';
 import type { NodeModel, RenderParams } from '@publishjs/react-dnd-treeview';
 import { IconChevronRight } from '@tabler/icons-react';
 import { clsx } from 'clsx';
@@ -56,7 +63,7 @@ export const TreeNode = factory<TreeNodeFactory>((props, ref) => {
     setRename(false);
   });
   const mergedRef = useMergedRef(useClickOutsideRef, handleRef);
-  const [nodeName, setNodeName] = useInputState(node.text);
+  const [nodeText, setNodeText] = useInputState(node.text);
 
   const { show } = useContextMenu({
     id: EXPLORER_NODE_ID,
@@ -68,6 +75,7 @@ export const TreeNode = factory<TreeNodeFactory>((props, ref) => {
 
   const showMenu = useCallback(
     (event: MouseEvent) => {
+      event.stopPropagation();
       show({
         event,
         props: {
@@ -103,6 +111,24 @@ export const TreeNode = factory<TreeNodeFactory>((props, ref) => {
     }
   }, [handleRef, isDragging]);
 
+  useWindowEvent(
+    'keydown',
+    getHotkeyHandler([
+      [
+        'Enter',
+        () => {
+          setRename(false);
+        },
+      ],
+      [
+        'F2',
+        () => {
+          if (isSelected) setRename(true);
+        },
+      ],
+    ]),
+  );
+
   return (
     <UnstyledButton
       className={classes.node}
@@ -128,10 +154,17 @@ export const TreeNode = factory<TreeNodeFactory>((props, ref) => {
 
       <Box pl={5}>
         {renamed ? (
-          <Input variant="unstyled" value={nodeName} onChange={setNodeName} />
+          <FocusTrap active>
+            <Input
+              variant="unstyled"
+              value={nodeText}
+              onChange={setNodeText}
+              data-autofocus
+            />
+          </FocusTrap>
         ) : (
           <Text size="sm" c="black" pos="relative" top={rem(1)}>
-            {node.text}
+            {nodeText}
           </Text>
         )}
       </Box>

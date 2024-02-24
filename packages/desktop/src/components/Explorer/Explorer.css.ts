@@ -4,6 +4,7 @@ export const treeRoot = style({
   listStyleType: 'none',
   paddingInlineStart: 10,
   margin: 0,
+  height: '100%',
 });
 
 export const listItem = style({

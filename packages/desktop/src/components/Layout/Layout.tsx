@@ -59,10 +59,10 @@ function Header() {
       <button
         onClick={() => {
           console.log(logger);
-          logger.info('what fuck');
+          logger.info('test');
         }}
       >
-        click
+        Test local log
       </button>
       {panel?.collapsed && (
         <Tooltip openDelay={2000} label="Collapse sidebar">
