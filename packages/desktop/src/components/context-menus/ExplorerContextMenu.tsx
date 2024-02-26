@@ -3,15 +3,13 @@ import { IconEdit } from '@tabler/icons-react';
 
 import type { ItemParams } from '../ContextMenu';
 import { ContextMenu } from '../ContextMenu';
-import { useExplorer } from '../Explorer';
 import type { TreeNodeProps } from '../Explorer/TreeNode';
-import type { NodeData } from '../Explorer/types';
 
 export const EXPLORER_EMPTY_ID = 'publish:explorer_empty';
 
 export const EXPLORER_NODE_ID = 'publish:explorer_node';
 
-const { Sub, Item } = ContextMenu;
+const { /* Sub, */ Item } = ContextMenu;
 
 export function ExplorerEmptyContextMenu() {
   return (

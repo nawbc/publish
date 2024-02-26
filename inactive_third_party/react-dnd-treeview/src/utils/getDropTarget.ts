@@ -53,7 +53,7 @@ const getInnerIndex: GetInnerIndex = (listItems, monitor) => {
   return index;
 };
 
-const getOuterIndex: GetOuterIndex = (node, nodeEl, monitor) => {
+const getOuterIndex: GetOuterIndex = (_node, nodeEl, monitor) => {
   const parentList = nodeEl.closest('[role="list"]');
   const parentListItems = parentList?.querySelectorAll(
     ':scope > [role="listitem"]',

@@ -3,13 +3,19 @@ import { resolve } from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '',
   build: {
-    lib: {
-      formats: ['iife'],
-      entry: resolve(__dirname, './src/index.ts'),
-      name: 'PublishPluginX',
-      fileName: 'index',
+    // lib: {
+    //   formats: ['iife'],
+    //   entry: resolve(__dirname, './src/index.ts'),
+    //   name: 'PublishAddonX',
+    //   fileName: 'index',
+    // },
+    rollupOptions: {
+      input: resolve(__dirname, 'index.html'),
+      // output: {
+      //   format: 'iife',
+      //   inlineDynamicImports: false,
+      // },
     },
   },
 });

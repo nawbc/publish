@@ -54,9 +54,9 @@ export const TreeNode = factory<TreeNodeFactory>((props, ref) => {
     isDragging,
     isOpen,
     handleRef,
-    onRename,
+    // onRename,
   } = props;
-  const { id, droppable, data } = node;
+  const { /* id, */ droppable, data } = node;
   const [renamed, setRename] = useState(false);
 
   const useClickOutsideRef = useClickOutside(() => {

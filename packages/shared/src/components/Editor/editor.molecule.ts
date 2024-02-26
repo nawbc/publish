@@ -14,8 +14,8 @@ export const WorkspaceScope = createScope<WorkspaceScope>({
   mode: 'page',
 });
 
-export const WorkspaceMolecule = molecule((mol, scope) => {
-  const { workspace, page, mode } = scope(WorkspaceScope);
+export const WorkspaceMolecule = molecule((_mol, scope) => {
+  const { workspace: __, page: _, mode } = scope(WorkspaceScope);
   const modeAtom = atom<EditorMode>(mode);
 
   return {

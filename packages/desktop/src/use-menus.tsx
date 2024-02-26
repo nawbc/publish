@@ -103,6 +103,7 @@ export const useMenus = (): [] => {
 
   // }, [org, project, user, i18n.language]);
 
+  //@ts-ignore
   return [
     {
       label: t('Projects'),

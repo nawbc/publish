@@ -256,7 +256,7 @@ export const ExplorerTree: FC<any> = function () {
       <Box h="100%" flex={1} onContextMenu={showMenu}>
         <Tree
           extraAcceptTypes={[NativeTypes.FILE]}
-          tree={tree}
+          tree={tree as any}
           ref={treeRef}
           initialOpen={!allCollapsed}
           rootId={0}

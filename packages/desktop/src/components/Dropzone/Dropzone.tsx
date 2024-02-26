@@ -307,12 +307,7 @@ export const Dropzone = factory<DropzoneFactory>((_props, ref) => {
           unstyled={unstyled}
           loaderProps={loaderProps}
         />
-        <input
-          {...getInputProps()}
-          name={name}
-          directory=""
-          webkitdirectory=""
-        />
+        <input {...getInputProps()} name={name} />
         <div
           {...getStyles('inner')}
           data-enable-pointer-events={enablePointerEvents || undefined}

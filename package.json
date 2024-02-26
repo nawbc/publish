@@ -22,7 +22,7 @@
     "@fontsource/inter": "5.0.16",
     "@monaco-editor/react": "4.6.0",
     "@plugkit/bfs": "workspace:^",
-    "@publish/plugin-rt": "workspace:^",
+    "@publish/addon-rt": "workspace:^",
     "@publish/shared": "workspace:^",
     "@publishjs/react-dnd-treeview": "workspace:^",
     "@supabase/supabase-js": "2.39.3",

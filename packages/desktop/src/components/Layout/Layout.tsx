@@ -1,4 +1,5 @@
 import { ActionIcon, Box, Container, rem, Tooltip } from '@mantine/core';
+import worker from '@publish/addon-rt/guard/net-guard?url';
 import { PublishDocEditor } from '@publish/doc-editor/preset/index.js';
 import { createTransport, IndexedDBTransport, Logger } from '@publish/logger';
 import { IconLayoutSidebarLeftExpand } from '@tabler/icons-react';
@@ -63,6 +64,17 @@ function Header() {
         }}
       >
         Test local log
+      </button>
+      <button
+        onClick={async () => {
+          console.log(worker);
+
+          navigator.serviceWorker.register(worker, {
+            scope: '/',
+          });
+        }}
+      >
+        worker
       </button>
       {panel?.collapsed && (
         <Tooltip openDelay={2000} label="Collapse sidebar">

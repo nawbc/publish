@@ -1,9 +1,10 @@
 import type { Manifest, Preferences } from '@publishjs/sdk';
-import { channel, Option, OptionKinds, PublishPlugin } from '@publishjs/sdk';
+import { channel, Option, OptionKinds, PublishAddon } from '@publishjs/sdk';
 
+import XPNG from '../public/X.png';
 import XSVG from '../public/X.svg';
 
-export class Plugin extends PublishPlugin {
+export class Addon extends PublishAddon {
   constructor() {
     super();
   }
@@ -18,12 +19,11 @@ export class Plugin extends PublishPlugin {
     };
   }
 
-  protected override register(): Manifest {
+  protected override register() {
     return {
-      mode: 'graphical',
-      graphicalMain: './index.html',
-      headlessMain: './headless.js',
+      type: 'headless',
       permissions: [
+        'graphical',
         'network:state',
         'network:internet',
         'wifi',
@@ -37,8 +37,8 @@ export class Plugin extends PublishPlugin {
         'storage:external:APP_NAME:cookie',
         'storage:external:APP_NAME:local',
         'storage:external:APP_NAME:db',
-        'sys:fs:read',
-        'sys:fs:write',
+        'fs:read',
+        'fs:write',
       ],
       name: 'X(twitter)',
       icon: XSVG,
@@ -53,7 +53,7 @@ export class Plugin extends PublishPlugin {
       },
       homepage: '',
       packageName: 'com.deskbtm.publish.x',
-      description: 'Publish x(twitter) plugin',
+      description: 'Publish x(twitter) addon',
       update: {
         mode: 'npm',
         registry: 'https://npm.com',
@@ -71,4 +71,5 @@ export class Plugin extends PublishPlugin {
 
 channel.addEventListener('manifest', (e) => {
   console.log(e);
+  console.log(XPNG);
 });

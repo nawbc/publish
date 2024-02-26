@@ -1,5 +1,9 @@
 export const permissions = [
   /**
+   * With GUI
+   */
+  'graphical',
+  /**
    * Get network state
    * Level: normal
    */
@@ -25,7 +29,7 @@ export const permissions = [
   'storage:db',
   /**
    * Level: normal
-   * 
+   *
    */
   'clipboard:write',
   'clipboard:read',
@@ -37,12 +41,12 @@ export const permissions = [
   'storage:external:APP_NAME:local',
   'storage:external:APP_NAME:db',
   /**
-   * System file systems
+   * System file systems (OPFS)
    * Level: dangerous
-   * Web unavailable
+   * Web available
    */
-  'sys:fs:read',
-  'sys:fs:write',
+  'fs:read',
+  'fs:write',
 ] as const;
 
 export type PermissionsManifest = Array<(typeof permissions)[number]>;

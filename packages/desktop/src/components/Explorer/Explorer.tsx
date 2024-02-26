@@ -12,7 +12,7 @@ export const Explorer: FC<any> = function () {
     id: EXPLORER_EMPTY_ID,
   });
 
-  const showMenu = useCallback(
+  const _showMenu = useCallback(
     (e: MouseEvent) => {
       show({ event: e });
     },

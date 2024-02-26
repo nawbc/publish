@@ -1,9 +1,9 @@
 {
-  "name": "@publishjs/plugin-x",
+  "name": "@publishjs/addon-x",
   "version": "0.0.1-alpha.1",
-  "description": "Publish x(twitter) plugin",
+  "description": "Publish x(twitter) addon",
   "author": "Han <han@deskbtm.com>",
-  "main": "./dist/index.mjs",
+  "main": "",
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite build --watch --mode development",

@@ -3508,6 +3508,14 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@publish/addon-rt@workspace:^, @publish/addon-rt@workspace:packages/runtime":
+  version: 0.0.0-use.local
+  resolution: "@publish/addon-rt@workspace:packages/runtime"
+  dependencies:
+    typescript: "npm:5.3.3"
+  languageName: unknown
+  linkType: soft
+
 "@publish/desktop@workspace:packages/desktop":
   version: 0.0.0-use.local
   resolution: "@publish/desktop@workspace:packages/desktop"
@@ -3609,14 +3617,6 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@publish/plugin-rt@workspace:^, @publish/plugin-rt@workspace:packages/runtime":
-  version: 0.0.0-use.local
-  resolution: "@publish/plugin-rt@workspace:packages/runtime"
-  dependencies:
-    typescript: "npm:5.3.3"
-  languageName: unknown
-  linkType: soft
-
 "@publish/plugmgr@workspace:packages/plugmgr":
   version: 0.0.0-use.local
   resolution: "@publish/plugmgr@workspace:packages/plugmgr"
@@ -3643,6 +3643,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@publishjs/addon-x@workspace:built-in/en/x":
+  version: 0.0.0-use.local
+  resolution: "@publishjs/addon-x@workspace:built-in/en/x"
+  dependencies:
+    "@publishjs/sdk": "workspace:^"
+    typescript: "npm:5.3.3"
+    vite: "npm:5.1.4"
+  languageName: unknown
+  linkType: soft
+
 "@publishjs/cli@workspace:packages/cli":
   version: 0.0.0-use.local
   resolution: "@publishjs/cli@workspace:packages/cli"
@@ -3654,16 +3664,6 @@ __metadata:
     typescript: "npm:5.3.3"
   bin:
     cli: ./dist/cli.js
-  languageName: unknown
-  linkType: soft
-
-"@publishjs/plugin-x@workspace:built-in/en/x":
-  version: 0.0.0-use.local
-  resolution: "@publishjs/plugin-x@workspace:built-in/en/x"
-  dependencies:
-    "@publishjs/sdk": "workspace:^"
-    typescript: "npm:5.3.3"
-    vite: "npm:5.1.4"
   languageName: unknown
   linkType: soft
 
@@ -11448,8 +11448,8 @@ __metadata:
     "@fontsource/inter": "npm:5.0.16"
     "@monaco-editor/react": "npm:4.6.0"
     "@plugkit/bfs": "workspace:^"
+    "@publish/addon-rt": "workspace:^"
     "@publish/dev": "workspace:^"
-    "@publish/plugin-rt": "workspace:^"
     "@publish/shared": "workspace:^"
     "@publishjs/react-dnd-treeview": "workspace:^"
     "@supabase/supabase-js": "npm:2.39.3"

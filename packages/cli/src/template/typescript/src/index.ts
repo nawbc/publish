@@ -1,9 +1,9 @@
 import type { Manifest } from '@publishjs/sdk';
-import { PublishPlugin } from '@publishjs/sdk';
+import { PublishAddon } from '@publishjs/sdk';
 
 import publish from '../public/publish.svg';
 import { demo } from './mod';
-export class Plugin extends PublishPlugin {
+export class Plugin extends PublishAddon {
   constructor() {
     super();
     demo();

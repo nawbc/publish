@@ -1,4 +1,4 @@
-export class ZhihuPlugin extends PublishPlugin {
+export class ZhihuPlugin extends PublishAddon {
   register() {
     return {
       /**

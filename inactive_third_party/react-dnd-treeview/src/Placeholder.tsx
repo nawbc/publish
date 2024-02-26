@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { useDragDropManager } from 'react-dnd';
 
 import { useTreeContext } from './hooks';

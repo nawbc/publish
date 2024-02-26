@@ -6,7 +6,7 @@ export interface Preferences {
   options?: unknown[];
 }
 
-export abstract class PublishPlugin {
+export abstract class PublishAddon {
   protected abstract register(): Manifest;
   protected abstract preferences(): Preferences;
 }
