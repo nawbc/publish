@@ -16,7 +16,7 @@ import { type FC, forwardRef } from 'react';
 import React from 'react';
 
 import { DividerHandle } from './DividerHandle';
-import * as styles from './DividerPanel.css';
+import classes from './DividerPanel.module.css';
 import { DividerPanelContext } from './DividerPanelContext';
 import { useDividerPanel } from './hooks';
 import { Panel } from './Panel';
@@ -81,7 +81,7 @@ export const DividerPanelInner = forwardRef<
     <Flex direction="row" h="100%">
       <Box
         pos="relative"
-        className={isDragging ? '' : styles.panelSlideTransition}
+        className={isDragging ? '' : classes.panelSlideTransition}
         style={{
           width: position - collapsedPosition,
           overflow: 'hidden',

@@ -1,0 +1,4 @@
+.panelSlideTransition {
+  will-change: margin-left, width;
+  transition: margin-left 400ms cubic-bezier(0.29, 1.01, 1, -0.68);
+}

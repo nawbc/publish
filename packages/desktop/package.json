@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "cross-env VITE_CJS_IGNORE_WARNING=true vite",
     "dev:remote": "cross-env VITE_CJS_IGNORE_WARNING=true ENABLE_REMOTE_DEBUG=true vite",
-    "rsdev": "NODE_ENV=development rspack serve",
     "build": "tsc && vite build",
-    "rsbuild": "NODE_ENV=production rspack build",
     "lint": "eslint . --ext ts,tsx --fix --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -29,16 +27,10 @@
     "react-router-dom": "6.21.1"
   },
   "devDependencies": {
-    "@rspack/cli": "0.5.4",
-    "@rspack/core": "0.5.4",
-    "@rspack/plugin-node-polyfill": "^0.5.4",
-    "@rspack/plugin-react-refresh": "0.5.4",
     "@types/react-dom": "18.2.18",
-    "@vanilla-extract/webpack-plugin": "^2.3.6",
     "cross-env": "^7.0.3",
     "eslint": "8.56.0",
     "postcss-loader": "^8.1.0",
-    "react-refresh": "0.14.0",
     "vite": "5.1.4",
     "vite-plugin-istanbul": "5.0.0"
   }

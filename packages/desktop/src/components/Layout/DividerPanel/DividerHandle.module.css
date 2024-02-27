@@ -1,0 +1,25 @@
+.primitiveResizeDividerArea {
+  width: rem(16);
+  cursor: col-resize;
+  will-change: visibility;
+  touch-action: none;
+  z-index: 288;
+
+  --_resize-divider-color: var(--publish-color-inactive-divider-handler);
+
+  @mixin hover {
+    --_resize-divider-color: var(--publish-color-active-divider-handler);
+  }
+}
+
+.primitiveResizeDivider {
+  height: 100%;
+  width: rem(2);
+  box-sizing: content-box;
+  transition: 250ms linear background-color;
+  outline: none;
+  background-color: var(--_resize-divider-color);
+}
+
+.dividerHandle {
+}
