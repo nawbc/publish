@@ -1,7 +1,7 @@
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { eruda } from '@publish/dev';
+// import { eruda } from '@publish/dev';
 import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 import react from '@vitejs/plugin-react-swc';
 import million from 'million/compiler';
@@ -9,7 +9,7 @@ import { defineConfig } from 'vite';
 import istanbul from 'vite-plugin-istanbul';
 import mkcert from 'vite-plugin-mkcert';
 
-const enableRemoteDebug = process.env.ENABLE_REMOTE_DEBUG === 'true';
+// const enableRemoteDebug = process.env.ENABLE_REMOTE_DEBUG === 'true';
 const enableIstanbul = !!process.env.CI || !!process.env.COVERAGE;
 
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
@@ -17,7 +17,7 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url));
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    eruda({ debug: enableRemoteDebug }),
+    // eruda({ debug: enableRemoteDebug }),
     million.vite({ auto: true }),
     react({ plugins: [['@swc-jotai/react-refresh', {}]] }),
     vanillaExtractPlugin(),
@@ -38,4 +38,13 @@ export default defineConfig({
     strictPort: true,
   },
   envPrefix: ['VITE_', 'TAURI_'],
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        'net-guard': resolve(__dirname, './src/sw/index.ts'),
+      },
+      output: { entryFileNames: '[name].js' },
+    },
+  },
 });

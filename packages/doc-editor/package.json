@@ -4,10 +4,11 @@
   "description": "Publish document editor",
   "author": "Han <han@deskbtm.com>",
   "main": "./src/index.ts",
+  "private": true,
   "exports": {
     ".": "./src/index.ts",
-    "./*": {
-      "default": "./src/*"
+    "./preset/*.ts": {
+      "default": "./src/preset/*.ts"
     }
   },
   "engines": {

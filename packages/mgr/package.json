@@ -1,9 +1,10 @@
 {
-  "name": "@publish/mgr",
+  "name": "@publish/addon-mgr",
   "version": "0.0.1-alpha.1",
   "description": "Publish addons manager",
   "author": "Han <han@deskbtm.com>",
   "main": "./src/index.ts",
+  "private": true,
   "exports": {
     ".": "./src/index.ts",
     "./*": {
@@ -17,12 +18,12 @@
     "module": "./dist/index.js",
     "exports": {
       ".": {
-        "default": "./dist/index.js",
-        "types": "./dist/index.d.ts"
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
       },
       "./*": {
-        "default": "./dist/*.js",
-        "types": "./dist/*.d.ts"
+        "types": "./dist/*.d.ts",
+        "default": "./dist/*.js"
       }
     }
   },

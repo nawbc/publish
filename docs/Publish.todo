@@ -215,6 +215,51 @@
               "done": false,
               "start": 1708699662214
             }
+          },
+          {
+            "key": 1709112572767,
+            "children": [],
+            "todo": {
+              "content": "App android ios app store",
+              "id": 1709112572767,
+              "level": "default",
+              "done": false,
+              "start": 1709112572767
+            }
+          },
+          {
+            "key": 1709112594568,
+            "children": [
+              {
+                "key": 1709112628814,
+                "children": [],
+                "todo": {
+                  "content": "boss",
+                  "id": 1709112628814,
+                  "level": "default",
+                  "done": false,
+                  "start": 1709112628814
+                }
+              },
+              {
+                "key": 1709112637298,
+                "children": [],
+                "todo": {
+                  "content": "linkedin",
+                  "id": 1709112637298,
+                  "level": "default",
+                  "done": false,
+                  "start": 1709112637298
+                }
+              }
+            ],
+            "todo": {
+              "content": "Resume",
+              "id": 1709112594568,
+              "level": "default",
+              "done": false,
+              "start": 1709112594568
+            }
           }
         ],
         "todo": {
@@ -228,8 +273,9 @@
     ],
     "expandKeys": [
       1708522052882,
+      1708233092650,
       1708699639094,
-      1708233092650
+      1709112594568
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
@@ -250,6 +296,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1708699751412"
+    "version": "1709112650772"
   }
 }
