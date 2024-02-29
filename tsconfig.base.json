@@ -31,5 +31,7 @@
     "declarationMap": true,
     "removeComments": false,
     // Interop Constraints
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
   }
 }

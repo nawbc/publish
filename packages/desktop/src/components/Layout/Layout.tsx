@@ -1,6 +1,6 @@
 import { ActionIcon, Box, Container, rem, Tooltip } from '@mantine/core';
-import worker from '@publish/addon-rt/guard';
-import { PublishDocEditor } from '@publish/doc-editor/preset';
+import worker from '@publish/addon-rt/guard/index.js';
+import { PublishDocEditor } from '@publish/doc-editor/preset/index.js';
 import { createTransport, IndexedDBTransport, Logger } from '@publish/logger';
 import { IconLayoutSidebarLeftExpand } from '@tabler/icons-react';
 import type { PropsWithChildren } from 'react';

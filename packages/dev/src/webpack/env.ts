@@ -8,7 +8,6 @@ import dotenvEx from 'dotenv-expand';
 import { resolveRelativeProject } from './utils';
 
 // Make sure that including paths.js after env.js will read .env variables.
-delete require.cache[require.resolve('./paths')];
 
 const NODE_ENV = process.env.NODE_ENV;
 const dotenvPath = resolveRelativeProject('.env');

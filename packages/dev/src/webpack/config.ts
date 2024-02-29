@@ -1,34 +1,39 @@
-import '@deskbtm/gadgets';
+import '@deskbtm/gadgets/env';
 
-import { createRequire } from 'node:module';
 import path from 'node:path';
 
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 import million from 'million/compiler';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
+import * as threadLoader from 'thread-loader';
 import { type Configuration, DefinePlugin, ProgressPlugin } from 'webpack';
 
 import { getEnvironment } from './env';
-import { __dirname, __filename, __project } from './utils';
+import { __project, __rootProject, require } from './utils';
 
-const require = createRequire(import.meta.url);
-const kEnvMode = process.env.NODE_ENV;
+threadLoader.warmup({}, [
+  'swc-loader',
+  'style-loader',
+  'css-loader',
+  'postcss-loader',
+]);
+
+const kEnvMode = process.env.NODE_ENV as Configuration['mode'];
 const publicPath = process.env.PUBLIC_PATH || '/';
 
-export interface PackOptions {
-  context?: string;
-  buildMode?: Configuration['mode'];
-}
-
-export function createConfiguration(options: PackOptions): Configuration {
-  const { context } = options;
-
-  const buildMode = options.buildMode ?? (kEnvMode as Configuration['mode']);
-  const kBuildDevMode = buildMode === 'development';
-  const kBuildProdMode = buildMode === 'production';
+/**
+ * buildMode is used for bundle
+ * envMode is used for environment, eg buildMode=production to minify the code
+ * envMode=development to test.
+ *
+ * @returns
+ */
+export function createConfiguration(): Configuration {
   const env = getEnvironment();
 
   const output = {
@@ -36,23 +41,28 @@ export function createConfiguration(options: PackOptions): Configuration {
       module: true,
       dynamicImport: true,
     },
-    filename: '',
+    filename: (pathData) => {
+      console.log(pathData.filename, '----------------------------');
+      return '[name].js';
+      // return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js';
+    },
     //[contenthash] optimizes the browser cache.
     chunkFilename: 'js/[name].[contenthash:8].chunk.js',
-    assetModuleFilename: 'assets/[name].[contenthash:8][ext][query]',
+    assetModuleFilename: 'assets/[name].[contenthash:8].[ext][query]',
     devtoolModuleFilenameTemplate:
       'webpack://[namespace]/[resource-path]?[loaders]',
     hotUpdateChunkFilename: 'hot/[id].[fullhash].js',
     hotUpdateMainFilename: 'hot/[runtime].[fullhash].json',
     path: path.resolve(__project, 'dist'),
-    clean: kBuildProdMode,
+    // Remove dist before build in production.
+    clean: kProdMode,
     globalObject: 'globalThis',
     publicPath,
   } satisfies Configuration['output'];
 
   const optimization = {
     minimize: kProdMode,
-    runtimeChunk: kBuildProdMode,
+    runtimeChunk: kProdMode,
     minimizer: [
       new TerserPlugin({
         minify: TerserPlugin.swcMinify,
@@ -66,7 +76,36 @@ export function createConfiguration(options: PackOptions): Configuration {
           mangle: true,
         },
       }),
-    ],
+      kProdMode &&
+        new ImageMinimizerPlugin({
+          minimizer: {
+            implementation: ImageMinimizerPlugin.sharpMinify,
+            options: {
+              encodeOptions: {
+                jpeg: {
+                  // https://sharp.pixelplumbing.com/api-output#jpeg
+                  quality: 100,
+                },
+                webp: {
+                  // https://sharp.pixelplumbing.com/api-output#webp
+                  lossless: true,
+                },
+                avif: {
+                  // https://sharp.pixelplumbing.com/api-output#avif
+                  lossless: true,
+                },
+                // png by default sets the quality to 100%, which is same as lossless
+                // https://sharp.pixelplumbing.com/api-output#png
+                png: {},
+
+                // gif does not support lossless compression at all
+                // https://sharp.pixelplumbing.com/api-output#gif
+                gif: {},
+              },
+            },
+          },
+        }),
+    ].filter(Boolean),
     removeEmptyChunks: true,
     providedExports: true,
     usedExports: true,
@@ -137,7 +176,7 @@ export function createConfiguration(options: PackOptions): Configuration {
               {
                 loader: require.resolve('file-loader'),
                 options: {
-                  name: 'static/media/[name].[hash].[ext]',
+                  name: 'assets/[name].[contenthash:8].[ext]',
                 },
               },
             ],
@@ -156,42 +195,53 @@ export function createConfiguration(options: PackOptions): Configuration {
           {
             test: /\.(js|mjs|jsx|ts|tsx)$/,
             exclude: /node_modules/,
-            loader: require.resolve('swc-loader'),
-            options: {
-              // https://swc.rs/docs/configuring-swc/
-              jsc: {
-                preserveAllComments: true,
-                parser: {
-                  syntax: 'typescript',
-                  dynamicImport: true,
-                  topLevelAwait: false,
-                  tsx: true,
-                  decorators: true,
-                },
-                target: 'es2022',
-                externalHelpers: false,
-                transform: {
-                  react: {
-                    runtime: 'automatic',
-                    refresh: kDevMode && {
-                      refreshReg: '$RefreshReg$',
-                      refreshSig: '$RefreshSig$',
-                      emitFullSignatures: true,
+            use: [
+              // {
+              //   loader: require.resolve('thread-loader'),
+              // },
+              {
+                loader: require.resolve('swc-loader'),
+                options: {
+                  // https://swc.rs/docs/configuring-swc/
+                  jsc: {
+                    preserveAllComments: true,
+                    parser: {
+                      syntax: 'typescript',
+                      dynamicImport: true,
+                      topLevelAwait: false,
+                      tsx: true,
+                      decorators: true,
                     },
+                    target: 'es2022',
+                    externalHelpers: false,
+                    transform: {
+                      react: {
+                        runtime: 'automatic',
+                        refresh: kDevMode && {
+                          refreshReg: '$RefreshReg$',
+                          refreshSig: '$RefreshSig$',
+                          emitFullSignatures: true,
+                        },
+                      },
+                      useDefineForClassFields: false,
+                    },
+                    // ex`perimental: {
+                    //   plugins: [['@swc-jotai/react-refresh', {}]],
+                    // },`
                   },
-                  useDefineForClassFields: false,
-                },
-                experimental: {
-                  plugins: [['@swc-jotai/react-refresh', {}]],
                 },
               },
-            },
+            ],
           },
           {
             test: /\.css$/,
-            type: 'css/auto',
             use: [
-              kBuildDevMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+              // {
+              //   loader: require.resolve('thread-loader'),
+              // },
+              kDevMode
+                ? require.resolve('style-loader')
+                : MiniCssExtractPlugin.loader,
               {
                 loader: require.resolve('css-loader'),
                 options: {
@@ -237,6 +287,7 @@ export function createConfiguration(options: PackOptions): Configuration {
     new ReactRefreshWebpackPlugin({ overlay: false, esModule: true }),
     new DefinePlugin(env.stringified),
     million.webpack({ auto: true }),
+    new NodePolyfillPlugin(),
     new CopyPlugin({
       patterns: [
         {
@@ -247,9 +298,15 @@ export function createConfiguration(options: PackOptions): Configuration {
     }),
   ].filter(Boolean) satisfies Configuration['plugins'];
 
+  const experiments = {
+    topLevelAwait: true,
+    outputModule: false,
+    syncWebAssembly: true,
+  } satisfies Configuration['experiments'];
+
   const resolve = {
     symlinks: true,
-    extensions: ['mjs', 'js', 'ts', 'tsx', 'json', 'jsx'],
+    extensions: ['.mjs', '.js', '.ts', '.tsx', '.json', '.jsx'],
   } satisfies Configuration['resolve'];
 
   const cache = {
@@ -263,16 +320,17 @@ export function createConfiguration(options: PackOptions): Configuration {
   } satisfies Configuration['cache'];
 
   return {
-    mode: buildMode,
+    mode: kEnvMode,
     target: ['web', 'es5'],
     output,
     resolve,
     devtool: kProdMode ? 'source-map' : 'eval-cheap-module-source-map',
     optimization,
     module,
-    context: context ?? __project,
+    context: __project,
     plugins,
     cache,
+    experiments,
     infrastructureLogging: {
       level: 'none',
     },

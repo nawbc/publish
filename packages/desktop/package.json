@@ -8,18 +8,20 @@
     "dev:remote": "cross-env VITE_CJS_IGNORE_WARNING=true ENABLE_REMOTE_DEBUG=true vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --fix --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "a": "cross-env NODE_ENV=production tsx ../../node_modules/webpack/bin/webpack.js -c publish-build.config.ts"
   },
   "dependencies": {
-    "@mantine/core": "7.5.3",
-    "@mantine/dates": "7.5.3",
-    "@mantine/dropzone": "7.5.3",
-    "@mantine/form": "7.5.3",
-    "@mantine/hooks": "7.5.3",
-    "@mantine/notifications": "7.5.3",
-    "@mantine/nprogress": "7.5.3",
-    "@mantine/spotlight": "7.5.3",
-    "@mantine/vanilla-extract": "7.5.3",
+    "@deskbtm/gadgets": "0.0.1-alpha.6",
+    "@mantine/core": "7.6.1",
+    "@mantine/dates": "7.6.1",
+    "@mantine/dropzone": "7.6.1",
+    "@mantine/form": "7.6.1",
+    "@mantine/hooks": "7.6.1",
+    "@mantine/notifications": "7.6.1",
+    "@mantine/nprogress": "7.6.1",
+    "@mantine/spotlight": "7.6.1",
+    "@mantine/vanilla-extract": "7.6.1",
     "@publish/doc-editor": "workspace:^",
     "@publish/logger": "workspace:^",
     "@tiptap/extension-underline": "^2.2.3",
@@ -27,6 +29,7 @@
     "react-router-dom": "6.21.1"
   },
   "devDependencies": {
+    "@publish/dev": "workspace:^",
     "@types/react-dom": "18.2.18",
     "cross-env": "^7.0.3",
     "eslint": "8.56.0",

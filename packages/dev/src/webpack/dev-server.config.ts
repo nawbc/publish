@@ -10,16 +10,18 @@ const port = Number(process.env.PORT) || 3001;
 const serverProtocol = process.env.PROTOCOL ?? 'https';
 const overlay = process.env.DISABLE_DEV_OVERLAY === 'true' ? false : undefined;
 
-export async function createDevServerConfiguration(): Promise<Configuration> {
+export async function createDevServerConfiguration(): Promise<{
+  devServer: Configuration;
+}> {
   let cert: Certificate | undefined;
 
   if (serverProtocol === 'https') {
     const ca = await createCA({
-      organization: 'Hello CA',
-      countryCode: 'NP',
-      state: 'Bagmati',
-      locality: 'Kathmandu',
-      validity: 365,
+      organization: 'deskbtm',
+      countryCode: 'CN',
+      state: 'China',
+      locality: 'Nanjing',
+      validity: 365e10,
     });
 
     cert = await createCert({
@@ -30,22 +32,24 @@ export async function createDevServerConfiguration(): Promise<Configuration> {
   }
 
   return {
-    hot: 'only',
-    host,
-    port,
-    liveReload: true,
-    client: {
-      overlay,
-    },
-    historyApiFallback: true,
-    static: {
-      directory: path.resolve(__project, 'public'),
-      publicPath: '/',
-      watch: true,
-    },
-    server: {
-      type: serverProtocol,
-      options: cert,
+    devServer: {
+      hot: 'only',
+      host,
+      port,
+      liveReload: true,
+      client: {
+        overlay,
+      },
+      historyApiFallback: true,
+      static: {
+        directory: path.resolve(__project, 'public'),
+        publicPath: '/',
+        watch: true,
+      },
+      server: {
+        type: serverProtocol,
+        options: cert,
+      },
     },
   };
 }
