@@ -7,7 +7,7 @@ import type React from 'react';
 import { useRef } from 'react';
 
 import { contextMenu } from './context-menu';
-import * as styles from './ContextMenu.css';
+import styles from './ContextMenu.module.css';
 import { useItemTrackerContext } from './hooks';
 import type {
   BooleanPredicate,

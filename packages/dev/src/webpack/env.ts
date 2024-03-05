@@ -93,13 +93,15 @@ export function getEnvironment() {
         FAST_REFRESH: process.env.FAST_REFRESH !== 'false',
       },
     );
+
   // Stringify all values so we can feed into webpack DefinePlugin
-  const stringified = {
-    'process.env': Object.keys(raw).reduce((env, key) => {
-      env[key] = JSON.stringify(raw[key]);
-      return env;
-    }, {}),
-  };
+  const stringified = Object.keys(raw).reduce((env, key) => {
+    const value = JSON.stringify(raw[key]);
+    env['process.env.' + key] = value;
+    env['globalThis.process.env.' + key] = value;
+    env['global.process.env.' + key] = value;
+    return env;
+  }, {});
 
   const hash = createEnvHash(JSON.stringify(raw));
 

@@ -30,7 +30,7 @@ export default defineConfig({
       }),
     mkcert(),
   ],
-  envDir: resolve(__dirname, '../../'),
+  envDir: resolve(__dirname, './'),
   clearScreen: false,
   server: {
     port: 3000,
@@ -38,13 +38,4 @@ export default defineConfig({
     strictPort: true,
   },
   envPrefix: ['VITE_', 'TAURI_'],
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        'net-guard': resolve(__dirname, './src/sw/index.ts'),
-      },
-      output: { entryFileNames: '[name].js' },
-    },
-  },
 });

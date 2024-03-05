@@ -8,7 +8,6 @@ import { __project } from './utils';
 const host = process.env.HOST || '0.0.0.0';
 const port = Number(process.env.PORT) || 3001;
 const serverProtocol = process.env.PROTOCOL ?? 'https';
-const overlay = process.env.DISABLE_DEV_OVERLAY === 'true' ? false : undefined;
 
 export async function createDevServerConfiguration(): Promise<{
   devServer: Configuration;
@@ -38,7 +37,11 @@ export async function createDevServerConfiguration(): Promise<{
       port,
       liveReload: true,
       client: {
-        overlay,
+        overlay: {
+          errors: true,
+          warnings: false,
+          runtimeErrors: true,
+        },
       },
       historyApiFallback: true,
       static: {
@@ -46,10 +49,13 @@ export async function createDevServerConfiguration(): Promise<{
         publicPath: '/',
         watch: true,
       },
-      server: {
-        type: serverProtocol,
-        options: cert,
-      },
+      // server: {
+      //   type: serverProtocol,
+      //   options: {
+      //     ...cert,
+      //     requestCert: true,
+      //   },
+      // },
     },
   };
 }

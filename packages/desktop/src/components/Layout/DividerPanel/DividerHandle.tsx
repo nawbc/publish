@@ -1,7 +1,8 @@
 import { Box, Center } from '@mantine/core';
 import { forwardRef } from 'react';
 
-import * as styles from './DividerHandle.css';
+// import * as styles from './DividerHandle.css';
+import styles from './DividerHandle.module.css';
 import type { DividerProps } from './useResizable';
 
 export interface DividerHandleProps extends DividerProps {

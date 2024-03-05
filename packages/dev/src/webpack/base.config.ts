@@ -2,6 +2,7 @@ import '@deskbtm/gadgets/env';
 
 import path from 'node:path';
 
+import { initCustomMode } from '@deskbtm/gadgets/env';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
@@ -10,21 +11,29 @@ import million from 'million/compiler';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
-import * as threadLoader from 'thread-loader';
+// import * as threadLoader from 'thread-loader';
 import { type Configuration, DefinePlugin, ProgressPlugin } from 'webpack';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import { getEnvironment } from './env';
 import { __project, __rootProject, require } from './utils';
 
-threadLoader.warmup({}, [
-  'swc-loader',
-  'style-loader',
-  'css-loader',
-  'postcss-loader',
-]);
+// Exclude source map to reduce Tauri bundle size.
+initCustomMode('release', process.env.RELEASE!, 'true');
+
+// threadLoader.warmup({}, [
+//   'swc-loader',
+//   'style-loader',
+//   'css-loader',
+//   'postcss-loader',
+// ]);
 
 const kEnvMode = process.env.NODE_ENV as Configuration['mode'];
-const publicPath = process.env.PUBLIC_PATH || '/';
+const publicPath = process.env.PUBLIC_PATH ?? '/';
+
+declare global {
+  const kReleaseMode: string;
+}
 
 /**
  * buildMode is used for bundle
@@ -42,8 +51,8 @@ export function createConfiguration(): Configuration {
       dynamicImport: true,
     },
     filename: (pathData) => {
-      console.log(pathData.filename, '----------------------------');
-      return '[name].js';
+      // console.log(pathData, '----------------------------');
+      return 'js/[name].js';
       // return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js';
     },
     //[contenthash] optimizes the browser cache.
@@ -151,11 +160,11 @@ export function createConfiguration(): Configuration {
           fullySpecified: false,
         },
       },
-      {
-        enforce: 'pre',
-        test: /\.(js|mjs|jsx|ts|tsx|css)$/,
-        loader: require.resolve('source-map-loader'),
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.(js|mjs|jsx|ts|tsx|css)$/,
+      //   loader: require.resolve('source-map-loader'),
+      // },
       {
         oneOf: [
           {
@@ -225,7 +234,7 @@ export function createConfiguration(): Configuration {
                       },
                       useDefineForClassFields: false,
                     },
-                    // ex`perimental: {
+                    // experimental: {
                     //   plugins: [['@swc-jotai/react-refresh', {}]],
                     // },`
                   },
@@ -284,10 +293,12 @@ export function createConfiguration(): Configuration {
     }),
     new ProgressPlugin({ percentBy: 'entries' }),
     kDevMode && new CaseSensitivePathsPlugin(),
-    new ReactRefreshWebpackPlugin({ overlay: false, esModule: true }),
+    kDevMode &&
+      new ReactRefreshWebpackPlugin({ overlay: false, esModule: true }),
     new DefinePlugin(env.stringified),
     million.webpack({ auto: true }),
     new NodePolyfillPlugin(),
+    kProdMode && new BundleAnalyzerPlugin(),
     new CopyPlugin({
       patterns: [
         {
@@ -313,6 +324,7 @@ export function createConfiguration(): Configuration {
     type: 'filesystem',
     version: env.hash,
     store: 'pack',
+    maxAge: 1e4,
     buildDependencies: {
       defaultWebpack: ['webpack/lib/'],
       config: [__filename],
@@ -324,7 +336,11 @@ export function createConfiguration(): Configuration {
     target: ['web', 'es5'],
     output,
     resolve,
-    devtool: kProdMode ? 'source-map' : 'eval-cheap-module-source-map',
+    devtool: kProdMode
+      ? kReleaseMode
+        ? 'none'
+        : 'source-map'
+      : 'eval-cheap-module-source-map',
     optimization,
     module,
     context: __project,

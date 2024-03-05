@@ -8,15 +8,14 @@ import type { Configuration } from 'webpack';
 import { merge } from 'webpack-merge';
 import { findPackageRoot, findProjectRoot } from 'workspace-tools';
 
-import { createConfiguration } from './config';
+import { createConfiguration } from './base.config';
+import { createDevServerConfiguration } from './dev-server.config';
 
-// export const __dirname = fileURLToPath(new URL('.', import.meta.url));
-// export const __filename = fileURLToPath(import.meta.url);
 export const __rootProject = findProjectRoot(process.cwd()) as string;
 export const __project = findPackageRoot(process.cwd()) as string;
 
 export const resolveRelativeProject = (relativePath: string) =>
-  path.resolve(__dirname, relativePath);
+  path.resolve(__project, relativePath);
 
 export const require = createRequire(import.meta.url);
 
@@ -34,12 +33,11 @@ export const require = createRequire(import.meta.url);
  *
  *    ]
  * })
- *
- *
  * ```
  */
-export function configure(...config: Configuration[]) {
+export async function configure(config: Configuration) {
   const baseConfig = createConfiguration();
+  const serverConfig = await createDevServerConfiguration();
 
-  return merge(baseConfig, ...(config as any));
+  return merge(baseConfig, config, serverConfig);
 }
