@@ -23,6 +23,8 @@ import { Panel } from './Panel';
 import type { ResizeCallbackArgs, UseResizableProps } from './useResizable';
 import { useResizable } from './useResizable';
 
+console.log('------------', classes);
+
 export interface DividerPanelProps
   extends Partial<UseResizableProps>,
     PropsWithChildren {

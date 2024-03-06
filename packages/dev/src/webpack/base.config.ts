@@ -6,12 +6,12 @@ import { initCustomMode } from '@deskbtm/gadgets/env';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+// import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
 import million from 'million/compiler';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
-// import * as threadLoader from 'thread-loader';
 import { type Configuration, DefinePlugin, ProgressPlugin } from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
@@ -21,18 +21,35 @@ import { __project, __rootProject, require } from './utils';
 // Exclude source map to reduce Tauri bundle size.
 initCustomMode('release', process.env.RELEASE!, 'true');
 
-// threadLoader.warmup({}, [
-//   'swc-loader',
-//   'style-loader',
-//   'css-loader',
-//   'postcss-loader',
-// ]);
-
 const kEnvMode = process.env.NODE_ENV as Configuration['mode'];
 const publicPath = process.env.PUBLIC_PATH ?? '/';
 
 declare global {
   const kReleaseMode: string;
+}
+
+function getStyleLoaders(cssOptions: any) {
+  return [
+    kDevMode
+      ? {
+          loader: require.resolve('style-loader'),
+        }
+      : {
+          loader: MiniCssExtractPlugin.loader,
+        },
+    {
+      loader: require.resolve('css-loader'),
+      options: cssOptions,
+    },
+    {
+      loader: require.resolve('postcss-loader'),
+      options: {
+        postcssOptions: {
+          config: path.resolve(__dirname, './postcss.config.cjs'),
+        },
+      },
+    },
+  ];
 }
 
 /**
@@ -50,10 +67,8 @@ export function createConfiguration(): Configuration {
       module: true,
       dynamicImport: true,
     },
-    filename: (pathData) => {
-      // console.log(pathData, '----------------------------');
+    filename: (_) => {
       return 'js/[name].js';
-      // return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js';
     },
     //[contenthash] optimizes the browser cache.
     chunkFilename: 'js/[name].[contenthash:8].chunk.js',
@@ -71,12 +86,13 @@ export function createConfiguration(): Configuration {
 
   const optimization = {
     minimize: kProdMode,
-    runtimeChunk: kProdMode,
+    runtimeChunk: false,
     minimizer: [
+      '...' as const,
       new TerserPlugin({
         minify: TerserPlugin.swcMinify,
         parallel: true,
-        extractComments: true,
+        extractComments: false,
         terserOptions: {
           ecma: 2020,
           compress: {
@@ -85,35 +101,35 @@ export function createConfiguration(): Configuration {
           mangle: true,
         },
       }),
-      kProdMode &&
-        new ImageMinimizerPlugin({
-          minimizer: {
-            implementation: ImageMinimizerPlugin.sharpMinify,
-            options: {
-              encodeOptions: {
-                jpeg: {
-                  // https://sharp.pixelplumbing.com/api-output#jpeg
-                  quality: 100,
-                },
-                webp: {
-                  // https://sharp.pixelplumbing.com/api-output#webp
-                  lossless: true,
-                },
-                avif: {
-                  // https://sharp.pixelplumbing.com/api-output#avif
-                  lossless: true,
-                },
-                // png by default sets the quality to 100%, which is same as lossless
-                // https://sharp.pixelplumbing.com/api-output#png
-                png: {},
-
-                // gif does not support lossless compression at all
-                // https://sharp.pixelplumbing.com/api-output#gif
-                gif: {},
+      new ImageMinimizerPlugin({
+        minimizer: {
+          implementation: ImageMinimizerPlugin.sharpMinify,
+          options: {
+            encodeOptions: {
+              jpeg: {
+                // https://sharp.pixelplumbing.com/api-output#jpeg
+                quality: 100,
               },
+              webp: {
+                // https://sharp.pixelplumbing.com/api-output#webp
+                lossless: true,
+              },
+              avif: {
+                // https://sharp.pixelplumbing.com/api-output#avif
+                lossless: true,
+              },
+              // png by default sets the quality to 100%, which is same as lossless
+              // https://sharp.pixelplumbing.com/api-output#png
+              png: {},
+
+              // gif does not support lossless compression at all
+              // https://sharp.pixelplumbing.com/api-output#gif
+              gif: {},
             },
           },
-        }),
+        },
+      }),
+      new CssMinimizerPlugin(),
     ].filter(Boolean),
     removeEmptyChunks: true,
     providedExports: true,
@@ -127,15 +143,11 @@ export function createConfiguration(): Configuration {
       maxInitialRequests: Number.MAX_SAFE_INTEGER,
       maxAsyncRequests: Number.MAX_SAFE_INTEGER,
       cacheGroups: {
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
         styles: {
           name: 'styles',
           type: 'css/mini-extract',
           chunks: 'all',
+          reuseExistingChunk: true,
           enforce: true,
         },
       },
@@ -205,9 +217,6 @@ export function createConfiguration(): Configuration {
             test: /\.(js|mjs|jsx|ts|tsx)$/,
             exclude: /node_modules/,
             use: [
-              // {
-              //   loader: require.resolve('thread-loader'),
-              // },
               {
                 loader: require.resolve('swc-loader'),
                 options: {
@@ -234,9 +243,6 @@ export function createConfiguration(): Configuration {
                       },
                       useDefineForClassFields: false,
                     },
-                    // experimental: {
-                    //   plugins: [['@swc-jotai/react-refresh', {}]],
-                    // },`
                   },
                 },
               },
@@ -244,32 +250,20 @@ export function createConfiguration(): Configuration {
           },
           {
             test: /\.css$/,
-            use: [
-              // {
-              //   loader: require.resolve('thread-loader'),
-              // },
-              kDevMode
-                ? require.resolve('style-loader')
-                : MiniCssExtractPlugin.loader,
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  url: true,
-                  sourceMap: kDevMode,
-                  modules: true,
-                  import: true,
-                  importLoaders: 1,
-                },
-              },
-              {
-                loader: require.resolve('postcss-loader'),
-                options: {
-                  postcssOptions: {
-                    config: path.resolve(__dirname, './postcss.config.cjs'),
-                  },
-                },
-              },
-            ],
+            exclude: /\.module\.css$/,
+            use: getStyleLoaders({
+              sourceMap: false,
+              modules: false,
+              importLoaders: 1,
+            }),
+          },
+          {
+            test: /\.module\.css$/,
+            use: getStyleLoaders({
+              sourceMap: false,
+              modules: true,
+              importLoaders: 1,
+            }),
           },
           {
             // Exclude `js` files to keep "css" loader working as it injects
@@ -292,12 +286,15 @@ export function createConfiguration(): Configuration {
       chunkFilename: 'css/[name].[contenthash:8].chunk.css',
     }),
     new ProgressPlugin({ percentBy: 'entries' }),
+    // new webpack.optimize.LimitChunkCountPlugin({
+    //   maxChunks: 1,
+    // }),
+    // new NodePolyfillPlugin(),
     kDevMode && new CaseSensitivePathsPlugin(),
     kDevMode &&
       new ReactRefreshWebpackPlugin({ overlay: false, esModule: true }),
     new DefinePlugin(env.stringified),
     million.webpack({ auto: true }),
-    new NodePolyfillPlugin(),
     kProdMode && new BundleAnalyzerPlugin(),
     new CopyPlugin({
       patterns: [
@@ -347,8 +344,5 @@ export function createConfiguration(): Configuration {
     plugins,
     cache,
     experiments,
-    infrastructureLogging: {
-      level: 'none',
-    },
   };
 }

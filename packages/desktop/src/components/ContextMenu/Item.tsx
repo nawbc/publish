@@ -1,6 +1,6 @@
 import type { MantineColor } from '@mantine/core';
 import { Box, parseThemeColor, useMantineTheme } from '@mantine/core';
-import { assignInlineVars } from '@vanilla-extract/dynamic';
+// import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
 import type React from 'react';
@@ -218,14 +218,14 @@ export const ContextMenuItem: React.FC<ItemProps> = ({
       style={style}
       role="menuitem"
       aria-disabled={isDisabled}
-      __vars={assignInlineVars({
-        [styles.itemColor]:
-          parsedThemeColor?.isThemeColor &&
-          parsedThemeColor?.shade === undefined
-            ? `var(--mantine-color-${parsedThemeColor.color}-6)`
-            : colors?.color,
-        [styles.itemHover]: colors?.hover,
-      })}
+      // __vars={assignInlineVars({
+      //   [styles.itemColor]:
+      //     parsedThemeColor?.isThemeColor &&
+      //     parsedThemeColor?.shade === undefined
+      //       ? `var(--mantine-color-${parsedThemeColor.color}-6)`
+      //       : colors?.color,
+      //   [styles.itemHover]: colors?.hover,
+      // })}
     >
       {leading && <div data-position="left">{leading}</div>}
       {children && <div>{children}</div>}

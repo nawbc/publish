@@ -3,7 +3,7 @@ import type {
   VariantColorsResolver,
 } from '@mantine/core';
 import { createTheme, defaultVariantColorsResolver, rem } from '@mantine/core';
-import { themeToVars } from '@mantine/vanilla-extract';
+// import { themeToVars } from '@mantine/vanilla-extract';
 
 export const resolver: CSSVariablesResolver = (theme) => ({
   variables: {
@@ -72,5 +72,5 @@ export const theme = createTheme({
   },
 });
 
-// CSS variables object, can be access in *.css.ts files
-export const cssVars = themeToVars(theme);
+// // CSS variables object, can be access in *.css.ts files
+// export const cssVars = themeToVars(theme);

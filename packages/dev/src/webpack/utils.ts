@@ -3,7 +3,6 @@ import 'webpack-dev-server';
 import { createRequire } from 'node:module';
 import path from 'node:path';
 
-// import { fileURLToPath } from 'node:url';
 import type { Configuration } from 'webpack';
 import { merge } from 'webpack-merge';
 import { findPackageRoot, findProjectRoot } from 'workspace-tools';
@@ -35,9 +34,10 @@ export const require = createRequire(import.meta.url);
  * })
  * ```
  */
+
 export async function configure(config: Configuration) {
   const baseConfig = createConfiguration();
   const serverConfig = await createDevServerConfiguration();
 
-  return merge(baseConfig, config, serverConfig);
+  return merge<Configuration>(baseConfig, config, serverConfig);
 }

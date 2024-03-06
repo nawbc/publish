@@ -1,8 +1,7 @@
 import path from 'node:path';
 
-import type { Certificate } from 'mkcert';
-import { createCA, createCert } from 'mkcert';
-import type { Configuration } from 'webpack-dev-server';
+import { mkcert } from '@deskbtm/dev-mkcert';
+import type { Configuration, ServerOptions } from 'webpack-dev-server';
 
 import { __project } from './utils';
 const host = process.env.HOST || '0.0.0.0';
@@ -12,22 +11,10 @@ const serverProtocol = process.env.PROTOCOL ?? 'https';
 export async function createDevServerConfiguration(): Promise<{
   devServer: Configuration;
 }> {
-  let cert: Certificate | undefined;
+  let cert: ServerOptions | undefined;
 
   if (serverProtocol === 'https') {
-    const ca = await createCA({
-      organization: 'deskbtm',
-      countryCode: 'CN',
-      state: 'China',
-      locality: 'Nanjing',
-      validity: 365e10,
-    });
-
-    cert = await createCert({
-      ca: { key: ca.key, cert: ca.cert },
-      domains: ['127.0.0.1', 'localhost', '0.0.0.0'],
-      validity: 365e10,
-    });
+    cert = await mkcert();
   }
 
   return {
@@ -49,13 +36,10 @@ export async function createDevServerConfiguration(): Promise<{
         publicPath: '/',
         watch: true,
       },
-      // server: {
-      //   type: serverProtocol,
-      //   options: {
-      //     ...cert,
-      //     requestCert: true,
-      //   },
-      // },
+      server: {
+        type: serverProtocol,
+        options: cert,
+      },
     },
   };
 }
