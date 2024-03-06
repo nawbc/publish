@@ -4,17 +4,17 @@ import { mkcert } from '@deskbtm/dev-mkcert';
 import type { Configuration, ServerOptions } from 'webpack-dev-server';
 
 import { __project } from './utils';
-const host = process.env.HOST || '0.0.0.0';
-const port = Number(process.env.PORT) || 3001;
-const serverProtocol = process.env.PROTOCOL ?? 'https';
 
 export async function createDevServerConfiguration(): Promise<{
   devServer: Configuration;
 }> {
-  let cert: ServerOptions | undefined;
+  const host = process.env.HOST || '0.0.0.0';
+  const port = Number(process.env.PORT) || 3001;
+  const serverProtocol = process.env.PROTOCOL ?? 'https';
 
+  let cert: ServerOptions | undefined;
   if (serverProtocol === 'https') {
-    cert = await mkcert();
+    cert = await mkcert({ hosts: [host] });
   }
 
   return {

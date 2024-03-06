@@ -2162,10 +2162,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@deskbtm/gadgets@npm:0.0.1-alpha.9":
-  version: 0.0.1-alpha.9
-  resolution: "@deskbtm/gadgets@npm:0.0.1-alpha.9"
-  checksum: c960017f4d279f1b70d8dbd741b006a350985b8b5c4ae9b397c6876cb76da3d9322fb9d4ad30ad8957a9aea1c7307c8138778f6e50c077d9a2bd95febab2ac14
+"@deskbtm/gadgets@npm:0.0.1-alpha.10":
+  version: 0.0.1-alpha.10
+  resolution: "@deskbtm/gadgets@npm:0.0.1-alpha.10"
+  checksum: 9b56e5605e51973e2fb9d0ae1359b7f3f20ef21e4302e5786ba018ddbbc9c653a9798ea497ab8dda9d87403d10bf7ef606e8a1634eddba493499718813a50bdd
   languageName: node
   linkType: hard
 
@@ -3819,7 +3819,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publish/desktop@workspace:packages/desktop"
   dependencies:
-    "@deskbtm/gadgets": "npm:0.0.1-alpha.9"
+    "@deskbtm/gadgets": "npm:0.0.1-alpha.10"
     "@mantine/core": "npm:7.6.1"
     "@mantine/dates": "npm:7.6.1"
     "@mantine/dropzone": "npm:7.6.1"
@@ -3844,7 +3844,7 @@ __metadata:
   resolution: "@publish/dev@workspace:packages/dev"
   dependencies:
     "@deskbtm/dev-mkcert": "npm:^1.17.5"
-    "@deskbtm/gadgets": "npm:0.0.1-alpha.9"
+    "@deskbtm/gadgets": "npm:0.0.1-alpha.10"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:0.5.11"
     "@svgr/webpack": "npm:8.1.0"
     "@swc-jotai/react-refresh": "npm:0.1.0"
@@ -15336,7 +15336,7 @@ __metadata:
     "@capacitor/cli": "npm:5.6.0"
     "@capacitor/core": "npm:5.6.0"
     "@capacitor/ios": "npm:5.6.0"
-    "@deskbtm/gadgets": "npm:0.0.1-alpha.9"
+    "@deskbtm/gadgets": "npm:0.0.1-alpha.10"
     "@emotion/react": "npm:11.11.3"
     "@fontsource/inter": "npm:5.0.16"
     "@monaco-editor/react": "npm:4.6.0"

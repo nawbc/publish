@@ -2,7 +2,7 @@ import '@deskbtm/gadgets/env';
 
 import path from 'node:path';
 
-import { initCustomMode } from '@deskbtm/gadgets/env';
+import { kMode } from '@deskbtm/gadgets/env';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
@@ -18,15 +18,11 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import { getEnvironment } from './env';
 import { __project, __rootProject, require } from './utils';
 
-// Exclude source map to reduce Tauri bundle size.
-initCustomMode('release', process.env.RELEASE!, 'true');
-
-const kEnvMode = process.env.NODE_ENV as Configuration['mode'];
-const publicPath = process.env.PUBLIC_PATH ?? '/';
-
 declare global {
   const kReleaseMode: string;
 }
+// Exclude source map to reduce Tauri bundle size.
+kMode('release', process.env.RELEASE!, 'true');
 
 function getStyleLoaders(cssOptions: any) {
   return [
@@ -60,6 +56,9 @@ function getStyleLoaders(cssOptions: any) {
  * @returns
  */
 export function createConfiguration(): Configuration {
+  const kEnvMode = process.env.NODE_ENV as Configuration['mode'];
+  const publicPath = process.env.PUBLIC_PATH ?? '/';
+
   const env = getEnvironment();
 
   const output = {

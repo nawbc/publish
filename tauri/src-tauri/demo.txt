@@ -1,0 +1,18 @@
+assets by info 15 MiB [immutable]
+  assets by path assets/ 201 KiB
+    assets by path assets/*.woff 116 KiB 7 assets
+    assets by path assets/*.woff2 84.1 KiB 7 assets
+  assets by path js/*.js 14.8 MiB
+    asset js/vendors-node_modules_deskbtm_gadgets_dist_index_js-node_modules_juggle_resize-observer_lib_ex-3744e6.3f4b6ddb.chunk.js 12.6 MiB [emitted] [immutable] (id hint: vendors)
+    asset js/vendors-node_modules_tanstack_query-devtools_build_Devtools_EJGC42YZ_js.db6243cd.chunk.js 1.15 MiB [emitted] [immutable] (id hint: vendors)
+    asset js/src_components_Layout_index_tsx.c953eb88.chunk.js 1.1 MiB [emitted] [immutable]
+    + 2 assets
+asset js/vendors-node_modules_deskbtm_gadgets_dist_env_js-node_modules_pmmmwh_react-refresh-webpack-pl-410dad.js 14.8 MiB [emitted] (id hint: vendors)
+asset js/sw.js 782 KiB [emitted] (name: sw)
+asset js/main.js 345 KiB [emitted] (name: main)
+asset index.html 1.57 KiB [emitted]
+asset publish.svg 1.28 KiB [emitted] [from: public/publish.svg] [copied]
+Entrypoint main 15.1 MiB (201 KiB) = js/vendors-node_modules_deskbtm_gadgets_dist_env_js-node_modules_pmmmwh_react-refresh-webpack-pl-410dad.js 14.8 MiB js/main.js 345 KiB 14 auxiliary assets
+Entrypoint sw 782 KiB = js/sw.js
+cached modules 15.1 MiB (javascript) 201 KiB (asset) 70.5 KiB (runtime) [cached] 7710 modules
+webpack 5.90.3 compiled successfully in 4275 ms

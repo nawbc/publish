@@ -1,4 +1,5 @@
 import 'webpack-dev-server';
+import './env';
 
 import { createRequire } from 'node:module';
 import path from 'node:path';

@@ -11,7 +11,7 @@
     "dev:remote": "cross-env ENABLE_REMOTE_DEBUG=true vite"
   },
   "dependencies": {
-    "@deskbtm/gadgets": "0.0.1-alpha.9",
+    "@deskbtm/gadgets": "0.0.1-alpha.10",
     "@mantine/core": "7.6.1",
     "@mantine/dates": "7.6.1",
     "@mantine/dropzone": "7.6.1",
