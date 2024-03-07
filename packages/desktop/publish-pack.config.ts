@@ -11,6 +11,7 @@ const config = configure({
     main: path.resolve(__project, './src/main.tsx'),
     sw: {
       import: path.resolve(__project, './src/sw/index.ts'),
+      filename: '[name].js',
     },
   },
   plugins: [

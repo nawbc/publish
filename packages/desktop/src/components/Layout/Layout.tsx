@@ -1,4 +1,5 @@
 import { ActionIcon, Box, Container, rem, Tooltip } from '@mantine/core';
+import { Sandbox } from '@publish/addon-rt';
 // import worker from '@publish/addon-rt/guard/index.js';
 import { PublishDocEditor } from '@publish/doc-editor/preset/index.ts';
 import { createTransport, IndexedDBTransport, Logger } from '@publish/logger';
@@ -58,22 +59,65 @@ function Header() {
       }}
     >
       <button
-        onClick={() => {
-          console.log(logger);
-          logger.info('test');
+        onClick={async () => {
+          const res = await fetch('/sw.js');
+          console.log(res.body);
+          // console.log(logger);
+          // logger.info('test');
         }}
       >
         Test local log
       </button>
       <button
         onClick={async () => {
+          const registration = await navigator.serviceWorker.register(
+            '/sw.js',
+            {
+              scope: '/',
+            },
+          );
+
+          if (registration.installing) {
+            console.log('Service worker installing');
+          } else if (registration.waiting) {
+            console.log('Service worker installed');
+          } else if (registration.active) {
+            console.log('Service worker active');
+          }
+
           // console.log(worker);
           // navigator.serviceWorker.register(worker, {
           //   scope: '/',
           // });
         }}
       >
+        service worker
+      </button>
+      <button
+        onClick={async () => {
+          new Worker(new URL('../../demo.ts', import.meta.url));
+        }}
+      >
         worker
+      </button>
+      <button
+        onClick={async () => {
+          const sandbox = new Sandbox({
+            iframeProps: {
+              allowfullscreen: true,
+              csp: "frame-ancestors 'self' https://www.example.org;",
+            },
+          });
+
+          sandbox.run(/* js */ `
+            console.log('----------------------')
+            fetch('https://jsonplaceholder.typicode.com/todos/1').then(async (res)=>{
+              console.log(await res.json());
+            })
+          `);
+        }}
+      >
+        Sandbox
       </button>
       {panel?.collapsed && (
         <Tooltip openDelay={2000} label="Collapse sidebar">

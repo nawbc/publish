@@ -27,19 +27,21 @@ export interface SandboxOptions {
    * ]
    * ```
    */
-  grants: string[];
+  grants?: string[];
   /**
    *@see {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#allow}
+   *@see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Permissions_Policy#embedded_frame_syntax}
    */
   allows?: string[];
   /**
    * Part of iframe attributes.
    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe
    */
-  iframe?: {
+  iframeProps?: {
     referrerpolicy?: HTMLAttributeReferrerPolicy;
     allowfullscreen?: boolean;
     allowpaymentrequest?: boolean;
+    csp?: string;
   };
 
   /**
@@ -86,6 +88,7 @@ export class Sandbox extends EventTarget {
       {
         grants: ['allow-scripts'],
         graphical: false,
+        iframeProps: {},
       },
       options!,
     );
@@ -95,9 +98,13 @@ export class Sandbox extends EventTarget {
   private _init() {
     this.id = v4();
     this._iframe = document.createElement('iframe');
-    this._iframe.setAttribute('sandbox', this._options.grants.join(' '));
+    this._iframe.setAttribute('sandbox', this._options.grants!.join(' '));
     this._iframe.setAttribute('allowfullscreen', 'true');
     this._iframe.setAttribute('id', this.id);
+
+    for (const [key, value] of Object.entries(this._options.iframeProps!)) {
+      this._iframe.setAttribute(key, `${value}`);
+    }
     this._iframe.style.display = 'none';
 
     document.body.appendChild(this._iframe);
