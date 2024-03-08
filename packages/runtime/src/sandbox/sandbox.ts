@@ -105,7 +105,9 @@ export class Sandbox extends EventTarget {
     for (const [key, value] of Object.entries(this._options.iframeProps!)) {
       this._iframe.setAttribute(key, `${value}`);
     }
-    this._iframe.style.display = 'none';
+    if (!this._options.graphical) {
+      this._iframe.style.display = 'none';
+    }
 
     document.body.appendChild(this._iframe);
   }
