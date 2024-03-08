@@ -6,6 +6,7 @@ import '@fontsource/inter';
 import 'es-module-shims';
 
 import { disableGlobalContextMenu } from '@publish/shared';
+import { TrayIcon } from '@tauri-apps/api/tray';
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 
@@ -23,3 +24,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 disableGlobalContextMenu();
 
 reportWebVitals(!kProdMode ? console.debug : undefined);
+
+(async () => {
+  const tray = await TrayIcon.new({ tooltip: 'awesome tray tooltip' });
+  tray.setTooltip('new tooltip');
+})();

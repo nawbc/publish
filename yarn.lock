@@ -3830,6 +3830,7 @@ __metadata:
     "@mantine/spotlight": "npm:7.6.1"
     "@publish/doc-editor": "workspace:^"
     "@publish/logger": "workspace:^"
+    "@tauri-apps/api": "npm:2.0.0-beta.4"
     "@types/react-dom": "npm:18.2.19"
     cross-env: "npm:^7.0.3"
     eslint: "npm:8.56.0"
@@ -3975,7 +3976,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publish/tauri@workspace:tauri"
   dependencies:
-    "@tauri-apps/cli": "npm:^1.5.9"
+    "@tauri-apps/cli": "npm:1.5.10"
   languageName: unknown
   linkType: soft
 
@@ -4931,6 +4932,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tauri-apps/api@npm:2.0.0-beta.4":
+  version: 2.0.0-beta.4
+  resolution: "@tauri-apps/api@npm:2.0.0-beta.4"
+  checksum: a9160f15e930b3d96ddf5efb29e88167566480c95059be2d75b5d1e7db9315a342b3195387f4c06e0790bb88f982ac0bbbc589beb75d6f125265601173903b1d
+  languageName: node
+  linkType: hard
+
 "@tauri-apps/cli-darwin-arm64@npm:1.5.10":
   version: 1.5.10
   resolution: "@tauri-apps/cli-darwin-arm64@npm:1.5.10"
@@ -5001,7 +5009,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli@npm:^1.5.9":
+"@tauri-apps/cli@npm:1.5.10":
   version: 1.5.10
   resolution: "@tauri-apps/cli@npm:1.5.10"
   dependencies:
