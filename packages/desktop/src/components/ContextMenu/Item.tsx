@@ -1,6 +1,5 @@
 import type { MantineColor } from '@mantine/core';
 import { Box, parseThemeColor, useMantineTheme } from '@mantine/core';
-// import { assignInlineVars } from '@vanilla-extract/dynamic';
 import { clsx } from 'clsx';
 import type { ReactNode } from 'react';
 import type React from 'react';

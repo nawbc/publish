@@ -1,10 +1,13 @@
 [package]
 name = "tauri-capacitor-plugin"
 version = "0.0.1"
-authors = ["Mike Summerfeldt <mike.summerfeldt@gmail.com>"]
-edition = "2018"
+authors = [
+  "Mike Summerfeldt <mike.summerfeldt@gmail.com>",
+  "Han <han@deskbtm.com>",
+]
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-tauri = "1.5.0"
+tauri = { workspace = true }

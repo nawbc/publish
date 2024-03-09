@@ -1,55 +1,19 @@
 {
-  "package": {
-    "productName": "publish",
-    "version": "0.1.0"
-  },
+  "productName": "publish",
+  "version": "0.0.1",
+  "identifier": "com.deskbtm.publish",
   "build": {
-    "distDir": "../../packages/desktop/dist",
-    "devPath": "https://localhost:3000",
+    "frontendDist": "../../packages/desktop/dist",
+    "devUrl": "https://localhost:3000",
     "beforeDevCommand": "yarn _web:desktop",
-    "beforeBuildCommand": "yarn build",
-    "withGlobalTauri": false
+    "beforeBuildCommand": "yarn build"
   },
-  "tauri": {
-    "bundle": {
-      "active": true,
-      "targets": "all",
-      "identifier": "com.deskbtm.publish",
-      "icon": [
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ],
-      "resources": [],
-      "externalBin": [],
-      "copyright": "",
-      "category": "DeveloperTool",
-      "shortDescription": "",
-      "longDescription": "",
-      "deb": {
-        "depends": []
-      },
-      "macOS": {
-        "frameworks": [],
-        "minimumSystemVersion": "",
-        "exceptionDomain": "",
-        "signingIdentity": null,
-        "entitlements": null
-      },
-      "windows": {
-        "certificateThumbprint": null,
-        "digestAlgorithm": "sha256",
-        "timestampUrl": ""
-      }
-    },
-    "updater": {
-      "active": false
-    },
-    "allowlist": {
-      "notification": {
-        "all": true
-      }
+  "plugins": {},
+  "app": {
+    "withGlobalTauri": false,
+    "trayIcon": {
+      "iconPath": "icons/32x32.png",
+      "iconAsTemplate": true
     },
     "windows": [
       {
@@ -62,6 +26,40 @@
     ],
     "security": {
       "csp": "default-src blob: data: filesystem: ws: wss: http: https: tauri: 'unsafe-eval' 'unsafe-inline' 'self' img-src: 'self'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "resources": [],
+    "externalBin": [],
+    "copyright": "",
+    "category": "DeveloperTool",
+    "shortDescription": "",
+    "longDescription": "",
+    "macOS": {
+      "frameworks": [],
+      "minimumSystemVersion": "",
+      "exceptionDomain": "",
+      "signingIdentity": null,
+      "entitlements": null
+    },
+    "windows": {
+      "certificateThumbprint": null,
+      "digestAlgorithm": "sha256",
+      "timestampUrl": "",
+      "nsis": {
+        "languages": [
+          "en-US",
+          "zh-CN"
+        ]
+      }
     }
   }
 }

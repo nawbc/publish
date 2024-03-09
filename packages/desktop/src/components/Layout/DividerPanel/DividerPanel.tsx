@@ -23,8 +23,6 @@ import { Panel } from './Panel';
 import type { ResizeCallbackArgs, UseResizableProps } from './useResizable';
 import { useResizable } from './useResizable';
 
-console.log('------------', classes);
-
 export interface DividerPanelProps
   extends Partial<UseResizableProps>,
     PropsWithChildren {
@@ -85,7 +83,7 @@ export const DividerPanelInner = forwardRef<
         pos="relative"
         className={isDragging ? '' : classes.panelSlideTransition}
         style={{
-          width: position - collapsedPosition,
+          width: rem(position - collapsedPosition),
           overflow: 'hidden',
           marginLeft: panel?.collapsed ? position * -1 : 0,
         }}
@@ -121,12 +119,15 @@ export const DividerPanelInner = forwardRef<
 
 DividerPanelInner.displayName = '@publish/desktop/DividerPanelInner';
 
-export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
-  const { children } = props;
+export const _DividerPanel: FC<
+  DividerPanelProps & { store: DividerPanelStore }
+> = (props) => {
+  const { children, store } = props;
+  const { position } = store;
 
-  const [expanded, handlers] = useDisclosure(true);
-  const collapsed = !expanded;
+  const [expanded, handlers] = useDisclosure(store.expanded);
   const panel = useRef<DividerPanelInnerRef>(null);
+  const collapsed = !expanded;
 
   const collapse = useCallback(
     function () {
@@ -138,6 +139,7 @@ export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
     },
     [handlers],
   );
+
   const expand = useCallback(
     function () {
       LocalStore.set<DividerPanelStore>(SPLIT_PANEL_STORAGE_KEY, {
@@ -160,25 +162,10 @@ export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
   );
 
   useLayoutEffect(() => {
-    const { position, expanded } = LocalStore.get<DividerPanelStore>(
-      SPLIT_PANEL_STORAGE_KEY,
-    );
-
-    const setPosition = panel.current?.setPosition;
-    if (!setPosition) {
-      return;
-    }
-
     if (is.truthy(position) && !Number.isNaN(position)) {
-      if (expanded) {
-        handlers.open();
-      } else {
-        handlers.close();
-      }
       setPosition(position!);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [position, setPosition]);
 
   const context = useMemo(
     () => ({
@@ -196,6 +183,12 @@ export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
       <DividerPanelInner ref={panel} {...props} />
     </DividerPanelContext.Provider>
   );
+};
+
+export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
+  const store = LocalStore.get<DividerPanelStore>(SPLIT_PANEL_STORAGE_KEY);
+
+  return <_DividerPanel {...props} store={store} />;
 });
 
 DividerPanel.Leading = Panel;

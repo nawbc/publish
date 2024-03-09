@@ -2,6 +2,7 @@
   width: rem(16);
   cursor: col-resize;
   will-change: visibility;
+  /* Disable browser handling of all panning and zooming gestures. */
   touch-action: none;
   z-index: 288;
 
@@ -22,4 +23,10 @@
 }
 
 .dividerHandle {
+  height: 100%;
+  width: rem(2);
+  box-sizing: content-box;
+  transition: 250ms linear background-color;
+  outline: none;
+  background-color: var(--_resize-divider-color);
 }

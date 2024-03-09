@@ -14,9 +14,7 @@ export const DividerHandle = forwardRef<HTMLDivElement, DividerHandleProps>(
     return (
       <Box ref={ref} className={styles.primitiveResizeDividerArea} {...props}>
         <Center h="100%">
-          <Box
-            className={styles.dividerHandle[isDragging ? 'active' : 'inactive']}
-          />
+          <Box className={styles.dividerHandle} />
         </Center>
       </Box>
     );

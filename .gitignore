@@ -11,6 +11,7 @@
 
 # compiled output
 **/node_modules/*
+**/target/*
 **/dist/*
 **/build/*
 /**/*.tsbuildinfo
