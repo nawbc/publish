@@ -3,6 +3,7 @@ import type { Factory } from '@mantine/core';
 import { Box, factory, Flex, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { LocalStore } from '@publish/shared';
+import { useMemoStore } from '@publish/shared';
 import debounce from 'lodash.debounce';
 import type { PropsWithChildren } from 'react';
 import {
@@ -119,15 +120,17 @@ export const DividerPanelInner = forwardRef<
 
 DividerPanelInner.displayName = '@publish/desktop/DividerPanelInner';
 
-export const _DividerPanel: FC<
-  DividerPanelProps & { store: DividerPanelStore }
-> = (props) => {
-  const { children, store } = props;
-  const { position } = store;
+export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
+  const { children } = props;
+  if (React.Children.count(children) !== 2) {
+    throw new Error('Must have two children');
+  }
 
+  const store = useMemoStore<DividerPanelStore>(SPLIT_PANEL_STORAGE_KEY);
+  const { position } = store;
   const [expanded, handlers] = useDisclosure(store.expanded);
-  const panel = useRef<DividerPanelInnerRef>(null);
   const collapsed = !expanded;
+  const panel = useRef<DividerPanelInnerRef>(null);
 
   const collapse = useCallback(
     function () {
@@ -150,10 +153,6 @@ export const _DividerPanel: FC<
     [handlers],
   );
 
-  if (React.Children.count(children) !== 2) {
-    throw new Error('Must have two children');
-  }
-
   const setPosition = useCallback<React.Dispatch<React.SetStateAction<number>>>(
     (p) => {
       panel.current?.setPosition(p);
@@ -162,7 +161,7 @@ export const _DividerPanel: FC<
   );
 
   useLayoutEffect(() => {
-    if (is.truthy(position) && !Number.isNaN(position)) {
+    if (is.truthy(position) && panel.current?.setPosition) {
       setPosition(position!);
     }
   }, [position, setPosition]);
@@ -183,12 +182,6 @@ export const _DividerPanel: FC<
       <DividerPanelInner ref={panel} {...props} />
     </DividerPanelContext.Provider>
   );
-};
-
-export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
-  const store = LocalStore.get<DividerPanelStore>(SPLIT_PANEL_STORAGE_KEY);
-
-  return <_DividerPanel {...props} store={store} />;
 });
 
 DividerPanel.Leading = Panel;

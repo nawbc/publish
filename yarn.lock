@@ -15356,7 +15356,6 @@ __metadata:
     jotai-effect: "npm:0.4.0"
     jotai-tanstack-query: "npm:0.8.3"
     lodash.debounce: "npm:4.0.8"
-    million: "npm:3.0.3"
     multimatch: "npm:7.0.0"
     native-run: "npm:2.0.1"
     node-gyp: "npm:10.0.1"
