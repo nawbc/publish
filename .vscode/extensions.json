@@ -3,6 +3,10 @@
     "tzachovadia.todo-list",
     "saber2pr.todolist",
     "clinyong.vscode-css-modules",
-    "bierner.comment-tagged-templates"
+    "bierner.comment-tagged-templates",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "rust-lang.rust-analyzer",
+    "editorconfig.editorconfig"
   ]
 }
