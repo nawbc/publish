@@ -19,7 +19,7 @@ import { EXPLORER_EMPTY_ID } from '../context-menus';
 import { useContextMenu } from '../ContextMenu';
 // import { Dropzone } from '../Dropzone';
 import { DragPreview } from './DragPreview';
-import styles from './Explorer.module.css';
+import classes from './Explorer.module.css';
 import { useExplorer } from './hooks';
 import { TreeNode } from './TreeNode';
 import type { NodeData } from './types';
@@ -261,8 +261,8 @@ export const ExplorerTree: FC<any> = function () {
           initialOpen={!allCollapsed}
           rootId={0}
           classes={{
-            root: styles.treeRoot,
-            listItem: styles.listItem,
+            root: classes.root,
+            listItem: classes.listItem,
           }}
           onDrop={handleDrop}
           onDragStart={handleDragStart}

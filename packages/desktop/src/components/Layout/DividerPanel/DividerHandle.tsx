@@ -1,8 +1,7 @@
 import { Box, Center } from '@mantine/core';
 import { forwardRef } from 'react';
 
-// import * as styles from './DividerHandle.css';
-import styles from './DividerHandle.module.css';
+import classes from './DividerPanel.module.css';
 import type { DividerProps } from './useResizable';
 
 export interface DividerHandleProps extends DividerProps {
@@ -12,9 +11,12 @@ export interface DividerHandleProps extends DividerProps {
 export const DividerHandle = forwardRef<HTMLDivElement, DividerHandleProps>(
   ({ isDragging, ...props }, ref) => {
     return (
-      <Box ref={ref} className={styles.primitiveResizeDividerArea} {...props}>
+      <Box ref={ref} className={classes.divider} {...props}>
         <Center h="100%">
-          <Box className={styles.dividerHandle} />
+          <Box
+            className={classes.handle}
+            data-dragging={isDragging ? true : undefined}
+          />
         </Center>
       </Box>
     );
