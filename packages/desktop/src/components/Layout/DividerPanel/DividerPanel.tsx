@@ -1,4 +1,3 @@
-import { is } from '@deskbtm/gadgets';
 import type { Factory } from '@mantine/core';
 import { Box, factory, Flex, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
@@ -6,13 +5,7 @@ import { LocalStore } from '@publish/shared';
 import { useMemoStore } from '@publish/shared';
 import debounce from 'lodash.debounce';
 import type { PropsWithChildren } from 'react';
-import {
-  useCallback,
-  useImperativeHandle,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-} from 'react';
+import { useCallback, useImperativeHandle, useMemo, useRef } from 'react';
 import { type FC, forwardRef } from 'react';
 import React from 'react';
 
@@ -106,9 +99,6 @@ export const DividerPanelInner = forwardRef<
         style={{
           flexGrow: 1,
           flexBasis: 0,
-          // width: `calc(100% - ${
-          //   panel?.collapsed ? 0 : position
-          // }px - ${collapsedPosition}px)`,
           overflow: 'hidden',
         }}
       >
@@ -121,13 +111,15 @@ export const DividerPanelInner = forwardRef<
 DividerPanelInner.displayName = '@publish/desktop/DividerPanelInner';
 
 export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
-  const { children } = props;
+  const { children, initial } = props;
+
   if (React.Children.count(children) !== 2) {
     throw new Error('Must have two children');
   }
 
   const store = useMemoStore<DividerPanelStore>(SPLIT_PANEL_STORAGE_KEY);
   const { position } = store;
+  const initialPos = position ?? initial;
   const [expanded, handlers] = useDisclosure(store.expanded);
   const collapsed = !expanded;
   const panel = useRef<DividerPanelInnerRef>(null);
@@ -160,12 +152,6 @@ export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
     [],
   );
 
-  useLayoutEffect(() => {
-    if (is.truthy(position) && panel.current?.setPosition) {
-      setPosition(position!);
-    }
-  }, [position, setPosition]);
-
   const context = useMemo(
     () => ({
       collapse,
@@ -179,7 +165,7 @@ export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
 
   return (
     <DividerPanelContext.Provider value={context}>
-      <DividerPanelInner ref={panel} {...props} />
+      <DividerPanelInner ref={panel} {...props} initial={initialPos} />
     </DividerPanelContext.Provider>
   );
 });
