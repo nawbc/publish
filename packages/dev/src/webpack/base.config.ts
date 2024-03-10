@@ -160,7 +160,7 @@ export function createConfiguration(): Configuration {
         node: false,
         requireJs: false,
         import: true,
-        strictExportPresence: true,
+        exportsPresence: 'error',
       },
     },
     rules: [

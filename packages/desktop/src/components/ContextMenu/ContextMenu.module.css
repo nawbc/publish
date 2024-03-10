@@ -1,0 +1,65 @@
+.main {
+  position: fixed;
+  opacity: 0;
+  width: max-content;
+  user-select: none;
+  background-color: var(--publish-backdrop-color-default);
+  box-sizing: border-box;
+  box-shadow: var(--publish-color-context-menu-border);
+  border-radius: var(--mantine-radius-default);
+  padding: rem(4px);
+  z-index: 999;
+  &::before {
+    content: '';
+    border-radius: var(--mantine-radius-sm);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: var(--publish-backdrop-filter);
+  }
+}
+
+.sub {
+  composes: main;
+  position: absolute;
+  pointer-events: none;
+  transition: opacity 0.256s;
+  top: calc(-1 * rem(4px));
+  left: 100%;
+  backdrop-filter: var(--publish-backdrop-filter);
+
+  &:where([data-position='bottom']) {
+    bottom: calc(-1 * rem(4px));
+    top: unset;
+  }
+
+  &:where([data-position='right']) {
+    right: 100%;
+    top: unset;
+  }
+}
+
+.subFocusOpen {
+}
+
+.item {
+  cursor: pointer;
+  width: 100%;
+  position: 'relative';
+
+  border-radius: var(--mantine-radius-default);
+  color: var(itemColor, var(--mantine-color-text));
+  font-size: var(--mantine-font-size-sm);
+  padding: calc(var(--mantine-spacing-xs) / 1.5) var(--mantine-spacing-sm);
+  background-color: fallbackVar(itemBg, transparent);
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  opacity: fallbackVar(itemOpacity, 1);
+}
+
+.itemFeedback {
+  /* animation: ; */
+}

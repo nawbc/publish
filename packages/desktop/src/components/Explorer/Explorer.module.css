@@ -4,7 +4,7 @@
   margin: 0;
   height: 100%;
 
-  &:where(ul, li) {
+  & :where(ul, li) {
     padding-inline-start: rem(6px);
   }
 }

@@ -1,5 +1,5 @@
-import styles from './ContextMenu.module.css';
-// import * as styles from './ContextMenu.css';
+import classes from './ContextMenu.module.css';
+// import * as classes from './ContextMenu.css';
 import type { ItemTracker, ItemTrackerRecord } from './hooks';
 
 interface Menu<T = ItemTrackerRecord> {
@@ -80,7 +80,7 @@ export function createKeyboardController() {
       });
 
       setSubMenuPosition!();
-      node.classList.add(styles.subFocusOpen);
+      node.classList.add(classes.subFocusOpen);
       parentNode = node;
 
       if (subMenuItems.length > 0) {
@@ -102,7 +102,7 @@ export function createKeyboardController() {
     if (isFocused() && !isRoot) {
       const parent = menuList.get(parentNode)!;
 
-      parentNode!.classList.remove(styles.subFocusOpen);
+      parentNode!.classList.remove(classes.subFocusOpen);
       currentItems = parent.items;
       parentNode = parent.parentNode;
 
