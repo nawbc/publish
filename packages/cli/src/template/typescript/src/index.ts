@@ -40,7 +40,7 @@ export class Plugin extends PublishAddon {
       },
       homepage: '',
       packageName: 'com.deskbtm.publish.x',
-      description: 'Publish x(twitter) plugin',
+      description: 'Publish plugin',
       update: {
         mode: 'npm',
         url: 'https://npm.com',
@@ -51,7 +51,7 @@ export class Plugin extends PublishAddon {
         scope: [],
       },
       network: {
-        hosts: ['*://*twitter.com/*'],
+        hosts: ['*://*.com/*'],
       },
     } satisfies Manifest;
   }

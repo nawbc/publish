@@ -4,6 +4,7 @@
   "description": "Publish x(twitter) addon",
   "author": "Han <han@deskbtm.com>",
   "main": "",
+  "type": "module",
   "scripts": {
     "build": "tsc && vite build",
     "dev": "vite build --watch --mode development",
