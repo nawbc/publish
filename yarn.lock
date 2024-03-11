@@ -3976,6 +3976,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@publishjs/x-api@workspace:first_party/x-api":
+  version: 0.0.0-use.local
+  resolution: "@publishjs/x-api@workspace:first_party/x-api"
+  dependencies:
+    "@types/lodash.merge": "npm:^4"
+    "@types/uuid": "npm:9.0.8"
+    debug: "npm:4.3.4"
+    lodash.merge: "npm:4.6.2"
+    typescript: "npm:5.3.3"
+    uuid: "npm:9.0.1"
+    vitest: "npm:1.3.1"
+  languageName: unknown
+  linkType: soft
+
 "@radix-ui/number@npm:1.0.0":
   version: 1.0.0
   resolution: "@radix-ui/number@npm:1.0.0"
@@ -5600,6 +5614,15 @@ __metadata:
   dependencies:
     "@types/lodash": "npm:*"
   checksum: 10/8183a152e01928e3b97ca773f6ae6038b8695e76493ba8bf6b743ec143948a62294fbc9d49fa4a78b52265b3ba4892ef57534e0c13d04aa0f111671b5a944feb
+  languageName: node
+  linkType: hard
+
+"@types/lodash.merge@npm:^4":
+  version: 4.6.9
+  resolution: "@types/lodash.merge@npm:4.6.9"
+  dependencies:
+    "@types/lodash": "npm:*"
+  checksum: 10/d0dd6654547c9d8d905184d14aa5c2a37a1ed1c3204f5ab20b7d591a05f34859ef09d3b72c065e94ca1989abf9109eb8230f67c4d64a5768b1d65b9ed8baf8e7
   languageName: node
   linkType: hard
 
@@ -12046,7 +12069,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash.merge@npm:^4.6.2":
+"lodash.merge@npm:4.6.2, lodash.merge@npm:^4.6.2":
   version: 4.6.2
   resolution: "lodash.merge@npm:4.6.2"
   checksum: 10/d0ea2dd0097e6201be083865d50c3fb54fbfbdb247d9cc5950e086c991f448b7ab0cdab0d57eacccb43473d3f2acd21e134db39f22dac2d6c9ba6bf26978e3d6
