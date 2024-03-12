@@ -26,7 +26,6 @@ export class XApi {
   private readonly _opt: Required<XApiOptions>;
   private readonly _cookies: Record<string, unknown>;
   private readonly logger: typeof console;
-  private readonly _requestClient: any;
 
   constructor(options?: XApiOptions) {
     this._opt = Object.assign(
@@ -37,7 +36,7 @@ export class XApi {
         graphqlApi: 'https://twitter.com/i/api/graphql',
         resourceApi: 'https://upload.twitter.com/1.1/media/upload.json',
         debug: false,
-        requestClient: fetch,
+        requestClient: window.fetch.bind(window),
       },
       options,
     ) as Required<XApiOptions>;

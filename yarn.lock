@@ -3773,6 +3773,7 @@ __metadata:
     "@mantine/spotlight": "npm:7.6.1"
     "@publish/doc-editor": "workspace:^"
     "@publish/logger": "workspace:^"
+    "@publishjs/x-api": "workspace:^"
     "@tauri-apps/api": "npm:2.0.0-beta.4"
     "@tauri-apps/plugin-autostart": "npm:^2.0.0-beta.2"
     "@tauri-apps/plugin-shell": "npm:2.0.0-beta.2"
@@ -3976,7 +3977,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@publishjs/x-api@workspace:first_party/x-api":
+"@publishjs/x-api@workspace:^, @publishjs/x-api@workspace:first_party/x-api":
   version: 0.0.0-use.local
   resolution: "@publishjs/x-api@workspace:first_party/x-api"
   dependencies:
