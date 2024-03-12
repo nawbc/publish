@@ -4,5 +4,5 @@
 )]
 
 fn main() {
-  tauri_beta_lib::run()
+  app_lib::run()
 }

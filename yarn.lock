@@ -3774,8 +3774,9 @@ __metadata:
     "@publish/doc-editor": "workspace:^"
     "@publish/logger": "workspace:^"
     "@publishjs/x-api": "workspace:^"
-    "@tauri-apps/api": "npm:2.0.0-beta.4"
-    "@tauri-apps/plugin-autostart": "npm:^2.0.0-beta.2"
+    "@tauri-apps/api": "npm:2.0.0-beta.5"
+    "@tauri-apps/plugin-autostart": "npm:2.0.0-beta.2"
+    "@tauri-apps/plugin-http": "npm:2.0.0-beta.2"
     "@tauri-apps/plugin-shell": "npm:2.0.0-beta.2"
     cross-env: "npm:^7.0.3"
     eslint: "npm:8.56.0"
@@ -4871,6 +4872,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tauri-apps/api@npm:2.0.0-beta.5":
+  version: 2.0.0-beta.5
+  resolution: "@tauri-apps/api@npm:2.0.0-beta.5"
+  checksum: 10/979a3fee705b08226ec4fa9adf332ae98b404030c9310e030231b09515ec1a96a71f1ab846f3a6f986b0a98b2cde3142565ef9588ea07ee46d7eddc5c5f98899
+  languageName: node
+  linkType: hard
+
 "@tauri-apps/cli-darwin-arm64@npm:2.0.0-beta.8":
   version: 2.0.0-beta.8
   resolution: "@tauri-apps/cli-darwin-arm64@npm:2.0.0-beta.8"
@@ -4982,12 +4990,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tauri-apps/plugin-autostart@npm:^2.0.0-beta.2":
+"@tauri-apps/plugin-autostart@npm:2.0.0-beta.2":
   version: 2.0.0-beta.2
   resolution: "@tauri-apps/plugin-autostart@npm:2.0.0-beta.2"
   dependencies:
     "@tauri-apps/api": "npm:2.0.0-beta.4"
   checksum: 10/db25f55e37815f682f0e3d5ff8c452cf4246e6f41b108a52602969273c5f746264a8f733acfd9698bbe6a7d3701249bd6f9896d3dc03c8c8c1d22632a521e3bb
+  languageName: node
+  linkType: hard
+
+"@tauri-apps/plugin-http@npm:2.0.0-beta.2":
+  version: 2.0.0-beta.2
+  resolution: "@tauri-apps/plugin-http@npm:2.0.0-beta.2"
+  dependencies:
+    "@tauri-apps/api": "npm:2.0.0-beta.4"
+  checksum: 10/f7552a121418a5b06cd3a032e6c14afd1711526061fe5b7d00f50b791046141f5e6bf679e3c3cd21270bc46b2f87900622132c1c8c537936f80ef667fa3ca04b
   languageName: node
   linkType: hard
 

@@ -110,7 +110,7 @@
       ],
       "properties": {
         "urls": {
-          "description": "Remote domains this capability refers to using the [URLPattern standard](https://urlpattern.spec.whatwg.org/).",
+          "description": "Remote domains this capability refers to using the [URLPattern standard](https://urlpattern.spec.whatwg.org/).\n\n# Examples\n\n- \"https://*.mydomain.dev\": allows subdomains of mydomain.dev - \"https://mydomain.dev/api/*\": allows any subpath of mydomain.dev/api",
           "type": "array",
           "items": {
             "type": "string"
@@ -2157,6 +2157,129 @@
                         "type": "string"
                       }
                     }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "required": [
+                "identifier"
+              ],
+              "properties": {
+                "identifier": {
+                  "oneOf": [
+                    {
+                      "description": "http:default -> Allows all fetch operations",
+                      "type": "string",
+                      "enum": [
+                        "http:default"
+                      ]
+                    },
+                    {
+                      "description": "http:allow-fetch -> Enables the fetch command without any pre-configured scope.",
+                      "type": "string",
+                      "enum": [
+                        "http:allow-fetch"
+                      ]
+                    },
+                    {
+                      "description": "http:allow-fetch-cancel -> Enables the fetch_cancel command without any pre-configured scope.",
+                      "type": "string",
+                      "enum": [
+                        "http:allow-fetch-cancel"
+                      ]
+                    },
+                    {
+                      "description": "http:allow-fetch-read-body -> Enables the fetch_read_body command without any pre-configured scope.",
+                      "type": "string",
+                      "enum": [
+                        "http:allow-fetch-read-body"
+                      ]
+                    },
+                    {
+                      "description": "http:allow-fetch-send -> Enables the fetch_send command without any pre-configured scope.",
+                      "type": "string",
+                      "enum": [
+                        "http:allow-fetch-send"
+                      ]
+                    },
+                    {
+                      "description": "http:deny-fetch -> Denies the fetch command without any pre-configured scope.",
+                      "type": "string",
+                      "enum": [
+                        "http:deny-fetch"
+                      ]
+                    },
+                    {
+                      "description": "http:deny-fetch-cancel -> Denies the fetch_cancel command without any pre-configured scope.",
+                      "type": "string",
+                      "enum": [
+                        "http:deny-fetch-cancel"
+                      ]
+                    },
+                    {
+                      "description": "http:deny-fetch-read-body -> Denies the fetch_read_body command without any pre-configured scope.",
+                      "type": "string",
+                      "enum": [
+                        "http:deny-fetch-read-body"
+                      ]
+                    },
+                    {
+                      "description": "http:deny-fetch-send -> Denies the fetch_send command without any pre-configured scope.",
+                      "type": "string",
+                      "enum": [
+                        "http:deny-fetch-send"
+                      ]
+                    }
+                  ]
+                },
+                "allow": {
+                  "items": {
+                    "title": "ScopeEntry",
+                    "description": "HTTP scope entry object definition.",
+                    "anyOf": [
+                      {
+                        "description": "A URL that can be accessed by the webview when using the HTTP APIs. Wildcards can be used following the URL pattern standard.\n\nSee [the URL Pattern spec](https://urlpattern.spec.whatwg.org/) for more information.\n\nExamples:\n\n- \"https://*\" : allows all HTTPS origin on port 443\n\n- \"https://*:*\" : allows all HTTPS origin on any port\n\n- \"https://*.github.com/tauri-apps/tauri\": allows any subdomain of \"github.com\" with the \"tauri-apps/api\" path\n\n- \"https://myapi.service.com/users/*\": allows access to any URLs that begins with \"https://myapi.service.com/users/\"",
+                        "type": "string"
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "description": "A URL that can be accessed by the webview when using the HTTP APIs. Wildcards can be used following the URL pattern standard.\n\nSee [the URL Pattern spec](https://urlpattern.spec.whatwg.org/) for more information.\n\nExamples:\n\n- \"https://*\" : allows all HTTPS origin on port 443\n\n- \"https://*:*\" : allows all HTTPS origin on any port\n\n- \"https://*.github.com/tauri-apps/tauri\": allows any subdomain of \"github.com\" with the \"tauri-apps/api\" path\n\n- \"https://myapi.service.com/users/*\": allows access to any URLs that begins with \"https://myapi.service.com/users/\"",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                "deny": {
+                  "items": {
+                    "title": "ScopeEntry",
+                    "description": "HTTP scope entry object definition.",
+                    "anyOf": [
+                      {
+                        "description": "A URL that can be accessed by the webview when using the HTTP APIs. Wildcards can be used following the URL pattern standard.\n\nSee [the URL Pattern spec](https://urlpattern.spec.whatwg.org/) for more information.\n\nExamples:\n\n- \"https://*\" : allows all HTTPS origin on port 443\n\n- \"https://*:*\" : allows all HTTPS origin on any port\n\n- \"https://*.github.com/tauri-apps/tauri\": allows any subdomain of \"github.com\" with the \"tauri-apps/api\" path\n\n- \"https://myapi.service.com/users/*\": allows access to any URLs that begins with \"https://myapi.service.com/users/\"",
+                        "type": "string"
+                      },
+                      {
+                        "type": "object",
+                        "required": [
+                          "url"
+                        ],
+                        "properties": {
+                          "url": {
+                            "description": "A URL that can be accessed by the webview when using the HTTP APIs. Wildcards can be used following the URL pattern standard.\n\nSee [the URL Pattern spec](https://urlpattern.spec.whatwg.org/) for more information.\n\nExamples:\n\n- \"https://*\" : allows all HTTPS origin on port 443\n\n- \"https://*:*\" : allows all HTTPS origin on any port\n\n- \"https://*.github.com/tauri-apps/tauri\": allows any subdomain of \"github.com\" with the \"tauri-apps/api\" path\n\n- \"https://myapi.service.com/users/*\": allows access to any URLs that begins with \"https://myapi.service.com/users/\"",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    ]
                   }
                 }
               }
@@ -4476,6 +4599,69 @@
           ]
         },
         {
+          "description": "http:default -> Allows all fetch operations",
+          "type": "string",
+          "enum": [
+            "http:default"
+          ]
+        },
+        {
+          "description": "http:allow-fetch -> Enables the fetch command without any pre-configured scope.",
+          "type": "string",
+          "enum": [
+            "http:allow-fetch"
+          ]
+        },
+        {
+          "description": "http:allow-fetch-cancel -> Enables the fetch_cancel command without any pre-configured scope.",
+          "type": "string",
+          "enum": [
+            "http:allow-fetch-cancel"
+          ]
+        },
+        {
+          "description": "http:allow-fetch-read-body -> Enables the fetch_read_body command without any pre-configured scope.",
+          "type": "string",
+          "enum": [
+            "http:allow-fetch-read-body"
+          ]
+        },
+        {
+          "description": "http:allow-fetch-send -> Enables the fetch_send command without any pre-configured scope.",
+          "type": "string",
+          "enum": [
+            "http:allow-fetch-send"
+          ]
+        },
+        {
+          "description": "http:deny-fetch -> Denies the fetch command without any pre-configured scope.",
+          "type": "string",
+          "enum": [
+            "http:deny-fetch"
+          ]
+        },
+        {
+          "description": "http:deny-fetch-cancel -> Denies the fetch_cancel command without any pre-configured scope.",
+          "type": "string",
+          "enum": [
+            "http:deny-fetch-cancel"
+          ]
+        },
+        {
+          "description": "http:deny-fetch-read-body -> Denies the fetch_read_body command without any pre-configured scope.",
+          "type": "string",
+          "enum": [
+            "http:deny-fetch-read-body"
+          ]
+        },
+        {
+          "description": "http:deny-fetch-send -> Denies the fetch_send command without any pre-configured scope.",
+          "type": "string",
+          "enum": [
+            "http:deny-fetch-send"
+          ]
+        },
+        {
           "description": "image:default -> Default permissions for the plugin.",
           "type": "string",
           "enum": [
@@ -4490,24 +4676,10 @@
           ]
         },
         {
-          "description": "image:allow-from-ico-bytes -> Enables the from_ico_bytes command without any pre-configured scope.",
-          "type": "string",
-          "enum": [
-            "image:allow-from-ico-bytes"
-          ]
-        },
-        {
           "description": "image:allow-from-path -> Enables the from_path command without any pre-configured scope.",
           "type": "string",
           "enum": [
             "image:allow-from-path"
-          ]
-        },
-        {
-          "description": "image:allow-from-png-bytes -> Enables the from_png_bytes command without any pre-configured scope.",
-          "type": "string",
-          "enum": [
-            "image:allow-from-png-bytes"
           ]
         },
         {
@@ -4546,24 +4718,10 @@
           ]
         },
         {
-          "description": "image:deny-from-ico-bytes -> Denies the from_ico_bytes command without any pre-configured scope.",
-          "type": "string",
-          "enum": [
-            "image:deny-from-ico-bytes"
-          ]
-        },
-        {
           "description": "image:deny-from-path -> Denies the from_path command without any pre-configured scope.",
           "type": "string",
           "enum": [
             "image:deny-from-path"
-          ]
-        },
-        {
-          "description": "image:deny-from-png-bytes -> Denies the from_png_bytes command without any pre-configured scope.",
-          "type": "string",
-          "enum": [
-            "image:deny-from-png-bytes"
           ]
         },
         {

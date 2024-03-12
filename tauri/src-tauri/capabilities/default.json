@@ -23,6 +23,21 @@
     "tray:allow-set-visible",
     "tray:allow-set-temp-dir-path",
     "tray:allow-set-icon-as-template",
-    "tray:allow-set-show-menu-on-left-click"
+    {
+      "identifier": "http:allow-fetch",
+      "allow": [
+        {
+          "url": "https://*"
+        }
+      ]
+    },
+    {
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://*"
+        }
+      ]
+    }
   ]
 }
