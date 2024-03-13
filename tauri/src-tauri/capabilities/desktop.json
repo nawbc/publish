@@ -1,0 +1,42 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "desktop",
+  "description": "enables the default permissions",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "webview:allow-create-webview-window",
+    "window:allow-start-dragging",
+    "window:allow-center",
+    "window:allow-destroy",
+    "window:allow-close",
+    "window:allow-hide",
+    "window:allow-minimize",
+    "window:allow-maximize",
+    "tray:allow-new",
+    "tray:allow-set-icon",
+    "tray:allow-set-menu",
+    "tray:allow-set-tooltip",
+    "tray:allow-set-title",
+    "tray:allow-set-visible",
+    "tray:allow-set-temp-dir-path",
+    "tray:allow-set-icon-as-template",
+    {
+      "identifier": "http:allow-fetch",
+      "allow": [
+        {
+          "url": "https://*"
+        }
+      ]
+    },
+    {
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://*"
+        }
+      ]
+    }
+  ]
+}

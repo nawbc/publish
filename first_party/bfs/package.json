@@ -4,6 +4,7 @@
   "description": "Browser file system",
   "author": "Han <han@deskbtm.com>",
   "main": "./src/index.ts",
+  "private": false,
   "exports": {
     ".": "./src/index.ts",
     "./*": {

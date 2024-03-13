@@ -215,8 +215,6 @@ export const ExplorerTree: FC<any> = function () {
     (newTree, options) => {
       const { dropTargetId } = options;
 
-      console.log(options.monitor.getItem().files);
-
       setTree(
         newTree.map((node) => {
           if (

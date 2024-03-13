@@ -18,6 +18,7 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
 
     return (
       <Flex
+        data-tauri-drag-region
         align="center"
         pos="relative"
         justify="space-between"

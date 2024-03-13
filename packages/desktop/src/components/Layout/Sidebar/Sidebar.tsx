@@ -1,8 +1,8 @@
 import { Flex } from '@mantine/core';
 import { type FC } from 'react';
 
-import { PublishErrorBoundary } from '../../Fallback';
 import { Explorer } from '../../Explorer';
+import { PublishErrorBoundary } from '../../Fallback';
 import { SidebarHeader } from './Header';
 
 export interface PrimitiveSidebarProps {

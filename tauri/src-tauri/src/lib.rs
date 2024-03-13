@@ -9,7 +9,9 @@ pub fn run() {
     .setup(|app| {
       let main_window = app.get_webview_window("main").unwrap();
 
-      main_window.with_webview(|webview| unsafe {});
+      main_window.with_webview(|webview| unsafe {
+        // let webview2 = webview.controller().CoreWebView2()
+      });
 
       Ok(())
     })

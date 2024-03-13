@@ -196,6 +196,8 @@ export class XApi {
       },
     });
 
+    console.log(await result.json());
+
     console.log(result);
   }
 }
