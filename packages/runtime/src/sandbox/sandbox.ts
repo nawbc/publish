@@ -6,6 +6,7 @@ import { message } from './message';
 import { presetEnvScript } from './presets';
 
 export interface GraphicalSandboxOptions {}
+// https://stackoverflow.com/questions/15942872/maximum-number-of-iframe-tagsper-web-page
 
 export interface SandboxOptions {
   /**

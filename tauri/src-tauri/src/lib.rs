@@ -8,9 +8,8 @@ pub fn run() {
     .plugin(tauri_plugin_http::init())
     .setup(|app| {
       let main_window = app.get_webview_window("main").unwrap();
-
       main_window.with_webview(|webview| unsafe {
-        // let webview2 = webview.controller().CoreWebView2()
+        // let webview2 = webview.controller().CoreWebView2().unwrap();
       });
 
       Ok(())

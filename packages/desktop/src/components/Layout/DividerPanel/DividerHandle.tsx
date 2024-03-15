@@ -2,7 +2,7 @@ import { Box, Center } from '@mantine/core';
 import { forwardRef } from 'react';
 
 import classes from './DividerPanel.module.css';
-import type { DividerProps } from './useResizable';
+import type { DividerProps } from './use-resizable';
 
 export interface DividerHandleProps extends DividerProps {
   isDragging: boolean;

@@ -12,10 +12,10 @@ import React from 'react';
 import { DividerHandle } from './DividerHandle';
 import classes from './DividerPanel.module.css';
 import { DividerPanelContext } from './DividerPanelContext';
-import { useDividerPanel } from './hooks';
 import { Panel } from './Panel';
-import type { ResizeCallbackArgs, UseResizableProps } from './useResizable';
-import { useResizable } from './useResizable';
+import { useDividerPanel } from './use-divider-panel';
+import type { ResizeCallbackArgs, UseResizableProps } from './use-resizable';
+import { useResizable } from './use-resizable';
 
 export interface DividerPanelProps
   extends Partial<UseResizableProps>,

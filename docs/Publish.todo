@@ -269,13 +269,33 @@
           "done": false,
           "start": 1708699639094
         }
+      },
+      {
+        "key": 1710466104153,
+        "children": [
+          {
+            "key": 1710466112442,
+            "children": [],
+            "todo": {
+              "content": "Limit network request",
+              "id": 1710466112442,
+              "level": "default",
+              "done": false,
+              "start": 1710466112442
+            }
+          }
+        ],
+        "todo": {
+          "content": "Security",
+          "id": 1710466104153,
+          "level": "default",
+          "done": false,
+          "start": 1710466104153
+        }
       }
     ],
     "expandKeys": [
-      1708522052882,
-      1708233092650,
-      1708699639094,
-      1709112594568
+      1710466104153
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
@@ -296,6 +316,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1709112650772"
+    "version": "1710466127358"
   }
 }

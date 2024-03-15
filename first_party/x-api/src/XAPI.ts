@@ -1,4 +1,5 @@
 import {
+  APIs,
   defaultFeatures,
   defaultVariables,
   MAX_GIF_SIZE,
@@ -15,7 +16,7 @@ export interface XApiOptions {
   resourceApi?: string;
   graphqlApi?: string;
   debug?: boolean;
-  requestClient?: any;
+  httpClient?: any;
 }
 
 interface RequestInitEx extends RequestInit {
@@ -36,7 +37,7 @@ export class XApi {
         graphqlApi: 'https://twitter.com/i/api/graphql',
         resourceApi: 'https://upload.twitter.com/1.1/media/upload.json',
         debug: false,
-        requestClient: window.fetch.bind(window),
+        httpClient: self.fetch.bind(window),
       },
       options,
     ) as Required<XApiOptions>;
@@ -74,22 +75,27 @@ export class XApi {
       init.headers,
     );
 
-    if (init.method === 'GET' && init.params) {
-      input =
-        input +
-        '?' +
-        new URLSearchParams(
-          Object.entries(init.params).map(([k, v]) => [
-            k,
-            JSON.stringify(v),
-          ]) as any,
-        );
+    if (init.params) {
+      if (init.method === 'GET') {
+        input =
+          input +
+          '?' +
+          new URLSearchParams(
+            Object.entries(init.params).map(([k, v]) => [
+              k,
+              JSON.stringify(v),
+            ]) as any,
+          );
+      } else {
+        init.body = JSON.stringify(init.params);
+      }
     }
 
-    return this._opt.requestClient(input, {
+    return this._opt.httpClient(input, {
       ...{
         mode: 'cors',
         redirect: 'follow',
+        credentials: 'include',
       },
       ...init,
     });
@@ -97,9 +103,9 @@ export class XApi {
 
   private async graphql(
     method: string,
-    operation: [string, string],
-    variables: Record<string, unknown>,
-    features: Record<string, unknown>,
+    operation: string[],
+    variables?: Record<string, unknown>,
+    features?: Record<string, unknown>,
   ) {
     const [qid, op] = operation;
     const params = {
@@ -114,7 +120,6 @@ export class XApi {
     });
 
     this.logger.info(r);
-
     return r.json();
   }
 
@@ -131,7 +136,7 @@ export class XApi {
   }
 
   public async tweet(text: string, options?: CreateTweet) {
-    let data: Record<string, unknown> = {
+    let variables: Record<string, unknown> = {
       tweet_text: text,
       dark_request: false,
       media: {
@@ -142,7 +147,7 @@ export class XApi {
     };
 
     if (options?.draft || options?.schedule) {
-      data = {
+      variables = {
         post_tweet_request: {
           auto_populate_reply_metadata: false,
           status: text,
@@ -158,6 +163,8 @@ export class XApi {
         // data['post_tweet_request']['media_ids'].push();
       }
     }
+
+    return this.graphql('POST', APIs.CreateTweet, variables);
   }
 
   private _blobToBase64DataURL = (file: File) =>
