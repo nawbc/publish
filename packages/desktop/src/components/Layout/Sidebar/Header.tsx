@@ -24,7 +24,7 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
         justify="space-between"
         component="nav"
         ref={ref}
-        px={rem(18)}
+        ml={rem(18)}
         py="xs"
       >
         <Tooltip openDelay={2000} label="Expand sidebar">

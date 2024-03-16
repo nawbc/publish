@@ -10,6 +10,7 @@ import { type FC, useCallback } from 'react';
 import { Outlet } from 'react-router';
 
 import { ExplorerProvider } from '../Explorer';
+import { WindowsNativeTitleBar } from '../NativeTitleBar/Windows';
 import { ScrollView } from '../ScrollView';
 import { DividerPanel, useDividerPanel } from './DividerPanel';
 import { PrimitiveSidebar } from './Sidebar';
@@ -142,6 +143,8 @@ function Header() {
           </ActionIcon>
         </Tooltip>
       )}
+      
+      <WindowsNativeTitleBar />
     </Box>
   );
 }

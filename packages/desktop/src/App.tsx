@@ -10,6 +10,7 @@ import { Compose } from 'reactgets/components/Compose/index';
 import { v4 } from 'uuid';
 
 import { GlobalContextMenus } from './components/context-menus';
+import { NativeWindowProvider } from './components/NativeWindow';
 import { PublishSpotlight } from './components/Spotlight';
 import { router } from './router';
 import { resolver, theme } from './theme';
@@ -34,6 +35,7 @@ function App() {
       defaultColorScheme="auto"
     />,
     <QueryClientProvider key={v4()} client={queryClient} />,
+    <NativeWindowProvider key={v4()} />,
   ];
 
   return (
