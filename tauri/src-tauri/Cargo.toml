@@ -22,13 +22,13 @@ serde = { workspace = true, features = ["derive"] }
 wry = { workspace = true, features = ["file-drop", "protocol", "os-webview"] }
 tauri-plugin-shell = { workspace = true }
 tauri = { workspace = true, features = ["default", "devtools", "tray-icon"] }
-tauri-plugin-autostart = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
-tauri-plugin-fs = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
-tauri-plugin-http = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2", features = [
+tauri-plugin-autostart = { workspace = true, branch = "v2" }
+tauri-plugin-fs = { workspace = true, branch = "v2" }
+tauri-plugin-os = { workspace = true, branch = "v2" }
+tauri-plugin-http = { workspace = true, branch = "v2", features = [
   "unsafe-headers",
   "default-tls",
 ] }
-tauri-plugin-os = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 
 [target."cfg(windows)".dependencies]
 windows = { workspace = true, features = [

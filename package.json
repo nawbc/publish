@@ -2,12 +2,11 @@
   "name": "publish",
   "scripts": {
     "mobile": "yarn workspace @publish/mobile dev",
-    "web": "cross-env PLATFORM=web yarn workspace @publish/desktop dev",
-    "_web:desktop": "cross-env PLATFORM=desktop yarn workspace @publish/desktop dev",
-    "native": "cross-env PLATFORM=desktop yarn workspace @publish/tauri dev",
-    "build:web": "cross-env PLATFORM=web yarn workspace @publish/desktop build",
-    "preview:web": "cross-env PLATFORM=web yarn workspace @publish/desktop preview",
-    "build:tauri": "cross-env PLATFORM=desktop yarn workspace @publish/tauri build",
+    "web": "cross-env PUBLISH_BUILD_PLATFORM=web yarn workspace @publish/desktop dev",
+    "desktop": "yarn workspace @publish/tauri dev",
+    "build:web": "cross-env PUBLISH_BUILD_PLATFORM=web yarn workspace @publish/desktop build",
+    "preview:web": "cross-env PUBLISH_BUILD_PLATFORM=web yarn workspace @publish/desktop preview",
+    "build:tauri": "yarn workspace @publish/tauri build",
     "build:android": "yarn workspace @publish/mobile dev",
     "build:ios": "yarn workspace @publish/mobile dev",
     "cloc": "cloc --fullpath --not-match-d=$(cat .clocignore) ."

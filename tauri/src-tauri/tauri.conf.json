@@ -6,8 +6,8 @@
   "build": {
     "frontendDist": "../../packages/desktop/dist",
     "devUrl": "https://localhost:3000",
-    "beforeDevCommand": "yarn _web:desktop",
-    "beforeBuildCommand": "yarn build"
+    "beforeDevCommand": "yarn workspace @publish/desktop dev",
+    "beforeBuildCommand": "yarn workspace @publish/desktop build"
   },
   "app": {
     "withGlobalTauri": false,

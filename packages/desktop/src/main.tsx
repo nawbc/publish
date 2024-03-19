@@ -25,7 +25,9 @@ disableGlobalContextMenu();
 
 reportWebVitals(!kProdMode ? console.debug : undefined);
 
-// (async () => {
-//   const tray = await TrayIcon.new({ tooltip: 'awesome tray tooltip' });
-//   tray.setTooltip('new tooltip');
-// })();
+if (process.env.PUBLISH_BUILD_PLATFORM === 'desktop') {
+  (async () => {
+    const tray = await TrayIcon.new({ tooltip: 'awesome tray tooltip' });
+    tray.setTooltip('new tooltip');
+  })();
+}

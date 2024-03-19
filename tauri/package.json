@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tauri dev",
-    "build": "tauri build",
+    "dev": "cross-env PUBLISH_BUILD_PLATFORM=desktop tauri dev",
+    "build": "cross-env PUBLISH_BUILD_PLATFORM=desktop tauri build",
     "tauri": "tauri"
   },
   "keywords": [],

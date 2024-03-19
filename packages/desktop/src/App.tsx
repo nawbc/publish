@@ -27,7 +27,7 @@ const DevTools: FC = function () {
 function App() {
   const [queryClient] = useState(() => new QueryClient());
 
-  const providers: ComposeProps['providers'] = [
+  const providers = [
     <MantineProvider
       key={v4()}
       theme={theme}
@@ -35,8 +35,10 @@ function App() {
       defaultColorScheme="auto"
     />,
     <QueryClientProvider key={v4()} client={queryClient} />,
-    <NativeWindowProvider key={v4()} />,
-  ].filter(Boolean);
+    process.env.PUBLISH_BUILD_PLATFORM === 'desktop' && (
+      <NativeWindowProvider key={v4()} />
+    ),
+  ].filter(Boolean) as ComposeProps['providers'];
 
   return (
     <Compose providers={providers}>

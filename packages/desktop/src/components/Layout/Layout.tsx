@@ -63,11 +63,10 @@ function Header() {
     >
       <button
         onClick={async () => {
-          // console.log()
-          // const res = await fetch('/sw.js');
-          // console.log(res.body);
-          // console.log(logger);
-          // logger.info('test');
+          const res = await fetch('/sw.js');
+          console.log(res.body);
+          console.log(logger);
+          logger.info('test');
         }}
       >
         Test local log
@@ -136,6 +135,13 @@ function Header() {
         }}
       >
         X
+      </button>
+      <button
+        onClick={async () => {
+          console.log(process.env.PUBLISH_BUILD_PLATFORM);
+        }}
+      >
+        Test
       </button>
       {panel?.collapsed && (
         <Tooltip openDelay={2000} label="Collapse sidebar">

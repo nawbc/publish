@@ -57,9 +57,9 @@ process.env.NODE_PATH = (process.env.NODE_PATH || '')
   .map((folder) => path.resolve(appDirectory, folder))
   .join(path.delimiter);
 
-// Grab NODE_ENV and PUBLISH_ENV_* environment variables and prepare them to be
+// Grab NODE_ENV and PUBLISH_* environment variables and prepare them to be
 // injected into the application via DefinePlugin in webpack configuration.
-const PUBLISH_ENV = /^PUBLISH_ENV_/i;
+const PUBLISH_ENV = /^PUBLISH_/i;
 
 function createEnvHash(env: string) {
   const hash = createHash('md5');
