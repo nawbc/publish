@@ -21,6 +21,6 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "devDependencies": {
-    "typescript": "5.3.3"
+    "typescript": "5.4.2"
   }
 }

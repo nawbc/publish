@@ -2099,6 +2099,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "os_info"
+version = "3.8.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "52a07930afc1bd77ac9e1101dc18d3fc4986c6568e939c31d1c26657eb0ccbf5"
+dependencies = [
+ "log",
+ "serde",
+ "windows-sys 0.52.0",
+]
+
+[[package]]
 name = "os_pipe"
 version = "1.1.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2441,6 +2452,7 @@ dependencies = [
  "tauri-plugin-autostart",
  "tauri-plugin-fs",
  "tauri-plugin-http",
+ "tauri-plugin-os",
  "tauri-plugin-shell",
  "webview2-com",
  "windows 0.52.0",
@@ -3174,6 +3186,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2047c6ded9c721764247e62cd3b03c09ffc529b2ba5b10ec482ae507a4a70160"
 
 [[package]]
+name = "sys-locale"
+version = "0.3.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e801cf239ecd6ccd71f03d270d67dd53d13e90aab208bf4b8fe4ad957ea949b0"
+dependencies = [
+ "libc",
+]
+
+[[package]]
 name = "system-configuration"
 version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3442,6 +3463,23 @@ dependencies = [
  "thiserror",
  "url",
  "urlpattern",
+]
+
+[[package]]
+name = "tauri-plugin-os"
+version = "2.0.0-beta.2"
+source = "git+https://github.com/tauri-apps/plugins-workspace?branch=v2#1d7dc86ec3da382e0b2f23cbd052c6ce77173848"
+dependencies = [
+ "gethostname",
+ "log",
+ "os_info",
+ "serde",
+ "serde_json",
+ "serialize-to-javascript",
+ "sys-locale",
+ "tauri",
+ "tauri-plugin",
+ "thiserror",
 ]
 
 [[package]]

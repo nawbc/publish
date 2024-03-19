@@ -63,8 +63,9 @@ function Header() {
     >
       <button
         onClick={async () => {
-          const res = await fetch('/sw.js');
-          console.log(res.body);
+          // console.log()
+          // const res = await fetch('/sw.js');
+          // console.log(res.body);
           // console.log(logger);
           // logger.info('test');
         }}
@@ -143,8 +144,8 @@ function Header() {
           </ActionIcon>
         </Tooltip>
       )}
-      
-      <WindowsNativeTitleBar />
+
+      {/* <WindowsNativeTitleBar /> */}
     </Box>
   );
 }

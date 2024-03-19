@@ -1,5 +1,5 @@
 import { Center, Group } from '@mantine/core';
-import { type FC, type PropsWithChildren, Suspense } from 'react';
+import { type FC, type PropsWithChildren } from 'react';
 
 import { useNativeWindow } from '../NativeWindow';
 import {

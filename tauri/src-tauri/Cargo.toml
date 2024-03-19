@@ -28,6 +28,7 @@ tauri-plugin-http = { git = "https://github.com/tauri-apps/plugins-workspace", b
   "unsafe-headers",
   "default-tls",
 ] }
+tauri-plugin-os = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 
 [target."cfg(windows)".dependencies]
 windows = { workspace = true, features = [

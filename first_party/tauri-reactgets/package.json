@@ -1,7 +1,7 @@
 {
-  "name": "@publish/shared",
+  "name": "tauri-reactgets",
   "version": "0.0.1-alpha.1",
-  "description": "Publish app shared utils",
+  "description": "React gadgets collection for Tauri",
   "author": "Han <han@deskbtm.com>",
   "private": true,
   "main": "./src/index.ts",

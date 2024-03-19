@@ -36,7 +36,7 @@ function App() {
     />,
     <QueryClientProvider key={v4()} client={queryClient} />,
     <NativeWindowProvider key={v4()} />,
-  ];
+  ].filter(Boolean);
 
   return (
     <Compose providers={providers}>
