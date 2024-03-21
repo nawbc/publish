@@ -14,6 +14,7 @@
     "window:allow-hide",
     "window:allow-minimize",
     "window:allow-maximize",
+    "window:allow-toggle-maximize",
     "tray:allow-new",
     "tray:allow-set-icon",
     "tray:allow-set-menu",
@@ -22,6 +23,14 @@
     "tray:allow-set-visible",
     "tray:allow-set-temp-dir-path",
     "tray:allow-set-icon-as-template",
+    "os:allow-arch",
+    "os:allow-exe-extension",
+    "os:allow-family",
+    "os:allow-hostname",
+    "os:allow-locale",
+    "os:allow-platform",
+    "os:allow-os-type",
+    "os:allow-version",
     {
       "identifier": "http:allow-fetch",
       "allow": [

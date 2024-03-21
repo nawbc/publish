@@ -91,6 +91,7 @@ export const PublishDocEditor = function () {
             tippyOptions={{
               maxWidth: 'unset',
             }}
+            updateDelay={500}
             editor={editor}
           >
             <DocEditor.FnGroup>

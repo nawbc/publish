@@ -21,7 +21,13 @@ serde_json = { workspace = true }
 serde = { workspace = true, features = ["derive"] }
 wry = { workspace = true, features = ["file-drop", "protocol", "os-webview"] }
 tauri-plugin-shell = { workspace = true }
-tauri = { workspace = true, features = ["default", "devtools", "tray-icon"] }
+tauri = { workspace = true, features = [
+  "default",
+  "devtools",
+  "tray-icon",
+  "image-ico",
+  "image-png",
+] }
 tauri-plugin-autostart = { workspace = true, branch = "v2" }
 tauri-plugin-fs = { workspace = true, branch = "v2" }
 tauri-plugin-os = { workspace = true, branch = "v2" }

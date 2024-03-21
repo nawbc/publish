@@ -10,8 +10,8 @@
   &:where([data-os='windows']) {
     button {
       cursor: default;
-      width: rem(46px);
-      height: 2rem;
+      width: rem(58px);
+      height: 100%;
       background-color: var(--_titlebar-action-background-color);
       color: var(--_titlebar-action-color);
 

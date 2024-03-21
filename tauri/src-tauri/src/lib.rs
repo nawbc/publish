@@ -1,5 +1,8 @@
 use tauri::Manager;
 
+#[cfg(desktop)]
+mod tray;
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
   tauri::Builder::default()
@@ -8,10 +11,16 @@ pub fn run() {
     .plugin(tauri_plugin_shell::init())
     .plugin(tauri_plugin_http::init())
     .setup(|app| {
-      let main_window = app.get_webview_window("main").unwrap();
-      main_window.with_webview(|webview| unsafe {
-        // let webview2 = webview.controller().CoreWebView2().unwrap();
-      });
+      #[cfg(all(desktop))]
+      {
+        let handle = app.handle();
+        tray::create_tray(handle)?;
+        // handle.plugin(menu_plugin::init())?;
+      }
+      // let main_window = app.get_webview_window("main").unwrap();
+      // main_window.with_webview(|webview| unsafe {
+      //   // let webview2 = webview.controller().CoreWebView2().unwrap();
+      // });
 
       Ok(())
     })

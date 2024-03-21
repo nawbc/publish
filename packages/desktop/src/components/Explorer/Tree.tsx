@@ -244,9 +244,7 @@ export const ExplorerTree: FC<any> = function () {
       return false;
     }
   };
-
   const handleDelete = useCallback(() => {}, []);
-
   const handleRename = useCallback((id: number, name: string) => {}, []);
 
   return (

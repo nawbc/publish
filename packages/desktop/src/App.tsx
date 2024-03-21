@@ -7,10 +7,10 @@ import { Suspense, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
 import type { ComposeProps } from 'reactgets/components/Compose/index';
 import { Compose } from 'reactgets/components/Compose/index';
+import { TauriOSProvider, TauriWindowProvider } from 'tauri-reactgets';
 import { v4 } from 'uuid';
 
 import { GlobalContextMenus } from './components/context-menus';
-import { NativeWindowProvider } from './components/NativeWindow';
 import { PublishSpotlight } from './components/Spotlight';
 import { router } from './router';
 import { resolver, theme } from './theme';
@@ -35,10 +35,13 @@ function App() {
       defaultColorScheme="auto"
     />,
     <QueryClientProvider key={v4()} client={queryClient} />,
-    process.env.PUBLISH_BUILD_PLATFORM === 'desktop' && (
-      <NativeWindowProvider key={v4()} />
-    ),
-  ].filter(Boolean) as ComposeProps['providers'];
+    process.env.PUBLISH_BUILD_PLATFORM === 'desktop' && [
+      <TauriWindowProvider key={v4()} />,
+      <TauriOSProvider key={v4()} />,
+    ],
+  ]
+    .flat()
+    .filter(Boolean) as ComposeProps['providers'];
 
   return (
     <Compose providers={providers}>

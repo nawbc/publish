@@ -2123,7 +2123,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@deskbtm/dev-mkcert@npm:^1.17.5":
+"@deskbtm/dev-mkcert@npm:1.17.5":
   version: 1.17.5
   resolution: "@deskbtm/dev-mkcert@npm:1.17.5"
   dependencies:
@@ -3262,71 +3262,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@motionone/animation@npm:^10.12.0":
-  version: 10.17.0
-  resolution: "@motionone/animation@npm:10.17.0"
-  dependencies:
-    "@motionone/easing": "npm:^10.17.0"
-    "@motionone/types": "npm:^10.17.0"
-    "@motionone/utils": "npm:^10.17.0"
-    tslib: "npm:^2.3.1"
-  checksum: 10/85ac8a36f33b7510cec239b12d90eec38a8f191158e2686c95c7ba237b17cac0e14b1533748fb27e10c18b8f4f4ea9798bc0a9286cf854852ab957d290a09ba9
-  languageName: node
-  linkType: hard
-
-"@motionone/dom@npm:10.12.0":
-  version: 10.12.0
-  resolution: "@motionone/dom@npm:10.12.0"
-  dependencies:
-    "@motionone/animation": "npm:^10.12.0"
-    "@motionone/generators": "npm:^10.12.0"
-    "@motionone/types": "npm:^10.12.0"
-    "@motionone/utils": "npm:^10.12.0"
-    hey-listen: "npm:^1.0.8"
-    tslib: "npm:^2.3.1"
-  checksum: 10/6fd7804b8adba5578d700fced12df6e7fca366aeda8837471286481ebfb5275facd3883448df84a2f772c32e7e3297fc696d3a19b110214f070f305b1ab21c67
-  languageName: node
-  linkType: hard
-
-"@motionone/easing@npm:^10.17.0":
-  version: 10.17.0
-  resolution: "@motionone/easing@npm:10.17.0"
-  dependencies:
-    "@motionone/utils": "npm:^10.17.0"
-    tslib: "npm:^2.3.1"
-  checksum: 10/69f0fc4999a209801b128586cbb328937d9db1c091bed26762d30d035ecc5c01b0cbdce610c6550f609c0be78c1ad03c808e6c61f15fc52621f614449ce10a86
-  languageName: node
-  linkType: hard
-
-"@motionone/generators@npm:^10.12.0":
-  version: 10.17.0
-  resolution: "@motionone/generators@npm:10.17.0"
-  dependencies:
-    "@motionone/types": "npm:^10.17.0"
-    "@motionone/utils": "npm:^10.17.0"
-    tslib: "npm:^2.3.1"
-  checksum: 10/06bd6c16cdb3c9fbb3a3fca05d6941d5e756b6ce151e2e9cc4f49c3b021fb54a5b970b01e3ddae9d77175e58b66cacb00927ee829f545fafd0bbdbdc838933aa
-  languageName: node
-  linkType: hard
-
-"@motionone/types@npm:^10.12.0, @motionone/types@npm:^10.17.0":
-  version: 10.17.0
-  resolution: "@motionone/types@npm:10.17.0"
-  checksum: 10/9449991493f6e7be59261e4fc1a3d4a5b842da8962084d742905f964b4d3aad5fd6c37bd95d5ab51f65fda7b0c389a332c5f7c7eccd6be54eb765ee2fc6e7070
-  languageName: node
-  linkType: hard
-
-"@motionone/utils@npm:^10.12.0, @motionone/utils@npm:^10.17.0":
-  version: 10.17.0
-  resolution: "@motionone/utils@npm:10.17.0"
-  dependencies:
-    "@motionone/types": "npm:^10.17.0"
-    hey-listen: "npm:^1.0.8"
-    tslib: "npm:^2.3.1"
-  checksum: 10/030359d37a6edebf29e0477050e638340f3756fc993a75b877e923b31ed4f3092a61f9d2323494f4b561ada1afc5ea774fb34022e7afbe2ec449c215585ab392
-  languageName: node
-  linkType: hard
-
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -3675,8 +3610,8 @@ __metadata:
   resolution: "@plugkit/bfs@workspace:first_party/bfs"
   dependencies:
     eslint: "npm:8.57.0"
-    isomorphic-textencoder: "npm:^1.0.1"
-    typescript: "npm:5.4.2"
+    isomorphic-textencoder: "npm:1.0.1"
+    typescript: "npm:5.4.3"
   languageName: unknown
   linkType: soft
 
@@ -3739,7 +3674,7 @@ __metadata:
   dependencies:
     eslint: "npm:8.57.0"
     ky: "npm:1.2.2"
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
   languageName: unknown
   linkType: soft
 
@@ -3747,7 +3682,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publish/addon-rt@workspace:packages/runtime"
   dependencies:
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
   languageName: unknown
   linkType: soft
 
@@ -3767,15 +3702,16 @@ __metadata:
     "@publish/doc-editor": "workspace:^"
     "@publish/logger": "workspace:^"
     "@publishjs/x-api": "workspace:^"
-    "@tauri-apps/api": "npm:2.0.0-beta.5"
+    "@tauri-apps/api": "npm:2.0.0-beta.6"
     "@tauri-apps/plugin-autostart": "npm:2.0.0-beta.2"
     "@tauri-apps/plugin-http": "npm:2.0.0-beta.2"
     "@tauri-apps/plugin-os": "npm:2.0.0-beta.2"
     "@tauri-apps/plugin-shell": "npm:2.0.0-beta.2"
-    cross-env: "npm:^7.0.3"
+    cross-env: "npm:7.0.3"
     eslint: "npm:8.57.0"
     react-router: "npm:6.22.2"
     react-router-dom: "npm:6.22.3"
+    tauri-reactgets: "workspace:^"
     tsx: "npm:4.7.1"
   languageName: unknown
   linkType: soft
@@ -3784,7 +3720,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publish/dev@workspace:packages/dev"
   dependencies:
-    "@deskbtm/dev-mkcert": "npm:^1.17.5"
+    "@deskbtm/dev-mkcert": "npm:1.17.5"
     "@deskbtm/gadgets": "npm:0.0.1-alpha.10"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:0.5.11"
     "@svgr/webpack": "npm:8.1.0"
@@ -3820,7 +3756,7 @@ __metadata:
     swc-loader: "npm:0.2.6"
     terser-webpack-plugin: "npm:5.3.10"
     tsx: "npm:4.7.1"
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
     web-vitals: "npm:3.5.2"
     webpack: "npm:5.90.3"
     webpack-bundle-analyzer: "npm:4.10.1"
@@ -3863,7 +3799,7 @@ __metadata:
     "@tiptap/suggestion": "npm:2.2.4"
     lowlight: "npm:3.1.0"
     tiptap-markdown: "npm:0.8.9"
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
   languageName: unknown
   linkType: soft
 
@@ -3873,7 +3809,7 @@ __metadata:
   dependencies:
     debug: "npm:4.3.4"
     idb: "npm:8.0.0"
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
   peerDependencies:
     debug: 4.3.4
     idb: 8.0.0
@@ -3893,8 +3829,8 @@ __metadata:
     "@capacitor/status-bar": "npm:5.0.6"
     "@ionic/react": "npm:7.6.1"
     "@ionic/react-router": "npm:7.6.1"
-    "@types/react-router": "npm:^5.1.20"
-    "@types/react-router-dom": "npm:^5.3.3"
+    "@types/react-router": "npm:5.1.20"
+    "@types/react-router-dom": "npm:5.3.3"
     react-router: "npm:5.3.4"
     react-router-dom: "npm:5.3.4"
   languageName: unknown
@@ -3904,7 +3840,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publish/shared@workspace:packages/shared"
   dependencies:
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
   languageName: unknown
   linkType: soft
 
@@ -3921,7 +3857,7 @@ __metadata:
   resolution: "@publishjs/addon-x@workspace:built-in/en/x"
   dependencies:
     "@publishjs/sdk": "workspace:^"
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
     vite: "npm:5.1.4"
   languageName: unknown
   linkType: soft
@@ -3934,7 +3870,7 @@ __metadata:
     commander: "npm:12.0.0"
     eslint: "npm:8.57.0"
     libnpmpack: "npm:6.0.6"
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
   bin:
     cli: ./dist/cli.js
   languageName: unknown
@@ -3945,7 +3881,7 @@ __metadata:
   resolution: "@publishjs/plugin-zhihu@workspace:built-in/cn/zhihu"
   dependencies:
     "@publishjs/sdk": "workspace:^"
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
   languageName: unknown
   linkType: soft
 
@@ -3956,11 +3892,11 @@ __metadata:
     "@juggle/resize-observer": "npm:3.4.0"
     dnd-multi-backend: "npm:7.1.3"
     eslint: "npm:8.57.0"
-    framer-motion: "npm:^6.2.8"
-    react-dnd-html5-backend: "npm:^16.0.1"
-    react-dnd-touch-backend: "npm:^16.0.1"
-    react-use-measure: "npm:^2.1.1"
-    typescript: "npm:5.4.2"
+    framer-motion: "npm:6.2.8"
+    react-dnd-html5-backend: "npm:16.0.1"
+    react-dnd-touch-backend: "npm:16.0.1"
+    react-use-measure: "npm:2.1.1"
+    typescript: "npm:5.4.3"
   languageName: unknown
   linkType: soft
 
@@ -3968,7 +3904,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publishjs/sdk@workspace:packages/sdk"
   dependencies:
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
   languageName: unknown
   linkType: soft
 
@@ -3976,11 +3912,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publishjs/x-api@workspace:first_party/x-api"
   dependencies:
-    "@types/lodash.merge": "npm:^4"
+    "@types/lodash.merge": "npm:4"
     "@types/uuid": "npm:9.0.8"
     debug: "npm:4.3.4"
     lodash.merge: "npm:4.6.2"
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
     uuid: "npm:9.0.1"
     vitest: "npm:1.3.1"
   languageName: unknown
@@ -4865,10 +4801,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tauri-apps/api@npm:2.0.0-beta.5":
-  version: 2.0.0-beta.5
-  resolution: "@tauri-apps/api@npm:2.0.0-beta.5"
-  checksum: 10/979a3fee705b08226ec4fa9adf332ae98b404030c9310e030231b09515ec1a96a71f1ab846f3a6f986b0a98b2cde3142565ef9588ea07ee46d7eddc5c5f98899
+"@tauri-apps/api@npm:2.0.0-beta.6":
+  version: 2.0.0-beta.6
+  resolution: "@tauri-apps/api@npm:2.0.0-beta.6"
+  checksum: 10/d6b17cf2cd5c9b5a4a9bc5a785d0de181a349b51a6fa720d3122df74a3522d093b897eb5567e6b504e49785d7141f9673e2139c573bf2a835ddbb66a791553de
   languageName: node
   linkType: hard
 
@@ -5637,7 +5573,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash.merge@npm:^4":
+"@types/lodash.merge@npm:4":
   version: 4.6.9
   resolution: "@types/lodash.merge@npm:4.6.9"
   dependencies:
@@ -5746,7 +5682,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-router-dom@npm:^5.3.3":
+"@types/react-router-dom@npm:5.3.3":
   version: 5.3.3
   resolution: "@types/react-router-dom@npm:5.3.3"
   dependencies:
@@ -5757,7 +5693,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-router@npm:*, @types/react-router@npm:^5.1.20":
+"@types/react-router@npm:*, @types/react-router@npm:5.1.20":
   version: 5.1.20
   resolution: "@types/react-router@npm:5.1.20"
   dependencies:
@@ -5778,14 +5714,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.66":
-  version: 18.2.66
-  resolution: "@types/react@npm:18.2.66"
+"@types/react@npm:18.2.67":
+  version: 18.2.67
+  resolution: "@types/react@npm:18.2.67"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10/8a82bda6c254681536fa8348dc15d52345d8203d5d322406feef865f74ebfe2475ebde0be4e2f9a18ffbb587dac946dfb5d0974b598779ff282259aff7e8209a
+  checksum: 10/d7e248dbe8d9d3b05f0d8e128d615fc9c85aa2c5d15634271d20cb9b343dbeffb0875f31a44e7ac63b42afc25949bd4c3633b7ebee45ee4666591ca934a8dffb
   languageName: node
   linkType: hard
 
@@ -7935,7 +7871,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-env@npm:7.0.3, cross-env@npm:^7.0.3":
+"cross-env@npm:7.0.3":
   version: 7.0.3
   resolution: "cross-env@npm:7.0.3"
   dependencies:
@@ -9819,12 +9755,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^6.2.8":
-  version: 6.5.1
-  resolution: "framer-motion@npm:6.5.1"
+"framer-motion@npm:6.2.8":
+  version: 6.2.8
+  resolution: "framer-motion@npm:6.2.8"
   dependencies:
     "@emotion/is-prop-valid": "npm:^0.8.2"
-    "@motionone/dom": "npm:10.12.0"
     framesync: "npm:6.0.1"
     hey-listen: "npm:^1.0.8"
     popmotion: "npm:11.0.3"
@@ -9836,7 +9771,7 @@ __metadata:
   dependenciesMeta:
     "@emotion/is-prop-valid":
       optional: true
-  checksum: 10/ecdb2cceb0ff400f2bddc8800b74e0b377fd7d627a051437ec510cf3c1e7184b6a0afc68696e70cb21bf277e41ea41813e2833f8878e23de178be10d7b2978e5
+  checksum: 10/612749bcf4dc5cd502198a5a3fd508609dc80dac5bb33496e2ad221290951e40f3810834db85a064da3596b9e071087150a34ca61faf6e2945b32321e126902e
   languageName: node
   linkType: hard
 
@@ -11381,7 +11316,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"isomorphic-textencoder@npm:^1.0.1":
+"isomorphic-textencoder@npm:1.0.1":
   version: 1.0.1
   resolution: "isomorphic-textencoder@npm:1.0.1"
   dependencies:
@@ -12746,7 +12681,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-polyfill-webpack-plugin@npm:^3.0.0":
+"node-polyfill-webpack-plugin@npm:3.0.0":
   version: 3.0.0
   resolution: "node-polyfill-webpack-plugin@npm:3.0.0"
   dependencies:
@@ -14808,7 +14743,7 @@ __metadata:
     "@tanstack/react-query": "npm:5.28.4"
     "@tanstack/react-query-devtools": "npm:5.28.4"
     "@types/lodash.debounce": "npm:4.0.9"
-    "@types/react": "npm:18.2.66"
+    "@types/react": "npm:18.2.67"
     "@types/react-dom": "npm:18.2.22"
     "@types/uuid": "npm:9.0.8"
     "@typescript-eslint/eslint-plugin": "npm:7.2.0"
@@ -14838,12 +14773,13 @@ __metadata:
     multimatch: "npm:7.0.0"
     native-run: "npm:2.0.1"
     node-gyp: "npm:10.0.1"
-    node-polyfill-webpack-plugin: "npm:^3.0.0"
+    node-polyfill-webpack-plugin: "npm:3.0.0"
     postcss-flexbugs-fixes: "npm:5.0.2"
     postcss-preset-mantine: "npm:1.13.0"
     postcss-simple-vars: "npm:7.0.1"
     prettier: "npm:3.2.5"
     react: "npm:18.2.0"
+    react-async-hook: "npm:4.0.0"
     react-dnd: "npm:16.0.1"
     react-dom: "npm:18.2.0"
     react-error-boundary: "npm:4.0.13"
@@ -14853,7 +14789,7 @@ __metadata:
     serialize-error: "npm:11.0.3"
     shx: "npm:0.3.4"
     tsx: "npm:4.7.1"
-    typescript: "npm:5.4.2"
+    typescript: "npm:5.4.3"
     typewriter-effect: "npm:2.21.0"
     uuid: "npm:9.0.1"
     vitest: "npm:1.3.1"
@@ -14969,6 +14905,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-async-hook@npm:4.0.0":
+  version: 4.0.0
+  resolution: "react-async-hook@npm:4.0.0"
+  peerDependencies:
+    react: ">=16.8"
+  checksum: 10/3f7cb29368011fc9a14cb8a248d289dea228ead3e7c53c34ff3c1540246a2f6e8fe6af2dded9cafe5253e09fea5d11d25d71684a09fb2000190897d51deb2818
+  languageName: node
+  linkType: hard
+
 "react-base16-styling@npm:^0.9.1":
   version: 0.9.1
   resolution: "react-base16-styling@npm:0.9.1"
@@ -15016,7 +14961,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dnd-html5-backend@npm:^16.0.1":
+"react-dnd-html5-backend@npm:16.0.1":
   version: 16.0.1
   resolution: "react-dnd-html5-backend@npm:16.0.1"
   dependencies:
@@ -15025,7 +14970,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dnd-touch-backend@npm:^16.0.1":
+"react-dnd-touch-backend@npm:16.0.1":
   version: 16.0.1
   resolution: "react-dnd-touch-backend@npm:16.0.1"
   dependencies:
@@ -15340,7 +15285,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-use-measure@npm:^2.1.1":
+"react-use-measure@npm:2.1.1":
   version: 2.1.1
   resolution: "react-use-measure@npm:2.1.1"
   dependencies:
@@ -17067,11 +17012,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tauri-reactgets@workspace:first_party/tauri-reactgets":
+"tauri-reactgets@workspace:^, tauri-reactgets@workspace:first_party/tauri-reactgets":
   version: 0.0.0-use.local
   resolution: "tauri-reactgets@workspace:first_party/tauri-reactgets"
   dependencies:
-    typescript: "npm:5.4.2"
+    "@tauri-apps/plugin-os": "npm:2.0.0-beta.2"
+    typescript: "npm:5.4.3"
+  peerDependencies:
+    "@tauri-apps/plugin-os": "*"
   languageName: unknown
   linkType: soft
 
@@ -17291,7 +17239,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:*, tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.3.1, tslib@npm:^2.4.0, tslib@npm:^2.6.2":
+"tslib@npm:*, tslib@npm:^2.0.0, tslib@npm:^2.0.1, tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.4.0, tslib@npm:^2.6.2":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: 10/bd26c22d36736513980091a1e356378e8b662ded04204453d353a7f34a4c21ed0afc59b5f90719d4ba756e581a162ecbf93118dc9c6be5acf70aa309188166ca
@@ -17445,23 +17393,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.4.2":
-  version: 5.4.2
-  resolution: "typescript@npm:5.4.2"
+"typescript@npm:5.4.3":
+  version: 5.4.3
+  resolution: "typescript@npm:5.4.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/f8cfdc630ab1672f004e9561eb2916935b2d267792d07ce93e97fc601c7a65191af32033d5e9c0169b7dc37da7db9bf320f7432bc84527cb7697effaa4e4559d
+  checksum: 10/de4c69f49a7ad4b1ea66a6dcc8b055ac34eb56af059a069d8988dd811c5e649be07e042e5bf573e8d0ac3ec2f30e6c999aa651cd09f6e9cbc6113749e8b6be20
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.4.2#optional!builtin<compat/typescript>":
-  version: 5.4.2
-  resolution: "typescript@patch:typescript@npm%3A5.4.2#optional!builtin<compat/typescript>::version=5.4.2&hash=5adc0c"
+"typescript@patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>":
+  version: 5.4.3
+  resolution: "typescript@patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>::version=5.4.3&hash=5adc0c"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10/f5f9a4133c2670761f0166eae5b3bafbc4a3fc24f0f42a93c9c893d9e9d6e66ea066969c5e7483fa66b4ae0e99125592553f3b92fd3599484de8be13b0615176
+  checksum: 10/5aedd97595582b08aadb8a70e8e3ddebaf5a9c1e5ad4d6503c2fcfc15329b5cf8d01145b09913e9555683ac16c5123a96be32b6d72614098ebd42df520eed9b1
   languageName: node
   linkType: hard
 

@@ -1,14 +1,15 @@
-import { ActionIcon, Flex, rem, Tooltip } from '@mantine/core';
-import { IconLayoutSidebarRightExpand } from '@tabler/icons-react';
+import { ActionIcon, rem, Tooltip } from '@mantine/core';
+import { IconLayoutSidebarLeftExpand } from '@publish/shared';
 import type { PropsWithChildren } from 'react';
 import { forwardRef, useCallback } from 'react';
 
 import { useDividerPanel } from '../DividerPanel';
+import { DraggableHeader } from '../DraggableHeader';
 
 interface SidebarHeaderProps extends PropsWithChildren {}
 
 export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
-  (props, ref) => {
+  (props, _ref) => {
     const { children } = props;
     const panel = useDividerPanel();
 
@@ -17,23 +18,14 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
     }, [panel]);
 
     return (
-      <Flex
-        data-tauri-drag-region
-        align="center"
-        pos="relative"
-        justify="space-between"
-        component="nav"
-        ref={ref}
-        ml={rem(18)}
-        py="xs"
-      >
+      <DraggableHeader ml={rem(18)}>
         <Tooltip openDelay={2000} label="Expand sidebar">
           <ActionIcon onClick={handleCollapse}>
-            <IconLayoutSidebarRightExpand size={22} />
+            <IconLayoutSidebarLeftExpand />
           </ActionIcon>
         </Tooltip>
         {children}
-      </Flex>
+      </DraggableHeader>
     );
   },
 );

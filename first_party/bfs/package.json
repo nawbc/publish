@@ -45,9 +45,9 @@
   },
   "devDependencies": {
     "eslint": "8.57.0",
-    "typescript": "5.4.2"
+    "typescript": "5.4.3"
   },
   "dependencies": {
-    "isomorphic-textencoder": "^1.0.1"
+    "isomorphic-textencoder": "1.0.1"
   }
 }

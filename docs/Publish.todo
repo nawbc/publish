@@ -209,7 +209,7 @@
             "key": 1708699662214,
             "children": [],
             "todo": {
-              "content": "X(twitter)",
+              "content": "X(twitter) https://twitter.com/",
               "id": 1708699662214,
               "level": "default",
               "done": false,
@@ -260,6 +260,83 @@
               "done": false,
               "start": 1709112594568
             }
+          },
+          {
+            "key": 1710840485289,
+            "children": [],
+            "todo": {
+              "content": "Zhihu - https://www.zhihu.com/",
+              "id": 1710840485289,
+              "level": "default",
+              "done": false,
+              "start": 1710840485290
+            }
+          },
+          {
+            "key": 1710840493650,
+            "children": [],
+            "todo": {
+              "content": "mastodon - en",
+              "id": 1710840493650,
+              "level": "default",
+              "done": false,
+              "start": 1710840493650
+            }
+          },
+          {
+            "key": 1710840517222,
+            "children": [],
+            "todo": {
+              "content": "tieba - https://tieba.baidu.com",
+              "id": 1710840517222,
+              "level": "default",
+              "done": false,
+              "start": 1710840517222
+            }
+          },
+          {
+            "key": 1710840544621,
+            "children": [],
+            "todo": {
+              "content": "SegmentFault - https://segmentfault.com/",
+              "id": 1710840544621,
+              "level": "default",
+              "done": false,
+              "start": 1710840544621
+            }
+          },
+          {
+            "key": 1710840590558,
+            "children": [],
+            "todo": {
+              "content": "Juejin - https://juejin.cn/",
+              "id": 1710840590558,
+              "level": "default",
+              "done": false,
+              "start": 1710840590559
+            }
+          },
+          {
+            "key": 1710840683154,
+            "children": [],
+            "todo": {
+              "content": "medium - https://medium.com/",
+              "id": 1710840683154,
+              "level": "default",
+              "done": false,
+              "start": 1710840683154
+            }
+          },
+          {
+            "key": 1710840710639,
+            "children": [],
+            "todo": {
+              "content": "bilibili - https://www.bilibili.com/",
+              "id": 1710840710639,
+              "level": "default",
+              "done": false,
+              "start": 1710840710639
+            }
           }
         ],
         "todo": {
@@ -292,10 +369,36 @@
           "done": false,
           "start": 1710466104153
         }
+      },
+      {
+        "key": 1710840320139,
+        "children": [
+          {
+            "key": 1710840376252,
+            "children": [],
+            "todo": {
+              "content": "Share usage tips",
+              "id": 1710840376252,
+              "level": "default",
+              "done": false,
+              "start": 1710840376252,
+              "tip": "Share fallback in time "
+            }
+          }
+        ],
+        "todo": {
+          "content": "After scales",
+          "id": 1710840320139,
+          "level": "default",
+          "done": false,
+          "start": 1710840320139
+        }
       }
     ],
     "expandKeys": [
-      1710466104153
+      1710840320139,
+      1708699639094,
+      1708679788507
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
@@ -316,6 +419,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1710466127358"
+    "version": "1710840716211"
   }
 }

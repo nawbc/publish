@@ -24,7 +24,7 @@
     "@mantine/core": "7.6.2",
     "@mantine/hooks": "7.6.2",
     "@tabler/icons-react": "3.1.0",
-    "typescript": "5.4.2"
+    "typescript": "5.4.3"
   },
   "dependencies": {
     "@sereneinserenade/tiptap-search-and-replace": "0.1.1",
