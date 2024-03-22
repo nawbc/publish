@@ -15,6 +15,7 @@
     "window:allow-minimize",
     "window:allow-maximize",
     "window:allow-toggle-maximize",
+    "window:allow-set-fullscreen",
     "tray:allow-new",
     "tray:allow-set-icon",
     "tray:allow-set-menu",

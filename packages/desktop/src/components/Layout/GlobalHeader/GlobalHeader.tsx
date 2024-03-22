@@ -1,5 +1,5 @@
 import { ActionIcon, Flex, rem, Tooltip } from '@mantine/core';
-import { IconLayoutSidebarRightExpand } from '@tabler/icons-react';
+import { IconLayoutSidebarLeftExpand } from '@publish/shared';
 import type { FC } from 'react';
 import { useCallback } from 'react';
 import { IF } from 'reactgets';
@@ -29,7 +29,7 @@ export const GlobalHeader: FC<GlobalHeaderProps> = () => {
         <IF is={panel?.collapsed}>
           <Tooltip openDelay={2000} label="Collapse sidebar">
             <ActionIcon c="gray.7" onClick={handleExpand}>
-              <IconLayoutSidebarRightExpand />
+              <IconLayoutSidebarLeftExpand />
             </ActionIcon>
           </Tooltip>
         </IF>

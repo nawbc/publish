@@ -13,6 +13,7 @@ import {
   useEffect,
   useState,
 } from 'react';
+import { IF } from 'reactgets';
 import { useNativeWindow } from 'tauri-reactgets';
 
 import classes from './NativeTitleBar.module.css';
@@ -54,11 +55,13 @@ export const WindowsNativeTitleBar: FC<WindowsNativeTitleBarProps> =
           component="button"
           onClick={async () => current?.toggleMaximize()}
         >
-          {isWindowMaximized === null ? null : isWindowMaximized === true ? (
-            <IconWindowsMaximizeRestore />
-          ) : (
-            <IconWindowsMaximize />
-          )}
+          <IF is={isWindowMaximized !== null}>
+            {isWindowMaximized === true ? (
+              <IconWindowsMaximizeRestore />
+            ) : (
+              <IconWindowsMaximize />
+            )}
+          </IF>
         </Center>
         <Center
           data-close
