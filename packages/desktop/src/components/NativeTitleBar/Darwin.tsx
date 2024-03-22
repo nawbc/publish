@@ -1,10 +1,11 @@
-import { Center, Group } from '@mantine/core';
+import { Group, rem, UnstyledButton } from '@mantine/core';
+import { useDisclosure, useHover, useWindowEvent } from '@mantine/hooks';
 import type { Nullish } from '@publish/shared';
 import {
-  IconWindowsClose,
-  IconWindowsMaximize,
-  IconWindowsMaximizeRestore,
-  IconWindowsMinimize,
+  IconDarwinClose,
+  IconDarwinFullscreen,
+  IconDarwinMinimize,
+  IconDarwinPlus,
 } from '@publish/shared';
 import {
   type FC,
@@ -13,6 +14,7 @@ import {
   useEffect,
   useState,
 } from 'react';
+import { IF } from 'reactgets';
 import { useNativeWindow } from 'tauri-reactgets';
 
 import classes from './NativeTitleBar.module.css';
@@ -26,11 +28,12 @@ export const DarwinNativeTitleBar: FC<DarwinNativeTitleBarProps> = function () {
   const [isWindowMaximized, setWindowMaximized] = useState<boolean | Nullish>(
     null,
   );
-
+  const [isAltPressing, altHandler] = useDisclosure(false);
   const updateWindowMaximized = useCallback(async () => {
     const r = await current?.isMaximized();
     setWindowMaximized(r);
   }, []);
+  const { hovered, ref } = useHover();
 
   useEffect(() => {
     updateWindowMaximized();
@@ -44,28 +47,45 @@ export const DarwinNativeTitleBar: FC<DarwinNativeTitleBarProps> = function () {
     return () => unListen?.();
   }, [current, isWindowMaximized, updateWindowMaximized]);
 
+  useWindowEvent('keydown', (event) => {
+    if (event.key === 'Alt') {
+      altHandler.open();
+    }
+  });
+
+  useWindowEvent('keyup', (event) => {
+    if (event.key === 'Alt') {
+      altHandler.close();
+    }
+  });
+
   return (
-    <Group wrap="nowrap" data-os="windows" gap={0} className={classes.root}>
-      <Center component="button" onClick={async () => current?.minimize()}>
-        <IconWindowsMinimize />
-      </Center>
-      <Center
-        component="button"
-        onClick={async () => current?.toggleMaximize()}
-      >
-        {isWindowMaximized === null ? null : isWindowMaximized === true ? (
-          <IconWindowsMaximizeRestore />
-        ) : (
-          <IconWindowsMaximize />
-        )}
-      </Center>
-      <Center
+    <Group
+      ref={ref}
+      wrap="nowrap"
+      data-os="darwin"
+      gap={rem(8)}
+      className={classes.root}
+    >
+      <UnstyledButton onClick={async () => current?.minimize()}>
+        <IF is={hovered}>
+          <IconDarwinClose />
+        </IF>
+      </UnstyledButton>
+      <UnstyledButton onClick={async () => current?.toggleMaximize()}>
+        <IF is={hovered}>
+          <IconDarwinMinimize />
+        </IF>
+      </UnstyledButton>
+      <UnstyledButton
         data-close
-        component="button"
-        onClick={async () => current?.hide()}
+        onClick={async () =>
+          isAltPressing ? current?.maximize() : current?.setFullscreen(true)
+        }
       >
-        <IconWindowsClose />
-      </Center>
+        {hovered &&
+          (isAltPressing ? <IconDarwinPlus /> : <IconDarwinFullscreen />)}
+      </UnstyledButton>
     </Group>
   );
 };

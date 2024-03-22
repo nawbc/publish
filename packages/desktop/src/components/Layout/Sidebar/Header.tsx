@@ -3,6 +3,7 @@ import { IconLayoutSidebarLeftExpand } from '@publish/shared';
 import type { PropsWithChildren } from 'react';
 import { forwardRef, useCallback } from 'react';
 
+import { DarwinNativeTitleBar } from '../../NativeTitleBar';
 import { useDividerPanel } from '../DividerPanel';
 import { DraggableHeader } from '../DraggableHeader';
 
@@ -19,6 +20,7 @@ export const SidebarHeader = forwardRef<HTMLDivElement, SidebarHeaderProps>(
 
     return (
       <DraggableHeader ml={rem(18)}>
+        <DarwinNativeTitleBar />
         <Tooltip openDelay={2000} label="Expand sidebar">
           <ActionIcon onClick={handleCollapse}>
             <IconLayoutSidebarLeftExpand />

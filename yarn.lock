@@ -3690,7 +3690,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publish/desktop@workspace:packages/desktop"
   dependencies:
-    "@deskbtm/gadgets": "npm:0.0.1-alpha.10"
     "@mantine/core": "npm:7.6.2"
     "@mantine/dates": "npm:7.6.2"
     "@mantine/dropzone": "npm:7.6.2"
@@ -3711,6 +3710,7 @@ __metadata:
     eslint: "npm:8.57.0"
     react-router: "npm:6.22.2"
     react-router-dom: "npm:6.22.3"
+    reactgets: "workspace:^"
     tauri-reactgets: "workspace:^"
     tsx: "npm:4.7.1"
   languageName: unknown
@@ -3721,7 +3721,6 @@ __metadata:
   resolution: "@publish/dev@workspace:packages/dev"
   dependencies:
     "@deskbtm/dev-mkcert": "npm:1.17.5"
-    "@deskbtm/gadgets": "npm:0.0.1-alpha.10"
     "@pmmmwh/react-refresh-webpack-plugin": "npm:0.5.11"
     "@svgr/webpack": "npm:8.1.0"
     "@swc-jotai/react-refresh": "npm:0.1.0"
@@ -5638,6 +5637,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:20.8.10":
+  version: 20.8.10
+  resolution: "@types/node@npm:20.8.10"
+  dependencies:
+    undici-types: "npm:~5.26.4"
+  checksum: 10/8930039077c8ad74de74c724909412bea8110c3f8892bcef8dda3e9629073bed65632ee755f94b252bcdae8ca71cf83e89a4a440a105e2b1b7c9797b43483049
+  languageName: node
+  linkType: hard
+
 "@types/parse-json@npm:^4.0.0":
   version: 4.0.2
   resolution: "@types/parse-json@npm:4.0.2"
@@ -5711,6 +5719,17 @@ __metadata:
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10/e82bd16660030c9aabdb5027bb9bf69570a90813e4a894c17bfb288978c2b80251def5754e455d72aa3485d99136e1b11b694f78c586e5918e10b3bb09b91b3c
+  languageName: node
+  linkType: hard
+
+"@types/react@npm:18.2.66":
+  version: 18.2.66
+  resolution: "@types/react@npm:18.2.66"
+  dependencies:
+    "@types/prop-types": "npm:*"
+    "@types/scheduler": "npm:*"
+    csstype: "npm:^3.0.2"
+  checksum: 10/8a82bda6c254681536fa8348dc15d52345d8203d5d322406feef865f74ebfe2475ebde0be4e2f9a18ffbb587dac946dfb5d0974b598779ff282259aff7e8209a
   languageName: node
   linkType: hard
 
@@ -14784,7 +14803,7 @@ __metadata:
     react-dom: "npm:18.2.0"
     react-error-boundary: "npm:4.0.13"
     react-i18next: "npm:14.1.0"
-    reactgets: "npm:0.0.1-alpha.2"
+    reactgets: "workspace:^"
     sass: "npm:1.72.0"
     serialize-error: "npm:11.0.3"
     shx: "npm:0.3.4"
@@ -15306,16 +15325,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"reactgets@npm:0.0.1-alpha.2":
-  version: 0.0.1-alpha.2
-  resolution: "reactgets@npm:0.0.1-alpha.2"
+"reactgets@workspace:^, reactgets@workspace:first_party/reactgets":
+  version: 0.0.0-use.local
+  resolution: "reactgets@workspace:first_party/reactgets"
+  dependencies:
+    "@types/node": "npm:20.8.10"
+    "@types/react": "npm:18.2.66"
+    "@types/react-dom": "npm:18.2.22"
   peerDependencies:
     react: 18.2.0
     react-dom: 18.2.0
     typescript: 5.1.6
-  checksum: 10/41e2158c74dc203fd9a4e10f04d64d8e5af499366ae20e718a16102b2f4d487fe564331640842ad646c9e5105fd31694e4acd5eba711a6183c3b21cad1dc2b1b
-  languageName: node
-  linkType: hard
+  languageName: unknown
+  linkType: soft
 
 "read-cmd-shim@npm:^4.0.0":
   version: 4.0.0

@@ -32,7 +32,6 @@
   },
   "devDependencies": {
     "@deskbtm/dev-mkcert": "1.17.5",
-    "@deskbtm/gadgets": "0.0.1-alpha.10",
     "@pmmmwh/react-refresh-webpack-plugin": "0.5.11",
     "@svgr/webpack": "8.1.0",
     "@swc-jotai/react-refresh": "0.1.0",

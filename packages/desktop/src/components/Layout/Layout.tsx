@@ -1,16 +1,13 @@
-import { ActionIcon, Container, Flex, rem, Tooltip } from '@mantine/core';
+import { Container } from '@mantine/core';
 import { PublishDocEditor } from '@publish/doc-editor/preset/index.ts';
-import { IconLayoutSidebarRightExpand } from '@publish/shared';
 import type { PropsWithChildren } from 'react';
-import { type FC, useCallback } from 'react';
+import { type FC } from 'react';
 import { Outlet } from 'react-router';
-import { useTauriOS } from 'tauri-reactgets';
 
 import { ExplorerProvider } from '../Explorer';
-import { WindowsNativeTitleBar } from '../NativeTitleBar/Windows';
 import { ScrollView } from '../ScrollView';
-import { DividerPanel, useDividerPanel } from './DividerPanel';
-import { DraggableHeader } from './DraggableHeader';
+import { DividerPanel } from './DividerPanel';
+import { GlobalHeader } from './GlobalHeader';
 import { PrimitiveSidebar } from './Sidebar';
 
 export interface DashboardLayoutProps extends PropsWithChildren {}
@@ -25,7 +22,7 @@ const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
           </DividerPanel.Leading>
           <DividerPanel.Trailing>
             <ScrollView>
-              <Header />
+              <GlobalHeader />
               <PublishDocEditor />
             </ScrollView>
           </DividerPanel.Trailing>
@@ -34,35 +31,6 @@ const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
     </ExplorerProvider>
   );
 };
-
-function Header() {
-  const panel = useDividerPanel();
-  const os = useTauriOS();
-
-  const handleExpand = useCallback(() => {
-    panel?.expand();
-  }, [panel]);
-
-  return (
-    <Flex
-      style={{
-        borderBottom: '1px solid var(--mantine-color-gray-2)',
-      }}
-    >
-      <DraggableHeader w="100%" mih={rem(40)} pos="relative">
-        {panel?.collapsed && (
-          <Tooltip openDelay={2000} label="Collapse sidebar">
-            <ActionIcon c="gray.7" onClick={handleExpand}>
-              <IconLayoutSidebarRightExpand />
-            </ActionIcon>
-          </Tooltip>
-        )}
-      </DraggableHeader>
-
-      {os.type === 'windows' && <WindowsNativeTitleBar />}
-    </Flex>
-  );
-}
 
 export const Component = function () {
   return (

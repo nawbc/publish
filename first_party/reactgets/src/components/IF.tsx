@@ -8,9 +8,16 @@ export interface IFProps extends PropsWithChildren {
  *
  * @example
  * ```tsx
- *  <IF is={false}>
- *     Hello
- *  </IF>
+ * <IF is={os.type === 'windows'}>
+ *  <WindowsNativeTitleBar />
+ * </IF>
+ *
+ * <IF value={os.type} eq="windows">
+ *  <WindowsNativeTitleBar />
+ *
+ *  <ELSE eq="linux">linux</ELSE>
+ *  <ELSEIF eq="darwin">darwin</ELSEIF>
+ * </IF>
  * ```
  */
 export const IF: FC<IFProps> = function (props) {

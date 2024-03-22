@@ -2,14 +2,11 @@
   --_titlebar-action-color: var(--mantine-color-dark-4);
   --_titlebar-action-background-color: var(--mantine-color-white);
 
-  button {
-    border: none;
-  }
-
-  margin-left: auto;
   &:where([data-os='windows']) {
+    margin-left: auto;
     button {
       cursor: default;
+      border: none;
       width: rem(58px);
       height: 100%;
       background-color: var(--_titlebar-action-background-color);
@@ -30,5 +27,26 @@
   }
 
   &:where([data-os='darwin']) {
+    button {
+      border: 1px solid #0000001f;
+      text-align: center;
+      border-radius: 9999px;
+      width: rem(12px);
+      height: rem(12px);
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      color: #0009;
+
+      &:nth-child(1) {
+        background-color: #ff544d;
+      }
+      &:nth-child(2) {
+        background-color: #ffbd2e;
+      }
+      &:nth-child(3) {
+        background-color: #28c93f;
+      }
+    }
   }
 }

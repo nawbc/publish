@@ -5,8 +5,8 @@ import { DevTools as JotaiDevTools } from 'jotai-devtools';
 import type { FC } from 'react';
 import { Suspense, useState } from 'react';
 import { RouterProvider } from 'react-router-dom';
-import type { ComposeProps } from 'reactgets/components/Compose/index';
-import { Compose } from 'reactgets/components/Compose/index';
+import type { ComposeProps } from 'reactgets';
+import { Compose } from 'reactgets';
 import { TauriOSProvider, TauriWindowProvider } from 'tauri-reactgets';
 import { v4 } from 'uuid';
 
