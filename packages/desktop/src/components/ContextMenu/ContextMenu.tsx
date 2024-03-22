@@ -74,7 +74,6 @@ const hideOnEvents: (keyof GlobalEventHandlersEventMap)[] = [
   'contextmenu',
   'click',
   'scroll',
-
   // comment blur in dev so you can toggle console without closing the menu
   'blur',
 ];
@@ -85,7 +84,6 @@ function reducer(
 ) {
   return { ...state, ...(isFn(payload) ? payload(state) : payload) };
 }
-
 const defaultBackdrop = 'saturate(180%) blur(10px)';
 
 export const ContextMenu = ({
@@ -137,7 +135,6 @@ export const ContextMenu = ({
       const { offsetWidth, offsetHeight } = nodeRef.current;
 
       if (x + offsetWidth > innerWidth) x -= x + offsetWidth - innerWidth;
-
       if (y + offsetHeight > innerHeight) y -= y + offsetHeight - innerHeight;
     }
 
@@ -191,13 +188,13 @@ export const ContextMenu = ({
 
     if (state.visible) {
       window.addEventListener('keydown', handleKeyboard);
-
+      
       for (const ev of hideOnEvents) window.addEventListener(ev, hide);
     }
 
     return () => {
       window.removeEventListener('keydown', handleKeyboard);
-
+      
       for (const ev of hideOnEvents) window.removeEventListener(ev, hide);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -322,11 +319,13 @@ export const ContextMenu = ({
 
 ContextMenu.Label = ContextMenuLabel;
 ContextMenu.Label.displayName = '@publish/desktop/ContextMenu.Label';
+
 ContextMenu.Item = ContextMenuItem;
 ContextMenu.Item.displayName = '@publish/desktop/ContextMenu.Item';
+
 ContextMenu.Sub = ContextMenuSub;
 ContextMenu.Sub.displayName = '@publish/desktop/ContextMenu.Sub';
+
 ContextMenu.Divider = ContextMenuDivider;
 ContextMenu.Divider.displayName = '@publish/desktop/ContextMenu.Divider';
-
 ContextMenu.displayName = '@publish/desktop/ContextMenu';
