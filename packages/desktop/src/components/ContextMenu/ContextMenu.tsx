@@ -5,7 +5,6 @@ import { useEffect, useReducer, useRef, useState } from 'react';
 import { flushSync } from 'react-dom';
 
 import type { ShowContextMenuParams } from './context-menu';
-// import * as styles from './ContextMenu.css';
 import styles from './ContextMenu.module.css';
 import { ContextMenuProvider } from './ContextMenuContext';
 import { ContextMenuDivider } from './Divider';
