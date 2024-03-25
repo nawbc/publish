@@ -1,3 +1,8 @@
+@define-mixin subFocus {
+  opacity: 1;
+  pointer-events: initial;
+}
+
 .main {
   position: fixed;
   opacity: 0;
@@ -5,9 +10,9 @@
   user-select: none;
   background-color: var(--publish-backdrop-color-default);
   box-sizing: border-box;
-  box-shadow: var(--publish-color-context-menu-border);
+  box-shadow: var(--publish-color-contextmenu-border);
   border-radius: var(--mantine-radius-default);
-  padding: rem(4px);
+  /* padding: rem(4px); */
   z-index: 999;
   &::before {
     content: '';
@@ -19,6 +24,9 @@
     bottom: 0;
     backdrop-filter: var(--publish-backdrop-filter);
   }
+
+  --_contextmenu-animate-in-delay: 0.3s;
+  --_contextmenu-animate-out-delay: 0.2s;
 }
 
 .sub {
@@ -29,19 +37,28 @@
   top: calc(-1 * rem(4px));
   left: 100%;
   backdrop-filter: var(--publish-backdrop-filter);
+}
 
-  &:where([data-position='bottom']) {
-    bottom: calc(-1 * rem(4px));
-    top: unset;
-  }
+.subBottom {
+  bottom: calc(-1 * rem(4));
+  top: unset;
+}
 
-  &:where([data-position='right']) {
-    right: 100%;
-    top: unset;
-  }
+.subRight {
+  right: 100%;
+  top: unset;
 }
 
 .subFocusOpen {
+  --_contextmenu-item-background-color: var(--_contextmenu-item-hover-color);
+
+  /* & > :local(.item) {
+    --_contextmenu-item-background-color: var(--_contextmenu-item-hover-color);
+  } */
+
+  & > :local(.sub) {
+    @mixin subFocus;
+  }
 }
 
 .itemFeedback {
@@ -49,35 +66,77 @@
 }
 
 .item {
-  cursor: pointer;
+  cursor: var(--_contextmenu-item-cursor, pointer);
   width: 100%;
-  position: 'relative';
+  position: relative;
 
   border-radius: var(--mantine-radius-default);
-  color: var(itemColor, var(--mantine-color-text));
+  color: var(--contextmenu-item-color, var(--mantine-color-text));
   font-size: var(--mantine-font-size-sm);
-  padding: calc(var(--mantine-spacing-xs) / 1.5) var(--mantine-spacing-sm);
-  background-color: fallbackVar(itemBg, transparent);
+  padding: calc(var(--mantine-spacing-xs) / 1.8) var(--mantine-spacing-sm);
+  background-color: var(--_contextmenu-item-background-color, transparent);
   display: flex;
   align-items: center;
   white-space: nowrap;
-  opacity: fallbackVar(itemOpacity, 1);
+  opacity: var(--_contextmenu-item-opacity, 1);
+
+  --_contextmenu-item-hover-color: var(
+    --contextmenu-item-hover-color,
+    var(--publish-color-contextmenu-hover)
+  );
+
+  & div {
+    display: flex;
+    align-items: center;
+  }
+
+  & :where([data-position='left']) {
+    margin-inline-end: var(--mantine-spacing-xs);
+  }
+
+  & :where([data-position='right']) {
+    margin-left: auto;
+  }
+
+  &:not([aria-disabled='true']):hover {
+    --_contextmenu-item-background-color: var(--_contextmenu-item-hover-color);
+  }
+
+  &:not([aria-disabled='true']):focus {
+    --_contextmenu-item-background-color: var(--_contextmenu-item-hover-color);
+  }
+
+  &[aria-disabled='true'] {
+    pointer-events: none;
+    --contextmenu-item-hover-color: var(--mantine-color-dimmed) !important;
+    --_contextmenu-item-opacity: 0.6;
+    --_contextmenu-item-cursor: default;
+  }
 }
 
 .subItem {
   position: relative;
-}
 
-.itemFoucs {
-}
-
-.subFocus {
-  opacity: 1;
-  pointer-events: initial;
+  &:not([aria-disabled='true']):hover > :local(.sub) {
+    @mixin subFocus;
+  }
 }
 
 .leaveDisabled {
   pointer-events: none;
+}
+
+.scrollbarThumb {
+  background-color: var(--mantine-color-gray-2) !important;
+  @mixin hover {
+    background-color: var(--mantine-color-gray-3) !important;
+  }
+}
+
+.scrollbar {
+  @mixin hover {
+    width: rem(7);
+  }
 }
 
 @keyframes feedback {
@@ -92,29 +151,29 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: 'translateY(10px)';
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
-    transform: 'translateY(0)';
+    transform: translateY(0);
   }
 }
 
 @keyframes fadeOut {
   from {
     opacity: 1;
-    transform: 'translateY(0)';
+    transform: translateY(0);
   }
   to {
     opacity: 0;
-    transform: 'translateY(10px)';
+    transform: translateY(10px);
   }
 }
 
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: 'scale3d(0.3, 0.3, 0.3)';
+    transform: scale3d(0.3, 0.3, 0.3);
   }
   to {
     opacity: 1;
@@ -127,6 +186,21 @@
   }
   to {
     opacity: 0;
-    transform: 'scale3d(0.3, 0.3, 0.3)';
+    transform: scale3d(0.3, 0.3, 0.3);
   }
+}
+
+.fadeIn {
+  animation: fadeIn var(--_contextmenu-animate-in-delay) ease;
+}
+.fadeOut {
+  animation: fadeOut var(--_contextmenu-animate-out-delay) ease;
+}
+.scaleIn {
+  transform-origin: top left;
+  animation: scaleIn var(--_contextmenu-animate-in-delay) ease;
+}
+.scaleOut {
+  transform-origin: top left;
+  animation: scaleOut var(--_contextmenu-animate-out-delay) ease;
 }

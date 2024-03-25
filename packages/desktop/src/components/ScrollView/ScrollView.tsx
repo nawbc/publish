@@ -21,7 +21,7 @@ const defaultProps: Partial<ScrollViewProps> = {
 };
 
 export const ScrollView: FC<ScrollViewProps> = factory(function (_props, ref) {
-  const props = useProps('AppShellHeader', defaultProps, _props);
+  const props = useProps('ScrollView', defaultProps, _props);
 
   return (
     <ScrollArea.Autosize
@@ -29,7 +29,6 @@ export const ScrollView: FC<ScrollViewProps> = factory(function (_props, ref) {
       classNames={{
         scrollbar: classes.scrollbar,
         thumb: classes.scrollbarThumb,
-        viewport: classes.viewport,
       }}
       {...props}
     />

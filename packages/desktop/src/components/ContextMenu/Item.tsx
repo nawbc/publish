@@ -217,14 +217,14 @@ export const ContextMenuItem: React.FC<ItemProps> = ({
       style={style}
       role="menuitem"
       aria-disabled={isDisabled}
-      // __vars={assignInlineVars({
-      //   [styles.itemColor]:
-      //     parsedThemeColor?.isThemeColor &&
-      //     parsedThemeColor?.shade === undefined
-      //       ? `var(--mantine-color-${parsedThemeColor.color}-6)`
-      //       : colors?.color,
-      //   [styles.itemHover]: colors?.hover,
-      // })}
+      __vars={{
+        '--contextmenu-item-color':
+          parsedThemeColor?.isThemeColor &&
+          parsedThemeColor?.shade === undefined
+            ? `var(--mantine-color-${parsedThemeColor.color}-6)`
+            : colors?.color,
+        '--contextmenu-item-hover-color': colors?.hover,
+      }}
     >
       {leading && <div data-position="left">{leading}</div>}
       {children && <div>{children}</div>}

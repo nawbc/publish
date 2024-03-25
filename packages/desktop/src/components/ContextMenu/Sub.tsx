@@ -5,8 +5,7 @@ import type { ReactNode } from 'react';
 import type React from 'react';
 import { useRef } from 'react';
 
-// import * as styles from './ContextMenu.css';
-import styles from './ContextMenu.module.css';
+import classes from './ContextMenu.module.css';
 import { ContextMenuProvider } from './ContextMenuContext';
 import { useItemTracker, useItemTrackerContext } from './hooks';
 import type {
@@ -72,8 +71,8 @@ export const ContextMenuSub: React.FC<SubMenuProps> = ({
   function setPosition() {
     const node = subMenuNode.current;
     if (node) {
-      const bottom = styles.subBottom;
-      const right = styles.subRight;
+      const bottom = classes.subBottom;
+      const right = classes.subRight;
       // reset to default position before computing position
       node.classList.remove(bottom, right);
 
@@ -100,7 +99,7 @@ export const ContextMenuSub: React.FC<SubMenuProps> = ({
     <ContextMenuProvider value={itemTracker}>
       <Box
         {...rest}
-        className={clsx(styles.subItem, className)}
+        className={clsx(classes.subItem, className)}
         ref={trackRef}
         tabIndex={-1}
         role="menuitem"
@@ -109,11 +108,15 @@ export const ContextMenuSub: React.FC<SubMenuProps> = ({
         onMouseEnter={setPosition}
         onTouchStart={setPosition}
       >
-        <Box className={styles.item}>
+        <Box className={classes.item}>
           {label}
-          {trailing ?? <IconChevronRight size={14} />}
+          {trailing ?? <IconChevronRight data-position="right" size={14} />}
         </Box>
-        <Box className={styles.sub} ref={subMenuNode} style={style}>
+        <Box
+          className={clsx(classes.main, classes.sub)}
+          ref={subMenuNode}
+          style={style}
+        >
           {cloneItems(children, {
             propsFromTrigger,
             // @ts-ignore: injected by the parent

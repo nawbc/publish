@@ -9,7 +9,7 @@ export const EXPLORER_EMPTY_ID = 'publish:explorer_empty';
 
 export const EXPLORER_NODE_ID = 'publish:explorer_node';
 
-const { /* Sub, */ Item } = ContextMenu;
+const { Sub, Item } = ContextMenu;
 
 export function ExplorerEmptyContextMenu() {
   return (
@@ -65,6 +65,20 @@ export function ExplorerNodeContextMenu() {
       <Item id="delete" color="red">
         Delete
       </Item>
+      <Item
+        id="rename"
+        leading={<IconEdit size={16} />}
+        onClick={handleItemClick}
+      >
+        Rename
+      </Item>
+      <Item id="copy">Copy</Item>
+      <Item id="delete" color="red">
+        Delete
+      </Item>
+      <Sub label={'demo'}>
+        <Item>dmeo</Item>
+      </Sub>
     </ContextMenu>
   );
 }

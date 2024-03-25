@@ -1,4 +1,5 @@
 import { is } from '@deskbtm/gadgets/is';
+import { rem } from '@mantine/core';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 import type React from 'react';
@@ -15,6 +16,7 @@ import { useItemTracker } from './hooks';
 import { ContextMenuItem } from './Item';
 import { createKeyboardController } from './keyboard-controller';
 import { ContextMenuLabel } from './Label';
+import { ContextMenuScrollView } from './ScrollView';
 import { ContextMenuSub } from './Sub';
 import type { MenuAnimation, MenuId, TriggerEvent } from './types';
 import { cloneItems, getMousePosition } from './utils';
@@ -114,7 +116,7 @@ export const ContextMenu = ({
   const wasVisible = useRef<boolean>();
   const visibilityId = useRef<number>();
 
-  // subscribe event manager
+  // Subscribe event manager
   useEffect(() => {
     eventManager.on(id, show).on(ContextMenuEvents.hideAll, hide);
 
@@ -125,7 +127,7 @@ export const ContextMenu = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, animation, disableBoundariesCheck]);
 
-  // collect menu items for keyboard navigation
+  // Collect menu items for keyboard navigation
   useEffect(() => {
     !state.visible ? itemTracker.clear() : menuController.init(itemTracker);
   }, [state.visible, menuController, itemTracker]);
@@ -273,15 +275,15 @@ export const ContextMenu = ({
   function animateClz() {
     if (is.string(animation)) {
       return clsx({
-        [styles.animations[animation + 'In']]: visible && !willLeave,
-        [styles.animations[animation + 'Out']]: visible && willLeave,
+        [styles[animation + 'In']]: visible && !willLeave,
+        [styles[animation + 'Out']]: visible && willLeave,
         [styles.leaveDisabled]: visible && willLeave,
       });
     } else if (animation && 'enter' in animation && 'exit' in animation) {
       return clsx({
-        [styles.animations[animation.enter + 'In']]:
+        [styles[animation.enter + 'In']]:
           animation.enter && visible && !willLeave,
-        [styles.animations[animation.exit + 'Out']]:
+        [styles[animation.exit + 'Out']]:
           animation.enter && visible && willLeave,
         [styles.leaveDisabled]: animation.enter && visible && willLeave,
       });
@@ -309,10 +311,12 @@ export const ContextMenu = ({
           ref={nodeRef}
           role="menu"
         >
-          {cloneItems(children, {
-            propsFromTrigger,
-            triggerEvent,
-          })}
+          <ContextMenuScrollView p={rem(4)}>
+            {cloneItems(children, {
+              propsFromTrigger,
+              triggerEvent,
+            })}
+          </ContextMenuScrollView>
         </div>
       )}
     </ContextMenuProvider>
@@ -330,4 +334,5 @@ ContextMenu.Sub.displayName = '@publish/desktop/ContextMenu.Sub';
 
 ContextMenu.Divider = ContextMenuDivider;
 ContextMenu.Divider.displayName = '@publish/desktop/ContextMenu.Divider';
+
 ContextMenu.displayName = '@publish/desktop/ContextMenu';

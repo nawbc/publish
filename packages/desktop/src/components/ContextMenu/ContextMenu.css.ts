@@ -66,7 +66,7 @@ export const main = style({
   userSelect: 'none',
   backgroundColor: 'var(--publish-backdrop-color-default)',
   boxSizing: 'border-box',
-  boxShadow: 'var(--publish-color-context-menu-border)',
+  boxShadow: 'var(--publish-color-contextmenu-border)',
   borderRadius: 'var(--mantine-radius-default)',
   padding: rem(4),
   zIndex: 999,
@@ -136,7 +136,7 @@ export const subItem = style({
 
 export const itemFocus: GlobalStyleRule = {
   vars: {
-    [itemBg]: fallbackVar(itemHover, 'var(--publish-color-context-menu-hover)'),
+    [itemBg]: fallbackVar(itemHover, 'var(--publish-color-contextmenu-hover)'),
   },
 };
 
@@ -165,4 +165,4 @@ globalStyle(`${subFocusOpen},${subFocusOpen} > ${item}`, itemFocus);
 
 globalStyle(`${subFocusOpen} > ${sub}`, subFocus);
 
-globalStyle(`${subItem}:not([aria-disabled=true]):hover > ${sub}`, subFocus);
+globalStyle(`${c}:not([aria-disabled=true]):hover > ${sub}`, subFocus);

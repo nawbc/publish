@@ -14,8 +14,8 @@ export const resolver: CSSVariablesResolver = (theme) => ({
       theme.other.activeDividerHandlerLight,
     '--publish-color-inactive-divider-handler':
       theme.other.inActiveDividerHandlerLight,
-    '--publish-color-context-menu-hover': theme.other.contextMenuHoverLight,
-    '--publish-color-context-menu-border': theme.other.contextMenuBorder,
+    '--publish-color-contextmenu-hover': theme.other.contextMenuHoverLight,
+    '--publish-color-contextmenu-border': theme.other.contextMenuBorder,
     '--publish-backdrop-color-default': '#ffffff80',
     '--publish-backdrop-filter': 'saturate(180%) blur(10px)',
   },
@@ -24,8 +24,8 @@ export const resolver: CSSVariablesResolver = (theme) => ({
       theme.other.activeDividerHandlerDark,
     '--publish-color-inactive-divider-handler':
       theme.other.inActiveDividerHandlerDark,
-    '--publish-color-context-menu-hover': theme.other.contextMenuHoverLight,
-    '--publish-color-context-menu-border': theme.other.contextMenuBorder,
+    '--publish-color-contextmenu-hover': theme.other.contextMenuHoverLight,
+    '--publish-color-contextmenu-border': theme.other.contextMenuBorder,
   },
 });
 

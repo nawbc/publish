@@ -1,7 +1,7 @@
 .scrollbarThumb {
-  background-color: 'var(--mantine-color-gray-3)!important';
+  background-color: var(--mantine-color-gray-3) !important;
   @mixin hover {
-    background-color: 'var(--mantine-color-gray-5)!important';
+    background-color: var(--mantine-color-gray-5) !important;
   }
 }
 
@@ -9,7 +9,4 @@
   @mixin hover {
     width: rem(14);
   }
-}
-
-.viewport {
 }

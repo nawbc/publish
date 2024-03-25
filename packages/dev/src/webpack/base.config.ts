@@ -260,7 +260,9 @@ export function createConfiguration(): Configuration {
             test: /\.module\.css$/,
             use: getStyleLoaders({
               sourceMap: false,
-              modules: true,
+              modules: {
+                localIdentName: '[name]__[local]--[hash:base64:8]',
+              },
               importLoaders: 1,
             }),
           },
