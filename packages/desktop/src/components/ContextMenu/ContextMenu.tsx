@@ -1,3 +1,4 @@
+import { is } from '@deskbtm/gadgets/is';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 import type React from 'react';
@@ -16,7 +17,7 @@ import { createKeyboardController } from './keyboard-controller';
 import { ContextMenuLabel } from './Label';
 import { ContextMenuSub } from './Sub';
 import type { MenuAnimation, MenuId, TriggerEvent } from './types';
-import { cloneItems, getMousePosition, isFn, isStr } from './utils';
+import { cloneItems, getMousePosition } from './utils';
 
 export interface ContextMenuProps
   extends Omit<React.HTMLAttributes<HTMLElement>, 'id'> {
@@ -82,7 +83,7 @@ function reducer(
   state: MenuState,
   payload: Partial<MenuState> | ((state: MenuState) => Partial<MenuState>),
 ) {
-  return { ...state, ...(isFn(payload) ? payload(state) : payload) };
+  return { ...state, ...(is.function(payload) ? payload(state) : payload) };
 }
 const defaultBackdrop = 'saturate(180%) blur(10px)';
 
@@ -188,13 +189,13 @@ export const ContextMenu = ({
 
     if (state.visible) {
       window.addEventListener('keydown', handleKeyboard);
-      
+
       for (const ev of hideOnEvents) window.addEventListener(ev, hide);
     }
 
     return () => {
       window.removeEventListener('keydown', handleKeyboard);
-      
+
       for (const ev of hideOnEvents) window.removeEventListener(ev, hide);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -218,7 +219,7 @@ export const ContextMenu = ({
     });
 
     clearTimeout(visibilityId.current);
-    if (!wasVisible.current && isFn(onVisibilityChange)) {
+    if (!wasVisible.current && is.function(onVisibilityChange)) {
       onVisibilityChange(true);
       wasVisible.current = true;
     }
@@ -236,14 +237,15 @@ export const ContextMenu = ({
     )
       return;
 
-    animation && (isStr(animation) || ('exit' in animation && animation.exit))
+    animation &&
+    (is.string(animation) || ('exit' in animation && animation.exit))
       ? setState((state) => ({ willLeave: state.visible }))
       : setState((state) => ({
           visible: state.visible ? false : state.visible,
         }));
 
     visibilityId.current = setTimeout(() => {
-      isFn(onVisibilityChange) && onVisibilityChange(false);
+      is.function(onVisibilityChange) && onVisibilityChange(false);
       wasVisible.current = false;
     }) as unknown as number;
   }
@@ -269,7 +271,7 @@ export const ContextMenu = ({
   }
 
   function animateClz() {
-    if (isStr(animation)) {
+    if (is.string(animation)) {
       return clsx({
         [styles.animations[animation + 'In']]: visible && !willLeave,
         [styles.animations[animation + 'Out']]: visible && willLeave,

@@ -44,6 +44,10 @@
 .subFocusOpen {
 }
 
+.itemFeedback {
+  animation: feedback 0.12s both;
+}
+
 .item {
   cursor: pointer;
   width: 100%;
@@ -60,6 +64,69 @@
   opacity: fallbackVar(itemOpacity, 1);
 }
 
-.itemFeedback {
-  /* animation: ; */
+.subItem {
+  position: relative;
+}
+
+.itemFoucs {
+}
+
+.subFocus {
+  opacity: 1;
+  pointer-events: initial;
+}
+
+.leaveDisabled {
+  pointer-events: none;
+}
+
+@keyframes feedback {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: 'translateY(10px)';
+  }
+  to {
+    opacity: 1;
+    transform: 'translateY(0)';
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: 'translateY(0)';
+  }
+  to {
+    opacity: 0;
+    transform: 'translateY(10px)';
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: 'scale3d(0.3, 0.3, 0.3)';
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: 'scale3d(0.3, 0.3, 0.3)';
+  }
 }

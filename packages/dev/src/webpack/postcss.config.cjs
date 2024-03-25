@@ -1,4 +1,5 @@
-// eslint-disable-next-line no-undef
+/* eslint-env node */
+
 module.exports = {
   plugins: {
     'postcss-preset-mantine': {},
