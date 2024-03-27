@@ -20,6 +20,7 @@ tauri-plugin-shell = { git = "https://github.com/tauri-apps/plugins-workspace", 
 tauri-plugin-autostart = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 tauri-plugin-fs = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 tauri-plugin-os = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
+tauri-plugin-updater = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 
 wry = "0.37"
 windows = "0.52"

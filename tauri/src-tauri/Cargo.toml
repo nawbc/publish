@@ -31,6 +31,7 @@ tauri = { workspace = true, features = [
 tauri-plugin-autostart = { workspace = true, branch = "v2" }
 tauri-plugin-fs = { workspace = true, branch = "v2" }
 tauri-plugin-os = { workspace = true, branch = "v2" }
+tauri-plugin-updater = { workspace = true, branch = "v2" }
 tauri-plugin-http = { workspace = true, branch = "v2", features = [
   "unsafe-headers",
   "default-tls",

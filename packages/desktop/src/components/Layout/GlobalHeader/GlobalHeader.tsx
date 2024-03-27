@@ -34,7 +34,6 @@ export const GlobalHeader: FC<GlobalHeaderProps> = () => {
           </Tooltip>
         </IF>
       </DraggableHeader>
-
       <IF is={os.type === 'windows'}>
         <WindowsNativeTitleBar />
       </IF>

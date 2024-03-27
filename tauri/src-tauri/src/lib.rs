@@ -15,6 +15,10 @@ pub fn run() {
       {
         let handle = app.handle();
         tray::create_tray(handle)?;
+        app
+          .handle()
+          .plugin(tauri_plugin_updater::Builder::new().build())?;
+
         // handle.plugin(menu_plugin::init())?;
       }
       let main_window = app.get_webview_window("main").unwrap();
