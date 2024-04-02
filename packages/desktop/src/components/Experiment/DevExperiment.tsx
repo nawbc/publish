@@ -1,3 +1,4 @@
+import { Button, SimpleGrid } from '@mantine/core';
 import { Sandbox } from '@publish/addon-rt';
 import { createTransport, IndexedDBTransport, Logger } from '@publish/logger';
 import { XApi } from '@publishjs/x-api';
@@ -11,9 +12,11 @@ const logger = Logger.create({
 
 export const DevExperiment: FC<DevExperimentProps> = function () {
   return (
-    kDevMode && (
-      <>
-        <button
+    <>
+      <div>Platform: {process.env.PUBLISH_BUILD_PLATFORM}</div>
+
+      <SimpleGrid cols={12}>
+        <Button
           onClick={async () => {
             const res = await fetch('/sw.js');
             console.log(res.body);
@@ -22,8 +25,8 @@ export const DevExperiment: FC<DevExperimentProps> = function () {
           }}
         >
           Test local log
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={async () => {
             const registration = await navigator.serviceWorker.register(
               '/sw.js',
@@ -42,15 +45,9 @@ export const DevExperiment: FC<DevExperimentProps> = function () {
           }}
         >
           service worker
-        </button>
-        <button
-          onClick={async () => {
-            new Worker(new URL('../../demo.ts', import.meta.url));
-          }}
-        >
-          worker
-        </button>
-        <button
+        </Button>
+        <Button onClick={async () => {}}>Worker</Button>
+        <Button
           onClick={async () => {
             const sandbox = new Sandbox({
               iframeProps: {
@@ -67,9 +64,8 @@ export const DevExperiment: FC<DevExperimentProps> = function () {
           }}
         >
           Sandbox
-        </button>
-        {/* <input type="file" id="file" /> */}
-        <button
+        </Button>
+        <Button
           onClick={async () => {
             const xapi = new XApi({
               httpClient: fetch,
@@ -81,16 +77,9 @@ export const DevExperiment: FC<DevExperimentProps> = function () {
           }}
         >
           X
-        </button>
-        <button
-          onClick={async () => {
-            console.log(process.env.PUBLISH_BUILD_PLATFORM);
-          }}
-        >
-          Test
-        </button>
-      </>
-    )
+        </Button>
+      </SimpleGrid>
+    </>
   );
 };
 

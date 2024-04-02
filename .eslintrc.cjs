@@ -23,5 +23,6 @@ module.exports = {
         argsIgnorePattern: '^_',
       },
     ],
+    'no-console': ['error', { allow: ['warn', 'error', 'debug'] }],
   },
 };

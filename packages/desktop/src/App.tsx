@@ -11,6 +11,7 @@ import { TauriOSProvider, TauriWindowProvider } from 'tauri-reactgets';
 import { v4 } from 'uuid';
 
 import { GlobalContextMenus } from './components/context-menus';
+import { DevLab } from './components/Experiment/DevLab';
 import { PublishSpotlight } from './components/Spotlight';
 import { router } from './router';
 import { resolver, theme } from './theme';
@@ -20,6 +21,7 @@ const DevTools: FC = function () {
     <Suspense>
       <JotaiDevTools />
       <ReactQueryDevtools initialIsOpen={kDevMode} position="bottom" />
+      <DevLab />
     </Suspense>
   ) : null;
 };

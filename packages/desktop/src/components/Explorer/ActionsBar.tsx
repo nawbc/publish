@@ -17,7 +17,7 @@ export const ActionsBar: FC<any> = function () {
       <Group gap="xs">
         <ActionIcon
           size="md"
-          variant="subtle"
+          c="gray.7"
           onClick={() => {
             explorer.toggle();
           }}
@@ -26,7 +26,7 @@ export const ActionsBar: FC<any> = function () {
         </ActionIcon>
         <ActionIcon
           size="md"
-          variant="subtle"
+          c="gray.7"
           onClick={() => {
             explorer.toggle();
           }}

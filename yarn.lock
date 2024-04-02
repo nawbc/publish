@@ -15139,6 +15139,7 @@ __metadata:
     tsx: "npm:4.7.1"
     typescript: "npm:5.4.3"
     typewriter-effect: "npm:2.21.0"
+    ua-parser-js: "npm:1.0.37"
     uuid: "npm:9.0.1"
     vitest: "npm:1.4.0"
     web-vitals: "npm:3.5.2"
@@ -17835,6 +17836,13 @@ __metadata:
     react: ^17.x || ^18.x
     react-dom: ^17.x || ^18.x
   checksum: 10/eaefe01da5ecfc866a1031efa34ad365f4f52fc57be9acf67d4877e01361844a2798f1aba035845fc9f60edaa56bdbb6f7597341ae8e4015793795e1d7b6763d
+  languageName: node
+  linkType: hard
+
+"ua-parser-js@npm:1.0.37":
+  version: 1.0.37
+  resolution: "ua-parser-js@npm:1.0.37"
+  checksum: 10/56508f2428ebac64382c4d41da14189e5013e3e2a5f5918aff4bee3ba77df1f4eaad6f81f90c24999f1cf12cc1596764684497fec07e0ff5182ce9a323a8c05b
   languageName: node
   linkType: hard
 

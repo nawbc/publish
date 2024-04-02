@@ -49,8 +49,6 @@ export const theme = createTheme({
     ActionIcon: {
       defaultProps: {
         variant: 'transparent',
-        c: 'gray.7',
-        color: 'gray.7',
       },
     },
     ScrollArea: {
