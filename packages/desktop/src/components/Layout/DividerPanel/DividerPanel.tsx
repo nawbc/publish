@@ -8,6 +8,7 @@ import type { PropsWithChildren } from 'react';
 import { useCallback, useImperativeHandle, useMemo, useRef } from 'react';
 import { type FC, forwardRef } from 'react';
 import React from 'react';
+import { useProps } from 'reactgets/hooks/use-props';
 
 import { DividerHandle } from './DividerHandle';
 import classes from './DividerPanel.module.css';
@@ -43,6 +44,14 @@ export interface DividerPanelInnerRef {
 }
 
 export const SPLIT_PANEL_STORAGE_KEY = 'publish:desktop:DividerPanel';
+
+const defaultProps = {
+  hideDividerCollapsed: true,
+  initial: 278,
+  min: 208,
+  max: 608,
+  dividerWidth: 16,
+};
 
 export const DividerPanelInner = forwardRef<
   DividerPanelInnerRef,
@@ -110,7 +119,8 @@ export const DividerPanelInner = forwardRef<
 
 DividerPanelInner.displayName = '@publish/desktop/DividerPanelInner';
 
-export const DividerPanel = factory<DividerPanelFactory>((props, _ref) => {
+export const DividerPanel = factory<DividerPanelFactory>((_props, _ref) => {
+  const props = useProps(defaultProps, _props);
   const { children, initial } = props;
 
   if (React.Children.count(children) !== 2) {
@@ -177,10 +187,3 @@ DividerPanel.Trailing = Panel;
 DividerPanel.Trailing.displayName = '@publish/desktop/DividerPanel.Trailing';
 
 DividerPanel.displayName = '@publish/desktop/DividerPanel';
-DividerPanel.defaultProps = {
-  hideDividerCollapsed: true,
-  initial: 278,
-  min: 208,
-  max: 608,
-  dividerWidth: 16,
-};

@@ -73,5 +73,3 @@ export const WindowsNativeTitleBar: FC<WindowsNativeTitleBarProps> =
       </Group>
     );
   };
-
-WindowsNativeTitleBar.defaultProps = {};

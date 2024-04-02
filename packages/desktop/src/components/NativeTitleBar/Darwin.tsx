@@ -93,5 +93,3 @@ export const DarwinNativeTitleBar: FC<DarwinNativeTitleBarProps> = function () {
     </Group>
   );
 };
-
-DarwinNativeTitleBar.defaultProps = {};

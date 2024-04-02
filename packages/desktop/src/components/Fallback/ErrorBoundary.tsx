@@ -1,6 +1,7 @@
 import type { ErrorInfo } from 'react';
 import { type FC, type PropsWithChildren, useCallback } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
+import { useProps } from 'reactgets/hooks/use-props';
 
 import { ErrorFallback } from './ErrorFallback';
 
@@ -8,7 +9,13 @@ export interface PublishErrorBoundaryProps extends PropsWithChildren {
   height?: number | string;
 }
 
-export const PublishErrorBoundary: FC<PublishErrorBoundaryProps> = (props) => {
+const defaultProps = {
+  height: '100%',
+};
+
+export const PublishErrorBoundary: FC<PublishErrorBoundaryProps> = (_props) => {
+  const props = useProps(defaultProps, _props);
+
   const onError = useCallback((error: Error, info: ErrorInfo) => {
     console.error('Uncaught error:', error, info);
   }, []);
@@ -25,8 +32,4 @@ export const PublishErrorBoundary: FC<PublishErrorBoundaryProps> = (props) => {
       {props.children}
     </ErrorBoundary>
   );
-};
-
-PublishErrorBoundary.defaultProps = {
-  height: '100%',
 };

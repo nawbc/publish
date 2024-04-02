@@ -72,5 +72,3 @@ export const TauriOSProvider: FC<TauriOSProviderProps> = function (props) {
     </TauriOSContext.Provider>
   );
 };
-
-TauriOSProvider.defaultProps = {};

@@ -30,5 +30,3 @@ export const TauriWindowProvider: FC<TauriWindowProviderProps> = function (
     </TauriWindowContext.Provider>
   );
 };
-
-TauriWindowProvider.defaultProps = {};
