@@ -1,5 +1,5 @@
 import { useLocalStorage } from '@mantine/hooks';
-import type { TreeMethods } from '@publishjs/react-dnd-treeview';
+import type { TreeMethods } from '@publish-kit/react-dnd-treeview';
 import type { FC, PropsWithChildren } from 'react';
 import { useCallback, useMemo, useRef } from 'react';
 

@@ -1,5 +1,5 @@
 {
-  "name": "@publishjs/addon-x",
+  "name": "@publish-kit/addon-x",
   "version": "0.0.1-alpha.1",
   "description": "Publish x(twitter) addon",
   "author": "Han <han@deskbtm.com>",
@@ -27,6 +27,6 @@
     "vite": "5.2.6"
   },
   "dependencies": {
-    "@publishjs/sdk": "workspace:^"
+    "@publish-kit/sdk": "workspace:^"
   }
 }

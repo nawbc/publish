@@ -1,7 +1,7 @@
 import type {
   DragLayerMonitorProps,
   NodeModel,
-} from '@publishjs/react-dnd-treeview';
+} from '@publish-kit/react-dnd-treeview';
 import { type FC } from 'react';
 
 import { MultipleDragPreview } from './MultipleDragPreview';

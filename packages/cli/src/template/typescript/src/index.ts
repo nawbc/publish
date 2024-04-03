@@ -1,5 +1,5 @@
-import type { Manifest } from '@publishjs/sdk';
-import { PublishAddon } from '@publishjs/sdk';
+import type { Manifest } from '@publish-kit/sdk';
+import { PublishAddon } from '@publish-kit/sdk';
 
 import publish from '../public/publish.svg';
 import { demo } from './mod';

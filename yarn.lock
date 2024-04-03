@@ -3829,6 +3829,76 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@publish-kit/addon-x@workspace:built-in/en/x":
+  version: 0.0.0-use.local
+  resolution: "@publish-kit/addon-x@workspace:built-in/en/x"
+  dependencies:
+    "@publish-kit/sdk": "workspace:^"
+    typescript: "npm:5.4.3"
+    vite: "npm:5.2.6"
+  languageName: unknown
+  linkType: soft
+
+"@publish-kit/cli@workspace:packages/cli":
+  version: 0.0.0-use.local
+  resolution: "@publish-kit/cli@workspace:packages/cli"
+  dependencies:
+    "@clack/prompts": "npm:0.7.0"
+    commander: "npm:12.0.0"
+    eslint: "npm:8.57.0"
+    libnpmpack: "npm:6.0.6"
+    typescript: "npm:5.4.3"
+  bin:
+    cli: ./dist/cli.js
+  languageName: unknown
+  linkType: soft
+
+"@publish-kit/plugin-zhihu@workspace:built-in/cn/zhihu":
+  version: 0.0.0-use.local
+  resolution: "@publish-kit/plugin-zhihu@workspace:built-in/cn/zhihu"
+  dependencies:
+    "@publish-kit/sdk": "workspace:^"
+    typescript: "npm:5.4.3"
+  languageName: unknown
+  linkType: soft
+
+"@publish-kit/react-dnd-treeview@workspace:^, @publish-kit/react-dnd-treeview@workspace:inactive_third_party/react-dnd-treeview":
+  version: 0.0.0-use.local
+  resolution: "@publish-kit/react-dnd-treeview@workspace:inactive_third_party/react-dnd-treeview"
+  dependencies:
+    "@juggle/resize-observer": "npm:3.4.0"
+    dnd-multi-backend: "npm:7.1.3"
+    eslint: "npm:8.57.0"
+    framer-motion: "npm:6.2.8"
+    react-dnd-html5-backend: "npm:16.0.1"
+    react-dnd-touch-backend: "npm:16.0.1"
+    react-use-measure: "npm:2.1.1"
+    typescript: "npm:5.4.3"
+  languageName: unknown
+  linkType: soft
+
+"@publish-kit/sdk@workspace:^, @publish-kit/sdk@workspace:packages/sdk":
+  version: 0.0.0-use.local
+  resolution: "@publish-kit/sdk@workspace:packages/sdk"
+  dependencies:
+    typescript: "npm:5.4.3"
+  languageName: unknown
+  linkType: soft
+
+"@publish-kit/x-api@workspace:^, @publish-kit/x-api@workspace:first_party/x-api":
+  version: 0.0.0-use.local
+  resolution: "@publish-kit/x-api@workspace:first_party/x-api"
+  dependencies:
+    "@types/lodash.merge": "npm:4"
+    "@types/uuid": "npm:9.0.8"
+    debug: "npm:4.3.4"
+    lodash.merge: "npm:4.6.2"
+    typescript: "npm:5.4.3"
+    uuid: "npm:9.0.1"
+    vitest: "npm:1.4.0"
+  languageName: unknown
+  linkType: soft
+
 "@publish/addon-mgr@workspace:packages/mgr":
   version: 0.0.0-use.local
   resolution: "@publish/addon-mgr@workspace:packages/mgr"
@@ -3859,9 +3929,9 @@ __metadata:
     "@mantine/notifications": "npm:7.7.0"
     "@mantine/nprogress": "npm:7.7.0"
     "@mantine/spotlight": "npm:7.7.0"
+    "@publish-kit/x-api": "workspace:^"
     "@publish/doc-editor": "workspace:^"
     "@publish/logger": "workspace:^"
-    "@publishjs/x-api": "workspace:^"
     "@tauri-apps/api": "npm:2.0.0-beta.6"
     "@tauri-apps/plugin-autostart": "https://github.com/tauri-apps/tauri-plugin-autostart#v2"
     "@tauri-apps/plugin-http": "https://github.com/tauri-apps/tauri-plugin-http#v2"
@@ -4011,76 +4081,6 @@ __metadata:
   resolution: "@publish/tauri@workspace:tauri"
   dependencies:
     "@tauri-apps/cli": "npm:2.0.0-beta.8"
-  languageName: unknown
-  linkType: soft
-
-"@publishjs/addon-x@workspace:built-in/en/x":
-  version: 0.0.0-use.local
-  resolution: "@publishjs/addon-x@workspace:built-in/en/x"
-  dependencies:
-    "@publishjs/sdk": "workspace:^"
-    typescript: "npm:5.4.3"
-    vite: "npm:5.2.6"
-  languageName: unknown
-  linkType: soft
-
-"@publishjs/cli@workspace:packages/cli":
-  version: 0.0.0-use.local
-  resolution: "@publishjs/cli@workspace:packages/cli"
-  dependencies:
-    "@clack/prompts": "npm:0.7.0"
-    commander: "npm:12.0.0"
-    eslint: "npm:8.57.0"
-    libnpmpack: "npm:6.0.6"
-    typescript: "npm:5.4.3"
-  bin:
-    cli: ./dist/cli.js
-  languageName: unknown
-  linkType: soft
-
-"@publishjs/plugin-zhihu@workspace:built-in/cn/zhihu":
-  version: 0.0.0-use.local
-  resolution: "@publishjs/plugin-zhihu@workspace:built-in/cn/zhihu"
-  dependencies:
-    "@publishjs/sdk": "workspace:^"
-    typescript: "npm:5.4.3"
-  languageName: unknown
-  linkType: soft
-
-"@publishjs/react-dnd-treeview@workspace:^, @publishjs/react-dnd-treeview@workspace:inactive_third_party/react-dnd-treeview":
-  version: 0.0.0-use.local
-  resolution: "@publishjs/react-dnd-treeview@workspace:inactive_third_party/react-dnd-treeview"
-  dependencies:
-    "@juggle/resize-observer": "npm:3.4.0"
-    dnd-multi-backend: "npm:7.1.3"
-    eslint: "npm:8.57.0"
-    framer-motion: "npm:6.2.8"
-    react-dnd-html5-backend: "npm:16.0.1"
-    react-dnd-touch-backend: "npm:16.0.1"
-    react-use-measure: "npm:2.1.1"
-    typescript: "npm:5.4.3"
-  languageName: unknown
-  linkType: soft
-
-"@publishjs/sdk@workspace:^, @publishjs/sdk@workspace:packages/sdk":
-  version: 0.0.0-use.local
-  resolution: "@publishjs/sdk@workspace:packages/sdk"
-  dependencies:
-    typescript: "npm:5.4.3"
-  languageName: unknown
-  linkType: soft
-
-"@publishjs/x-api@workspace:^, @publishjs/x-api@workspace:first_party/x-api":
-  version: 0.0.0-use.local
-  resolution: "@publishjs/x-api@workspace:first_party/x-api"
-  dependencies:
-    "@types/lodash.merge": "npm:4"
-    "@types/uuid": "npm:9.0.8"
-    debug: "npm:4.3.4"
-    lodash.merge: "npm:4.6.2"
-    typescript: "npm:5.4.3"
-    uuid: "npm:9.0.1"
-    vitest: "npm:1.4.0"
   languageName: unknown
   linkType: soft
 
@@ -15083,9 +15083,9 @@ __metadata:
     "@fontsource/inter": "npm:5.0.16"
     "@monaco-editor/react": "npm:4.6.0"
     "@plugkit/bfs": "workspace:^"
+    "@publish-kit/react-dnd-treeview": "workspace:^"
     "@publish/addon-rt": "workspace:^"
     "@publish/shared": "workspace:^"
-    "@publishjs/react-dnd-treeview": "workspace:^"
     "@supabase/supabase-js": "npm:2.40.0"
     "@swc-jotai/react-refresh": "npm:0.1.0"
     "@tabler/icons-react": "npm:3.1.0"

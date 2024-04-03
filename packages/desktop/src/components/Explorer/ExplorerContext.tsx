@@ -1,4 +1,4 @@
-import type { TreeMethods } from '@publishjs/react-dnd-treeview';
+import type { TreeMethods } from '@publish-kit/react-dnd-treeview';
 import type { RefObject } from 'react';
 import { createContext } from 'react';
 

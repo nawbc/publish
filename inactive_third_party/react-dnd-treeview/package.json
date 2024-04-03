@@ -1,5 +1,5 @@
 {
-  "name": "@publishjs/react-dnd-treeview",
+  "name": "@publish-kit/react-dnd-treeview",
   "version": "0.0.1-alpha.1",
   "description": "A draggable / droppable React-based treeview component.",
   "author": "Minoru Okuyama <okuyama@analogic.jp> (https://github.com/minop1205/)",

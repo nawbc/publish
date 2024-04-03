@@ -1,5 +1,5 @@
 {
-  "name": "@publishjs/sdk",
+  "name": "@publish-kit/sdk",
   "version": "0.0.1-alpha.1",
   "description": "Publish plugins software development kit",
   "author": "Han <han@deskbtm.com>",

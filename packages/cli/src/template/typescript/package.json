@@ -26,6 +26,6 @@
     "vite": "5.0.10"
   },
   "dependencies": {
-    "@publishjs/sdk": "latest"
+    "@publish-kit/sdk": "latest"
   }
 }

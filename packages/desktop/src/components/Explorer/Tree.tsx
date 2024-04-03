@@ -8,8 +8,12 @@ import { getDndBackendOptions } from '@publish/shared';
 import type {
   DragLayerMonitorProps,
   NodeModel,
-} from '@publishjs/react-dnd-treeview';
-import { isAncestor, MultiBackend, Tree } from '@publishjs/react-dnd-treeview';
+} from '@publish-kit/react-dnd-treeview';
+import {
+  isAncestor,
+  MultiBackend,
+  Tree,
+} from '@publish-kit/react-dnd-treeview';
 import type { FC, MouseEvent } from 'react';
 import { useCallback, useState } from 'react';
 import { DndProvider } from 'react-dnd';

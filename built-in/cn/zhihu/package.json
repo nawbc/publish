@@ -1,5 +1,5 @@
 {
-  "name": "@publishjs/plugin-zhihu",
+  "name": "@publish-kit/plugin-zhihu",
   "version": "0.0.1-alpha.1",
   "description": "Publish zhihu plugin",
   "author": "Han <han@deskbtm.com>",
@@ -24,6 +24,6 @@
     "typescript": "5.4.3"
   },
   "dependencies": {
-    "@publishjs/sdk": "workspace:^"
+    "@publish-kit/sdk": "workspace:^"
   }
 }

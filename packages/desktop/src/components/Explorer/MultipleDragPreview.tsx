@@ -1,5 +1,5 @@
 import { Badge } from '@mantine/core';
-import type { DragItem, NodeModel } from '@publishjs/react-dnd-treeview';
+import type { DragItem, NodeModel } from '@publish-kit/react-dnd-treeview';
 import { type FC, useMemo } from 'react';
 
 import { PolymorphicIcon } from './PolymorphicIcon';

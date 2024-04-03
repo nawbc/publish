@@ -1,7 +1,7 @@
 import { Button, SimpleGrid } from '@mantine/core';
 import { Sandbox } from '@publish/addon-rt';
 import { createTransport, IndexedDBTransport, Logger } from '@publish/logger';
-import { XApi } from '@publishjs/x-api';
+import { XApi } from '@publish-kit/x-api';
 import { type FC, Suspense } from 'react';
 
 import { DeviceInfo } from '../DeviceInfo';

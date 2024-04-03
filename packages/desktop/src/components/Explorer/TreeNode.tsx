@@ -16,7 +16,7 @@ import {
   useMergedRef,
   useWindowEvent,
 } from '@mantine/hooks';
-import type { NodeModel, RenderParams } from '@publishjs/react-dnd-treeview';
+import type { NodeModel, RenderParams } from '@publish-kit/react-dnd-treeview';
 import { IconChevronRight } from '@tabler/icons-react';
 import { clsx } from 'clsx';
 import type { MouseEvent } from 'react';
