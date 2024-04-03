@@ -1,5 +1,5 @@
-// import type { Manifest, Preferences } from '@publish-kit/sdk';
-// import { channel, Option, OptionKinds, PublishAddon } from '@publish-kit/sdk';
+// import type { Manifest, Preferences } from '@publish-addon/sdk';
+// import { channel, Option, OptionKinds, PublishAddon } from '@publish-addon/sdk';
 
 // import XPNG from '../public/X.png';
 // import XSVG from '../public/X.svg';

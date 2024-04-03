@@ -45,7 +45,7 @@ export type TreeNodeFactory = Factory<{
   ref: HTMLElement;
 }>;
 
-export const TreeNode = factory<TreeNodeFactory>((props, ref) => {
+export const TreeNode = factory<TreeNodeFactory>((props, _ref) => {
   const {
     node,
     onClick,

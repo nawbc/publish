@@ -1,5 +1,5 @@
 {
-  "name": "@publish-kit/plugin-zhihu",
+  "name": "@publish-addon/zhihu",
   "version": "0.0.1-alpha.1",
   "description": "Publish zhihu plugin",
   "author": "Han <han@deskbtm.com>",

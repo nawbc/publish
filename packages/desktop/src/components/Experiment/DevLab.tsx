@@ -1,5 +1,5 @@
 import { ActionIcon, Drawer } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
+import { useLocalStorage } from '@mantine/hooks';
 import { IconFlask } from '@tabler/icons-react';
 import { type FC } from 'react';
 
@@ -8,7 +8,10 @@ import { DevExperiment } from './DevExperiment';
 export interface DevLabProps {}
 
 export const DevLab: FC<DevLabProps> = function () {
-  const [opened, { open, close }] = useDisclosure(false);
+  const [opened, setOpen] = useLocalStorage({
+    key: '__experiment_drawer_opened',
+    defaultValue: false,
+  });
 
   return (
     kDevMode && (
@@ -19,7 +22,7 @@ export const DevLab: FC<DevLabProps> = function () {
           radius="md"
           title="Development lab"
           opened={opened}
-          onClose={close}
+          onClose={() => setOpen(false)}
           size="100%"
         >
           <DevExperiment />
@@ -30,7 +33,7 @@ export const DevLab: FC<DevLabProps> = function () {
           size="xl"
           variant="light"
           aria-label="Lab"
-          onClick={open}
+          onClick={() => setOpen(!opened)}
           pos="fixed"
           color="blue"
           style={{ bottom: 10, right: 100, zIndex: 99999 }}

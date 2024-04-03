@@ -47,7 +47,7 @@ export const DeviceInfo: FC<DeviceInfoProps> = function () {
   }, [deviceInfoSymbol]);
 
   return (
-    <Card p="xl">
+    <Card padding="lg" shadow="sm" radius="md" withBorder>
       {info.map((v) => {
         return (
           <div key={v[0]}>

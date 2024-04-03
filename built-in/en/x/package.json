@@ -1,5 +1,5 @@
 {
-  "name": "@publish-kit/addon-x",
+  "name": "@publish-addon/x",
   "version": "0.0.1-alpha.1",
   "description": "Publish x(twitter) addon",
   "author": "Han <han@deskbtm.com>",
