@@ -5,6 +5,29 @@
         "key": 1708233027669,
         "children": [
           {
+            "key": 1708233048488,
+            "children": [
+              {
+                "key": 1708233244272,
+                "children": [],
+                "todo": {
+                  "content": "mobile: modal",
+                  "id": 1708233244272,
+                  "level": "default",
+                  "done": false,
+                  "start": 1708233244272
+                }
+              }
+            ],
+            "todo": {
+              "content": "Inline bubble menu",
+              "id": 1708233048488,
+              "level": "danger",
+              "done": false,
+              "start": 1708233048488
+            }
+          },
+          {
             "key": 1708233036741,
             "children": [
               {
@@ -47,29 +70,6 @@
               "level": "warning",
               "done": false,
               "start": 1708233042441
-            }
-          },
-          {
-            "key": 1708233048488,
-            "children": [
-              {
-                "key": 1708233244272,
-                "children": [],
-                "todo": {
-                  "content": "mobile: modal",
-                  "id": 1708233244272,
-                  "level": "default",
-                  "done": false,
-                  "start": 1708233244272
-                }
-              }
-            ],
-            "todo": {
-              "content": "Inline bubble menu",
-              "id": 1708233048488,
-              "level": "danger",
-              "done": false,
-              "start": 1708233048488
             }
           },
           {
@@ -139,17 +139,6 @@
           "level": "success",
           "done": false,
           "start": 1708233092650
-        }
-      },
-      {
-        "key": 1708233114452,
-        "children": [],
-        "todo": {
-          "content": "Payment",
-          "id": 1708233114452,
-          "level": "secondary",
-          "done": false,
-          "start": 1708233114453
         }
       },
       {
@@ -265,11 +254,12 @@
             "key": 1710840485289,
             "children": [],
             "todo": {
-              "content": "Zhihu - https://www.zhihu.com/",
+              "content": "Zhihu",
               "id": 1710840485289,
               "level": "default",
               "done": false,
-              "start": 1710840485290
+              "start": 1710840485290,
+              "link": "https://www.zhihu.com/"
             }
           },
           {
@@ -280,62 +270,69 @@
               "id": 1710840493650,
               "level": "default",
               "done": false,
-              "start": 1710840493650
+              "start": 1710840493650,
+              "focus": false,
+              "end": 1712759755113
             }
           },
           {
             "key": 1710840517222,
             "children": [],
             "todo": {
-              "content": "tieba - https://tieba.baidu.com",
+              "content": "tieba",
               "id": 1710840517222,
               "level": "default",
               "done": false,
-              "start": 1710840517222
+              "start": 1710840517222,
+              "link": "https://tieba.baidu.com"
             }
           },
           {
             "key": 1710840544621,
             "children": [],
             "todo": {
-              "content": "SegmentFault - https://segmentfault.com/",
+              "content": "SegmentFault",
               "id": 1710840544621,
               "level": "default",
               "done": false,
-              "start": 1710840544621
+              "start": 1710840544621,
+              "link": "https://segmentfault.com/"
             }
           },
           {
             "key": 1710840590558,
             "children": [],
             "todo": {
-              "content": "Juejin - https://juejin.cn/",
+              "content": "Juejin",
               "id": 1710840590558,
               "level": "default",
               "done": false,
-              "start": 1710840590559
+              "start": 1710840590559,
+              "link": "https://juejin.cn/"
             }
           },
           {
             "key": 1710840683154,
             "children": [],
             "todo": {
-              "content": "medium - https://medium.com/",
+              "content": "medium",
               "id": 1710840683154,
               "level": "default",
               "done": false,
-              "start": 1710840683154
+              "start": 1710840683154,
+              "link": "https://medium.com/"
             }
           },
           {
             "key": 1710840710639,
             "children": [],
             "todo": {
-              "content": "bilibili - https://www.bilibili.com/",
+              "content": "bilibili",
               "id": 1710840710639,
               "level": "default",
               "done": false,
-              "start": 1710840710639
+              "start": 1710840710639,
+              "link": "https://www.bilibili.com/"
             }
           },
           {
@@ -348,6 +345,18 @@
               "done": false,
               "start": 1711430285137,
               "tip": "https://en.wikipedia.org/wiki/Preprint"
+            }
+          },
+          {
+            "key": 1712759596568,
+            "children": [],
+            "todo": {
+              "content": "Storytribeapp",
+              "id": 1712759596568,
+              "level": "default",
+              "done": false,
+              "start": 1712759596568,
+              "link": "https://storytribeapp.com/"
             }
           }
         ],
@@ -405,6 +414,17 @@
           "done": false,
           "start": 1710840320139
         }
+      },
+      {
+        "key": 1708233114452,
+        "children": [],
+        "todo": {
+          "content": "Payment",
+          "id": 1708233114452,
+          "level": "secondary",
+          "done": false,
+          "start": 1708233114453
+        }
       }
     ],
     "expandKeys": [
@@ -413,7 +433,8 @@
       1710466104153,
       1708522052882,
       1708233092650,
-      1708233027669
+      1708233027669,
+      1708699639094
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
@@ -434,6 +455,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1711980389966"
+    "version": "1712759768793"
   }
 }
