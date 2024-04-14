@@ -1,8 +1,5 @@
-import type {
-  CSSVariablesResolver,
-  VariantColorsResolver,
-} from '@mantine/core';
-import { createTheme, defaultVariantColorsResolver, rem } from '@mantine/core';
+import type { CSSVariablesResolver } from '@mantine/core';
+import { createTheme, rem } from '@mantine/core';
 // import { themeToVars } from '@mantine/vanilla-extract';
 
 export const resolver: CSSVariablesResolver = (theme) => ({
@@ -28,12 +25,6 @@ export const resolver: CSSVariablesResolver = (theme) => ({
     '--publish-color-contextmenu-border': theme.other.contextMenuBorder,
   },
 });
-
-export const variantColorResolver: VariantColorsResolver = (input) => {
-  const defaultResolvedColors = defaultVariantColorsResolver(input);
-
-  return defaultResolvedColors;
-};
 
 export const theme = createTheme({
   fontFamily: `Inter,-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial,
