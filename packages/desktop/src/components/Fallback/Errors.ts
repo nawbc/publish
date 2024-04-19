@@ -1,4 +1,3 @@
-// export const
 // Whoops
 
 interface ConfigurableErrorOptions {

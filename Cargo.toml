@@ -13,8 +13,8 @@ edition = "2021"
 [workspace.dependencies]
 serde_json = "1.0"
 serde = "1.0"
-tauri = "2.0.0-beta.13"
-tauri-build = "2.0.0-beta.10"
+tauri = "2.0.0-beta.14"
+tauri-build = "2.0.0-beta.11"
 tauri-plugin-http = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 tauri-plugin-shell = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 tauri-plugin-autostart = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
@@ -22,6 +22,7 @@ tauri-plugin-fs = { git = "https://github.com/tauri-apps/plugins-workspace", bra
 tauri-plugin-os = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 tauri-plugin-updater = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 
-wry = "0.37"
-windows = "0.52"
-webview2-com = "0.28"
+wry = "0.39"
+tao = "0.27"
+windows = "0.54"
+webview2-com = "0.29"
