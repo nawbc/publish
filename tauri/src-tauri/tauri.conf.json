@@ -20,9 +20,7 @@
         "height": 800,
         "resizable": true,
         "fullscreen": false,
-        "fileDropEnabled": false,
-        "center": true,
-        "additionalBrowserArgs": "--disable-web-security"
+        "center": true
       }
     ],
     "security": {}

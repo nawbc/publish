@@ -22,20 +22,27 @@ export const DeviceInfo: FC<DeviceInfoProps> = function () {
         ['Arch', info.cpu.architecture],
         ['Engine', info.engine.name],
         ['Browser', info.browser.name],
-        ['Locate', navigator.language],
+        ['Locale', navigator.language],
         ['Device', info.device.vendor],
       ];
     }
 
     if (process.env.PUBLISH_BUILD_PLATFORM === 'desktop') {
       const os = await import('@tauri-apps/plugin-os');
+      const [type, version, arch, locale, hostname] = await Promise.all([
+        os.type(),
+        os.version(),
+        os.arch(),
+        os.locale(),
+        os.hostname(),
+      ]);
 
       deviceInfo = [
         ['Platform', 'Desktop'],
-        ['OS', os.type + ' ' + os.version],
-        ['Arch', os.arch],
-        ['Locate', os.locale],
-        ['Hostname', os.hostname],
+        ['OS', type + ' ' + version],
+        ['Arch', arch],
+        ['Locale', locale],
+        ['Hostname', hostname],
       ];
     }
 

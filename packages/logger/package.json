@@ -20,7 +20,7 @@
   "devDependencies": {
     "debug": "4.3.4",
     "idb": "8.0.0",
-    "typescript": "5.4.3"
+    "typescript": "5.4.5"
   },
   "peerDependencies": {
     "debug": "4.3.4",

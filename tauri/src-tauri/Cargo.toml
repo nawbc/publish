@@ -19,7 +19,7 @@ tauri-build = { workspace = true }
 [dependencies]
 serde_json = { workspace = true }
 serde = { workspace = true, features = ["derive"] }
-wry = { workspace = true, features = ["file-drop", "protocol", "os-webview"] }
+wry = { workspace = true, features = ["protocol", "os-webview"] }
 tauri-plugin-shell = { workspace = true }
 tauri = { workspace = true, features = [
   "default",
@@ -34,7 +34,6 @@ tauri-plugin-os = { workspace = true, branch = "v2" }
 tauri-plugin-updater = { workspace = true, branch = "v2" }
 tauri-plugin-http = { workspace = true, branch = "v2", features = [
   "unsafe-headers",
-  "default-tls",
 ] }
 
 [target."cfg(windows)".dependencies]

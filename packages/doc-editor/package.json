@@ -21,10 +21,10 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "devDependencies": {
-    "@mantine/core": "7.7.0",
-    "@mantine/hooks": "7.7.0",
-    "@tabler/icons-react": "3.1.0",
-    "typescript": "5.4.3"
+    "@mantine/core": "7.9.1",
+    "@mantine/hooks": "7.9.1",
+    "@tabler/icons-react": "3.3.0",
+    "typescript": "5.4.5"
   },
   "dependencies": {
     "@sereneinserenade/tiptap-search-and-replace": "0.1.1",

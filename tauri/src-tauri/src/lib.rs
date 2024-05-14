@@ -1,7 +1,7 @@
 use tauri::Manager;
 
-#[cfg(desktop)]
-mod tray;
+// #[cfg(desktop)]
+// mod tray;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -14,7 +14,7 @@ pub fn run() {
       #[cfg(all(desktop))]
       {
         let handle = app.handle();
-        tray::create_tray(handle)?;
+        // tray::create_tray(handle)?;
         app
           .handle()
           .plugin(tauri_plugin_updater::Builder::new().build())?;

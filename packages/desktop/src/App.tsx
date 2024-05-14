@@ -16,6 +16,8 @@ import { PublishSpotlight } from './components/Spotlight';
 import { router } from './router';
 import { resolver, theme } from './theme';
 
+import 'jotai-devtools/styles.css';
+
 const DevTools: FC = function () {
   return kDevMode ? (
     <Suspense>
