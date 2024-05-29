@@ -6,6 +6,7 @@
     "main"
   ],
   "permissions": [
+    "window:default",
     "webview:allow-create-webview-window",
     "window:allow-start-dragging",
     "window:allow-center",
