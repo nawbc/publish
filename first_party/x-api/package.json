@@ -17,7 +17,7 @@
     "uuid": "9.0.1"
   },
   "devDependencies": {
-    "@types/lodash.merge": "4",
+    "@types/lodash.merge": "4.6.9",
     "@types/uuid": "9.0.8",
     "typescript": "5.4.5",
     "vitest": "1.6.0"
