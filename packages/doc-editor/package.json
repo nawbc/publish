@@ -21,9 +21,9 @@
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix"
   },
   "devDependencies": {
-    "@mantine/core": "7.9.1",
-    "@mantine/hooks": "7.9.1",
-    "@tabler/icons-react": "3.3.0",
+    "@mantine/core": "7.10.1",
+    "@mantine/hooks": "7.10.1",
+    "@tabler/icons-react": "3.5.0",
     "typescript": "5.4.5"
   },
   "dependencies": {
@@ -47,6 +47,7 @@
     "@tiptap/starter-kit": "2.4.0",
     "@tiptap/suggestion": "2.4.0",
     "lowlight": "3.1.0",
+    "tippy.js": "6.3.7",
     "tiptap-markdown": "0.8.10"
   }
 }

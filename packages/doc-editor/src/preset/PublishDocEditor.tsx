@@ -17,8 +17,15 @@ import StarterKit from '@tiptap/starter-kit';
 import { Markdown } from 'tiptap-markdown';
 
 import { DocEditor } from '../components';
+import { suggestion } from '../components/SlashCommands';
 import { Link } from '../customs';
-import { Clipboard, DragHandle, FileInput, SlashCommands } from '../extensions';
+import {
+  Clipboard,
+  DragHandle,
+  Embed,
+  FileInput,
+  SlashCommands,
+} from '../extensions';
 import { registerProgramLanguages } from './languages';
 import { placeholders } from './placeholders';
 
@@ -42,6 +49,7 @@ export const PublishDocEditor = function () {
       Clipboard,
       Color,
       TaskList,
+      Embed,
       Table.configure({
         resizable: true,
       }),
@@ -56,7 +64,7 @@ export const PublishDocEditor = function () {
         nested: true,
       }),
       SlashCommands.configure({
-        // suggestion,
+        suggestion,
       }),
       Placeholder.configure({
         placeholder: ({ node }) => {
@@ -77,10 +85,6 @@ export const PublishDocEditor = function () {
         transformCopiedText: true,
       }),
     ],
-    // content: `
-    // <ul data-type="taskList"><li data-checked="true"><label contenteditable="false"><input type="checkbox" checked="checked"><span></span></label><div><p>dadas</p></div></li><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>dada</p><ul data-type="taskList"><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>dada</p><ul data-type="taskList"><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>dada</p><ul data-type="taskList"><li data-checked="false"><label contenteditable="false"><input type="checkbox"><span></span></label><div><p>sdadas</p></div></li></ul></div></li></ul></div></li></ul></div></li></ul>
-    //     `,
-    // content: Array.from({ length: 100 }).join('<br/>'),
   });
 
   return (

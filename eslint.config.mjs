@@ -20,7 +20,7 @@ export default tslint.config(
     plugins: {
       'simple-import-sort': simpleImportSort,
     },
-    ignores: ['**/dist', '**/node_modules', '**/.swc'],
+    ignores: ['**/dist', '**/node_modules', '**/.swc', '**/.yarn'],
     languageOptions: {
       parser: tslintParser,
       ecmaVersion: 2022,

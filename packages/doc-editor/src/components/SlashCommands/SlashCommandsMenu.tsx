@@ -1,8 +1,12 @@
 import { NodeViewWrapper } from '@tiptap/react';
-import { useCallback, useEffect, useState } from 'react';
+import { SuggestionProps } from '@tiptap/suggestion';
+import { FC, useCallback, useEffect, useState } from 'react';
 
-export default ({ editor }) => {
-  const [items, setItems] = useState([]);
+export interface SlashCommandsProps extends SuggestionProps {}
+
+export const SlashCommandsMenu: FC<SlashCommandsProps> = (props) => {
+  console.log(props);
+  const { editor, items, command } = props;
 
   const handleUpdate = useCallback(() => {
     const headings = [];
@@ -26,7 +30,7 @@ export default ({ editor }) => {
 
     // editor.view.dispatch(transaction);
 
-    setItems(headings);
+    // setItems(headings);
   }, [editor]);
 
   useEffect(handleUpdate, []);
@@ -42,11 +46,17 @@ export default ({ editor }) => {
   }, [editor]);
 
   return (
-    <NodeViewWrapper className="publish-slash-commands">
+    <NodeViewWrapper className="publish-slash-commands-menu">
       <ul className="toc__list">
-        {items.map((item, index) => (
-          <li key={index} className={`toc__item toc__item--${item.level}`}>
-            <a href={`#${item.id}`}>{item.text}</a>
+        {items.map((item: any, index) => (
+          <li
+            key={index}
+            onClick={() => {
+              command(item);
+            }}
+            className={`toc__item toc__item`}
+          >
+            {item.title}
           </li>
         ))}
       </ul>

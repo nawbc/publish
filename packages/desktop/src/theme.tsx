@@ -1,6 +1,5 @@
 import type { CSSVariablesResolver } from '@mantine/core';
 import { createTheme, rem } from '@mantine/core';
-// import { themeToVars } from '@mantine/vanilla-extract';
 
 export const resolver: CSSVariablesResolver = (theme) => ({
   variables: {
@@ -29,13 +28,6 @@ export const resolver: CSSVariablesResolver = (theme) => ({
 export const theme = createTheme({
   fontFamily: `Inter,-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji, system-ui`,
-  // fontSizes: {
-  //   xs: rem(10),
-  //   sm: rem(12),
-  //   md: rem(14),
-  //   lg: rem(16),
-  //   xl: rem(20),
-  // },
   components: {
     ActionIcon: {
       defaultProps: {
@@ -60,6 +52,3 @@ export const theme = createTheme({
     contextMenuBorder: '0 0 0 1px var(--mantine-color-gray-2)',
   },
 });
-
-// // CSS variables object, can be access in *.css.ts files
-// export const cssVars = themeToVars(theme);

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import './upload-image.css';
 
 import { mergeAttributes, Node, nodeInputRule } from '@tiptap/core';
@@ -7,10 +6,10 @@ import { Decoration, DecorationSet } from '@tiptap/pm/view';
 
 export const inputRegex =
   /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/;
-let imagePreview = null;
-let uploadFn = null;
+let imagePreview: string | null = null;
+let uploadFn: Function | null = null;
 
-const UploadImage = Node.create({
+export const UploadImage = Node.create({
   name: 'uploadImage',
   onCreate() {
     uploadFn = this.options.uploadFn;
@@ -69,13 +68,17 @@ const UploadImage = Node.create({
         fileHolder.addEventListener('change', (e) => {
           if (
             view.state.selection.$from.parent.inlineContent &&
-            e.target.files.length
+            (<HTMLInputElement>e.target)?.files?.length
           )
             if (typeof uploadFn !== 'function') {
               console.warn('uploadFn should be a function');
               return;
             }
-          startImageUpload(view, e.target.files[0], schema);
+          startImageUpload(
+            view,
+            (<HTMLInputElement>e.target)?.files?.[0],
+            schema,
+          );
           view.focus();
         });
         fileHolder.click();
@@ -110,12 +113,12 @@ const placeholderPlugin = new Plugin({
       // Adjust decoration positions to changes made by the transaction
       set = set.map(tr.mapping, tr.doc);
       // See if the transaction adds or removes any placeholders
-      const action = tr.getMeta(this);
+      const action = tr.getMeta(this as any);
       if (action && action.add) {
         const widget = document.createElement('div');
         const img = document.createElement('img');
-        widget.classList = 'image-uploading';
-        img.src = imagePreview;
+        widget.classList.add('image-uploading');
+        img.src = imagePreview!;
         widget.appendChild(img);
         const deco = Decoration.widget(action.add.pos, widget, {
           id: action.add.id,
@@ -123,7 +126,7 @@ const placeholderPlugin = new Plugin({
         set = set.add(tr.doc, [deco]);
       } else if (action && action.remove) {
         set = set.remove(
-          set.find(null, null, (spec) => spec.id == action.remove.id),
+          set.find(null!, null!, (spec) => spec.id == action.remove.id),
         );
       }
       return set;
@@ -139,8 +142,8 @@ const placeholderPlugin = new Plugin({
 //Find the placeholder in editor
 function findPlaceholder(state, id) {
   const decos = placeholderPlugin.getState(state);
-  const found = decos.find(null, null, (spec) => spec.id == id);
-  return found.length ? found[0].from : null;
+  const found = decos?.find(null!, null!, (spec) => spec.id == id);
+  return found?.length ? found[0].from : null;
 }
 
 function startImageUpload(view, file, schema) {
@@ -153,7 +156,7 @@ function startImageUpload(view, file, schema) {
   if (!tr.selection.empty) tr.deleteSelection();
   tr.setMeta(placeholderPlugin, { add: { id, pos: tr.selection.from } });
   view.dispatch(tr);
-  uploadFn(file).then(
+  uploadFn!(file).then(
     (url) => {
       const pos = findPlaceholder(view.state, id);
       // If the content around the placeholder has been deleted, drop
@@ -173,4 +176,3 @@ function startImageUpload(view, file, schema) {
     },
   );
 }
-export default UploadImage;
