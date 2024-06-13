@@ -35,7 +35,7 @@ export interface BaseFnProps
   trailing?: string | React.ReactElement;
 
   label?: string;
-
+  /** Compat vertical list*/
   fluid?: boolean;
 }
 

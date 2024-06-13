@@ -1,10 +1,10 @@
 import { NodeViewWrapper } from '@tiptap/react';
 import { SuggestionProps } from '@tiptap/suggestion';
-import { FC, useCallback, useEffect, useState } from 'react';
+import { FC, useCallback, useEffect } from 'react';
 
 export interface SlashCommandsProps extends SuggestionProps {}
 
-export const SlashCommandsMenu: FC<SlashCommandsProps> = (props) => {
+export const SlashMenu: FC<SlashCommandsProps> = (props) => {
   console.log(props);
   const { editor, items, command } = props;
 
@@ -44,6 +44,8 @@ export const SlashCommandsMenu: FC<SlashCommandsProps> = (props) => {
       editor.off('update', handleUpdate);
     };
   }, [editor]);
+
+  console.log(items);
 
   return (
     <NodeViewWrapper className="publish-slash-commands-menu">

@@ -1,5 +1,5 @@
 import { is } from '@deskbtm/gadgets/is';
-import { rem } from '@mantine/core';
+import { Box, rem } from '@mantine/core';
 import clsx from 'clsx';
 import type { ReactNode } from 'react';
 import type React from 'react';
@@ -296,7 +296,7 @@ export const ContextMenu = ({
   return (
     <ContextMenuProvider value={itemTracker}>
       {visible && (
-        <div
+        <Box
           {...rest}
           className={clsx(styles.main, className, animateClz())}
           onAnimationStart={handleAnimationStart}
@@ -317,7 +317,7 @@ export const ContextMenu = ({
               triggerEvent,
             })}
           </ContextMenuScrollView>
-        </div>
+        </Box>
       )}
     </ContextMenuProvider>
   );

@@ -1,11 +1,41 @@
 import { ReactRenderer } from '@tiptap/react';
 import tippy from 'tippy.js';
 
-import { SlashCommandsMenu } from './SlashCommandsMenu';
+import { DEFAULT_LABELS } from '../labels';
+import { SlashMenu } from './SlashMenu';
 
-export const suggestion = {
+export const styleCommands = [
+  {
+    title: DEFAULT_LABELS['h1FnLabel'],
+    command: ({ editor, range }) => {
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .setNode('heading', { level: 1 })
+        .run();
+    },
+  },
+  {
+    title: 'Heading 2',
+    command: ({ editor, range }) => {
+      editor
+        .chain()
+        .focus()
+        .deleteRange(range)
+        .setNode('heading', { level: 2 })
+        .run();
+    },
+  },
+] as const;
+
+export const builtinCommands = {
   items: ({ query }) => {
     return [
+      {
+        title: 'Text',
+        commands: styleCommands,
+      },
       {
         title: 'Heading 1',
         command: ({ editor, range }) => {
@@ -54,7 +84,7 @@ export const suggestion = {
     return {
       onStart: (props) => {
         console.log(props);
-        component = new ReactRenderer(SlashCommandsMenu, {
+        component = new ReactRenderer(SlashMenu, {
           // using vue 2:
           // parent: this,
           // propsData: props,
@@ -107,4 +137,4 @@ export const suggestion = {
       },
     };
   },
-};
+} as const;

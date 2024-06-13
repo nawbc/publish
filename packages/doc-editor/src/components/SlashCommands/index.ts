@@ -1,2 +1,2 @@
-export * from './SlashCommandsMenu';
-export * from './suggestion';
+export * from './commands';
+export * from './SlashMenu';

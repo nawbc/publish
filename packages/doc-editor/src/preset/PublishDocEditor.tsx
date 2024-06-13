@@ -17,7 +17,7 @@ import StarterKit from '@tiptap/starter-kit';
 import { Markdown } from 'tiptap-markdown';
 
 import { DocEditor } from '../components';
-import { suggestion } from '../components/SlashCommands';
+import { builtinCommands } from '../components/SlashCommands';
 import { Link } from '../customs';
 import {
   Clipboard,
@@ -64,7 +64,7 @@ export const PublishDocEditor = function () {
         nested: true,
       }),
       SlashCommands.configure({
-        suggestion,
+        suggestion: builtinCommands,
       }),
       Placeholder.configure({
         placeholder: ({ node }) => {
