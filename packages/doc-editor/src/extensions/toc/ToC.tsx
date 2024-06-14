@@ -18,14 +18,14 @@ export const ToC: FC = function () {
     const headings: Headings[] = [];
 
     if (!editor) return;
-    const transaction = editor.state.tr;
+    const tr = editor.state.tr;
 
     editor.state.doc.descendants((node, pos) => {
       if (node.type.name === 'heading') {
         const id = `heading-${headings.length + 1}`;
 
         if (node.attrs.id !== id) {
-          transaction.setNodeMarkup(pos, undefined, {
+          tr.setNodeMarkup(pos, undefined, {
             ...node.attrs,
             id,
           });
@@ -39,10 +39,10 @@ export const ToC: FC = function () {
       }
     });
 
-    transaction.setMeta('addToHistory', false);
-    transaction.setMeta('preventUpdate', true);
+    tr.setMeta('addToHistory', false);
+    tr.setMeta('preventUpdate', true);
 
-    editor.view.dispatch(transaction);
+    editor.view.dispatch(tr);
 
     setItems(headings);
   }, [editor]);
@@ -51,6 +51,12 @@ export const ToC: FC = function () {
 
   useEffect(() => {
     if (!editor) return;
+
+    editor.on('update', handleUpdate);
+
+    return () => {
+      editor.off('update', handleUpdate);
+    };
   }, [editor]);
 
   return (

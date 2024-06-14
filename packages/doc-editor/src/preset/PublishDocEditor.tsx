@@ -3,6 +3,7 @@ import './theme/global.module.css';
 import { Box, Divider, rem } from '@mantine/core';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import { Color } from '@tiptap/extension-color';
+import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
 import Table from '@tiptap/extension-table';
 import TableCell from '@tiptap/extension-table-cell';
@@ -17,19 +18,16 @@ import StarterKit from '@tiptap/starter-kit';
 import { Markdown } from 'tiptap-markdown';
 
 import { DocEditor } from '../components';
-import { builtinCommands } from '../components/SlashCommands';
-import { Link } from '../customs';
 import {
   Clipboard,
   DragHandle,
   Embed,
   FileInput,
   SlashCommands,
+  UploadImage,
 } from '../extensions';
-import { registerProgramLanguages } from './languages';
-import { placeholders } from './placeholders';
-
-const lowlight = registerProgramLanguages();
+import { ExtensionConfigs } from './configs';
+import { ExtraListFn } from './ExtraListFn';
 
 export const PublishDocEditor = function () {
   const editor = useEditor({
@@ -42,7 +40,8 @@ export const PublishDocEditor = function () {
       Link.configure({
         openOnClick: true,
       }),
-      FileInput,
+      UploadImage,
+      FileInput.configure(ExtensionConfigs.fileInput),
       TextStyle,
       Underline,
       DragHandle,
@@ -50,40 +49,16 @@ export const PublishDocEditor = function () {
       Color,
       TaskList,
       Embed,
-      Table.configure({
-        resizable: true,
-      }),
+      Table.configure(ExtensionConfigs.table),
       TableRow,
       TableHeader,
       TableCell,
-      StarterKit.configure({
-        codeBlock: false,
-      }),
-      CodeBlockLowlight.configure({ lowlight }),
-      TaskItem.configure({
-        nested: true,
-      }),
-      SlashCommands.configure({
-        suggestion: builtinCommands,
-      }),
-      Placeholder.configure({
-        placeholder: ({ node }) => {
-          const { attrs, type } = node;
-          switch (type.name) {
-            case 'heading':
-              return placeholders[type.name + attrs?.level];
-            case 'paragraph':
-              return 'Type / for commands';
-            default:
-              return type.name;
-          }
-        },
-      }),
-      Markdown.configure({
-        linkify: true,
-        transformPastedText: true,
-        transformCopiedText: true,
-      }),
+      StarterKit.configure(ExtensionConfigs.starterKit),
+      CodeBlockLowlight.configure(ExtensionConfigs.codeBlockLowlight),
+      TaskItem.configure(ExtensionConfigs.taskItem),
+      SlashCommands.configure(ExtensionConfigs.slashCommands),
+      Placeholder.configure(ExtensionConfigs.placeholder),
+      Markdown.configure(ExtensionConfigs.markdown),
     ],
   });
 
@@ -98,8 +73,8 @@ export const PublishDocEditor = function () {
             updateDelay={500}
             editor={editor}
           >
-            <DocEditor.FnGroup>
-              <DocEditor.FnList />
+            <DocEditor.BubbleMenuGroup>
+              <ExtraListFn />
               <Divider my={rem(4)} variant="dashed" orientation="vertical" />
               <DocEditor.Bold />
               <DocEditor.Underline />
@@ -111,7 +86,7 @@ export const PublishDocEditor = function () {
               <DocEditor.Code />
               <Divider my={rem(4)} variant="dashed" orientation="vertical" />
               <DocEditor.Copy />
-            </DocEditor.FnGroup>
+            </DocEditor.BubbleMenuGroup>
           </BubbleMenu>
         )}
         <DocEditor.Content />

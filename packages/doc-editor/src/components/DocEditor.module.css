@@ -187,7 +187,7 @@
   background-color: var(--mantine-color-body);
 }
 
-.fn {
+.primitiveFn {
   background-color: var(--_fn-bg);
   color: var(--_fn-color);
   padding: var(--_fn-spacing, calc(var(--mantine-spacing-xs) / 1.5));
@@ -259,7 +259,7 @@
   flex: 1 1 0;
 }
 
-.fnGroup {
+.bubbleMenuGroup {
   display: flex;
   background-color: var(
     --publish-backdrop-color-default,

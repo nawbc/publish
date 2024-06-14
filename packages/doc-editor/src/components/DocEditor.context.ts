@@ -3,7 +3,7 @@ import { createSafeContext } from '@mantine/core';
 import type { Editor } from '@tiptap/react';
 
 import type { DocEditorFactory } from './DocEditor';
-import type { DocEditorLabels } from './DocEditorLabels';
+import type { DocEditorLabels } from './labels';
 
 interface DocEditorContext {
   getStyles: GetStylesApi<DocEditorFactory>;

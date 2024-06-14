@@ -8,8 +8,6 @@ import { Menu, rem, useProps } from '@mantine/core';
 import { IconMenu2 } from '@tabler/icons-react';
 import { forwardRef } from 'react';
 
-import { useDocEditorContext } from '../DocEditor.context';
-import { BaseFn } from './BaseFn';
 import {
   BlockquoteFn,
   CodeBlockFn,
@@ -19,32 +17,32 @@ import {
   H4Fn,
   H5Fn,
   H6Fn,
-} from './fn';
+  PrimitiveFn,
+  useDocEditorContext,
+} from '../components';
 
-export interface FnListFnProps extends BoxProps, ElementProps<'div'> {
+export interface ExtraListFnProps extends BoxProps, ElementProps<'div'> {
   /** Props added to Popover component */
   menuProps?: Partial<MenuProps>;
   /** Props added to ColorPicker component */
   colorPickerProps?: Partial<ColorPickerProps>;
 }
 
-const defaultProps: Partial<FnListFnProps> = {};
+const defaultProps: Partial<ExtraListFnProps> = {};
 
-export const FnListFn = forwardRef<HTMLDivElement, FnListFnProps>(
+export const ExtraListFn = forwardRef<HTMLDivElement, ExtraListFnProps>(
   (props, ref) => {
-    const { menuProps, ...others } = useProps('FnListFn', defaultProps, props);
+    const { menuProps, ...others } = useProps(
+      'ExtraListFn',
+      defaultProps,
+      props,
+    );
     const { labels, getStyles } = useDocEditorContext();
 
     return (
-      <Menu
-        // opened={true}
-        trigger="hover"
-        trapFocus={false}
-        width={220}
-        {...menuProps}
-      >
+      <Menu trigger="hover" trapFocus={false} width={220} {...menuProps}>
         <Menu.Target>
-          <BaseFn
+          <PrimitiveFn
             {...others}
             aria-label={labels.colorPickerFnLabel}
             title={labels.colorPickerFnLabel}
@@ -61,7 +59,7 @@ export const FnListFn = forwardRef<HTMLDivElement, FnListFnProps>(
               <CodeBlockFn fluid />
               <BlockquoteFn fluid />
             </Menu.Dropdown>
-          </BaseFn>
+          </PrimitiveFn>
         </Menu.Target>
       </Menu>
     );

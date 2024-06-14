@@ -1,5 +1,4 @@
-export type { DocEditorContentProps } from './Content';
-export { DocEditorContent } from './Content';
+export { DocEditorContent, type DocEditorContentProps } from './Content';
 export type {
   DocEditorFactory,
   DocEditorProps,
@@ -8,11 +7,7 @@ export type {
 export { DocEditor } from './DocEditor';
 export { useDocEditorContext } from './DocEditor.context';
 export * from './Fn';
-export type { BaseFnProps } from './Fn/BaseFn';
-export { BaseFn } from './Fn/BaseFn';
-export type { ColorFnProps } from './Fn/ColorFn';
-export type { LinkFnProps } from './Fn/LinkFn';
-export type { BaseFnGroupProps } from './FnGroup/FnGroup';
-export { BaseFnGroup } from './FnGroup/FnGroup';
+export { PrimitiveFn } from './Fn/PrimitiveFn';
+export * from './Group';
 export type { DocEditorLabels } from './labels';
 export { DEFAULT_LABELS } from './labels';

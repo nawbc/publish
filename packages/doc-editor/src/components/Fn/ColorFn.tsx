@@ -3,7 +3,7 @@ import { ColorSwatch, useProps } from '@mantine/core';
 import { forwardRef } from 'react';
 
 import { useDocEditorContext } from '../DocEditor.context';
-import { BaseFn } from './BaseFn';
+import { PrimitiveFn } from './PrimitiveFn';
 
 export interface ColorFnProps extends BoxProps, ElementProps<'div'> {
   /** Color that will be set as text color, for example #ef457e */
@@ -20,7 +20,7 @@ export const ColorFn = forwardRef<HTMLDivElement, ColorFnProps>(
     const label = labels.colorFnLabel(color);
 
     return (
-      <BaseFn
+      <PrimitiveFn
         {...others}
         active={currentColor === color}
         aria-label={label}
@@ -29,7 +29,7 @@ export const ColorFn = forwardRef<HTMLDivElement, ColorFnProps>(
         ref={ref}
       >
         <ColorSwatch color={color} size={14} />
-      </BaseFn>
+      </PrimitiveFn>
     );
   },
 );

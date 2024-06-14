@@ -5,7 +5,6 @@ import { FC, useCallback, useEffect } from 'react';
 export interface SlashCommandsProps extends SuggestionProps {}
 
 export const SlashMenu: FC<SlashCommandsProps> = (props) => {
-  console.log(props);
   const { editor, items, command } = props;
 
   const handleUpdate = useCallback(() => {
@@ -44,8 +43,6 @@ export const SlashMenu: FC<SlashCommandsProps> = (props) => {
       editor.off('update', handleUpdate);
     };
   }, [editor]);
-
-  console.log(items);
 
   return (
     <NodeViewWrapper className="publish-slash-commands-menu">

@@ -1,60 +1,98 @@
 import './upload-image.css';
 
-import { mergeAttributes, Node, nodeInputRule } from '@tiptap/core';
+import Image from '@tiptap/extension-image';
+import { Schema } from '@tiptap/pm/model';
 import { Plugin } from '@tiptap/pm/state';
 import { Decoration, DecorationSet } from '@tiptap/pm/view';
+import { EditorView } from '@tiptap/pm/view';
 
-export const inputRegex =
-  /(?:^|\s)(!\[(.+|:?)]\((\S+)(?:(?:\s+)["'](\S+)["'])?\))$/;
-let imagePreview: string | null = null;
-let uploadFn: Function | null = null;
+export interface UploadFn {
+  (file: File): Promise<string>;
+}
+export interface CustomImageOptions {
+  /**
+   * Controls if the image node should be inline or not.
+   * @default false
+   * @example true
+   */
+  inline: boolean;
 
-export const UploadImage = Node.create({
+  /**
+   * Controls if base64 images are allowed. Enable this if you want to allow
+   * base64 image urls in the `src` attribute.
+   * @default false
+   * @example true
+   */
+  allowBase64: boolean;
+
+  /**
+   * HTML attributes to add to the image element.
+   * @default {}
+   * @example { class: 'foo' }
+   */
+  HTMLAttributes: Record<string, any>;
+
+  /**
+   * Function to upload image
+   */
+  uploadFn: UploadFn;
+}
+
+declare module '@tiptap/core' {
+  interface Commands<ReturnType> {
+    customImage: {
+      /**
+       * Add an image
+       * @example
+       * editor
+       *   .commands
+       *   .addImage()
+       */
+      addImage: () => ReturnType;
+
+      /**
+       * Add an image
+       * @param options The image attributes
+       * @example
+       * editor
+       *   .commands
+       *   .setImage({ src: 'https://tiptap.dev/logo.png', alt: 'tiptap', title: 'tiptap logo' })
+       */
+      setImage: (options: {
+        src: string;
+        alt?: string;
+        title?: string;
+      }) => ReturnType;
+    };
+  }
+}
+
+let uploadFn: UploadFn;
+let imagePreview = '';
+
+const UploadImage = Image.extend<CustomImageOptions>({
   name: 'uploadImage',
   onCreate() {
+    if (typeof this.options.uploadFn !== 'function') {
+      console.warn('uploadFn should be a function');
+      return;
+    }
     uploadFn = this.options.uploadFn;
   },
   addOptions() {
     return {
-      inline: false,
-      HTMLAttributes: {},
-    };
-  },
-  inline() {
-    return this.options.inline;
-  },
-  group() {
-    return this.options.inline ? 'inline' : 'block';
-  },
-  draggable: true,
-  addAttributes() {
-    return {
-      src: {
-        default: null,
-      },
-      alt: {
-        default: null,
-      },
-      title: {
-        default: null,
+      ...this.parent?.(),
+      uploadFn: async () => {
+        return '';
       },
     };
   },
-  parseHTML() {
-    return [
-      {
-        tag: 'img[src]',
-      },
-    ];
-  },
-  renderHTML({ HTMLAttributes }) {
-    return [
-      'img',
-      mergeAttributes(this.options.HTMLAttributes, HTMLAttributes),
-    ];
+  addProseMirrorPlugins() {
+    return [placeholderPlugin];
   },
   addCommands() {
     return {
+      ...this.parent?.(),
       addImage: () => () => {
         const fileHolder = document.createElement('input');
         fileHolder.setAttribute('type', 'file');
@@ -65,41 +103,23 @@ export const UploadImage = Node.create({
         const view = this.editor.view;
         const schema = this.editor.schema;
 
-        fileHolder.addEventListener('change', (e) => {
+        fileHolder.addEventListener('change', (e: Event) => {
           if (
             view.state.selection.$from.parent.inlineContent &&
             (<HTMLInputElement>e.target)?.files?.length
-          )
-            if (typeof uploadFn !== 'function') {
-              console.warn('uploadFn should be a function');
-              return;
-            }
-          startImageUpload(
-            view,
-            (<HTMLInputElement>e.target)?.files?.[0],
-            schema,
-          );
+          ) {
+            startImageUpload(
+              view,
+              (<HTMLInputElement>e.target)?.files![0],
+              schema,
+            );
+          }
           view.focus();
         });
         fileHolder.click();
+        return true;
       },
     };
-  },
-  addInputRules() {
-    return [
-      nodeInputRule({
-        find: inputRegex,
-        type: this.type,
-        getAttributes: (match) => {
-          const [, , alt, src, title] = match;
-
-          return { src, alt, title };
-        },
-      }),
-    ];
-  },
-  addProseMirrorPlugins() {
-    return [placeholderPlugin];
   },
 });
 
@@ -113,12 +133,12 @@ const placeholderPlugin = new Plugin({
       // Adjust decoration positions to changes made by the transaction
       set = set.map(tr.mapping, tr.doc);
       // See if the transaction adds or removes any placeholders
-      const action = tr.getMeta(this as any);
+      const action = tr.getMeta(this as unknown as Plugin);
       if (action && action.add) {
         const widget = document.createElement('div');
         const img = document.createElement('img');
-        widget.classList.add('image-uploading');
-        img.src = imagePreview!;
+        widget.classList.value = 'image-uploading';
+        img.src = imagePreview;
         widget.appendChild(img);
         const deco = Decoration.widget(action.add.pos, widget, {
           id: action.add.id,
@@ -126,7 +146,7 @@ const placeholderPlugin = new Plugin({
         set = set.add(tr.doc, [deco]);
       } else if (action && action.remove) {
         set = set.remove(
-          set.find(null!, null!, (spec) => spec.id == action.remove.id),
+          set.find(undefined, undefined, (spec) => spec.id == action.remove.id),
         );
       }
       return set;
@@ -142,11 +162,12 @@ const placeholderPlugin = new Plugin({
 //Find the placeholder in editor
 function findPlaceholder(state, id) {
   const decos = placeholderPlugin.getState(state);
-  const found = decos?.find(null!, null!, (spec) => spec.id == id);
+  const found = decos?.find(undefined, undefined, (spec) => spec.id == id);
+
   return found?.length ? found[0].from : null;
 }
 
-function startImageUpload(view, file, schema) {
+function startImageUpload(view: EditorView, file: File, schema: Schema) {
   imagePreview = URL.createObjectURL(file);
   // A fresh object to act as the ID for this upload
   const id = {};
@@ -156,7 +177,7 @@ function startImageUpload(view, file, schema) {
   if (!tr.selection.empty) tr.deleteSelection();
   tr.setMeta(placeholderPlugin, { add: { id, pos: tr.selection.from } });
   view.dispatch(tr);
-  uploadFn!(file).then(
+  uploadFn(file).then(
     (url) => {
       const pos = findPlaceholder(view.state, id);
       // If the content around the placeholder has been deleted, drop
@@ -170,9 +191,10 @@ function startImageUpload(view, file, schema) {
           .setMeta(placeholderPlugin, { remove: { id } }),
       );
     },
-    () => {
+    (_e) => {
       // On failure, just clean up the placeholder
       view.dispatch(tr.setMeta(placeholderPlugin, { remove: { id } }));
     },
   );
 }
+export { UploadImage };

@@ -15,14 +15,14 @@ import {
   useProps,
   useResolvedStylesApi,
 } from '@mantine/core';
-import { useDisclosure, useInputState, useWindowEvent } from '@mantine/hooks';
+import { useDisclosure, useInputState } from '@mantine/hooks';
 import { IconExternalLink, IconLink } from '@tabler/icons-react';
 import React, { useState } from 'react';
 
 import { useDocEditorContext } from '../DocEditor.context';
 import classes from '../DocEditor.module.css';
-import type { FnFactoryProps } from './BaseFn';
-import { FnFactory } from './BaseFn';
+import type { PrimitiveFnProps } from './PrimitiveFn';
+import { PrimitiveFn } from './PrimitiveFn';
 
 export type LinkFnStylesNames =
   | 'fn'
@@ -32,9 +32,16 @@ export type LinkFnStylesNames =
   | 'linkEditorInput'
   | 'linkEditorExternalFn';
 
+export type LinkFnFactory = Factory<{
+  props: LinkFnProps;
+  ref: HTMLDivElement;
+  stylesNames: LinkFnStylesNames;
+  compound: true;
+}>;
+
 export interface LinkFnProps
   extends BoxProps,
-    Omit<FnFactoryProps, 'classNames' | 'styles' | 'vars'>,
+    Omit<PrimitiveFnProps, 'classNames' | 'styles' | 'vars'>,
     CompoundStylesApiProps<LinkFnFactory> {
   /** Props passed down to Popover component */
   popoverProps?: Partial<PopoverProps>;
@@ -46,14 +53,7 @@ export interface LinkFnProps
   initialExternal?: boolean;
 }
 
-export type LinkFnFactory = Factory<{
-  props: LinkFnProps;
-  ref: HTMLDivElement;
-  stylesNames: LinkFnStylesNames;
-  compound: true;
-}>;
-
-const LinkIcon: FnFactoryProps['icon'] = (props) => <IconLink {...props} />;
+// const LinkIcon: PrimitiveFnProps['icon'] = (props) => <IconLink {...props} />;
 
 const defaultProps: Partial<LinkFnProps> = {};
 
@@ -65,7 +65,6 @@ export const LinkFn = factory<LinkFnFactory>((_props, ref) => {
     style,
     styles,
     vars: _,
-    icon,
     popoverProps,
     disableTooltips,
     initialExternal,
@@ -112,8 +111,6 @@ export const LinkFn = factory<LinkFnFactory>((_props, ref) => {
     }
   };
 
-  useWindowEvent('edit-link', handleOpen, false);
-
   const { resolvedClassNames, resolvedStyles } =
     useResolvedStylesApi<LinkFnFactory>({
       classNames,
@@ -124,17 +121,14 @@ export const LinkFn = factory<LinkFnFactory>((_props, ref) => {
   return (
     <Popover
       trapFocus
-      shadow="md"
       withinPortal
       opened={opened}
       onClose={handleClose}
-      offset={-44}
       zIndex={10000}
       {...popoverProps}
     >
       <Popover.Target>
-        <FnFactory
-          icon={icon || LinkIcon}
+        <PrimitiveFn
           {...others}
           aria-label={ctx.labels.linkFnLabel}
           title={ctx.labels.linkFnLabel}
@@ -145,10 +139,13 @@ export const LinkFn = factory<LinkFnFactory>((_props, ref) => {
           styles={resolvedStyles}
           className={className}
           style={style}
-        />
+        >
+          <IconLink style={{ width: rem(20), height: rem(20) }} />
+        </PrimitiveFn>
       </Popover.Target>
 
       <Popover.Dropdown
+        p="xs"
         {...ctx.getStyles('linkEditorDropdown', stylesApiProps)}
       >
         <div {...ctx.getStyles('linkEditor', stylesApiProps)}>
@@ -202,4 +199,4 @@ export const LinkFn = factory<LinkFnFactory>((_props, ref) => {
 });
 
 LinkFn.classes = classes;
-LinkFn.displayName = '@mantine/tiptap/LinkFn';
+LinkFn.displayName = '@publish/doc-editor/LinkFn';

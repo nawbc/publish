@@ -26,12 +26,12 @@ import {
 import { forwardRef, useState } from 'react';
 
 import { useDocEditorContext } from '../DocEditor.context';
-import type { BaseFnProps } from './BaseFn';
-import { BaseFn } from './BaseFn';
+import type { PrimitiveFnProps } from './PrimitiveFn';
+import { PrimitiveFn } from './PrimitiveFn';
 
 export interface ColorPickerFnProps
   extends BoxProps,
-    BaseFnProps,
+    PrimitiveFnProps,
     ElementProps<'div'> {
   /** Props added to Popover component */
   popoverProps?: Partial<PopoverProps>;
@@ -111,7 +111,7 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
         {...popoverProps}
       >
         <Popover.Target>
-          <BaseFn
+          <PrimitiveFn
             {...others}
             mx={0}
             px="xs"
@@ -212,7 +212,7 @@ export const ColorPickerFn = forwardRef<HTMLDivElement, ColorPickerFnProps>(
                 </Group>
               </Tooltip.Group>
             </Popover.Dropdown>
-          </BaseFn>
+          </PrimitiveFn>
         </Popover.Target>
       </Popover>
     );

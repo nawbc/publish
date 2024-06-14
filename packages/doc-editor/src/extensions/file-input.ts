@@ -7,21 +7,15 @@ export type FileInputPluginOptions = {
    * @default 'fileInput'
    */
   key?: PluginKey;
-  editor: Editor;
   /**
    * accept mimeTypes
    *
    * example: ['image/jpeg', 'image/png']
    */
   accept?: string[];
-  /**
-   * The onPaste callback that is called when a file is pasted.
-   */
   onPaste?: (editor: Editor, files: File[], pasteContent?: string) => void;
-  /**
-   * The onDrop callback that is called when a file is dropped.
-   */
   onDrop?: (editor: Editor, files: File[], pos: number) => void;
+  editor: Editor;
 };
 
 export type FileInputOptions = object &
@@ -82,13 +76,8 @@ export const FileInputPlugin = ({
   });
 };
 
-export const FileInput = Extension.create({
+export const FileInput = Extension.create<FileInputOptions>({
   name: 'fileInput',
-  addOptions: () => ({
-    onPaste: void 0,
-    onDrop: void 0,
-    accept: void 0,
-  }),
   addProseMirrorPlugins() {
     return [
       FileInputPlugin({
