@@ -1,3 +1,7 @@
+:global(body) {
+  background-color: unset;
+}
+
 :global(.tiptap .is-empty::before) {
   color: #adb5bd;
   content: attr(data-placeholder);

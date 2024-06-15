@@ -27,6 +27,7 @@ export const ScrollView: FC<ScrollViewProps> = factory(function (_props, ref) {
     <ScrollArea.Autosize
       ref={ref}
       classNames={{
+        root: classes.root,
         scrollbar: classes.scrollbar,
         thumb: classes.scrollbarThumb,
       }}

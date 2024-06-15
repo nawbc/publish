@@ -12,7 +12,6 @@ import { DocEditorContent } from './Content/Content';
 import { DocEditorProvider } from './DocEditor.context';
 import classes from './DocEditor.module.css';
 import * as fn from './Fn';
-import { PrimitiveFn } from './Fn';
 import { BubbleMenuGroup } from './Group';
 import type { DocEditorLabels } from './labels';
 import { DEFAULT_LABELS } from './labels';
@@ -57,7 +56,7 @@ export type DocEditorFactory = Factory<{
   stylesNames: DocEditorStylesNames;
   staticComponents: {
     Content: typeof DocEditorContent;
-    Fn: typeof PrimitiveFn;
+    Fn: typeof fn.PrimitiveFn;
     BubbleMenuGroup: typeof BubbleMenuGroup;
     Bold: typeof fn.BoldFn;
     Italic: typeof fn.ItalicFn;
@@ -156,7 +155,7 @@ DocEditor.displayName = '@mantine/tiptap/DocEditor';
 
 // Generic components
 DocEditor.Content = DocEditorContent;
-DocEditor.Fn = PrimitiveFn;
+DocEditor.Fn = fn.PrimitiveFn;
 DocEditor.BubbleMenuGroup = BubbleMenuGroup;
 
 // Fn components

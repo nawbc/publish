@@ -40,7 +40,14 @@ export const ExtraListFn = forwardRef<HTMLDivElement, ExtraListFnProps>(
     const { labels, getStyles } = useDocEditorContext();
 
     return (
-      <Menu trigger="hover" trapFocus={false} width={220} {...menuProps}>
+      <Menu
+        // opened
+        withinPortal={false}
+        trapFocus={false}
+        trigger="hover"
+        width={220}
+        {...menuProps}
+      >
         <Menu.Target>
           <PrimitiveFn
             {...others}
@@ -49,18 +56,18 @@ export const ExtraListFn = forwardRef<HTMLDivElement, ExtraListFnProps>(
             ref={ref}
           >
             <IconMenu2 style={{ width: rem(20), height: rem(20) }} />
-            <Menu.Dropdown {...getStyles('linkEditorDropdown')}>
-              <H1Fn fluid />
-              <H2Fn fluid />
-              <H3Fn fluid />
-              <H4Fn fluid />
-              <H5Fn fluid />
-              <H6Fn fluid />
-              <CodeBlockFn fluid />
-              <BlockquoteFn fluid />
-            </Menu.Dropdown>
           </PrimitiveFn>
         </Menu.Target>
+        <Menu.Dropdown {...getStyles('linkEditorDropdown')}>
+          <H1Fn fluid />
+          <H2Fn fluid />
+          <H3Fn fluid />
+          <H4Fn fluid />
+          <H5Fn fluid />
+          <H6Fn fluid />
+          <CodeBlockFn fluid />
+          <BlockquoteFn fluid />
+        </Menu.Dropdown>
       </Menu>
     );
   },

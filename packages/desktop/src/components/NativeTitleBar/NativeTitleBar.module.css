@@ -1,6 +1,5 @@
 .root {
   --_titlebar-action-color: var(--mantine-color-dark-4);
-  --_titlebar-action-background-color: var(--mantine-color-white);
 
   &:where([data-os='windows']) {
     margin-left: auto;
@@ -9,7 +8,7 @@
       border: none;
       width: rem(58px);
       height: 100%;
-      background-color: var(--_titlebar-action-background-color);
+      background-color: var(--_titlebar-action-background-color, unset);
       color: var(--_titlebar-action-color);
 
       @mixin hover {

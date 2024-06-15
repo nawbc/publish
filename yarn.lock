@@ -3671,9 +3671,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/core@npm:7.10.1":
-  version: 7.10.1
-  resolution: "@mantine/core@npm:7.10.1"
+"@mantine/core@npm:7.10.2":
+  version: 7.10.2
+  resolution: "@mantine/core@npm:7.10.2"
   dependencies:
     "@floating-ui/react": "npm:^0.26.9"
     clsx: "npm:^2.1.1"
@@ -3682,10 +3682,10 @@ __metadata:
     react-textarea-autosize: "npm:8.5.3"
     type-fest: "npm:^4.12.0"
   peerDependencies:
-    "@mantine/hooks": 7.10.1
+    "@mantine/hooks": 7.10.2
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 10/accc016a8e2fc706b061db2a1a841305f693a5c2d1fd39b233225fa626b41fcb869bb0a5a01d9ec26709eb09c016de0df88c8d13e8aa314e5423dfc0c16ee6ea
+  checksum: 10/312c3d8777c18b30ca04a2ebf43b110b4f888fb3cfeb4f1dce6dd6b37ca5656ffa160a707fe2933bef87bcfda9e3249f21ff7dab673d3a01f660044ae8bf31e7
   languageName: node
   linkType: hard
 
@@ -3707,53 +3707,53 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/dates@npm:7.10.1":
-  version: 7.10.1
-  resolution: "@mantine/dates@npm:7.10.1"
+"@mantine/dates@npm:7.10.2":
+  version: 7.10.2
+  resolution: "@mantine/dates@npm:7.10.2"
   dependencies:
     clsx: "npm:^2.1.1"
   peerDependencies:
-    "@mantine/core": 7.10.1
-    "@mantine/hooks": 7.10.1
+    "@mantine/core": 7.10.2
+    "@mantine/hooks": 7.10.2
     dayjs: ">=1.0.0"
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 10/48451a608fbd99020b6ce319ed41794d683e06009a25b0e3fced9b246cfa07ce9d5294110ceece5180cd2937fb639876b6aa7f8b8e8b108e58875efad0acc071
+  checksum: 10/2baabc402364b8a61ee6e89f0434b0db8120a3aad080d7f7ae4268f5e3dcd82cfb5c66448bc62dff0df79e354fc71a12eb23a24b1410f281e574d3c85878725f
   languageName: node
   linkType: hard
 
-"@mantine/dropzone@npm:7.10.1":
-  version: 7.10.1
-  resolution: "@mantine/dropzone@npm:7.10.1"
+"@mantine/dropzone@npm:7.10.2":
+  version: 7.10.2
+  resolution: "@mantine/dropzone@npm:7.10.2"
   dependencies:
     react-dropzone-esm: "npm:15.0.1"
   peerDependencies:
-    "@mantine/core": 7.10.1
-    "@mantine/hooks": 7.10.1
+    "@mantine/core": 7.10.2
+    "@mantine/hooks": 7.10.2
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 10/447336c2c62b9b9630bf224d56af683d0af88cdfab32c9b6a10e999f4d2f6c189c9b741c6d0dd96cdd732c25ece10e31058f2b18e6c0be9d55956552111dfd3e
+  checksum: 10/1c560d30bc988213e4860a07af6d2e909c236f4e877ff443e4bb4a025f2d158a1b4c3dee340cc2006f5c0a7fbd7a83e9d9b49a9819e019c1ce0b3e0cee3332f6
   languageName: node
   linkType: hard
 
-"@mantine/form@npm:7.10.1":
-  version: 7.10.1
-  resolution: "@mantine/form@npm:7.10.1"
+"@mantine/form@npm:7.10.2":
+  version: 7.10.2
+  resolution: "@mantine/form@npm:7.10.2"
   dependencies:
     fast-deep-equal: "npm:^3.1.3"
     klona: "npm:^2.0.6"
   peerDependencies:
     react: ^18.2.0
-  checksum: 10/b5e4c25addb0957238b11b32b5fa77182fd2bd05f2baf37bbbc081b252a4a2df29231dde32010af24a56f26db89773c5b3c128f8149f42c8f5d3c0e12b479b2f
+  checksum: 10/3f08b1b73db6eec45ccca2e7d811973010863645a9fc3aafaa82ea627b246626ea6e40973d3c2e35ecfb9b1edd6f2372ed19b3c6208e0ddd960ff545d2e5c057
   languageName: node
   linkType: hard
 
-"@mantine/hooks@npm:7.10.1":
-  version: 7.10.1
-  resolution: "@mantine/hooks@npm:7.10.1"
+"@mantine/hooks@npm:7.10.2":
+  version: 7.10.2
+  resolution: "@mantine/hooks@npm:7.10.2"
   peerDependencies:
     react: ^18.2.0
-  checksum: 10/af2308c8a1fe98507fdd10b551b1b8d98b36ecbff5d0a93bbd22edf6a5a9957f06f66e7788bc1c2433173dc555e8bfe4f59f15adaebedff9bffdc249da5f5001
+  checksum: 10/cdf16046e42fbe266ed4ac5a1e053fa541a30de21485fe0d5a964f5261f8e40df4b028768059f11326a5ff702b5da07c8672fb3df2bcb747234ec84e14cec4a6
   languageName: node
   linkType: hard
 
@@ -3766,55 +3766,55 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/notifications@npm:7.10.1":
-  version: 7.10.1
-  resolution: "@mantine/notifications@npm:7.10.1"
+"@mantine/notifications@npm:7.10.2":
+  version: 7.10.2
+  resolution: "@mantine/notifications@npm:7.10.2"
   dependencies:
-    "@mantine/store": "npm:7.10.1"
+    "@mantine/store": "npm:7.10.2"
     react-transition-group: "npm:4.4.5"
   peerDependencies:
-    "@mantine/core": 7.10.1
-    "@mantine/hooks": 7.10.1
+    "@mantine/core": 7.10.2
+    "@mantine/hooks": 7.10.2
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 10/ab2b2703528a6877cdda5fa5b3dc853902a542ddfa21dc37888da9182c2b220a0692987af42e94f6d5869a9cd5113298776ad1e16bd2b62fa587222aacf91d96
+  checksum: 10/c729915dfb15ad68719fb0531a9b2b115a3c375db07d5c874b2a7e50a89ae7c3c67938c82835e1467cb197133152b80aca1025c8ecc54c4b9ea778daeba8d579
   languageName: node
   linkType: hard
 
-"@mantine/nprogress@npm:7.10.1":
-  version: 7.10.1
-  resolution: "@mantine/nprogress@npm:7.10.1"
+"@mantine/nprogress@npm:7.10.2":
+  version: 7.10.2
+  resolution: "@mantine/nprogress@npm:7.10.2"
   dependencies:
-    "@mantine/store": "npm:7.10.1"
+    "@mantine/store": "npm:7.10.2"
   peerDependencies:
-    "@mantine/core": 7.10.1
-    "@mantine/hooks": 7.10.1
+    "@mantine/core": 7.10.2
+    "@mantine/hooks": 7.10.2
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 10/0b177a7496ca8c3a1981b3d93720b4b0f1ec3a35f1169d2a932b18ce38dacdeb46f5f1ec03cf3cc70a827e9dca18519b446254e380273b4fce3276a1cfb26822
+  checksum: 10/0c1ebc00ac81b8adcd98550a0a7f88d41c07598fd70de2443f204c18d51bd450673881b0ac4db7579958201e73ff080396aebbd08d3906945fe5f2263b474cc8
   languageName: node
   linkType: hard
 
-"@mantine/spotlight@npm:7.10.1":
-  version: 7.10.1
-  resolution: "@mantine/spotlight@npm:7.10.1"
+"@mantine/spotlight@npm:7.10.2":
+  version: 7.10.2
+  resolution: "@mantine/spotlight@npm:7.10.2"
   dependencies:
-    "@mantine/store": "npm:7.10.1"
+    "@mantine/store": "npm:7.10.2"
   peerDependencies:
-    "@mantine/core": 7.10.1
-    "@mantine/hooks": 7.10.1
+    "@mantine/core": 7.10.2
+    "@mantine/hooks": 7.10.2
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 10/518f71aec16a8bef9fc091634705049e0e70c826b957cb7ad4fe424a5c3883707e76be417089cb693e69af8694414a85431d240288b5952e48d89bd28b3c0b91
+  checksum: 10/6e6d4efe74c0a5742f46181c3cfa1158e8478aac837a0e07e4d4279ba1d22dc7bda769be04fa08ed934b9db92d766ad03f1077711a6333c1f18892c063c419af
   languageName: node
   linkType: hard
 
-"@mantine/store@npm:7.10.1":
-  version: 7.10.1
-  resolution: "@mantine/store@npm:7.10.1"
+"@mantine/store@npm:7.10.2":
+  version: 7.10.2
+  resolution: "@mantine/store@npm:7.10.2"
   peerDependencies:
     react: ^18.2.0
-  checksum: 10/8d0a58d9591042dad4b4c5b2856467787446c11e9f5f313204a3fd5f9167370c3773ce94043b7bcf31aac27da86c5e2cbea68f782f33a0adfa580cdb755e4f5b
+  checksum: 10/367b8df710106d48155a45f6a28f79e98d3eb678e2e7a0c456591dedc3700d2dbec8f305a059e4e80c7db9b7dafb08cf1ffcc0fa824798c5d7b989d279c5e567
   languageName: node
   linkType: hard
 
@@ -4446,18 +4446,18 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publish/desktop@workspace:packages/desktop"
   dependencies:
-    "@mantine/core": "npm:7.10.1"
-    "@mantine/dates": "npm:7.10.1"
-    "@mantine/dropzone": "npm:7.10.1"
-    "@mantine/form": "npm:7.10.1"
-    "@mantine/hooks": "npm:7.10.1"
-    "@mantine/notifications": "npm:7.10.1"
-    "@mantine/nprogress": "npm:7.10.1"
-    "@mantine/spotlight": "npm:7.10.1"
+    "@mantine/core": "npm:7.10.2"
+    "@mantine/dates": "npm:7.10.2"
+    "@mantine/dropzone": "npm:7.10.2"
+    "@mantine/form": "npm:7.10.2"
+    "@mantine/hooks": "npm:7.10.2"
+    "@mantine/notifications": "npm:7.10.2"
+    "@mantine/nprogress": "npm:7.10.2"
+    "@mantine/spotlight": "npm:7.10.2"
     "@publish-kit/x-api": "workspace:^"
     "@publish/doc-editor": "workspace:^"
     "@publish/logger": "workspace:^"
-    "@tauri-apps/api": "npm:2.0.0-beta.12"
+    "@tauri-apps/api": "npm:2.0.0-beta.13"
     "@tauri-apps/plugin-autostart": "https://github.com/tauri-apps/tauri-plugin-autostart#v2"
     "@tauri-apps/plugin-http": "https://github.com/tauri-apps/tauri-plugin-http#v2"
     "@tauri-apps/plugin-os": "https://github.com/tauri-apps/tauri-plugin-os#v2"
@@ -4530,8 +4530,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publish/doc-editor@workspace:packages/doc-editor"
   dependencies:
-    "@mantine/core": "npm:7.10.1"
-    "@mantine/hooks": "npm:7.10.1"
+    "@mantine/core": "npm:7.10.2"
+    "@mantine/hooks": "npm:7.10.2"
     "@sereneinserenade/tiptap-search-and-replace": "npm:0.1.1"
     "@tabler/icons-react": "npm:3.5.0"
     "@tiptap/core": "npm:2.4.0"
@@ -4605,7 +4605,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publish/tauri@workspace:tauri"
   dependencies:
-    "@tauri-apps/cli": "npm:2.0.0-beta.18"
+    "@tauri-apps/cli": "npm:2.0.0-beta.20"
   languageName: unknown
   linkType: soft
 
@@ -5460,10 +5460,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tauri-apps/api@npm:2.0.0-beta.12":
-  version: 2.0.0-beta.12
-  resolution: "@tauri-apps/api@npm:2.0.0-beta.12"
-  checksum: 10/17023eaaccbaba12a450aa0010572a32e0fb8fb02c6a193484c07c74898c8d4228774d0abcdd0fda47cbfba39b21f4d3adcb961569e50eeb97ae9f4c5a41ef25
+"@tauri-apps/api@npm:2.0.0-beta.13":
+  version: 2.0.0-beta.13
+  resolution: "@tauri-apps/api@npm:2.0.0-beta.13"
+  checksum: 10/2365a450b14582e24f49936cd6ba0a1af9e014b83f62f62198890bc061483d0a748c609bfc3d3eac9ac9e1ec514e88b2137d15adb95e6c875b399df31ac48a7d
   languageName: node
   linkType: hard
 
@@ -5474,90 +5474,90 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli-darwin-arm64@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli-darwin-arm64@npm:2.0.0-beta.18"
+"@tauri-apps/cli-darwin-arm64@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli-darwin-arm64@npm:2.0.0-beta.20"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli-darwin-x64@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli-darwin-x64@npm:2.0.0-beta.18"
+"@tauri-apps/cli-darwin-x64@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli-darwin-x64@npm:2.0.0-beta.20"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli-linux-arm-gnueabihf@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli-linux-arm-gnueabihf@npm:2.0.0-beta.18"
+"@tauri-apps/cli-linux-arm-gnueabihf@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli-linux-arm-gnueabihf@npm:2.0.0-beta.20"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli-linux-arm64-gnu@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli-linux-arm64-gnu@npm:2.0.0-beta.18"
+"@tauri-apps/cli-linux-arm64-gnu@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli-linux-arm64-gnu@npm:2.0.0-beta.20"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli-linux-arm64-musl@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli-linux-arm64-musl@npm:2.0.0-beta.18"
+"@tauri-apps/cli-linux-arm64-musl@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli-linux-arm64-musl@npm:2.0.0-beta.20"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli-linux-x64-gnu@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli-linux-x64-gnu@npm:2.0.0-beta.18"
+"@tauri-apps/cli-linux-x64-gnu@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli-linux-x64-gnu@npm:2.0.0-beta.20"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli-linux-x64-musl@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli-linux-x64-musl@npm:2.0.0-beta.18"
+"@tauri-apps/cli-linux-x64-musl@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli-linux-x64-musl@npm:2.0.0-beta.20"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli-win32-arm64-msvc@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli-win32-arm64-msvc@npm:2.0.0-beta.18"
+"@tauri-apps/cli-win32-arm64-msvc@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli-win32-arm64-msvc@npm:2.0.0-beta.20"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli-win32-ia32-msvc@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli-win32-ia32-msvc@npm:2.0.0-beta.18"
+"@tauri-apps/cli-win32-ia32-msvc@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli-win32-ia32-msvc@npm:2.0.0-beta.20"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli-win32-x64-msvc@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli-win32-x64-msvc@npm:2.0.0-beta.18"
+"@tauri-apps/cli-win32-x64-msvc@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli-win32-x64-msvc@npm:2.0.0-beta.20"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
-"@tauri-apps/cli@npm:2.0.0-beta.18":
-  version: 2.0.0-beta.18
-  resolution: "@tauri-apps/cli@npm:2.0.0-beta.18"
+"@tauri-apps/cli@npm:2.0.0-beta.20":
+  version: 2.0.0-beta.20
+  resolution: "@tauri-apps/cli@npm:2.0.0-beta.20"
   dependencies:
-    "@tauri-apps/cli-darwin-arm64": "npm:2.0.0-beta.18"
-    "@tauri-apps/cli-darwin-x64": "npm:2.0.0-beta.18"
-    "@tauri-apps/cli-linux-arm-gnueabihf": "npm:2.0.0-beta.18"
-    "@tauri-apps/cli-linux-arm64-gnu": "npm:2.0.0-beta.18"
-    "@tauri-apps/cli-linux-arm64-musl": "npm:2.0.0-beta.18"
-    "@tauri-apps/cli-linux-x64-gnu": "npm:2.0.0-beta.18"
-    "@tauri-apps/cli-linux-x64-musl": "npm:2.0.0-beta.18"
-    "@tauri-apps/cli-win32-arm64-msvc": "npm:2.0.0-beta.18"
-    "@tauri-apps/cli-win32-ia32-msvc": "npm:2.0.0-beta.18"
-    "@tauri-apps/cli-win32-x64-msvc": "npm:2.0.0-beta.18"
+    "@tauri-apps/cli-darwin-arm64": "npm:2.0.0-beta.20"
+    "@tauri-apps/cli-darwin-x64": "npm:2.0.0-beta.20"
+    "@tauri-apps/cli-linux-arm-gnueabihf": "npm:2.0.0-beta.20"
+    "@tauri-apps/cli-linux-arm64-gnu": "npm:2.0.0-beta.20"
+    "@tauri-apps/cli-linux-arm64-musl": "npm:2.0.0-beta.20"
+    "@tauri-apps/cli-linux-x64-gnu": "npm:2.0.0-beta.20"
+    "@tauri-apps/cli-linux-x64-musl": "npm:2.0.0-beta.20"
+    "@tauri-apps/cli-win32-arm64-msvc": "npm:2.0.0-beta.20"
+    "@tauri-apps/cli-win32-ia32-msvc": "npm:2.0.0-beta.20"
+    "@tauri-apps/cli-win32-x64-msvc": "npm:2.0.0-beta.20"
   dependenciesMeta:
     "@tauri-apps/cli-darwin-arm64":
       optional: true
@@ -5581,7 +5581,7 @@ __metadata:
       optional: true
   bin:
     tauri: tauri.js
-  checksum: 10/3b858b398317c51b4817ae6c5fbbb4146987ac95d5ee20503a17154ca881ad96fd1ec8c52e1948941a0b1832081139e24154adea378538ab16b88833c3aeb27f
+  checksum: 10/da62f0530c896c121f02c244dd364748e2472d3d9e38987888762eba8a8c7ba5573f6b6996e9985187f134681621051dfde367150e41a8f3552d3f9511d0dcbb
   languageName: node
   linkType: hard
 
