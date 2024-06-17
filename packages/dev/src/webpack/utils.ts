@@ -23,7 +23,7 @@ export const require = createRequire(import.meta.url);
  * Configure webpack
  *
  * @param config
- * ```ts file=publish.config.mjs
+ * ```ts file=publish-pack.config.mjs
  *
  * export default configure({
  *    entry: {
@@ -35,7 +35,6 @@ export const require = createRequire(import.meta.url);
  * })
  * ```
  */
-
 export async function configure(config: Configuration) {
   const baseConfig = createConfiguration();
   const serverConfig = await createDevServerConfiguration();

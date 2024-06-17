@@ -1,14 +1,11 @@
 {
-  "name": "reactgets",
-  "version": "0.0.1-alpha.4",
-  "description": "Deskbtm React gadgets",
+  "name": "react-compiler-loader",
+  "version": "0.0.1-alpha.0",
+  "description": "React compiler loader",
   "author": "Han <wanghan9423@outlook.com>",
   "main": "./src/index.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "./*": {
-      "default": "./src/*.ts"
-    }
+    ".": "./src/index.ts"
   },
   "files": [
     "dist/**/*",
@@ -23,10 +20,6 @@
       ".": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
-      },
-      "./*": {
-        "types": "./dist/*.d.ts",
-        "default": "./dist/*.js"
       }
     }
   },
@@ -40,13 +33,19 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
+    "@babel/core": "*",
+    "babel-plugin-react-compiler": "*",
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.7",
+    "@types/babel__core": "^7",
     "@types/node": "20.11.30",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
-    "typescript": "5.4.5"
+    "babel-plugin-react-compiler": "0.0.0-experimental-938cd9a-20240601",
+    "typescript": "5.4.5",
+    "webpack": "5.92.0"
   }
 }

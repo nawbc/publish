@@ -33,6 +33,6 @@
   },
   "devDependencies": {
     "cross-env": "7.0.3",
-    "tsx": "4.15.2"
+    "tsx": "4.15.5"
   }
 }
