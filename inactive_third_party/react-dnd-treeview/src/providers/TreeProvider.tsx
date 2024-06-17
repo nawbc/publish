@@ -128,7 +128,5 @@ export const TreeProvider = <T,>(props: Props<T>): ReactElement => {
     onToggle: (id) => handleToggle(id, props.onChangeOpen),
   };
 
-  return (
-    <TreeContext.Provider value={value}>{props.children}</TreeContext.Provider>
-  );
+  return <TreeContext value={value}>{props.children}</TreeContext>;
 };

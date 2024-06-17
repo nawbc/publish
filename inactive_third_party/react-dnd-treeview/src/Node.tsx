@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { useContext, useEffect, useRef } from 'react';
+import { use, useEffect, useRef } from 'react';
 import { getEmptyImage } from 'react-dnd-html5-backend';
 
 import { AnimateHeight } from './AnimateHeight';
@@ -22,7 +22,7 @@ type Props = {
 
 export const Node = <T,>(props: Props): ReactElement | null => {
   const treeContext = useTreeContext<T>();
-  const placeholderContext = useContext(PlaceholderContext);
+  const placeholderContext = use(PlaceholderContext);
   const containerRef = useRef<HTMLElement>(null);
   const handleRef = useRef<any>(null);
   const item = treeContext.tree.find(

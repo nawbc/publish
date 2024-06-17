@@ -1,7 +1,7 @@
-import { useContext } from 'react';
+import { use } from 'react';
 
 import { TauriOSContext } from './TauriOSContext';
 
 export const useTauriOS = function () {
-  return useContext(TauriOSContext);
+  return use(TauriOSContext);
 };

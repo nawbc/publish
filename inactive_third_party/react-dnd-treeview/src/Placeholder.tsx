@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { useContext } from 'react';
+import { use } from 'react';
 import { useDragDropManager } from 'react-dnd';
 
 import { useTreeContext } from './hooks';
@@ -19,7 +19,7 @@ export const Placeholder = <T,>(props: Props): ReactElement | null => {
     placeholderComponent: Component,
     classes,
   } = useTreeContext<T>();
-  const placeholderContext = useContext(PlaceholderContext);
+  const placeholderContext = use(PlaceholderContext);
   const manager = useDragDropManager();
   const monitor = manager.getMonitor();
   const dragSource = monitor.getItem() as NodeModel<T> | null;

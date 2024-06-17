@@ -35,7 +35,7 @@ export const PlaceholderProvider: React.FC<{ children: React.ReactNode }> = (
   };
 
   return (
-    <PlaceholderContext.Provider
+    <PlaceholderContext
       value={{
         dropTargetId,
         index,
@@ -44,6 +44,6 @@ export const PlaceholderProvider: React.FC<{ children: React.ReactNode }> = (
       }}
     >
       {props.children}
-    </PlaceholderContext.Provider>
+    </PlaceholderContext>
   );
 };

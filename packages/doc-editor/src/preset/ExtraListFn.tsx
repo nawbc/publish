@@ -6,7 +6,6 @@ import type {
 } from '@mantine/core';
 import { Menu, rem, useProps } from '@mantine/core';
 import { IconMenu2 } from '@tabler/icons-react';
-import { forwardRef } from 'react';
 
 import {
   BlockquoteFn,
@@ -30,45 +29,44 @@ export interface ExtraListFnProps extends BoxProps, ElementProps<'div'> {
 
 const defaultProps: Partial<ExtraListFnProps> = {};
 
-export const ExtraListFn = forwardRef<HTMLDivElement, ExtraListFnProps>(
-  (props, ref) => {
-    const { menuProps, ...others } = useProps(
-      'ExtraListFn',
-      defaultProps,
-      props,
-    );
-    const { labels, getStyles } = useDocEditorContext();
+export const ExtraListFn = ({
+  ref,
+  ...props
+}: ExtraListFnProps & {
+  ref: React.RefObject<HTMLDivElement>;
+}) => {
+  const { menuProps, ...others } = useProps('ExtraListFn', defaultProps, props);
+  const { labels, getStyles } = useDocEditorContext();
 
-    return (
-      <Menu
-        // opened
-        withinPortal={false}
-        trapFocus={false}
-        trigger="hover"
-        width={220}
-        {...menuProps}
-      >
-        <Menu.Target>
-          <PrimitiveFn
-            {...others}
-            aria-label={labels.colorPickerFnLabel}
-            title={labels.colorPickerFnLabel}
-            ref={ref}
-          >
-            <IconMenu2 style={{ width: rem(20), height: rem(20) }} />
-          </PrimitiveFn>
-        </Menu.Target>
-        <Menu.Dropdown {...getStyles('linkEditorDropdown')}>
-          <H1Fn fluid />
-          <H2Fn fluid />
-          <H3Fn fluid />
-          <H4Fn fluid />
-          <H5Fn fluid />
-          <H6Fn fluid />
-          <CodeBlockFn fluid />
-          <BlockquoteFn fluid />
-        </Menu.Dropdown>
-      </Menu>
-    );
-  },
-);
+  return (
+    <Menu
+      // opened
+      withinPortal={false}
+      trapFocus={false}
+      trigger="hover"
+      width={220}
+      {...menuProps}
+    >
+      <Menu.Target>
+        <PrimitiveFn
+          {...others}
+          aria-label={labels.colorPickerFnLabel}
+          title={labels.colorPickerFnLabel}
+          ref={ref}
+        >
+          <IconMenu2 style={{ width: rem(20), height: rem(20) }} />
+        </PrimitiveFn>
+      </Menu.Target>
+      <Menu.Dropdown {...getStyles('linkEditorDropdown')}>
+        <H1Fn fluid />
+        <H2Fn fluid />
+        <H3Fn fluid />
+        <H4Fn fluid />
+        <H5Fn fluid />
+        <H6Fn fluid />
+        <CodeBlockFn fluid />
+        <BlockquoteFn fluid />
+      </Menu.Dropdown>
+    </Menu>
+  );
+};

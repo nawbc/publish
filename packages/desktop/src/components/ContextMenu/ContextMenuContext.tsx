@@ -12,4 +12,4 @@ export const ContextMenuContext = createContext({} as ItemTracker);
 
 export const ContextMenuProvider: React.FC<ContextMenuProviderProps> = (
   props,
-) => <ContextMenuContext.Provider {...props} />;
+) => <ContextMenuContext {...props} />;

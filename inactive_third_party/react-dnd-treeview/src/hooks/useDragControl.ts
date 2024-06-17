@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { use, useEffect } from 'react';
 
 import { DragControlContext } from '../providers';
 
@@ -7,7 +7,7 @@ import { DragControlContext } from '../providers';
  * Temporarily disables node dragging while the pointer is over the text input area.
  */
 export const useDragControl = (ref: React.RefObject<HTMLElement>): void => {
-  const dragControlContext = useContext(DragControlContext);
+  const dragControlContext = use(DragControlContext);
 
   useEffect(() => {
     if (!ref.current) return;

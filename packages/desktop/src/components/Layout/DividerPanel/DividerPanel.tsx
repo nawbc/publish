@@ -6,7 +6,7 @@ import { useMemoStore } from '@publish/shared';
 import debounce from 'lodash.debounce';
 import type { PropsWithChildren } from 'react';
 import { useCallback, useImperativeHandle, useMemo, useRef } from 'react';
-import { type FC, forwardRef } from 'react';
+import { type FC } from 'react';
 import React from 'react';
 import { useProps } from 'reactgets/hooks/use-props';
 
@@ -53,10 +53,12 @@ const defaultProps = {
   dividerWidth: 16,
 };
 
-export const DividerPanelInner = forwardRef<
-  DividerPanelInnerRef,
-  DividerPanelProps
->(function (props, ref) {
+export const DividerPanelInner = function ({
+  ref,
+  ...props
+}: DividerPanelProps & {
+  ref: React.RefObject<DividerPanelInnerRef>;
+}) {
   const { children, dividerWidth, initial, hideDividerCollapsed, ...rest } =
     props;
   const collapsedPosition = dividerWidth! / 2;
@@ -70,15 +72,11 @@ export const DividerPanelInner = forwardRef<
   });
   const panel = useDividerPanel();
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        setPosition,
-      };
-    },
-    [setPosition],
-  );
+  useImperativeHandle(ref, () => {
+    return {
+      setPosition,
+    };
+  }, [setPosition]);
 
   return (
     <Flex direction="row" h="100%">
@@ -115,7 +113,7 @@ export const DividerPanelInner = forwardRef<
       </Box>
     </Flex>
   );
-});
+};
 
 DividerPanelInner.displayName = '@publish/desktop/DividerPanelInner';
 
@@ -174,9 +172,9 @@ export const DividerPanel = factory<DividerPanelFactory>((_props, _ref) => {
   );
 
   return (
-    <DividerPanelContext.Provider value={context}>
+    <DividerPanelContext value={context}>
       <DividerPanelInner ref={panel} {...props} initial={initialPos} />
-    </DividerPanelContext.Provider>
+    </DividerPanelContext>
   );
 });
 

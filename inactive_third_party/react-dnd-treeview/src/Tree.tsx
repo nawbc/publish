@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React from 'react';
 
 import { Container } from './Container';
 import { DragLayer } from './DragLayer';
@@ -17,8 +17,4 @@ function TreeInner<T>(
   );
 }
 
-const Tree = forwardRef(TreeInner) as <T = unknown>(
-  props: TreeProps<T> & { ref?: React.ForwardedRef<TreeMethods> },
-) => ReturnType<typeof TreeInner>;
-
-export { Tree };
+export { TreeInner as Tree };

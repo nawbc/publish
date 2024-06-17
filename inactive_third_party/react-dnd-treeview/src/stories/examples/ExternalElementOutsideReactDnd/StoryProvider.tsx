@@ -1,14 +1,15 @@
 import React, {
-  useState,
-  ReactElement,
   createContext,
   PropsWithChildren,
-} from "react";
-import { NativeTypes } from "react-dnd-html5-backend";
-import type { NodeModel, TreeProps, DropOptions } from "~/types";
-import { FileProperties } from "~/stories/types";
-import { useDropHandler } from "~/stories/useDropHandler";
-import externalNodesJson from "~/stories/assets/external-nodes.json";
+  ReactElement,
+  useState,
+} from 'react';
+import { NativeTypes } from 'react-dnd-html5-backend';
+
+import externalNodesJson from '~/stories/assets/external-nodes.json';
+import { FileProperties } from '~/stories/types';
+import { useDropHandler } from '~/stories/useDropHandler';
+import type { DropOptions, NodeModel, TreeProps } from '~/types';
 
 type Props = PropsWithChildren<TreeProps<FileProperties>>;
 
@@ -18,7 +19,7 @@ export type StoryState = {
   lastId: number;
   handleDrop: (
     newTree: NodeModel<FileProperties>[],
-    options: DropOptions<FileProperties>
+    options: DropOptions<FileProperties>,
   ) => void;
   handleAddExternalNode: () => void;
 };
@@ -31,7 +32,7 @@ export const StoryProvider = (props: Props): ReactElement => {
     useState<NodeModel<FileProperties>[]>(externalNodesJson);
   const [lastId, setLastId] = useState(105);
 
-  const handleDrop: StoryState["handleDrop"] = (newTree, options) => {
+  const handleDrop: StoryState['handleDrop'] = (newTree, options) => {
     const { dropTargetId, monitor } = options;
     const itemType = monitor.getItemType();
 
@@ -48,14 +49,14 @@ export const StoryProvider = (props: Props): ReactElement => {
     updateTree(newTree, options);
   };
 
-  const handleAddExternalNode: StoryState["handleAddExternalNode"] = () => {
+  const handleAddExternalNode: StoryState['handleAddExternalNode'] = () => {
     const node: NodeModel<FileProperties> = {
       id: lastId,
       parent: 0,
       text: `External node ${lastId - 100}`,
       data: {
-        fileType: "text",
-        fileSize: "1KB",
+        fileType: 'text',
+        fileSize: '1KB',
       },
     };
 
@@ -71,9 +72,5 @@ export const StoryProvider = (props: Props): ReactElement => {
     handleAddExternalNode,
   };
 
-  return (
-    <StoryContext.Provider value={value}>
-      {props.children}
-    </StoryContext.Provider>
-  );
+  return <StoryContext value={value}>{props.children}</StoryContext>;
 };

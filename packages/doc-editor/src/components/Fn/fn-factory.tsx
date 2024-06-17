@@ -1,6 +1,5 @@
 import { rem, useProps } from '@mantine/core';
 import { Editor } from '@tiptap/core';
-import { forwardRef } from 'react';
 import React from 'react';
 
 import { useDocEditorContext } from '../DocEditor.context';
@@ -29,7 +28,12 @@ export function fnFactory({
   icon,
   isDisabled,
 }: FnFactoryProps) {
-  return forwardRef<HTMLDivElement, PrimitiveFnProps>((_props, ref) => {
+  return ({
+    ref,
+    ..._props
+  }: PrimitiveFnProps & {
+    ref?: React.RefObject<HTMLDivElement>;
+  }) => {
     const props = useProps('PrimitiveFn', defaultProps, _props);
     const { editor, labels } = useDocEditorContext();
     const _label = labels[label] as string;
@@ -62,5 +66,5 @@ export function fnFactory({
         {props.children || _icon}
       </PrimitiveFn>
     );
-  });
+  };
 }

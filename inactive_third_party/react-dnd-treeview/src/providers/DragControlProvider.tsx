@@ -16,7 +16,7 @@ export const DragControlProvider: React.FC<{ children: React.ReactNode }> = (
   const [isLock, setIsLock] = useState(initialState.isLock);
 
   return (
-    <DragControlContext.Provider
+    <DragControlContext
       value={{
         isLock,
         lock: () => setIsLock(true),
@@ -24,6 +24,6 @@ export const DragControlProvider: React.FC<{ children: React.ReactNode }> = (
       }}
     >
       {props.children}
-    </DragControlContext.Provider>
+    </DragControlContext>
   );
 };

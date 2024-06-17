@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { use } from 'react';
 import type { DragElementWrapper } from 'react-dnd';
 import { useDrop } from 'react-dnd';
 
@@ -8,11 +8,11 @@ import { PlaceholderContext } from '../providers';
 import type { NodeModel } from '../types';
 import { getDropTarget, isDroppable, isNodeModel } from '../utils';
 
-export const useDropRoot = <T>(
+export const useDropRoot = <T,>(
   ref: React.RefObject<HTMLElement>,
 ): [boolean, NodeModel<T>, DragElementWrapper<HTMLElement>] => {
   const treeContext = useTreeContext<T>();
-  const placeholderContext = useContext(PlaceholderContext);
+  const placeholderContext = use(PlaceholderContext);
   const [{ isOver, dragSource }, drop] = useDrop({
     accept: [ItemTypes.TREE_ITEM, ...treeContext.extraAcceptTypes],
     drop: (dragItem: any, monitor) => {

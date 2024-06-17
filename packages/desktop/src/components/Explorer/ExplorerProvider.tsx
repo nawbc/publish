@@ -47,8 +47,8 @@ export const ExplorerProvider: FC<ExplorerProviderProps> = function (props) {
   );
 
   return (
-    <ExplorerContext.Provider value={context as any}>
+    <ExplorerContext value={context as any}>
       {allCollapsed !== undefined && children}
-    </ExplorerContext.Provider>
+    </ExplorerContext>
   );
 };
