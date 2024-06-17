@@ -131,6 +131,18 @@
               "start": 1708524772180,
               "tip": "Article, Video, Music..."
             }
+          },
+          {
+            "key": 1718435471232,
+            "children": [],
+            "todo": {
+              "content": "Ability field add  \"removeable”  and remove article api",
+              "id": 1718435471232,
+              "level": "default",
+              "done": false,
+              "start": 1718435471232,
+              "tip": "one step to remove all platform posts"
+            }
           }
         ],
         "todo": {
@@ -469,8 +481,8 @@
       1713493769196,
       1710466104153,
       1710840320139,
-      1708699639094,
-      1713494020588
+      1713494020588,
+      1708233092650
     ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
@@ -491,6 +503,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1713494318169"
+    "version": "1718435506362"
   }
 }
