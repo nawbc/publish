@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@tauri-apps/plugin-os": "https://github.com/tauri-apps/tauri-plugin-os#v2",
-    "typescript": "5.4.5"
+    "typescript": "5.5.4"
   },
   "peerDependencies": {
     "@tauri-apps/plugin-os": "*"

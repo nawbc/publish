@@ -9,14 +9,14 @@
     "dev": "cross-env NODE_ENV=development tsx ../../node_modules/webpack/bin/webpack.js serve -c publish-pack.config.ts"
   },
   "dependencies": {
-    "@mantine/core": "7.10.2",
-    "@mantine/dates": "7.10.2",
-    "@mantine/dropzone": "7.10.2",
-    "@mantine/form": "7.10.2",
-    "@mantine/hooks": "7.10.2",
-    "@mantine/notifications": "7.10.2",
-    "@mantine/nprogress": "7.10.2",
-    "@mantine/spotlight": "7.10.2",
+    "@mantine/core": "7.12.1",
+    "@mantine/dates": "7.12.1",
+    "@mantine/dropzone": "7.12.1",
+    "@mantine/form": "7.12.1",
+    "@mantine/hooks": "7.12.1",
+    "@mantine/notifications": "7.12.1",
+    "@mantine/nprogress": "7.12.1",
+    "@mantine/spotlight": "7.12.1",
     "@publish-kit/x-api": "workspace:^",
     "@publish/doc-editor": "workspace:^",
     "@publish/logger": "workspace:^",
@@ -33,6 +33,6 @@
   },
   "devDependencies": {
     "cross-env": "7.0.3",
-    "tsx": "4.15.5"
+    "tsx": "4.18.0"
   }
 }
