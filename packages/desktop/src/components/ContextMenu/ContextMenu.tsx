@@ -113,8 +113,8 @@ export const ContextMenu = ({
   const itemTracker = useItemTracker();
 
   const [menuController] = useState(() => createKeyboardController());
-  const wasVisible = useRef<boolean>();
-  const visibilityId = useRef<number>();
+  const wasVisible = useRef<boolean>(null);
+  const visibilityId = useRef<number>(null);
 
   // Subscribe event manager
   useEffect(() => {
@@ -220,7 +220,7 @@ export const ContextMenu = ({
       });
     });
 
-    clearTimeout(visibilityId.current);
+    clearTimeout(visibilityId.current!);
     if (!wasVisible.current && is.function(onVisibilityChange)) {
       onVisibilityChange(true);
       wasVisible.current = true;

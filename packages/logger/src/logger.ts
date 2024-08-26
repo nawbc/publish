@@ -78,8 +78,8 @@ export class Logger {
           instance.worker = worker;
           worker.port.start();
 
-          worker.port.addEventListener('message', (e) => {});
-          worker.port.addEventListener('error', (e) => {});
+          worker.port.addEventListener('message', (_e) => {});
+          worker.port.addEventListener('error', (_e) => {});
         }
 
         this._transports.add(instance);
@@ -101,6 +101,7 @@ export class Logger {
     options: TransportOptions,
     ...args: any[]
   ) {
+    // eslint-disable-next-line no-console
     this._debug.log = console[LoggerLevel[level]].bind(console);
     this._debug(`[${LoggerLevel[level]}] ${message}`, ...args);
 

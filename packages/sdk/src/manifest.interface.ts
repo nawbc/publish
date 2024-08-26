@@ -47,7 +47,7 @@ export interface Manifest {
    * Of course you can use both modes at the same time.
    */
   mode?: 'headless' | 'graphical';
-  
+
   /**
    * Headless app script entry.
    */
