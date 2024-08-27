@@ -1,5 +1,5 @@
-import { getCurrent, Window } from '@tauri-apps/api/window';
-import { type FC, type PropsWithChildren, useMemo } from 'react';
+import { Window } from '@tauri-apps/api/window';
+import { type FC, type PropsWithChildren, use, useMemo } from 'react';
 
 import { TauriWindowContext } from './TauriWindowContext';
 
@@ -11,11 +11,9 @@ export const TauriWindowProvider: FC<TauriWindowProviderProps> = function (
   props,
 ) {
   const { children, label } = props;
-
-  const tauriWindow = useMemo(
-    () => (label ? Window.getByLabel(label) : getCurrent()),
-    [label],
-  );
+  const tauriWindow = label
+    ? use(Window.getByLabel(label))
+    : Window.getCurrent();
 
   const context = useMemo(
     () => ({

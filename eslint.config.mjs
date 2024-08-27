@@ -1,20 +1,21 @@
 import eslint from '@eslint/js';
 import tslintParser from '@typescript-eslint/parser';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import prettierConfig from 'eslint-config-prettier';
 import react from 'eslint-plugin-react';
 import reactJsxRuntime from 'eslint-plugin-react/configs/jsx-runtime.js';
 import reactRecommended from 'eslint-plugin-react/configs/recommended.js';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import globals from 'globals';
-import tslint from 'typescript-eslint';
+import tsEslint from 'typescript-eslint';
 import { fixupPluginRules } from '@eslint/compat';
 import reactHooks from 'eslint-plugin-react-hooks';
 
-export default tslint.config(
+export default tsEslint.config(
   eslint.configs.recommended,
-  ...tslint.configs.recommended,
-  eslintPluginPrettierRecommended,
+  ...tsEslint.configs.strict,
+  ...tsEslint.configs.stylistic,
+  prettierConfig,
   {
     files: ['**/*.{ts,mts,cts,tsx}'],
     plugins: {
@@ -73,7 +74,7 @@ export default tslint.config(
   },
   {
     files: ['**/*.{js,mjs,cjs}'],
-    ...tslint.configs.disableTypeChecked,
+    ...tsEslint.configs.disableTypeChecked,
     languageOptions: {
       globals: {
         ...globals.node,
