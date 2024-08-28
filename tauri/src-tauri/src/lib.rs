@@ -13,7 +13,7 @@ pub fn run() {
     .setup(|app| {
       #[cfg(all(desktop))]
       {
-        let handle = app.handle();
+        let _handle = app.handle();
         // tray::create_tray(handle)?;
         app
           .handle()

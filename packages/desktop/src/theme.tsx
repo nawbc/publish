@@ -12,7 +12,12 @@ export const resolver: CSSVariablesResolver = (theme) => ({
       theme.other.inActiveDividerHandlerLight,
     '--publish-color-contextmenu-hover': theme.other.contextMenuHoverLight,
     '--publish-color-contextmenu-border': theme.other.contextMenuBorder,
-    '--publish-backdrop-color-default': '#ffffff', //'#ffffff80'
+    // Tauri window:transparent not supports backdrop-filter
+    // https://github.com/tauri-apps/tauri/issues/6876
+    '--publish-backdrop-color-default':
+      process.env.PUBLISH_BUILD_PLATFORM === 'desktop'
+        ? '#ffffff'
+        : '#ffffff80',
     '--publish-backdrop-filter': 'saturate(180%) blur(10px)',
   },
   dark: {

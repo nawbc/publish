@@ -11,12 +11,7 @@ import { DraggableHeader } from '../DraggableHeader';
 
 interface SidebarHeaderProps extends PropsWithChildren {}
 
-export const SidebarHeader = ({
-  ref: _ref,
-  ...props
-}: SidebarHeaderProps & {
-  ref: React.RefObject<HTMLDivElement>;
-}) => {
+export const SidebarHeader = ({ ...props }: SidebarHeaderProps) => {
   const { children } = props;
   const panel = useDividerPanel();
   const os = useTauriOS();

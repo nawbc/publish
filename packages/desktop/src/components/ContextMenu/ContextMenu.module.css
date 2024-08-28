@@ -25,7 +25,7 @@
     backdrop-filter: var(--publish-backdrop-filter);
   }
 
-  --_contextmenu-animate-in-delay: 0.3s;
+  --_contextmenu-animate-in-delay: 0ms;
   --_contextmenu-animate-out-delay: 0.2s;
 }
 

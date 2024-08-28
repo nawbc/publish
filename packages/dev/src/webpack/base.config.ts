@@ -9,7 +9,6 @@ import CopyPlugin from 'copy-webpack-plugin';
 // import NodePolyfillPlugin from 'node-polyfill-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import ImageMinimizerPlugin from 'image-minimizer-webpack-plugin';
-import million from 'million/compiler';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import { type Configuration, DefinePlugin, ProgressPlugin } from 'webpack';
@@ -295,8 +294,10 @@ export function createConfiguration(): Configuration {
     kDevMode &&
       new ReactRefreshWebpackPlugin({ overlay: false, esModule: true }),
     new DefinePlugin(env.stringified),
-    million.webpack({ auto: true }),
-    kProdMode && new BundleAnalyzerPlugin(),
+    // Only triggered when building web.
+    kProdMode &&
+      process.env.PUBLISH_BUILD_PLATFORM === 'web' &&
+      new BundleAnalyzerPlugin(),
     new CopyPlugin({
       patterns: [
         {

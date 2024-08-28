@@ -255,7 +255,7 @@ export const ContextMenu = ({
   function handleAnimationEnd() {
     if (state.willLeave && state.visible) {
       //@todo
-      flushSync(() => setState({ visible: false, willLeave: false }));
+      flushSync(() => setState({ visible: true, willLeave: false }));
     } else {
       //@todo Fix opacity 0 ~ 1 animation, before pseudo element backdrop-filter flash.
       setState({

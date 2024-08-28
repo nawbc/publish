@@ -68,7 +68,7 @@ export const ColorPickerFn = ({
   ref,
   ...props
 }: ColorPickerFnProps & {
-  ref: React.RefObject<HTMLDivElement>;
+  ref?: React.RefObject<HTMLDivElement>;
 }) => {
   const { popoverProps, colors, colorPickerProps, ...others } = useProps(
     'ColorPickerFn',

@@ -39,7 +39,7 @@ export interface SubMenuProps
   disabled?: BooleanPredicate;
 
   /**
-   * Hide the `SubMenu` and his children. If a function is used, a boolean must be returned
+   * Hide the `SubMenu` and its children. If a function is used, a boolean must be returned
    */
   hidden?: BooleanPredicate;
 
@@ -75,7 +75,6 @@ export const ContextMenuSub: React.FC<SubMenuProps> = ({
       const right = classes.subRight;
       // reset to default position before computing position
       node.classList.remove(bottom, right);
-
       const rect = node.getBoundingClientRect();
 
       if (rect.right > window.innerWidth) node.classList.add(right);

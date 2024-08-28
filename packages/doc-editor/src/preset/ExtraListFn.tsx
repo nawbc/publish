@@ -33,7 +33,7 @@ export const ExtraListFn = ({
   ref,
   ...props
 }: ExtraListFnProps & {
-  ref: React.RefObject<HTMLDivElement>;
+  ref?: React.RefObject<HTMLDivElement>;
 }) => {
   const { menuProps, ...others } = useProps('ExtraListFn', defaultProps, props);
   const { labels, getStyles } = useDocEditorContext();

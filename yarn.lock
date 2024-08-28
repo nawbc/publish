@@ -4184,8 +4184,8 @@ __metadata:
     "@tauri-apps/plugin-shell": "npm:2.0.0-rc.0"
     "@tauri-apps/plugin-updater": "npm:2.0.0-rc.0"
     cross-env: "npm:7.0.3"
-    react-router: "npm:6.23.1"
-    react-router-dom: "npm:6.23.1"
+    react-router: "npm:6.26.1"
+    react-router-dom: "npm:6.26.1"
     reactgets: "workspace:^"
     tauri-reactgets: "workspace:^"
     tsx: "npm:4.18.0"
@@ -4326,6 +4326,7 @@ __metadata:
   resolution: "@publish/tauri@workspace:tauri"
   dependencies:
     "@tauri-apps/cli": "npm:2.0.0-rc.7"
+    cross-env: "npm:7.0.3"
   languageName: unknown
   linkType: soft
 
@@ -4369,10 +4370,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remix-run/router@npm:1.16.1":
-  version: 1.16.1
-  resolution: "@remix-run/router@npm:1.16.1"
-  checksum: 10/0bfbf2a04707e7f7fde5c76614e7990945a6d854d50c1f9f63cea50208ff864a8920420534ff7ddff6a0bcb584c84456d2f7613d6d6e896db46cafcc70d8fb65
+"@remix-run/router@npm:1.19.1":
+  version: 1.19.1
+  resolution: "@remix-run/router@npm:1.19.1"
+  checksum: 10/2800c2f6567a982fe942aacc4cb5b170e7cc89bd455960e3bea2424161ff7dac32d01886322d88dd19b88d1bea711f39566d17f02b73eeb74999affb471f8f52
   languageName: node
   linkType: hard
 
@@ -6034,21 +6035,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:18.3.0":
-  version: 18.3.0
-  resolution: "@types/react-dom@npm:18.3.0"
-  dependencies:
-    "@types/react": "npm:*"
-  checksum: 10/6ff53f5a7b7fba952a68e114d3b542ebdc1e87a794234785ebab0bcd9bde7fb4885f21ebaf93d26dc0a1b5b93287f42cad68b78ae04dddf6b20da7aceff0beaf
-  languageName: node
-  linkType: hard
-
 "@types/react-dom@npm:types-react-dom@rc":
   version: 19.0.0-rc.1
   resolution: "types-react-dom@npm:19.0.0-rc.1"
   dependencies:
     "@types/react": "npm:*"
   checksum: 10/fca4e7565308a109d4b126e5c7f5c387789a0187c9a46cb2a5af6120a7014beaa05736841be0ae658c7115871088500ddb0ef0bce60a21af4ec899cee8bb3c75
+  languageName: node
+  linkType: hard
+
+"@types/react-dom@npm:types-react@rc, @types/react@npm:types-react@rc":
+  version: 19.0.0-rc.1
+  resolution: "types-react@npm:19.0.0-rc.1"
+  dependencies:
+    csstype: "npm:^3.0.2"
+  checksum: 10/342da9ffeab93600a0cff4c8829e5350d935577e3f81bce7ead41d7cd074035e2c4a4bdd976fa8e3f5390fe6a32169370a805291a88a77c2f2ce2613bde54587
   languageName: node
   linkType: hard
 
@@ -6080,25 +6081,6 @@ __metadata:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
   checksum: 10/359973924be42cf9e7366e1d885b28e0b3bd56d31f24458c5351af7a3f2fc070511e90d517b2195fb229146cdcb70342db6318e279c31dd5057beec1105b704e
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:18.3.3":
-  version: 18.3.3
-  resolution: "@types/react@npm:18.3.3"
-  dependencies:
-    "@types/prop-types": "npm:*"
-    csstype: "npm:^3.0.2"
-  checksum: 10/68e203b7f1f91d6cf21f33fc7af9d6d228035a26c83f514981e54aa3da695d0ec6af10c277c6336de1dd76c4adbe9563f3a21f80c4462000f41e5f370b46e96c
-  languageName: node
-  linkType: hard
-
-"@types/react@npm:types-react@rc":
-  version: 19.0.0-rc.1
-  resolution: "types-react@npm:19.0.0-rc.1"
-  dependencies:
-    csstype: "npm:^3.0.2"
-  checksum: 10/342da9ffeab93600a0cff4c8829e5350d935577e3f81bce7ead41d7cd074035e2c4a4bdd976fa8e3f5390fe6a32169370a805291a88a77c2f2ce2613bde54587
   languageName: node
   linkType: hard
 
@@ -15461,8 +15443,8 @@ __metadata:
     "@babel/core": "npm:^7.24.7"
     "@types/babel__core": "npm:^7"
     "@types/node": "npm:22.5.0"
-    "@types/react": "npm:18.3.3"
-    "@types/react-dom": "npm:18.3.0"
+    "@types/react": "npm:types-react@rc"
+    "@types/react-dom": "npm:types-react@rc"
     babel-plugin-react-compiler: "npm:0.0.0-experimental-48eb8f4-20240822"
     typescript: "npm:5.5.4"
     webpack: "npm:5.94.0"
@@ -15708,16 +15690,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:6.23.1":
-  version: 6.23.1
-  resolution: "react-router-dom@npm:6.23.1"
+"react-router-dom@npm:6.26.1":
+  version: 6.26.1
+  resolution: "react-router-dom@npm:6.26.1"
   dependencies:
-    "@remix-run/router": "npm:1.16.1"
-    react-router: "npm:6.23.1"
+    "@remix-run/router": "npm:1.19.1"
+    react-router: "npm:6.26.1"
   peerDependencies:
     react: ">=16.8"
     react-dom: ">=16.8"
-  checksum: 10/29004176608e879c57830ed02ecd70bf2b54c07acfb050fbbd61c7d28a0c2c8abf1287c2c69222c588afd028763ffe2c61015f03a3360359b250cc019234d76b
+  checksum: 10/1bd255d1ff88f477699c72656e7c07702a907e644388a1bea1c648f2df0c3c86db2e90bea945b1d43eaf84ebab194f3868f3788502965ad5f20c508c6874f1fe
   languageName: node
   linkType: hard
 
@@ -15740,14 +15722,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router@npm:6.23.1":
-  version: 6.23.1
-  resolution: "react-router@npm:6.23.1"
+"react-router@npm:6.26.1":
+  version: 6.26.1
+  resolution: "react-router@npm:6.26.1"
   dependencies:
-    "@remix-run/router": "npm:1.16.1"
+    "@remix-run/router": "npm:1.19.1"
   peerDependencies:
     react: ">=16.8"
-  checksum: 10/72747878fd851b8fc9a6c2f1ee7a3f3a69f18df0c45d7857851b57930d4f55686190f5df0b8d9064ce9e8594bd9ac6a6f479bd8c91552f0b825beb012fa5a770
+  checksum: 10/b3761515c75da65a1678f005d08a6285ceccd9df7237ae6fdd9ab2ab816ef328435b75610f705ecd9ecd41c6878fd22eb9b44c5391cdef2e1ed99ddbc78de8a4
   languageName: node
   linkType: hard
 
@@ -15820,8 +15802,8 @@ __metadata:
   resolution: "reactgets@workspace:first_party/reactgets"
   dependencies:
     "@types/node": "npm:22.5.0"
-    "@types/react": "npm:18.3.3"
-    "@types/react-dom": "npm:18.3.0"
+    "@types/react": "npm:types-react@rc"
+    "@types/react-dom": "npm:types-react@rc"
     typescript: "npm:5.5.4"
   peerDependencies:
     react: ">=16.8.0"

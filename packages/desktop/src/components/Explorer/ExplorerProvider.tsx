@@ -46,9 +46,5 @@ export const ExplorerProvider: FC<ExplorerProviderProps> = function (props) {
     [allCollapsed, collapseAll, expandAll, toggle],
   );
 
-  return (
-    <ExplorerContext value={context as any}>
-      {allCollapsed !== undefined && children}
-    </ExplorerContext>
-  );
+  return <ExplorerContext value={context as any}>{children}</ExplorerContext>;
 };

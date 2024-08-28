@@ -254,10 +254,10 @@ export const ExplorerTree: FC<any> = function () {
   return (
     <DndProvider backend={MultiBackend} options={getDndBackendOptions()}>
       <Box h="100%" flex={1} onContextMenu={showMenu}>
-        <Tree
+        <Tree<NodeData>
           extraAcceptTypes={[NativeTypes.FILE]}
           tree={tree as any}
-          ref={treeRef}
+          ref={treeRef!}
           initialOpen={!allCollapsed}
           rootId={0}
           classes={{
@@ -268,9 +268,7 @@ export const ExplorerTree: FC<any> = function () {
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
           canDrop={handleDroppable}
-          dragPreviewRender={(
-            monitorProps: DragLayerMonitorProps<NodeData>,
-          ) => {
+          dragPreviewRender={(monitorProps) => {
             return <DragPreview nodes={selectedNodes} {...monitorProps} />;
           }}
           render={(node, options) => {

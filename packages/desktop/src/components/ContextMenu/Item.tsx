@@ -135,7 +135,7 @@ export const ContextMenuItem: React.FC<ItemProps> = ({
   color,
   ...rest
 }) => {
-  const itemNode = useRef<HTMLElement>();
+  const itemNode = useRef<HTMLElement>(null);
   const itemTracker = useItemTrackerContext();
   const handlerParams = {
     id,

@@ -1,14 +1,13 @@
-import React from 'react';
-
+import { ForwardedRef } from 'react';
 import { Container } from './Container';
 import { DragLayer } from './DragLayer';
 import { Providers } from './providers';
 import type { TreeMethods, TreeProps } from './types';
 
-function TreeInner<T>(
-  props: TreeProps<T>,
-  ref: React.ForwardedRef<TreeMethods>,
-) {
+function TreeInner<T>({
+  ref,
+  ...props
+}: TreeProps<T> & { ref: ForwardedRef<TreeMethods> }) {
   return (
     <Providers {...props} treeRef={ref}>
       {props.dragPreviewRender && <DragLayer />}

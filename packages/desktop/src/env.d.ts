@@ -1,6 +1,6 @@
 /// <reference types="node" />
-/// <reference types="react/canary" />
-/// <reference types="react-dom/canary" />
+/// <reference types="react" />
+/// <reference types="react-dom" />
 
 declare namespace NodeJS {
   interface ProcessEnv {
