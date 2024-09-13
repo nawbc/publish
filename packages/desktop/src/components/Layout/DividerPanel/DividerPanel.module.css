@@ -1,34 +1,50 @@
 .panelSlideTransition {
   will-change: margin-left, width;
   transition: margin-left 400ms cubic-bezier(0.29, 1.01, 1, -0.68);
+  display: flex;
 }
 
 .divider {
-  /* width: rem(16); */
+  width: rem(16);
   cursor: col-resize;
-  will-change: visibility;
+  position: absolute;
   /* Disable browser handling of all panning and zooming gestures. */
   touch-action: none;
   z-index: 199;
-  --_resize-divider-color: var(--publish-color-inactive-divider-handler);
-  --_resize-divider-width: rem(1);
+  height: 100%;
+  right: rem(-8px);
+  --_resize-divider-width: rem(1px);
+  --_resize-divider-color: var(--_resize-divider-inactive-color);
 
   @mixin hover {
-    --_resize-divider-color: var(--publish-color-active-divider-handler);
-    --_resize-divider-width: rem(2);
+    --_resize-divider-color: var(--_resize-divider-active-color);
+    --_resize-divider-width: rem(3px);
+  }
+
+  @mixin light {
+    --_resize-divider-active-color: #1a284b;
+    --_resize-divider-inactive-color: var(--mantine-color-gray-2);
+  }
+
+  @mixin dark {
+    --_resize-divider-active-color: darken(#1a284b, 0.5);
+    --_resize-divider-inactive-color: darken(var(--mantine-color-gray-2), 0.5);
   }
 }
 
 .handle {
-  height: 100%;
+  padding: rem(5px) 0;
+  height: 96%;
+  border-radius: var(--_resize-divider-width);
   width: var(--_resize-divider-width);
   box-sizing: content-box;
+  will-change: brackground-color;
   transition: 250ms linear background-color;
   outline: none;
   background-color: var(--_resize-divider-color);
 
   &:where([data-dragging]) {
-    --_resize-divider-color: var(--publish-color-active-divider-handler);
-    --_resize-divider-width: rem(2);
+    --_resize-divider-color: var(--_resize-divider-active-color);
+    --_resize-divider-width: rem(3px);
   }
 }

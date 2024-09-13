@@ -78,40 +78,21 @@ export const DividerPanelInner = function ({
     };
   }, [setPosition]);
 
+  const collapsed = hideDividerCollapsed && panel?.collapsed;
+
   return (
     <Flex direction="row" h="100%">
       <Box
         pos="relative"
-        className={isDragging ? '' : classes.panelSlideTransition}
+        className={classes.panelSlideTransition}
         style={{
-          // display: 'flex',
           width: rem(position),
-          overflow: 'hidden',
           marginLeft: panel?.collapsed ? position * -1 : 0,
         }}
       >
-        {/* <Box
-          pos="relative"
-          flex={1}
-          style={{
-            overflow: 'hidden',
-          }}
-        >
-        </Box> */}
-        {children?.[0]}
+        <Box flex={1}>{children?.[0]}</Box>
+        <DividerHandle isDragging={isDragging} {...separatorProps} />
       </Box>
-      <DividerHandle
-        isDragging={isDragging}
-        {...separatorProps}
-        style={{
-          position: 'absolute',
-          left: rem(position),
-          // width: rem(dividerWidth),
-          transition: isDragging ? 'unset' : 'visibility 400ms',
-          visibility:
-            hideDividerCollapsed && panel?.collapsed ? 'hidden' : 'visible',
-        }}
-      />
       <Box
         pos="relative"
         flex={1}

@@ -12,6 +12,8 @@ export const reactCompilerLoader = async function (
     const reactCompilerConfig = this.getOptions();
 
     const result = await babel.transformAsync(content, {
+      sourceFileName: this.resourcePath,
+      filename: this.resourcePath,
       plugins: [[BabelPluginReactCompiler, reactCompilerConfig]],
     });
 

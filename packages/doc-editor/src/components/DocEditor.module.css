@@ -65,7 +65,6 @@
 }
 
 .content {
-  /* background-color: var(--mantine-color-body); */
   border-radius: var(--mantine-radius-default);
 
   & h1,

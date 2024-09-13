@@ -5,10 +5,7 @@ import {
   useWindowEvent,
 } from '@mantine/hooks';
 import { getDndBackendOptions } from '@publish/shared';
-import type {
-  DragLayerMonitorProps,
-  NodeModel,
-} from '@publish-kit/react-dnd-treeview';
+import type { NodeModel } from '@publish-kit/react-dnd-treeview';
 import {
   isAncestor,
   MultiBackend,

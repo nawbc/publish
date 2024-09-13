@@ -10,7 +10,7 @@ import TableCell from '@tiptap/extension-table-cell';
 import TableHeader from '@tiptap/extension-table-header';
 import TableRow from '@tiptap/extension-table-row';
 import TaskItem from '@tiptap/extension-task-item';
-import TaskList from '@tiptap/extension-task-list';
+
 import TextStyle from '@tiptap/extension-text-style';
 import Underline from '@tiptap/extension-underline';
 import { BubbleMenu, useEditor } from '@tiptap/react';
@@ -24,6 +24,7 @@ import {
   Embed,
   FileInput,
   SlashCommands,
+  TaskList,
   UploadImage,
 } from '../extensions';
 import { ExtensionConfigs } from './configs';
