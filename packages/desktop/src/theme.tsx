@@ -33,6 +33,10 @@ export const resolver: CSSVariablesResolver = (theme) => ({
 export const theme = createTheme({
   fontFamily: `Inter,-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial,
     sans-serif, Apple Color Emoji, Segoe UI Emoji, system-ui`,
+  defaultRadius: 'xmd',
+  radius: {
+    xmd: '0.35rem',
+  },
   components: {
     ActionIcon: {
       defaultProps: {
@@ -49,9 +53,9 @@ export const theme = createTheme({
   },
   other: {
     activeDividerHandlerLight: '#1A284B',
-    inActiveDividerHandlerLight: 'var(--mantine-color-gray-1)',
+    inActiveDividerHandlerLight: 'var(--mantine-color-gray-2)',
     activeDividerHandlerDark: '#CECECE',
-    inActiveDividerHandlerDark: '#323439',
+    inActiveDividerHandlerDark: 'var(--mantine-color-gray-2)',
     contextMenuHoverLight: '#B4B4B43F',
     contextMenuHoverDark: '#FFFFFF4a',
     contextMenuBorder: '0 0 0 1px var(--mantine-color-gray-2)',

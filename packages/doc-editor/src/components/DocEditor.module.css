@@ -266,7 +266,7 @@
     var(--_fn-backdrop-color-default)
   );
   border: rem(1px) solid var(--_fn-bd);
-  border-radius: var(--mantine-radius-md);
+  border-radius: var(--mantine-radius-default);
   /* overflow: hidden; */
   padding: rem(5px) rem(10px);
   backdrop-filter: var(--publish-backdrop-filter, var(--_fn-backdrop-filter));

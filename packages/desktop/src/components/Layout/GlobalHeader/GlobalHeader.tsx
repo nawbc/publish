@@ -22,10 +22,12 @@ export const GlobalHeader: FC<GlobalHeaderProps> = () => {
   return (
     <Flex
       style={{
+        position: 'sticky',
+        top: 0,
         borderBottom: '1px solid var(--mantine-color-gray-2)',
       }}
     >
-      <DraggableHeader w="100%" mih={rem(40)} pos="relative">
+      <DraggableHeader w="100%" pos="relative">
         <IF is={panel?.collapsed}>
           <Tooltip openDelay={2000} label="Collapse sidebar">
             <ActionIcon c="gray.7" onClick={handleExpand}>

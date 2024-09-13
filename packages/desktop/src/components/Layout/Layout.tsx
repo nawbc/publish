@@ -1,4 +1,4 @@
-import { Container } from '@mantine/core';
+import { Box, Container, rem } from '@mantine/core';
 import { PublishDocEditor } from '@publish/doc-editor/preset/index.ts';
 import type { PropsWithChildren } from 'react';
 import { type FC } from 'react';
@@ -21,8 +21,8 @@ const WorkspaceLayout: FC<DashboardLayoutProps> = () => {
             <PrimitiveSidebar />
           </DividerPanel.Leading>
           <DividerPanel.Trailing>
+            <GlobalHeader />
             <ScrollView>
-              <GlobalHeader />
               <PublishDocEditor />
             </ScrollView>
           </DividerPanel.Trailing>

@@ -13,7 +13,7 @@ import { useProps } from 'reactgets/hooks/use-props';
 import { DividerHandle } from './DividerHandle';
 import classes from './DividerPanel.module.css';
 import { DividerPanelContext } from './DividerPanelContext';
-import { Panel } from './Panel';
+import { Panel, PanelProps } from './Panel';
 import { useDividerPanel } from './use-divider-panel';
 import type { ResizeCallbackArgs, UseResizableProps } from './use-resizable';
 import { useResizable } from './use-resizable';
@@ -34,8 +34,8 @@ export type DividerPanelFactory = Factory<{
   props: DividerPanelProps;
   ref: HTMLDivElement;
   staticComponents: {
-    Leading: FC<PropsWithChildren>;
-    Trailing: FC<PropsWithChildren>;
+    Leading: FC<PanelProps>;
+    Trailing: FC<PanelProps>;
   };
 }>;
 
@@ -57,7 +57,7 @@ export const DividerPanelInner = function ({
   ref,
   ...props
 }: DividerPanelProps & {
-  ref: React.RefObject<DividerPanelInnerRef>;
+  ref?: React.RefObject<DividerPanelInnerRef | null>;
 }) {
   const { children, dividerWidth, initial, hideDividerCollapsed, ...rest } =
     props;
@@ -84,18 +84,29 @@ export const DividerPanelInner = function ({
         pos="relative"
         className={isDragging ? '' : classes.panelSlideTransition}
         style={{
-          width: rem(position - collapsedPosition),
+          // display: 'flex',
+          width: rem(position),
           overflow: 'hidden',
           marginLeft: panel?.collapsed ? position * -1 : 0,
         }}
       >
+        {/* <Box
+          pos="relative"
+          flex={1}
+          style={{
+            overflow: 'hidden',
+          }}
+        >
+        </Box> */}
         {children?.[0]}
       </Box>
       <DividerHandle
         isDragging={isDragging}
         {...separatorProps}
         style={{
-          width: rem(dividerWidth),
+          position: 'absolute',
+          left: rem(position),
+          // width: rem(dividerWidth),
           transition: isDragging ? 'unset' : 'visibility 400ms',
           visibility:
             hideDividerCollapsed && panel?.collapsed ? 'hidden' : 'visible',
@@ -103,9 +114,8 @@ export const DividerPanelInner = function ({
       />
       <Box
         pos="relative"
+        flex={1}
         style={{
-          flexGrow: 1,
-          flexBasis: 0,
           overflow: 'hidden',
         }}
       >

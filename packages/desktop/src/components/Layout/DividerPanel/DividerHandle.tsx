@@ -12,7 +12,7 @@ export const DividerHandle = ({
   isDragging,
   ...props
 }: DividerHandleProps & {
-  ref: React.RefObject<HTMLDivElement>;
+  ref?: React.RefObject<HTMLDivElement>;
 }) => {
   return (
     <Box ref={ref} className={classes.divider} {...props}>

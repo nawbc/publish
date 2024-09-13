@@ -26,7 +26,7 @@ export const DraggableHeader: FC<DraggableHeaderProps> = function (props) {
       mih={rem(40)}
       // Fix tauri-drag-region can't resize window
       my={rem(6)}
-      style={{ style }}
+      style={style}
       {...props}
     />
   );
