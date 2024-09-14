@@ -23,7 +23,7 @@ tauri-plugin-fs = { git = "https://github.com/tauri-apps/plugins-workspace", bra
 tauri-plugin-os = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 tauri-plugin-updater = { git = "https://github.com/tauri-apps/plugins-workspace", branch = "v2" }
 
-wry = "0.42"
-tao = "0.29.1"
+wry = "0.43.1"
+tao = "0.30.0"
 windows = "0.58"
 webview2-com = "0.33"

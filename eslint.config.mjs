@@ -10,6 +10,7 @@ import globals from 'globals';
 import tsEslint from 'typescript-eslint';
 import { fixupPluginRules } from '@eslint/compat';
 import reactHooks from 'eslint-plugin-react-hooks';
+import reactCompiler from 'eslint-plugin-react-compiler';
 
 export default tsEslint.config(
   eslint.configs.recommended,
@@ -89,11 +90,13 @@ export default tsEslint.config(
       'packages/desktop/**/*.{ts,tsx}',
       'packages/mobile/**/*.{ts,tsx}',
       'packages/shared/**/*.{ts,tsx}',
+      'packages/doc-editor/**/*.{ts,tsx}',
     ],
     plugins: {
       react,
       'react-refresh': reactRefresh,
       'react-hooks': fixupPluginRules(reactHooks),
+      'react-compiler': reactCompiler,
     },
     ...reactRecommended,
     ...reactJsxRuntime,
@@ -106,14 +109,15 @@ export default tsEslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      // '@typescript-eslint/consistent-type-imports': [
-      //   'error',
-      //   {
-      //     prefer: 'type-imports',
-      //     disallowTypeAnnotations: false,
-      //     fixStyle: 'inline-type-imports',
-      //   },
-      // ],
+      'react-compiler/react-compiler': 'error',
+      '@typescript-eslint/consistent-type-imports': [
+        'warn',
+        {
+          prefer: 'type-imports',
+          disallowTypeAnnotations: false,
+          fixStyle: 'inline-type-imports',
+        },
+      ],
       'react/self-closing-comp': [
         'error',
         {

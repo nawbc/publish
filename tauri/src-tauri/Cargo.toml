@@ -37,7 +37,7 @@ tauri-plugin-http = { workspace = true, branch = "v2", features = [
   "unsafe-headers",
 ] }
 
-[target."cfg(windows)".dependencies]
+[target."cfg(target_os = \"windows\")".dependencies]
 windows = { workspace = true, features = [
   "Win32_Foundation",
   "Win32_Security",
