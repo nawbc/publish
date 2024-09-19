@@ -19,7 +19,14 @@ export const DevExperiment: FC<DevExperimentProps> = function () {
         <DeviceInfo />
       </Suspense>
 
-      <SimpleGrid my="xl" cols={4}>
+      <SimpleGrid
+        my="xl"
+        cols={{
+          base: 1,
+          sm: 2,
+          lg: 4,
+        }}
+      >
         <Card padding="lg" shadow="sm" radius="md" withBorder>
           <Button
             onClick={async () => {

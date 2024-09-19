@@ -47,5 +47,9 @@ export const theme = createTheme({
     contextMenuHoverLight: '#B4B4B43F',
     contextMenuHoverDark: '#FFFFFF4a',
     contextMenuBorder: '0 0 0 1px var(--mantine-color-gray-2)',
+    gradients: {
+      peach: { from: '#ed6ea0', to: '#ec8c69', deg: 35 },
+      success: { from: '#16BC88', to: '#009C63', deg: 35 },
+    },
   },
 });
