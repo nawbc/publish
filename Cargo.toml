@@ -1,6 +1,6 @@
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [workspace]
-members = ["tauri/src-tauri"]
+members = ["tauri/src-tauri", "first_party/tauri-plugin-simu"]
 resolver = "2"
 
 [workspace.package]

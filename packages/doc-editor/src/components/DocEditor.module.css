@@ -15,44 +15,6 @@
     margin: var(--mantine-spacing-xs) 0;
   }
 
-  & ul[data-type='taskList'] {
-    list-style: none;
-    padding-left: 0;
-    p {
-      margin-top: rem(-1px);
-      margin-bottom: 0;
-    }
-
-    li {
-      display: flex;
-      margin-top: var(--mantine-spacing-xs);
-
-      & > label {
-        flex: 0 0 auto;
-        user-select: none;
-        input {
-          margin: 0;
-          position: relative;
-          left: rem(-3px);
-        }
-      }
-
-      > div {
-        flex: 1 1 auto;
-      }
-
-      ul li,
-      ol li {
-        display: list-item;
-      }
-
-      ul[data-type='taskList'] > li {
-        display: flex;
-        margin-bottom: 0;
-      }
-    }
-  }
-
   & h1,
   & h2,
   & h3,
@@ -96,11 +58,28 @@
   }
 
   & :global(pre) {
-    background-color: var(--_code-bg);
-    color: var(--_code-color);
     font-family: var(--mantine-font-family-monospace);
     border-radius: var(--mantine-radius-default);
     padding: var(--mantine-spacing-md) var(--mantine-spacing-xl);
+    @mixin where-light {
+      background-color: var(--mantine-color-gray-0);
+      color: var(--mantine-color-gray-9);
+      --code-color-comment: var(--mantine-color-gray-5);
+      --code-color-var: var(--mantine-color-red-7);
+      --code-color-number: var(--mantine-color-blue-7);
+      --code-color-title: var(--mantine-color-pink-7);
+      --code-color-keyword: var(--mantine-color-violet-7);
+    }
+
+    @mixin where-dark {
+      background-color: var(--mantine-color-dark-8);
+      color: var(--mantine-color-dark-1);
+      --code-color-comment: var(--mantine-color-dark-2);
+      --code-color-var: var(--mantine-color-red-5);
+      --code-color-number: var(--mantine-color-cyan-5);
+      --code-color-title: var(--mantine-color-yellow-5);
+      --code-color-keyword: var(--mantine-color-violet-3);
+    }
 
     & code {
       background: none !important;
@@ -111,7 +90,7 @@
 
     & :global(.hljs-comment),
     & :global(.hljs-quote) {
-      color: var(--_code-color-comment);
+      color: var(--code-color-comment);
     }
 
     & :global(.hljs-variable),
@@ -123,7 +102,7 @@
     & :global(.hljs-name),
     & :global(.hljs-selector-id),
     & :global(.hljs-selector-class) {
-      color: var(--_code-color-var);
+      color: var(--code-color-var);
     }
 
     & :global(.hljs-number),
@@ -133,23 +112,23 @@
     & :global(.hljs-literal),
     & :global(.hljs-type),
     & :global(.hljs-params) {
-      color: var(--_code-color-number);
+      color: var(--code-color-number);
     }
 
     & :global(.hljs-string),
     & :global(.hljs-symbol),
     & :global(.hljs-bullet) {
-      color: var(--_code-color-var);
+      color: var(--code-color-var);
     }
 
     & :global(.hljs-title),
     & :global(.hljs-section) {
-      color: var(--_code-color-title);
+      color: var(--code-color-title);
     }
 
     & :global(.hljs-keyword),
     & :global(.hljs-selector-tag) {
-      color: var(--_code-color-keyword);
+      color: var(--code-color-keyword);
     }
 
     & :global(.hljs-emphasis) {
@@ -159,26 +138,6 @@
     & :global(.hljs-strong) {
       font-weight: 700;
     }
-  }
-
-  @mixin light {
-    --_code-bg: var(--mantine-color-gray-0);
-    --_code-color: var(--mantine-color-gray-9);
-    --_code-color-comment: var(--mantine-color-gray-5);
-    --_code-color-var: var(--mantine-color-red-7);
-    --_code-color-number: var(--mantine-color-blue-7);
-    --_code-color-title: var(--mantine-color-pink-7);
-    --_code-color-keyword: var(--mantine-color-violet-7);
-  }
-
-  @mixin dark {
-    --_code-bg: var(--mantine-color-dark-8);
-    --_code-color: var(--mantine-color-dark-1);
-    --_code-color-comment: var(--mantine-color-dark-2);
-    --_code-color-var: var(--mantine-color-red-5);
-    --_code-color-number: var(--mantine-color-cyan-5);
-    --_code-color-title: var(--mantine-color-yellow-5);
-    --_code-color-keyword: var(--mantine-color-violet-3);
   }
 }
 
@@ -323,4 +282,69 @@
 .linkEditorSave {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+}
+
+.taskList {
+  list-style-type: none;
+  padding: 0;
+  padding-inline-start: 0;
+
+  & :where(li) {
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  & :where(ul) {
+    margin-top: 5px;
+  }
+
+  & p {
+    margin: 0;
+    padding: 0;
+  }
+
+  & :where(label) {
+    display: inline-block;
+  }
+
+  & :where(input) {
+    cursor: pointer;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 1px solid;
+    border-radius: var(--mantine-radius-default);
+    vertical-align: middle;
+    position: relative;
+
+    @mixin where-light {
+      background-color: var(--mantine-color-white);
+      border-color: var(--mantine-color-gray-4);
+    }
+
+    @mixin where-dark {
+      background-color: var(--mantine-color-dark-6);
+      border-color: var(--mantine-color-dark-4);
+    }
+
+    &:checked {
+      background-color: var(--mantine-primary-color-filled);
+      border-color: var(--mantine-primary-color-filled);
+
+      &::before {
+        position: absolute;
+        content: '';
+        inset: 0;
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCAxMCA3Ij48cGF0aCBmaWxsPSIjZmZmIiBkPSJNNCA0LjU4NkwxLjcwNyAyLjI5M0ExIDEgMCAxMC4yOTMgMy43MDdsMyAzYS45OTcuOTk3IDAgMDAxLjQxNCAwbDUtNUExIDEgMCAxMDguMjkzLjI5M0w0IDQuNTg2eiIvPjwvc3ZnPg==');
+        background-repeat: no-repeat;
+        background-size: 10px;
+        background-position: center;
+      }
+    }
+  }
+
+  & :where(li > label) {
+    margin-inline-end: var(--mantine-spacing-sm);
+  }
 }
