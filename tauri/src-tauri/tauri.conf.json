@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/@tauri-apps/cli/schema.json",
-  "productName": "publish",
+  "productName": "Publish",
   "version": "0.0.1",
   "identifier": "com.deskbtm.publish",
   "build": {
@@ -15,7 +15,7 @@
       {
         "decorations": false,
         "transparent": true,
-        "title": "publish",
+        "title": "Publish",
         "label": "main",
         "width": 1160,
         "height": 800,

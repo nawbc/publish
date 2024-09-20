@@ -6,7 +6,7 @@
     "desktop": "yarn workspace @publish/tauri dev",
     "build:web": "cross-env PUBLISH_BUILD_PLATFORM=web yarn workspace @publish/desktop build",
     "preview:web": "cross-env PUBLISH_BUILD_PLATFORM=web yarn workspace @publish/desktop preview",
-    "build:tauri": "yarn workspace @publish/tauri build",
+    "build:desktop": "yarn workspace @publish/tauri build",
     "build:android": "yarn workspace @publish/mobile dev",
     "build:ios": "yarn workspace @publish/mobile dev",
     "cloc": "cloc --fullpath --not-match-d=$(cat .clocignore) .",

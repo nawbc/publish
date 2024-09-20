@@ -88,6 +88,17 @@ export interface Manifest {
    */
   version: string;
   /**
+   * Minimum compatible version for the Plugin
+   * @example
+   * ```
+   * {
+   *  "publish": "1.0.0"
+   * }
+   * ```
+   */
+  compatibilities: Record<string, string>;
+
+  /**
    * Register manifest version, should be Integer.
    */
   manifestVersion: number;

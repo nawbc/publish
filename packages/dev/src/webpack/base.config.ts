@@ -337,7 +337,7 @@ export function createConfiguration(): Configuration {
     resolve,
     devtool: kProdMode
       ? kReleaseMode
-        ? 'none'
+        ? false
         : 'source-map'
       : 'eval-cheap-module-source-map',
     optimization,

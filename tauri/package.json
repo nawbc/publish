@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env PUBLISH_BUILD_PLATFORM=desktop tauri dev",
-    "build": "cross-env PUBLISH_BUILD_PLATFORM=desktop tauri build",
+    "build": "cross-env PUBLISH_BUILD_PLATFORM=desktop RELEASE=true tauri build",
     "tauri": "tauri"
   },
   "keywords": [],
