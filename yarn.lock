@@ -1529,14 +1529,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@capacitor-community/sqlite@npm:5.7.3-3":
-  version: 5.7.3-3
-  resolution: "@capacitor-community/sqlite@npm:5.7.3-3"
+"@capacitor-community/sqlite@npm:6.0.2":
+  version: 6.0.2
+  resolution: "@capacitor-community/sqlite@npm:6.0.2"
   dependencies:
-    jeep-sqlite: "npm:^2.7.0"
+    jeep-sqlite: "npm:^2.7.2"
   peerDependencies:
-    "@capacitor/core": ^5.0.0
-  checksum: 10/a41d3aad77dabecaec71e28d76593e9800a8073a340e4b94cb00225a01d6b4193f54c98a2e5bf28a489057cd0c91fff35b28f6cec3c0a52efef073cf108a4231
+    "@capacitor/core": ^6.0.0
+  checksum: 10/f763f2006e064aa748a455b2ed059d4ec3c8343434b36fe77cbb37aa6b9afd09e8e36ec607673764abff2e47d3113b2b5086bad6c2ed6c6d7effad4bf4e6cf1a
   languageName: node
   linkType: hard
 
@@ -4371,7 +4371,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@publish/mobile@workspace:packages/mobile"
   dependencies:
-    "@capacitor-community/sqlite": "npm:5.7.3-3"
+    "@capacitor-community/sqlite": "npm:6.0.2"
     "@capacitor/keyboard": "npm:6.0.0"
     "@capacitor/local-notifications": "npm:6.0.0"
     "@capacitor/push-notifications": "npm:6.0.0"
@@ -12463,7 +12463,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jeep-sqlite@npm:^2.7.0":
+"jeep-sqlite@npm:^2.7.2":
   version: 2.8.0
   resolution: "jeep-sqlite@npm:2.8.0"
   dependencies:
