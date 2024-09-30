@@ -4331,7 +4331,7 @@ __metadata:
     "@tiptap/core": "npm:2.7.1"
     "@tiptap/extension-code-block": "npm:2.7.1"
     "@tiptap/extension-code-block-lowlight": "npm:2.7.1"
-    "@tiptap/extension-color": "npm:2.7.1"
+    "@tiptap/extension-color": "npm:2.8.0"
     "@tiptap/extension-image": "npm:2.7.1"
     "@tiptap/extension-link": "npm:2.7.1"
     "@tiptap/extension-placeholder": "npm:2.7.1"
@@ -5577,13 +5577,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tiptap/extension-color@npm:2.7.1":
-  version: 2.7.1
-  resolution: "@tiptap/extension-color@npm:2.7.1"
+"@tiptap/extension-color@npm:2.8.0":
+  version: 2.8.0
+  resolution: "@tiptap/extension-color@npm:2.8.0"
   peerDependencies:
     "@tiptap/core": ^2.7.0
     "@tiptap/extension-text-style": ^2.7.0
-  checksum: 10/8db2b259a03f568328a70521918238f70fbcc0811abd90e9d897bcd22e7c883318b92b68c1fd89e17006823a50e703a8e0ad86cd0d6943e1c332f9735b84bcc6
+  checksum: 10/b75a2b9046b114c553ffc53d79087e2bb88b1a6111ecd67973bdcb43772877ffc8e7dc2b87647dcdfdd558c8a25adb5e282bf612e3bc3c13c520cf38d70bfabc
   languageName: node
   linkType: hard
 
